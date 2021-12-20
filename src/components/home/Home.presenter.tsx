@@ -38,6 +38,7 @@ import {
   HomeFAQAnswer,
   HomeSchollTextWrapper,
   HomeLogoWrapper,
+  HomeSchoolContentsWrapper,
 } from "./Home.style";
 import mainBgBak from "../../assets/imges/mainBg.png";
 import tudalLogo from "../../assets/imges/SVG/tudalLogo.svg";
@@ -131,6 +132,7 @@ const HomePresenter: React.FC<IHomeProps> = ({
         </HomeLogoWrapper>
         <HomeMobileWrapper>
           <HomeMainImg src={mainBgBak} />
+
           <HomeMainContentsWrapper>
             <HomeMainTitle>투자는 어렵지만,</HomeMainTitle>
             <HomeMainSubTitle>투달은 쉽습니다.</HomeMainSubTitle>
@@ -222,11 +224,7 @@ const HomePresenter: React.FC<IHomeProps> = ({
               <br />한 줄로 요약되는 간편 투자 판단
             </HomeFirstText>
             <HomeFirstBtnWrapper>
-              <HomeFirstBtnTextWrapper
-                style={{ marginRight: "35px" }}
-                id="sign"
-                onClick={handleContentsBtn}
-              >
+              <HomeFirstBtnTextWrapper id="sign" onClick={handleContentsBtn}>
                 <HomeFirstBtn
                   id="sign"
                   src={secondBtn === "sign" ? signOnIcon : signIcon}
@@ -355,36 +353,38 @@ const HomePresenter: React.FC<IHomeProps> = ({
         </HomeFirstBody>
       </HomeFirstContentsWrapper>
       <HomeSchoolThemeWrapper>
-        <HomeSchollTextWrapper>
-          <HomeSchoolTitle>주식투자 배우는 게 어렵나요?</HomeSchoolTitle>
-          <HomeSchoolSubTitle>투달은 쉽습니다.</HomeSchoolSubTitle>
-          <HomeSchoolText>
-            정석투자에서 테마와 차트까지 다양한 투자기술 전수
-          </HomeSchoolText>
-        </HomeSchollTextWrapper>
-        <HomeSchoolImgWrapper>
-          {windowDimensions.width < 680 ? (
-            <>
-              <StyledSlider {...settings}>
-                <div>
-                  <HomeSchoolImg src={chartSchool} />
-                </div>
-                <div>
-                  <HomeSchoolImg src={themSchool} />
-                </div>
-                <div>
-                  <HomeSchoolImg src={originSchool} />
-                </div>
-              </StyledSlider>
-            </>
-          ) : (
-            <>
-              <HomeSchoolImg src={chartSchool} />
-              <HomeSchoolImg src={themSchool} />
-              <HomeSchoolImg src={originSchool} />
-            </>
-          )}
-        </HomeSchoolImgWrapper>
+        <HomeSchoolContentsWrapper>
+          <HomeSchollTextWrapper>
+            <HomeSchoolTitle>주식투자 배우는 게 어렵나요?</HomeSchoolTitle>
+            <HomeSchoolSubTitle>투달은 쉽습니다.</HomeSchoolSubTitle>
+            <HomeSchoolText>
+              정석투자에서 테마와 차트까지 다양한 투자기술 전수
+            </HomeSchoolText>
+          </HomeSchollTextWrapper>
+          <HomeSchoolImgWrapper>
+            {windowDimensions.width < 680 ? (
+              <>
+                <StyledSlider {...settings}>
+                  <div>
+                    <HomeSchoolImg src={chartSchool} />
+                  </div>
+                  <div>
+                    <HomeSchoolImg src={themSchool} />
+                  </div>
+                  <div>
+                    <HomeSchoolImg src={originSchool} />
+                  </div>
+                </StyledSlider>
+              </>
+            ) : (
+              <>
+                <HomeSchoolImg src={chartSchool} />
+                <HomeSchoolImg src={themSchool} />
+                <HomeSchoolImg src={originSchool} />
+              </>
+            )}
+          </HomeSchoolImgWrapper>
+        </HomeSchoolContentsWrapper>
       </HomeSchoolThemeWrapper>
       <HomeFAQWrapper>
         <HomeFAQContentsWrapper>

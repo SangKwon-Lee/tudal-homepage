@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 
 export const HomeMainWrapper = styled.div`
   @media (min-width: 680px) {
-    width: 100%;
-    min-width: 1440px;
     height: 100%;
-    display: flex;
   }
   display: flex;
   width: 100%;
@@ -15,9 +12,7 @@ export const HomeMainWrapper = styled.div`
 export const HomeMainImg = styled.img`
   @media (min-width: 680px) {
     height: 100%;
-    min-height: 100%;
-    width: 100%;
-    object-fit: cover;
+    min-height: 100vh;
   }
   width: 100%;
   object-fit: cover;
@@ -26,8 +21,6 @@ export const HomeMainImg = styled.img`
 export const HomeMobileWrapper = styled.div`
   @media (min-width: 680px) {
     display: block;
-    width: 100%;
-    height: 100%;
   }
   display: flex;
   width: 100%;
@@ -36,11 +29,8 @@ export const HomeMobileWrapper = styled.div`
 `;
 export const HomeMainContentsWrapper = styled.div`
   @media (min-width: 680px) {
-    position: absolute;
-    display: flex;
     flex-direction: column;
     padding: 330px 0px;
-    width: 100%;
     padding-left: 90px;
     align-items: flex-start;
   }
@@ -51,6 +41,7 @@ export const HomeMainContentsWrapper = styled.div`
   top: 0;
   padding: 200px 0px;
   width: 100%;
+
   /* padding-left: 30px; */
 `;
 export const HomeLogoWrapper = styled.div`
@@ -97,9 +88,7 @@ export const HomeMainTitle = styled.div`
 export const HomeFirstTitle = styled.div`
   @media (min-width: 680px) {
     font-size: 38px;
-    margin-top: 20px;
-    color: #3e3939;
-    font-weight: 400;
+    font-weight: 500;
     text-align: start;
   }
   font-size: 150%;
@@ -111,9 +100,7 @@ export const HomeFirstTitle = styled.div`
 
 export const HomeFirstSubTitle = styled.div`
   @media (min-width: 680px) {
-    color: #3e3939;
     font-size: 58px;
-    font-weight: bold;
     text-align: start;
   }
   color: #3e3939;
@@ -126,7 +113,6 @@ export const HomeMainSubTitle = styled.div`
   @media (min-width: 680px) {
     color: #3e3939;
     font-size: 58px;
-    font-weight: bold;
     text-shadow: none;
   }
   color: white;
@@ -139,9 +125,7 @@ export const HomeMainText = styled.div`
   @media (min-width: 680px) {
     color: #3e3939;
     font-size: 27px;
-    line-height: 32px;
     font-weight: 450;
-    margin-top: 20px;
     text-shadow: none;
   }
   color: white;
@@ -153,9 +137,7 @@ export const HomeMainText = styled.div`
 
 export const HomeMainBtnWrapper = styled.div`
   @media (min-width: 680px) {
-    display: flex;
     margin-top: 60px;
-    align-items: center;
     flex-direction: row;
   }
   display: flex;
@@ -166,19 +148,11 @@ export const HomeMainBtnWrapper = styled.div`
 
 export const HomeMainGoogleBtn = styled.button`
   @media (min-width: 680px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #3e3939;
-    border-radius: 5px;
     color: #3e3939;
-    font-weight: bold;
-    font-size: 23px;
     margin-right: 15px;
     width: 230px;
     height: 55px;
-    background: none;
-    cursor: pointer;
+    border: 1px solid black;
   }
   display: flex;
   align-items: center;
@@ -196,18 +170,12 @@ export const HomeMainGoogleBtn = styled.button`
 
 export const HomeMainAppleBtn = styled.button`
   @media (min-width: 680px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 1px solid #3e3939;
-    border-radius: 5px;
     color: #3e3939;
-    font-weight: bold;
     font-size: 23px;
     width: 200px;
     height: 55px;
-    background: none;
-    cursor: pointer;
+    margin: 0px;
   }
   display: flex;
   align-items: center;
@@ -238,12 +206,8 @@ export const HomeMainAppImg = styled.img`
 
 export const HomeFirstContentsWrapper = styled.div`
   @media (min-width: 680px) {
-    width: 100%;
     min-width: 1440px;
     height: 900px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
   }
   width: 100%;
   background-color: white;
@@ -266,11 +230,7 @@ export const HomeFirstBody = styled.div`
 
 export const HomeFirstText = styled.div`
   @media (min-width: 680px) {
-    color: #3e3939;
     font-size: 23px;
-    line-height: 26px;
-    font-weight: 500;
-    margin-top: 35px;
     text-align: start;
   }
   color: #3e3939;
@@ -290,9 +250,8 @@ export const HomeFirstLeftWrapper = styled.div`
 
 export const HomeFirstBtnWrapper = styled.div`
   @media (min-width: 680px) {
-    display: flex;
     margin-top: 100px;
-    margin-left: 30px;
+    width: 300px;
   }
   display: flex;
   justify-content: space-between;
@@ -364,13 +323,11 @@ export const HomeSecondContentsWrapper = styled.div`
 export const HomeSchoolThemeWrapper = styled.div`
   @media (min-width: 680px) {
     width: 100%;
-    min-width: 1440px;
-    height: 924px;
-    background-color: #da4446;
+    height: 925px;
     display: flex;
-    align-items: center;
+    background-color: #da4446;
     flex-direction: column;
-    padding-top: 100px;
+    align-items: center;
   }
   width: 100%;
   height: 924px;
@@ -378,6 +335,15 @@ export const HomeSchoolThemeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 100px;
+`;
+export const HomeSchoolContentsWrapper = styled.div`
+  @media (min-width: 680px) {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const HomeSchollTextWrapper = styled.div`
   display: flex;
@@ -389,9 +355,6 @@ export const HomeSchollTextWrapper = styled.div`
 export const HomeSchoolTitle = styled.div`
   @media (min-width: 680px) {
     font-size: 48px;
-    margin-top: 20px;
-    color: white;
-    font-weight: 400;
     margin-bottom: -13px;
   }
   font-size: 150%;
@@ -404,7 +367,6 @@ export const HomeSchoolSubTitle = styled.div`
   @media (min-width: 680px) {
     color: white;
     font-size: 58px;
-    font-weight: bold;
   }
   color: white;
   font-size: 250%;
@@ -413,11 +375,8 @@ export const HomeSchoolSubTitle = styled.div`
 
 export const HomeSchoolText = styled.div`
   @media (min-width: 680px) {
-    color: white;
     font-size: 23px;
     line-height: 32px;
-    font-weight: 450;
-    margin-top: 30px;
   }
   color: white;
   font-size: 110%;
@@ -427,14 +386,13 @@ export const HomeSchoolText = styled.div`
 `;
 
 export const HomeSchoolImgWrapper = styled.div`
+  @media (min-width: 680px) {
+    display: flex;
+  }
   margin-top: 18px;
 `;
 
 export const HomeSchoolImg = styled.img`
-  @media (min-width: 680px) {
-    width: 320px;
-    margin: auto;
-  }
   width: 320px;
   margin: auto;
 `;
@@ -442,57 +400,40 @@ export const HomeSchoolImg = styled.img`
 //* FAQ
 export const HomeFAQWrapper = styled.div`
   @media (min-width: 680px) {
-    height: 1100px;
+    width: 100%;
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
     background-color: white;
-    padding-top: 130px;
+    padding: 100px 0px;
   }
-  width: 100%;
-  display: flex;
-  background-color: white;
-  padding-top: 130px;
+  padding: 60px 0px;
 `;
 
 export const HomeFAQContentsWrapper = styled.div`
   @media (min-width: 680px) {
-    min-width: 1200px;
-    max-width: 1600px;
     width: 100%;
-    margin-left: 90px;
-    margin-right: 90px;
+    max-width: 1280px;
   }
 `;
 
 export const HomeFAQTitle = styled.div`
   @media (min-width: 680px) {
     font-size: 50px;
-    font-weight: 1000;
-    margin-bottom: 30px;
+    margin-left: 0px;
   }
+  margin-left: 30px;
+  font-weight: bold;
   font-size: 250%;
-  font-weight: 1000;
   margin-bottom: 30px;
-  margin-left: 20px;
 `;
 
 export const HomeFAQ = styled.div`
   @media (min-width: 680px) {
-    color: black;
-    font-weight: 600;
-    height: 88px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
     padding-left: 40px;
-    font-size: 16px;
-    cursor: pointer;
-    min-width: 1200px;
-    max-width: 1920px;
-    width: 100%;
   }
   color: black;
   font-weight: 600;
-  height: 88px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
@@ -503,17 +444,7 @@ export const HomeFAQ = styled.div`
 
 export const HomeFAQAnswer = styled.div`
   @media (min-width: 680px) {
-    color: black;
-    height: 88px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 40px;
-    font-size: 16px;
-    background-color: #f7f5ef;
-    min-width: 1200px;
-    max-width: 1920px;
-    width: 100%;
+    padding: 40px;
   }
   color: black;
   display: flex;

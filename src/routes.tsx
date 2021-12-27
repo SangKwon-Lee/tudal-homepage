@@ -23,9 +23,8 @@ const Login = Loadable(
 const GoldCharge = Loadable(
   lazy(() => import("./components/goldCharge/GoldCharge.container"))
 );
-
-const IPay = Loadable(
-  lazy(() => import("../src/components/ipay/ipay.container"))
+const GoldHistory = Loadable(
+  lazy(() => import("./components/goldHistory/GoldHistory.container"))
 );
 
 const routes = [
@@ -39,10 +38,7 @@ const routes = [
       </>
     ),
   },
-  {
-    path: "/pay",
-    element: <IPay />,
-  },
+
   {
     path: "/login",
     element: (
@@ -58,6 +54,15 @@ const routes = [
       <>
         <Header path="login" />
         <GoldCharge path="charge" />
+      </>
+    ),
+  },
+  {
+    path: "/history",
+    element: (
+      <>
+        <Header path="login" />
+        <GoldHistory path="history" />
       </>
     ),
   },

@@ -13,7 +13,10 @@ export const GoldMenuWrapper = styled.div`
 `;
 
 export const GoldMenuBody = styled.div`
-  width: 1200px;
+  @media (min-width: 680px) {
+    width: 1200px;
+  }
+  width: 100%;
   padding-top: 35px;
   margin: 0px 20px;
 `;
@@ -23,7 +26,10 @@ export const GoldMenuTitleWrapper = styled.div`
 `;
 
 export const GoldMenuTitle = styled.div`
-  font-size: 20px;
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+  font-size: 15px;
   color: ${(props: IGoldChargeStyleProps) =>
     props.path === "charge" ? "#ff3838" : "black"};
   font-weight: 700;
@@ -35,22 +41,41 @@ export const GoldMenuTitle = styled.div`
 `;
 
 export const MyGoldWrapper = styled.div`
-  padding-right: 240px;
+  @media (min-width: 680px) {
+    padding-right: 240px;
+    display: block;
+  }
+  padding-right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MyGoldText = styled.div`
-  font-size: 20px;
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+  font-size: 15px;
 `;
 
 export const MyGoldNumber = styled.span`
   font-weight: 700;
-  font-size: 40px;
+  @media (min-width: 680px) {
+    font-size: 40px;
+  }
+  font-size: 25px;
 `;
 
 export const GoldChargeWrapper = styled.div`
+  @media (min-width: 680px) {
+    min-width: 1200px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #f7f7f7;
   width: 100%;
-  min-width: 1200px;
   padding-top: 90px;
   padding-bottom: 120px;
   height: 100vh;
@@ -59,12 +84,21 @@ export const GoldChargeWrapper = styled.div`
 `;
 
 export const GoldChargeBody = styled.div`
-  width: 1200px;
+  @media (min-width: 680px) {
+    flex-direction: row;
+    padding: 0px 0px;
+    width: 1200px;
+  }
+  width: 100%;
   display: flex;
+  flex-direction: column;
 `;
 
 export const GoldChargeContentsWrapper = styled.div`
-  width: 524px;
+  @media (min-width: 680px) {
+    width: 524px;
+  }
+  width: 100%;
 `;
 
 export const GoldChargeTitle = styled.div`
@@ -81,10 +115,14 @@ export const GoldChargeBtnWrapper = styled.div`
 `;
 
 export const GoldChargeBtn = styled.button`
-  width: 97px;
+  @media (min-width: 680px) {
+    width: 97px;
+    font-size: 15px;
+  }
+  width: 63px;
   border: 1px solid #c7c7c7;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 13px;
   height: 46px;
   cursor: pointer;
   outline: none;
@@ -94,6 +132,12 @@ export const GoldChargeBtn = styled.button`
     props.isCheck ? "white" : "black"};
   background-color: ${(props: IGoldChargeStyleProps) =>
     props.isCheck ? "#FC8484" : "white"};
+`;
+
+export const GoldChareBtnMobileBr = styled.br`
+  @media (min-width: 680px) {
+    display: none;
+  }
 `;
 
 export const GoldChargeMax = styled.div`
@@ -107,6 +151,15 @@ export const GoldChargeLine = styled.div`
   margin-top: 30px;
 `;
 
+export const GoldChargeMobileLine = styled.div`
+  @media (min-width: 680px) {
+    display: none;
+  }
+  border-top: 1px solid #c7c7c7;
+  margin-bottom: 30px;
+  margin-top: 30px;
+`;
+
 export const GoldChargeSelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -114,7 +167,12 @@ export const GoldChargeSelectWrapper = styled.div`
 `;
 
 export const GoldChargeSelect = styled.div`
-  width: 408px;
+  @media (min-width: 680px) {
+    width: 408px;
+    margin-right: 0px;
+  }
+  width: 100%;
+  margin-right: 30px;
   height: 60px;
   background-color: white;
   border-radius: 10px;
@@ -130,6 +188,7 @@ export const GoldChargeSelect = styled.div`
 `;
 
 export const GoldChargeBonusWrapper = styled.div`
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -236,12 +295,19 @@ export const GoldChargeCheckWrapper = styled.div`
 export const GoldChargeCheckImg = styled.img``;
 
 export const GoldChargeCheckText = styled.div`
-  font-size: 15px;
+  @media (min-width: 680px) {
+    font-size: 15px;
+  }
+  font-size: 13px;
   color: #4b4b4b;
   padding-left: 12px;
 `;
 
 export const GoldChargePGBtn = styled.button`
+  @media (min-width: 680px) {
+    margin-bottom: 0px;
+  }
+  margin-bottom: 86px;
   width: 100%;
   height: 60px;
   background-color: white;

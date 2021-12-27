@@ -12,7 +12,7 @@ interface IGoldChargeProps {
 
 const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const { userData, setUserGold, userGold } = useContext(GlobalContext);
-
+  const userId = sessionStorage.getItem("userId");
   //* 골드
   const [gold, setgold] = useState("충전하실 금액을 선택해주세요.");
 
@@ -36,14 +36,14 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   useEffect(() => {
     handleGetUserGold();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData.userId]);
+  }, [userId]);
 
   //* 유저 골드 정보 불러오기
   const handleGetUserGold = async () => {
-    if (userData.userId) {
+    if (userId) {
       try {
         const { data } = await axios.get(
-          `https://api.tudal.co.kr/api/golds/${userData.userId}`
+          `https://api.tudal.co.kr/api/golds/${userId}`
         );
         setUserGold(data[0]);
       } catch (e) {
@@ -66,7 +66,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       });
     }
   };
-  console.log(inputCharge);
 
   //* 이노페이 결제
   const handleInnoPay = () => {

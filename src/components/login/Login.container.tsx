@@ -58,7 +58,7 @@ const LoginContainer = () => {
   }, [sec, auth.timer]);
 
   //* 로그인 정보 인풋
-  const handleLoginInput = (e: any) => {
+  const handleLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput({
       ...loginInput,
       [e.target.name]: e.target.value,
@@ -120,6 +120,8 @@ const LoginContainer = () => {
           }
         );
         setUserData(result.data[0]);
+
+        sessionStorage.setItem("name", result.data[0].name);
         sessionStorage.setItem("userId", result.data[0].userId);
         setStep(() => step + 1);
       } catch (e) {

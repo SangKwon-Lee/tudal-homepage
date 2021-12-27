@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
 
 export const LoginWrapper = styled.div`
+  @media (min-width: 680px) {
+    padding-top: 117px;
+    min-width: 1200px;
+  }
+  padding-top: 55px;
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 117px;
 `;
 
 export const LoginBody = styled.div`
@@ -15,25 +19,38 @@ export const LoginBody = styled.div`
 
 //* 로그인 인증
 export const LoginTitle = styled.div`
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+  font-size: 18px;
   font-weight: 700;
-  font-size: 20px;
   padding-bottom: 45px;
 `;
 
 export const LoginContentsWrapper = styled.div`
-  width: 474px;
-  background: rgba(0, 0, 0, 0.04);
+  @media (min-width: 680px) {
+    background: rgba(0, 0, 0, 0.04);
+    width: 474px;
+    border-radius: 22px;
+    flex-direction: column;
+    padding: 40px 40px 40px 40px;
+    align-items: center;
+  }
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 50px 00px 40px 40px;
-  border-radius: 22px;
 `;
 
-export const LoginInputWrapper = styled.div``;
+export const LoginInputWrapper = styled.div`
+  width: 100%;
+`;
 
 export const LoginInputTitle = styled.div`
-  font-size: 18px;
-  font-weight: 700;
+  @media (min-width: 680px) {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  font-size: 15px;
   padding-bottom: 10px;
 `;
 
@@ -44,10 +61,13 @@ export const LoginAuthInputWrapper = styled.div`
 `;
 
 export const LoginInput = styled.input`
-  width: 394px;
+  @media (min-width: 680px) {
+    font-size: 18px;
+  }
+  width: 100%;
   height: 60px;
   padding-left: 20px;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 400;
   border-radius: 10px;
   border: 1px solid #c7c7c7;
@@ -65,7 +85,12 @@ export const LoginInput = styled.input`
 `;
 
 export const LoginAuthBtn = styled.button`
-  width: 109px;
+  @media (min-width: 680px) {
+    width: 109px;
+    font-size: 15px;
+  }
+  font-size: 13px;
+  padding: 0px 10px;
   height: 60px;
   background-color: #ff3838;
   color: white;
@@ -73,7 +98,6 @@ export const LoginAuthBtn = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-size: 15px;
   margin-left: 20px;
   :disabled {
     background-color: #a8a8a8;
@@ -87,7 +111,9 @@ export const LoginError = styled.div`
 `;
 
 export const LoginAuthInput = styled.input`
-  width: 394px;
+  @media (min-width: 680px) {
+  }
+  width: 100%;
   height: 60px;
   padding: 15px 20px;
   font-size: 18px;
@@ -108,7 +134,9 @@ export const LoginAuthInput = styled.input`
 `;
 
 export const LoginBtn = styled.button`
-  width: 394px;
+  @media (min-width: 680px) {
+  }
+  width: 100%;
   height: 60px;
   color: white;
   font-size: 18px;
@@ -126,7 +154,9 @@ export const LoginBtn = styled.button`
 //* 로그인 성공
 
 export const LoginSuccessWrapper = styled.div`
-  margin-top: 150px;
+  @media (min-width: 680px) {
+    margin-top: 150px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;

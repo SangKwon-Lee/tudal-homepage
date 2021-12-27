@@ -8,8 +8,10 @@ export const FooterWrapper = styled.div`
     display: flex;
     justify-content: center;
     padding: 40px 0px;
+    min-width: 1440px;
   }
   width: 100%;
+  min-width: 0px;
   background-color: #3e3939;
   color: white;
   padding: 40px 0px;
@@ -18,7 +20,7 @@ export const FooterWrapper = styled.div`
 export const FooterBody = styled.div`
   @media (min-width: 680px) {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1280px;
     display: flex;
     flex-direction: column;
     text-align: start;

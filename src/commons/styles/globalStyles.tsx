@@ -2,6 +2,7 @@ import { Global, css } from "@emotion/react";
 
 const reset = css`
   @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
   * {
     box-sizing: border-box;
     margin: 0px;
@@ -35,6 +36,11 @@ const reset = css`
   h4 {
     font-family: "SpoqaHanSansNeo-Regular";
     font-size: "12px";
+  }
+
+  @font-face {
+    font-family: "Noto Sans";
+    src: url("./fonts/NotoSans-Regular.ttf");
   }
 
   @font-face {

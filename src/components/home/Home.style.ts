@@ -3,37 +3,27 @@ import styled from "@emotion/styled";
 export const HomeMainWrapper = styled.div`
   @media (min-width: 680px) {
     height: 100%;
+    width: 100%;
   }
   display: flex;
-  width: 100%;
+  justify-content: center;
   align-items: center;
 `;
 
 export const HomeMainImg = styled.img`
   @media (min-width: 680px) {
-    height: 100%;
-    min-height: 100vh;
   }
   width: 100%;
   object-fit: cover;
-  height: 800px;
-`;
-export const HomeMobileWrapper = styled.div`
-  @media (min-width: 680px) {
-    display: block;
-  }
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
+  height: 100vh;
 `;
 export const HomeMainContentsWrapper = styled.div`
   @media (min-width: 680px) {
     flex-direction: column;
     padding: 330px 0px;
-    padding-left: 90px;
     align-items: flex-start;
   }
+  max-width: 1280px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -41,8 +31,6 @@ export const HomeMainContentsWrapper = styled.div`
   top: 0;
   padding: 200px 0px;
   width: 100%;
-
-  /* padding-left: 30px; */
 `;
 export const HomeLogoWrapper = styled.div`
   @media (min-width: 680px) {
@@ -210,6 +198,7 @@ export const HomeFirstContentsWrapper = styled.div`
     height: 900px;
   }
   width: 100%;
+
   background-color: white;
   display: flex;
   justify-content: center;
@@ -323,11 +312,13 @@ export const HomeSecondContentsWrapper = styled.div`
 export const HomeSchoolThemeWrapper = styled.div`
   @media (min-width: 680px) {
     width: 100%;
+    min-width: 1440px;
     height: 925px;
     display: flex;
     background-color: #da4446;
     flex-direction: column;
     align-items: center;
+    max-width: 1920px;
   }
   width: 100%;
   height: 924px;
@@ -401,6 +392,7 @@ export const HomeSchoolImg = styled.img`
 export const HomeFAQWrapper = styled.div`
   @media (min-width: 680px) {
     width: 100%;
+    min-width: 1440px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;

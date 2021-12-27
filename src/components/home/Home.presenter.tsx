@@ -1,7 +1,6 @@
 import {
   HomeMainImg,
   HomeMainWrapper,
-  HomeTudalLogo,
   HomeMainContentsWrapper,
   HomeMainTitle,
   HomeMainSubTitle,
@@ -21,7 +20,6 @@ import {
   HomeFirstBtnTextWrapper,
   HomeFirstRightBody,
   HomeFirstRightImg,
-  HomeMobileWrapper,
   HomeFirstTitle,
   HomeFirstSubTitle,
   HomeSecondContentsWrapper,
@@ -37,11 +35,11 @@ import {
   HomeFAQ,
   HomeFAQAnswer,
   HomeSchollTextWrapper,
-  HomeLogoWrapper,
   HomeSchoolContentsWrapper,
 } from "./Home.style";
+
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import mainBgBak from "../../assets/imges/mainBg.png";
-import tudalLogo from "../../assets/imges/SVG/tudalLogo.svg";
 import googleIcon from "../../assets/imges/SVG/playIcon.svg";
 import appIcon from "../../assets/imges/SVG/appIcon.svg";
 import editorIcon from "../../assets/imges/SVG/editorIcon.svg";
@@ -124,45 +122,56 @@ const HomePresenter: React.FC<IHomeProps> = ({
   windowDimensions,
 }) => {
   const { firstBtn, secondBtn, thirdBtn } = contentsBtn;
+
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <script
+            type="text/javascript"
+            src="https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
+            charSet="utf-8"
+          ></script>
+        </Helmet>
+      </HelmetProvider>
       <HomeMainWrapper>
-        <HomeLogoWrapper>
+        {/* <HomeLogoWrapper>
           <HomeTudalLogo src={tudalLogo} />
-        </HomeLogoWrapper>
-        <HomeMobileWrapper>
-          <HomeMainImg src={mainBgBak} />
-
-          <HomeMainContentsWrapper>
-            <HomeMainTitle>투자는 어렵지만,</HomeMainTitle>
-            <HomeMainSubTitle>투달은 쉽습니다.</HomeMainSubTitle>
-            <HomeMainText>
-              BigData, AI 기술로 주린이도 알기 쉬운
-              <br />
-              3S(Smart, Simple, Speed) 투자정보
-            </HomeMainText>
-            <HomeMainBtnWrapper>
-              <HomeMainGoogleBtn
-                onClick={() => {
-                  window.open(
-                    "https://play.google.com/store/apps/details?id=com.tudal.tp"
-                  );
-                }}
-              >
-                <HomeMainGoogleImg src={googleIcon} />
-                Google Play
-              </HomeMainGoogleBtn>
-              <HomeMainAppleBtn
-                onClick={() => {
-                  window.open("https://apps.apple.com/kr/app/id1455175051");
-                }}
-              >
-                <HomeMainAppImg src={appIcon} />
-                App Store
-              </HomeMainAppleBtn>
-            </HomeMainBtnWrapper>
-          </HomeMainContentsWrapper>
-        </HomeMobileWrapper>
+        </HomeLogoWrapper> */}
+        <HomeMainImg src={mainBgBak} />
+        <HomeMainContentsWrapper>
+          <HomeMainTitle>투자는 어렵지만,</HomeMainTitle>
+          <HomeMainSubTitle>투달은 쉽습니다.</HomeMainSubTitle>
+          <HomeMainText>
+            BigData, AI 기술로 주린이도 알기 쉬운
+            <br />
+            3S(Smart, Simple, Speed) 투자정보
+          </HomeMainText>
+          <HomeMainBtnWrapper>
+            <HomeMainGoogleBtn
+              onClick={() => {
+                window.open(
+                  "https://play.google.com/store/apps/details?id=com.tudal.tp"
+                );
+              }}
+            >
+              <HomeMainGoogleImg src={googleIcon} />
+              Google Play
+            </HomeMainGoogleBtn>
+            <HomeMainAppleBtn
+              onClick={() => {
+                window.open("https://apps.apple.com/kr/app/id1455175051");
+              }}
+            >
+              <HomeMainAppImg src={appIcon} />
+              App Store
+            </HomeMainAppleBtn>
+          </HomeMainBtnWrapper>
+        </HomeMainContentsWrapper>
       </HomeMainWrapper>
       <HomeFirstContentsWrapper>
         <HomeFirstBody>
@@ -390,9 +399,8 @@ const HomePresenter: React.FC<IHomeProps> = ({
         <HomeFAQContentsWrapper>
           <HomeFAQTitle>투달 FAQ</HomeFAQTitle>
           {faqData.map((data: any, index: number) => (
-            <>
+            <div key={index}>
               <HomeFAQ
-                key={index}
                 style={{
                   borderTop:
                     index === 0 ? "3px solid #e5e5e5" : "1px solid #e5e5e5",
@@ -405,7 +413,7 @@ const HomePresenter: React.FC<IHomeProps> = ({
                 {data.q}
               </HomeFAQ>
               {faq === index && <HomeFAQAnswer>{data.a}</HomeFAQAnswer>}
-            </>
+            </div>
           ))}
         </HomeFAQContentsWrapper>
       </HomeFAQWrapper>

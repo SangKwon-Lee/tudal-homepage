@@ -32,35 +32,18 @@ import {
   MyGoldNumber,
   MyGoldText,
   MyGoldWrapper,
+  GoldChargeMobileLine,
+  GoldChareBtnMobileBr,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/imges/checkGray.png";
 import checkColor from "../../assets/imges/checkColor.png";
 import MultipleSelect from "../commons/option/option.container";
+import { UserData, UserGold } from "../../commons/types/types";
 
 interface IGoldChargeProps {
   path: string;
-  userGold: {
-    bonusGold: number;
-    created_at: string;
-    gold: number;
-    id: number;
-    updated_at: string;
-  };
-  userData: {
-    birthday: string;
-    ci: string;
-    createdAt: string;
-    di: string;
-    name: string;
-    isDeleted: string;
-    gender: string;
-    nickname: string;
-    phoneNumber: string;
-    role: string;
-    telecomCode: string;
-    updatedAt: string;
-    userId: number;
-  };
+  userGold: UserGold;
+  userData: UserData;
   gold: string;
   handleGold: (e: any) => void;
   handleInputCharge: (e: any) => void;
@@ -116,12 +99,13 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
       <GoldChargeWrapper>
         <GoldChargeBody>
           <MyGoldWrapper>
-            <MyGoldText>{userData.name}님의 골드</MyGoldText>
+            <MyGoldText>{sessionStorage.getItem("name")}님의 골드</MyGoldText>
             <MyGoldText>
               <MyGoldNumber>{userGold.gold + userGold.bonusGold}</MyGoldNumber>
               골드
             </MyGoldText>
           </MyGoldWrapper>
+          <GoldChargeMobileLine />
           <GoldChargeContentsWrapper>
             <GoldChargeTitle>충전하실 금액을 선택해주세요.</GoldChargeTitle>
             <GoldChargeBtnWrapper>
@@ -132,7 +116,9 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                     onClick={handleGold}
                     isCheck={data.toString() === gold}
                   >
-                    {priceToString(data)}골드
+                    {priceToString(data)}
+                    <GoldChareBtnMobileBr />
+                    골드
                   </GoldChargeBtn>
                 </div>
               ))}
@@ -145,7 +131,9 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                     onClick={handleGold}
                     isCheck={data.toString() === gold}
                   >
-                    {priceToString(data)}골드
+                    {priceToString(data)}
+                    <GoldChareBtnMobileBr />
+                    골드
                   </GoldChargeBtn>
                 </div>
               ))}

@@ -5,6 +5,9 @@ interface IHeaderStyleProps {
 }
 
 export const HeaderWrapper = styled.div`
+  @media (min-width: 680px) {
+    min-width: 1200px;
+  }
   position: ${(props: IHeaderStyleProps) =>
     props.path === "login" ? "none" : "absolute"};
   display: flex;
@@ -34,14 +37,22 @@ export const HeaderLoginWrapper = styled.div`
 `;
 
 export const HeaderLogin = styled.div`
-  font-size: 18px;
+  @media (min-width: 680px) {
+    margin-right: 64px;
+    font-size: 18px;
+  }
+  font-size: 15px;
+  margin-right: 30px;
   font-weight: 600;
-  margin-right: 64px;
   cursor: pointer;
 `;
 
 export const HeaderCharge = styled.div`
-  font-size: 18px;
+  @media (min-width: 680px) {
+    margin-right: 64px;
+    font-size: 18px;
+  }
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 `;

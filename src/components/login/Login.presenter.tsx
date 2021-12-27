@@ -21,7 +21,7 @@ import success2Img from "../../assets/imges/success2.png";
 import { useNavigate } from "react-router";
 
 interface ILoginProps {
-  handleLoginInput: (e: any) => void;
+  handleLoginInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   step: number;
   loginInput: {
     name: string;

@@ -28,6 +28,7 @@ const userGoldInit = {
   updated_at: "",
   userId: 0,
 };
+
 //* 전역 상태 값
 export const GlobalContext = createContext({
   userData: userDataInit,

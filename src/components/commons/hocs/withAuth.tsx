@@ -6,22 +6,21 @@ export default function WithAuth(Component: any) {
   return function HandleCheckLogin(props: any) {
     const navigate = useNavigate();
     const userId = sessionStorage.getItem("userId");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { userData } = useContext(GlobalContext);
-
     //* 토큰 체크
     useEffect(() => {
-      if (userData.userId !== 0) return;
-
       const handleLoginPage = async () => {
-        if (userData.userId === 0) {
+        if (userId === null) {
           alert("로그인이 필요합니다.");
           navigate("/login");
         }
       };
 
       handleLoginPage();
-    }, [navigate, userData.userId, userId]);
-    if (userData.userId === 0) return <></>;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userId]);
+    if (!userId) return <></>;
     return <Component {...props}></Component>;
   };
 }

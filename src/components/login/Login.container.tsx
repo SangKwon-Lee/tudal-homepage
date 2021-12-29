@@ -120,7 +120,6 @@ const LoginContainer = () => {
           }
         );
         setUserData(result.data[0]);
-
         sessionStorage.setItem("name", result.data[0].name);
         sessionStorage.setItem("userId", result.data[0].userId);
         setStep(() => step + 1);

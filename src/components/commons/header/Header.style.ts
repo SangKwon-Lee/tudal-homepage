@@ -30,6 +30,7 @@ export const HeaderBody = styled.div`
 
 export const HeaderLogo = styled.img`
   width: 100px;
+  cursor: pointer;
 `;
 
 export const HeaderLoginWrapper = styled.div`

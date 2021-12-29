@@ -9,7 +9,8 @@ interface IGoldHistoryProps {
 }
 
 const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
-  const { userData, userGold, setUserGold } = useContext(GlobalContext);
+  const { userData, userGold, setUserGold, setUserData } =
+    useContext(GlobalContext);
 
   const userId = sessionStorage.getItem("userId");
   //* 메뉴 선택
@@ -31,6 +32,10 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
         const { data } = await axios.get(
           `https://api.tudal.co.kr/api/golds/${userId}`
         );
+        const { data: userData } = await axios.get(
+          `https://api.tudal.co.kr/api/user/${userId}`
+        );
+        setUserData(userData[0]);
         setUserGold(data[0]);
       } catch (e) {
         console.log(e);

@@ -77,8 +77,8 @@ export const GoldChargeWrapper = styled.div`
   background-color: #f7f7f7;
   width: 100%;
   padding-top: 90px;
-  padding-bottom: 120px;
-  height: 100vh;
+  padding-bottom: 80px;
+  height: 100%;
   display: flex;
   justify-content: center;
 `;
@@ -316,4 +316,23 @@ export const GoldChargePGBtn = styled.button`
   border: 1px solid #c7c7c7;
   border-radius: 10px;
   font-size: 15px;
+`;
+
+export const GoldWarningWrapper = styled.div`
+  width: 100%;
+  background-color: white;
+  padding: 16px 0px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+`;
+
+export const GoldWarningTitle = styled.div`
+  font-size: 13px;
+  font-weight: 700;
+  padding-bottom: 10px;
+`;
+
+export const GoldWarningText = styled.div`
+  font-size: 13px;
 `;

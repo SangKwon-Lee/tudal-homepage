@@ -34,12 +34,14 @@ import {
   MyGoldWrapper,
   GoldChargeMobileLine,
   GoldChareBtnMobileBr,
+  GoldWarningWrapper,
+  GoldWarningTitle,
+  GoldWarningText,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/imges/checkGray.png";
 import checkColor from "../../assets/imges/checkColor.png";
 import MultipleSelect from "../commons/option/option.container";
 import { UserData, UserGold } from "../../commons/types/types";
-
 interface IGoldChargeProps {
   path: string;
   userGold: UserGold;
@@ -72,6 +74,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   handleInnoPay,
 }) => {
   const navigate = useNavigate();
+
   return (
     <>
       <GoldMenuWrapper>
@@ -190,7 +193,23 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 (전사상거래법 제8조 2항)
               </GoldChargeCheckText>
             </GoldChargeCheckWrapper>
+            <GoldWarningWrapper>
+              <GoldWarningTitle>결제시 주의사항</GoldWarningTitle>
+              <GoldWarningText>
+                - 골드 충전 시 결제금액에 VAT(부가세 10%)가 포함되어 있습니다.
+                <br />
+                - 신용카드 무이자 할부 가능여부는 결제창에 ‘무’표시를 확인하시면
+                됩니다. <br />
+                - 결제가 완료되기 전에 결제창을 닫으면 결제가 완료되지 않을 수
+                있습니다. <br />
+                - 결제관련 문의는 고객센터 0000-0000로 연락주시기 바랍니다.
+                <br />- 잔여 포인트 환불 시, 사용이력이 있는 경우 이용수수료 10%
+                공제 후 환불됩니다.
+              </GoldWarningText>
+            </GoldWarningWrapper>
+
             <GoldChargePGBtn
+              name="btn_pay"
               onClick={() => {
                 inputCharge.check
                   ? handleInnoPay()
@@ -199,6 +218,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             >
               충전하기
             </GoldChargePGBtn>
+            <div id="outside">asd</div>
           </GoldChargeContentsWrapper>
         </GoldChargeBody>
       </GoldChargeWrapper>

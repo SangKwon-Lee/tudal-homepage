@@ -27,6 +27,20 @@ const GoldHistory = Loadable(
   lazy(() => import("./components/goldHistory/GoldHistory.container"))
 );
 
+const PaySuccess = Loadable(
+  lazy(() => import("./components/paySuccess/PaySuccess.container"))
+);
+
+const Service = Loadable(
+  lazy(() => import("./components/terms/Service.container"))
+);
+const PrivacyPolicy = Loadable(
+  lazy(() => import("./components/terms/PrivacyPolicy.container"))
+);
+const PrivacyData = Loadable(
+  lazy(() => import("./components/terms/PrivacyData"))
+);
+
 const routes = [
   {
     path: "/",
@@ -63,6 +77,39 @@ const routes = [
       <>
         <Header path="login" />
         <GoldHistory path="history" />
+      </>
+    ),
+  },
+  {
+    path: "/success",
+    element: (
+      <>
+        <Header path="login" />
+        <PaySuccess />
+      </>
+    ),
+  },
+  {
+    path: "/service",
+    element: (
+      <>
+        <Service />
+      </>
+    ),
+  },
+  {
+    path: "/privacypolicy",
+    element: (
+      <>
+        <PrivacyPolicy />
+      </>
+    ),
+  },
+  {
+    path: "/privacydata",
+    element: (
+      <>
+        <PrivacyData />
       </>
     ),
   },

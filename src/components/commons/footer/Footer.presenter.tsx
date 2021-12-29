@@ -3,13 +3,38 @@ import {
   FooterWrapper,
   FooterBody,
   FooterContents,
+  FooterCompanyWrapper,
+  FooterCompanyLine,
 } from "./Footer.style";
 const FooterPresenter = () => {
   return (
     <>
       <FooterWrapper>
         <FooterBody>
-          <FooterCompany>회사소개</FooterCompany>
+          <FooterCompanyWrapper>
+            <FooterCompany
+              onClick={() => window.open("https://innofin.co.kr/", "_blank")}
+            >
+              회사소개
+            </FooterCompany>
+            <FooterCompanyLine />
+            <FooterCompany onClick={() => window.open("/service", "_blank")}>
+              서비스 이용약관
+            </FooterCompany>
+            <FooterCompanyLine />
+            <FooterCompany
+              onClick={() => window.open("/privacypolicy", "_blank")}
+            >
+              개인정보처리방침
+            </FooterCompany>
+            <FooterCompanyLine />
+            <FooterCompany
+              onClick={() => window.open("/privacydata", "_blank")}
+            >
+              개인정보 수집 및 이용
+            </FooterCompany>
+          </FooterCompanyWrapper>
+
           <FooterCompany>(주)이노핀</FooterCompany>
           <FooterContents>
             주소 : 서울특별시 영등포구 의사당대로 83, 서울핀테크랩 19층

@@ -11,8 +11,6 @@ export const HomeMainWrapper = styled.div`
 `;
 
 export const HomeMainImg = styled.img`
-  @media (min-width: 680px) {
-  }
   width: 100%;
   object-fit: cover;
   height: 100vh;

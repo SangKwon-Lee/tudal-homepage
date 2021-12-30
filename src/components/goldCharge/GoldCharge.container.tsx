@@ -6,17 +6,17 @@ import WithAuth from "../commons/hocs/withAuth";
 import GoldChargePresenter from "./GoldCharge.presenter";
 import moment from "moment";
 import { useNavigate } from "react-router";
-
 interface IGoldChargeProps {
   path: string;
 }
+const REACT_APP_INNOPAY_MID = process.env.REACT_APP_INNOPAY_MID;
+const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
 
 const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const { userData, setUserGold, userGold, setUserData } =
     useContext(GlobalContext);
   const navigate = useNavigate();
   const userId = sessionStorage.getItem("userId");
-
   //* 골드
   const [gold, setgold] = useState("충전하실 금액을 선택해주세요.");
   //* 보너스 골드
@@ -87,9 +87,8 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     await innopay.goPay({
       // 필수 파라미터
       PayMethod: inputCharge.method, // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
-      MID: "pgsbcn113m", // 가맹점 MID
-      MerchantKey:
-        "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
+      MID: REACT_APP_INNOPAY_MID, // 가맹점 MID
+      MerchantKey: REACT_APP_INNOPAY_MERCHANTKEY, // 가맹점 라이센스키
       GoodsName: "투달 테스트 골드", // 상품명
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명

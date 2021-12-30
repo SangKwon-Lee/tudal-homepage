@@ -11,14 +11,15 @@ interface IGoldHistoryProps {
 const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
   const { userData, userGold, setUserGold, setUserData } =
     useContext(GlobalContext);
-
   const userId = sessionStorage.getItem("userId");
+
   //* 메뉴 선택
   const [menu, setMenu] = useState("all");
 
   //* 사용내역
   const [goldHistory, setGoldHistory] = useState([]);
 
+  //* 유저 골드, 유저 데이터 불러오기
   useEffect(() => {
     handleGetGoldHistory();
     handleGetUserGold();
@@ -43,7 +44,7 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
     }
   };
 
-  //* 사용내역 불러오기
+  //* 골드 사용내역 불러오기
   const handleGetGoldHistory = async () => {
     try {
       const { data } = await axios.get(
@@ -59,6 +60,7 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
   const handleMenu = (e: any) => {
     setMenu(e.target.value);
   };
+
   return (
     <GoldHistoryPresenter
       path={path}

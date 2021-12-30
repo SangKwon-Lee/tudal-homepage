@@ -16,8 +16,8 @@ import {
   LoginSuccessImg,
   LoginSuccessBtn,
 } from "./Login.style";
-import success1Img from "../../assets/imges/success1.png";
-import success2Img from "../../assets/imges/success2.png";
+import success1Img from "../../assets/images/success1.png";
+import success2Img from "../../assets/images/success2.png";
 import { useNavigate } from "react-router";
 
 interface ILoginProps {

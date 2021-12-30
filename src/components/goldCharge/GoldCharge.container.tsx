@@ -81,7 +81,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   //* 이노페이 결제
   const handleInnoPay = async () => {
     if (gold === "충전하실 금액을 선택해주세요.") {
-      return alert("충전할 골드를 선택해주세요.");
+      return alert("충전하실 골드를 선택해주세요.");
     }
     //@ts-ignore
     await innopay.goPay({
@@ -89,7 +89,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       PayMethod: inputCharge.method, // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
       MID: REACT_APP_INNOPAY_MID, // 가맹점 MID
       MerchantKey: REACT_APP_INNOPAY_MERCHANTKEY, // 가맹점 라이센스키
-      GoodsName: "투달 테스트 골드", // 상품명
+      GoodsName: "투달 골드", // 상품명
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호

@@ -42,10 +42,10 @@ export const GoldMenuTitle = styled.div`
 
 export const MyGoldWrapper = styled.div`
   @media (min-width: 680px) {
-    padding-right: 200px;
     display: block;
+    width: 380px;
   }
-  padding-right: 0px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

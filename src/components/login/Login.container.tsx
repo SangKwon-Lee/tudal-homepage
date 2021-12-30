@@ -27,7 +27,6 @@ const LoginContainer = () => {
   const [step, setStep] = useState(0);
 
   //* 타이머 관련 상태 및 함수 useEffect
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [min, setMin] = useState(3);
   const [sec, setSec] = useState(0);

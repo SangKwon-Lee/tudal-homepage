@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -38,14 +37,14 @@ export default function BasicSelect(props: IOptionProps) {
           >
             신용카드
           </MenuItem>
-          <MenuItem value="BANK">계좌이체</MenuItem>
-          <MenuItem value={"VBANK"}>무통장입금(가상계좌)</MenuItem>
+          {/* <MenuItem value="BANK">계좌이체</MenuItem> */}
+          {/* <MenuItem value={"VBANK"}>무통장입금(가상계좌)</MenuItem>
           <MenuItem value={"CARS"}>ARSPAY Web LINK</MenuItem>
           <MenuItem value={"CSMS"}>SMS카드결제 Web LINK(인증)</MenuItem>
           <MenuItem value={"DSMS"}>SMS카드결제 Web LINK(수기)</MenuItem>
           <MenuItem value={"CKEYIN"}>수기결제 WebLink</MenuItem>
           <MenuItem value={"EPAY"}>간편결제</MenuItem>
-          <MenuItem value={"EBANK"}>계좌간편결제</MenuItem>
+          <MenuItem value={"EBANK"}>계좌간편결제</MenuItem> */}
         </Select>
       </FormControl>
     </Box>

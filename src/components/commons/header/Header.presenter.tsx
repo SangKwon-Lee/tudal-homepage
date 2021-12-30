@@ -6,7 +6,7 @@ import {
   HeaderLogo,
   HeaderWrapper,
 } from "./Header.style";
-import tudalLogo from "../../../assets/imges/SVG/tudalLogo.svg";
+import tudalLogo from "../../../assets/images/SVG/tudalLogo.svg";
 import { useNavigate } from "react-router";
 import { UserData } from "../../../commons/types/types";
 

@@ -37,7 +37,7 @@ export const GoldHistoryBody = styled.div`
 
 export const MyGoldHistoryWrapper = styled.div`
   @media (min-width: 680px) {
-    padding-right: 240px;
+    padding-right: 200px;
     display: block;
   }
   display: none;
@@ -77,7 +77,7 @@ export const GoldHistoryMenuBtn = styled.button`
 
 export const GoldHistoryTableWrapper = styled.div`
   @media (min-width: 680px) {
-    width: 870px;
+    width: 860px;
     padding-bottom: 25px;
     padding-top: 25px;
   }

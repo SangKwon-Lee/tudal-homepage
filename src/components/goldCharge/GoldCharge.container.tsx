@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -6,8 +5,6 @@ import { GlobalContext } from "../../App";
 import WithAuth from "../commons/hocs/withAuth";
 import GoldChargePresenter from "./GoldCharge.presenter";
 import moment from "moment";
-
-import $ from "jquery";
 import { useNavigate } from "react-router";
 
 interface IGoldChargeProps {
@@ -17,12 +14,13 @@ interface IGoldChargeProps {
 const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const { userData, setUserGold, userGold, setUserData } =
     useContext(GlobalContext);
-  const userId = sessionStorage.getItem("userId");
-
   const navigate = useNavigate();
+  const userId = sessionStorage.getItem("userId");
 
   //* 골드
   const [gold, setgold] = useState("충전하실 금액을 선택해주세요.");
+  //* 보너스 골드
+  const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
 
   //* 충전 금액
   const [inputCharge, setInputCharge] = useState({
@@ -31,7 +29,8 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     method: "CARD",
   });
 
-  const [resultData, setResultData] = useState<any>({});
+  // const [resultData, setResultData] = useState<any>({});
+
   //* 골드 선택 및 충전 금액
   const handleGold = (e: any) => {
     setgold(e.target.value);
@@ -39,9 +38,10 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       ...inputCharge,
       money: Number(e.target.value) * 100 + Number(e.target.value) * 10,
     });
+    setBonusGold(e.target.value / 10);
   };
 
-  //* 유저 골드 정보 불러오기
+  //* 유저 골드 정보 불러오기 useEffect
   useEffect(() => {
     handleGetUserGold();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,8 +78,13 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
+  console.log(gold, bonusGold);
+
   //* 이노페이 결제
   const handleInnoPay = async () => {
+    if (gold === "충전하실 금액을 선택해주세요.") {
+      return alert("충전할 골드를 선택해주세요.");
+    }
     //@ts-ignore
     await innopay.goPay({
       // 필수 파라미터
@@ -88,15 +93,12 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       MerchantKey:
         "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
       GoodsName: "투달 테스트 골드", // 상품명
-      Amt: "43", // 결제금액(과세)
+      Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호
       BuyerEmail: "PleaseWriteYourEmail@test.com", // 고객이메일
       ResultYN: "Y", // 결제결과창 출력유뮤
       Moid: "testpay01m01234567890", // 가맹점에서 생성한 주문번호 셋팅
-      // 선택 파라미터
-      // 결제결과 전송 URL(없는 경우 아래 innopay_result 함수에 결제결과가 전송됨)
-      // ReturnURL: innopay_result, // 결제결과 전송 URL(없는 경우 아래 innopay_result 함수에 결제결과가 전송됨)
       Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
     });
 
@@ -104,26 +106,26 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       if (data.data) {
         var result = JSON.parse(data.data);
         // Sample
-        var mid = data.data.MID; // 가맹점 MID
-        var tid = data.data.TID; // 거래고유번호
-        var amt = data.data.Amt; // 금액
-        var moid = data.data.MOID; // 주문번호
-        var authdate = data.data.AuthDate; // 승인일자
-        var authcode = data.data.AuthCode; // 승인번호
-        var resultcode = data.data.ResultCode; // 결과코드(PG)
-        var resultmsg = data.data.ResultMsg; // 결과메세지(PG)
-        var errorcode = data.data.ErrorCode; // 에러코드(상위기관)
-        var errormsg = data.data.ErrorMsg; // 에러메세지(상위기관)
-        var EPayCl = data.data.EPayCl;
+        // var mid = data.data.MID; // 가맹점 MID
+        // var tid = data.data.TID; // 거래고유번호
+        // var amt = data.data.Amt; // 금액
+        // var moid = data.data.MOID; // 주문번호
+        // var authdate = data.data.AuthDate; // 승인일자
+        // var authcode = data.data.AuthCode; // 승인번호
+        // var resultcode = data.data.ResultCode; // 결과코드(PG)
+        // var resultmsg = data.data.ResultMsg; // 결과메세지(PG)
+        // var errorcode = data.data.ErrorCode; // 에러코드(상위기관)
+        // var errormsg = data.data.ErrorMsg; // 에러메세지(상위기관)
+        // var EPayCl = data.data.EPayCl;
       }
       if (result.ResultCode === "3001") {
         try {
           const code = `${moment().format("YYYYMMDDHHmmss")}}`;
-          const { status, data } = await axios.post(
+          const { status } = await axios.post(
             `https://api.tudal.co.kr/api/golds/${userId}/add`,
             {
-              amount: 1000, // 충전 골드
-              bonusAmount: 100, // 충전 보너스 골드
+              amount: Number(gold), // 충전 골드
+              bonusAmount: bonusGold, // 충전 보너스 골드
               category: "골드충전", // '골드충전'
               code,
               type: "add",
@@ -132,12 +134,12 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
               payment: result.TID,
             }
           );
-          console.log(data, status);
-          alert("결제 성공");
-          navigate("/success");
+          if (status === 200) {
+            alert("골드가 충전됐습니다.");
+            navigate("/success");
+          }
         } catch (e) {
-          alert("결제 실패");
-        } finally {
+          alert("골드 충전에 오류가 발생했습니다. 관리자에게 문의해주세요.");
         }
       } else {
         alert("결제 오류가 발생했습니다.");
@@ -151,26 +153,26 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
    */
 
   //* 골드 충전 함수
-  const postPayment = async () => {
-    try {
-      const code = `${moment().format("YYYYMMDDHHmmss")}}`;
-      const { status, data } = await axios.post(
-        `https://api.tudal.co.kr/api/golds/${userId}/add`,
-        {
-          amount: 1000, // 충전 골드
-          bonusAmount: 100, // 충전 보너스 골드
-          category: "골드충전", // '골드충전'
-          code,
-          type: "add",
-          isExpired: false,
-          datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
-          payment: resultData.tid,
-        }
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const postPayment = async () => {
+  //   try {
+  //     const code = `${moment().format("YYYYMMDDHHmmss")}}`;
+  //     const { status, data } = await axios.post(
+  //       `https://api.tudal.co.kr/api/golds/${userId}/add`,
+  //       {
+  //         amount: 1000, // 충전 골드
+  //         bonusAmount: 100, // 충전 보너스 골드
+  //         category: "골드충전", // '골드충전'
+  //         code,
+  //         type: "add",
+  //         isExpired: false,
+  //         datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
+  //         payment: resultData.tid,
+  //       }
+  //     );
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   return (
     <>
@@ -196,8 +198,9 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         handleInputCharge={handleInputCharge}
         inputCharge={inputCharge}
         handleInnoPay={handleInnoPay}
+        bonusGold={bonusGold}
       />
     </>
   );
 };
-export default GoldChargeContainer;
+export default WithAuth(GoldChargeContainer);

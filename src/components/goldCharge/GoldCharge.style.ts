@@ -42,7 +42,7 @@ export const GoldMenuTitle = styled.div`
 
 export const MyGoldWrapper = styled.div`
   @media (min-width: 680px) {
-    padding-right: 240px;
+    padding-right: 200px;
     display: block;
   }
   padding-right: 0px;
@@ -262,7 +262,7 @@ export const GoldChargeMethodSelect = styled.select`
   font-family: inherit;
   border-radius: 0px;
   background-color: white;
-  /* background: url("src/assets/imges/polygon.png") no-repeat 95% 50%; */
+  /* background: url("src/assets/images/polygon.png") no-repeat 95% 50%; */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

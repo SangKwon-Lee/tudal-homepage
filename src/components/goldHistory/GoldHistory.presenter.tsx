@@ -26,7 +26,7 @@ import {
   GoldHistoryWrapper,
   MyGoldHistoryWrapper,
 } from "./GoldHistory.style";
-import RightArrow from "../../assets/imges/rightArrow.png";
+import RightArrow from "../../assets/images/rightArrow.png";
 
 interface IGoldHistoryProps {
   path: string;
@@ -72,7 +72,7 @@ const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
       <GoldHistoryWrapper>
         <GoldHistoryBody>
           <MyGoldHistoryWrapper>
-            <MyGoldText>{sessionStorage.getItem("name")}님의 골드</MyGoldText>
+            <MyGoldText>{userData.name}님의 골드</MyGoldText>
             <MyGoldText>
               <MyGoldNumber>{userGold.gold + userGold.bonusGold}</MyGoldNumber>
               골드

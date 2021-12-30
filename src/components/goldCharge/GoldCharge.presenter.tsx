@@ -38,8 +38,8 @@ import {
   GoldWarningTitle,
   GoldWarningText,
 } from "./GoldCharge.style";
-import checkGray from "../../assets/imges/checkGray.png";
-import checkColor from "../../assets/imges/checkColor.png";
+import checkGray from "../../assets/images/checkGray.png";
+import checkColor from "../../assets/images/checkColor.png";
 import MultipleSelect from "../commons/option/option.container";
 import { UserData, UserGold } from "../../commons/types/types";
 interface IGoldChargeProps {
@@ -55,6 +55,7 @@ interface IGoldChargeProps {
     method: string;
   };
   handleInnoPay: () => void;
+  bonusGold: string | number;
 }
 
 function priceToString(price: any) {
@@ -72,6 +73,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   handleInputCharge,
   inputCharge,
   handleInnoPay,
+  bonusGold,
 }) => {
   const navigate = useNavigate();
 
@@ -102,7 +104,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
       <GoldChargeWrapper>
         <GoldChargeBody>
           <MyGoldWrapper>
-            <MyGoldText>{sessionStorage.getItem("name")}님의 골드</MyGoldText>
+            <MyGoldText>{userData.name}님의 골드</MyGoldText>
             <MyGoldText>
               <MyGoldNumber>{userGold.gold + userGold.bonusGold}</MyGoldNumber>
               골드
@@ -156,7 +158,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 <GoldChargeBonusTitle
                   style={{ fontSize: "20px", textAlign: "end" }}
                 >
-                  {isNaN(Number(gold)) ? 0 : `+ ${Number(gold) / 10}`}
+                  {isNaN(Number(bonusGold)) ? 0 : bonusGold}
                   <GoldChargeBonustext>골드</GoldChargeBonustext>
                 </GoldChargeBonusTitle>
               </GoldChargeBonusWrapper>
@@ -218,7 +220,6 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             >
               충전하기
             </GoldChargePGBtn>
-            <div id="outside">asd</div>
           </GoldChargeContentsWrapper>
         </GoldChargeBody>
       </GoldChargeWrapper>

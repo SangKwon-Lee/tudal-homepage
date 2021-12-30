@@ -8,7 +8,7 @@ export default function WithAuth(Component: any) {
     const userId = sessionStorage.getItem("userId");
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { userData } = useContext(GlobalContext);
-    //* 토큰 체크
+    //* userId 체크
     useEffect(() => {
       const handleLoginPage = async () => {
         if (userId === null) {

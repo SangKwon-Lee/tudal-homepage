@@ -95,7 +95,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       BuyerTel: userData.phoneNumber, // 고객전화번호
       BuyerEmail: "PleaseWriteYourEmail@test.com", // 고객이메일
       ResultYN: "Y", // 결제결과창 출력유뮤
-      Moid: "testpay01m01234567890", // 가맹점에서 생성한 주문번호 셋팅
+      Moid: "tudalGold1234567890", // 가맹점에서 생성한 주문번호 셋팅
       Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
     });
 

@@ -37,10 +37,11 @@ import {
   GoldWarningWrapper,
   GoldWarningTitle,
   GoldWarningText,
+  GoldChargeMethodSelect,
+  GoldChageMethodOption,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
-import MultipleSelect from "../commons/option/option.container";
 import { UserData, UserGold } from "../../commons/types/types";
 interface IGoldChargeProps {
   path: string;
@@ -76,7 +77,6 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   bonusGold,
 }) => {
   const navigate = useNavigate();
-
   return (
     <>
       <GoldMenuWrapper>
@@ -129,12 +129,12 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               ))}
             </GoldChargeBtnWrapper>
             <GoldChargeBtnWrapper>
-              {goldData2.map((data, index) => (
+              {goldData2.map((data: any, index) => (
                 <div key={index}>
                   <GoldChargeBtn
                     value={data}
                     onClick={handleGold}
-                    isCheck={data.toString() === gold}
+                    isCheck={String(data) === gold}
                   >
                     {priceToString(data)}
                     <GoldChareBtnMobileBr />
@@ -179,10 +179,11 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             <GoldChargeMethodTitle>
               결제수단을 선택해주세요.
             </GoldChargeMethodTitle>
-            <MultipleSelect
-              handleInputCharge={handleInputCharge}
-              inputCharge={inputCharge}
-            />
+            <GoldChargeMethodSelect>
+              <GoldChageMethodOption value={"CARD"}>
+                신용카드(일반)
+              </GoldChageMethodOption>
+            </GoldChargeMethodSelect>
             <GoldChargeCheckWrapper id="check" onClick={handleInputCharge}>
               <GoldChargeCheckImg
                 id="check"

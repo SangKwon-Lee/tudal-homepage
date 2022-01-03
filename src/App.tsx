@@ -7,6 +7,9 @@ import { createContext, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import favicon from "./assets/images/SVG/tudal.svg";
 import ogImg from "./assets/images/ogimg.png";
+import "react-app-polyfill/ie9";
+import "react-app-polyfill/ie11";
+import "react-app-polyfill/stable";
 
 const userDataInit = {
   birthday: "",
@@ -89,6 +92,7 @@ function App() {
             <meta name="content-language" content="kr" />
             <link rel="apple-touch-icon" href="../src/assets/ogimg.png" />
             <link rel="icon" href={favicon} />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           </Helmet>
         </HelmetProvider>
         <GlobalStyles />

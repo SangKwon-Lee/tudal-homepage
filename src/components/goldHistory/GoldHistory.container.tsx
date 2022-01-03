@@ -31,10 +31,20 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
     if (userId) {
       try {
         const { data } = await axios.get(
-          `https://api.tudal.co.kr/api/golds/${userId}`
+          `https://api.tudal.co.kr/api/golds/${userId}`,
+          {
+            headers: {
+              pragma: "no-cache",
+            },
+          }
         );
         const { data: userData } = await axios.get(
-          `https://api.tudal.co.kr/api/user/${userId}`
+          `https://api.tudal.co.kr/api/user/${userId}`,
+          {
+            headers: {
+              pragma: "no-cache",
+            },
+          }
         );
         setUserData(userData[0]);
         setUserGold(data[0]);
@@ -48,7 +58,12 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
   const handleGetGoldHistory = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.tudal.co.kr/api/golds/history/${userId}?limit=100`
+        `https://api.tudal.co.kr/api/golds/history/${userId}?limit=100`,
+        {
+          headers: {
+            pragma: "no-cache",
+          },
+        }
       );
       setGoldHistory(data);
     } catch (e) {

@@ -272,7 +272,6 @@ export const GoldChargeMethodSelect = styled.select`
   ::-ms-expand {
     display: none;
   }
-  margin-bottom: 40px;
 `;
 export const GoldChageMethodOption = styled.option`
   -moz-appearance: none;
@@ -287,7 +286,7 @@ export const GoldChageMethodOption = styled.option`
 export const GoldChargeCheckWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 11px;
+  padding-bottom: 25px;
   cursor: pointer;
   margin-top: 40px;
 `;

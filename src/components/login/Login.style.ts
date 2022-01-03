@@ -78,7 +78,7 @@ export const LoginInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-  ::placeholder {
+  ::-webkit-input-placeholder {
     font-size: 16px;
     color: #a8a8a8;
   }
@@ -87,7 +87,7 @@ export const LoginInput = styled.input`
 export const LoginAuthBtn = styled.button`
   @media (min-width: 680px) {
     width: 109px;
-    font-size: 15px;
+    font-size: 14px;
   }
   font-size: 13px;
   padding: 0px 10px;
@@ -127,7 +127,15 @@ export const LoginAuthInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-  ::placeholder {
+  ::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #a8a8a8;
+  }
+  /* ::placeholder {
+    font-size: 16px;
+    color: #a8a8a8;
+  } */
+  :-ms-input-placeholder {
     font-size: 16px;
     color: #a8a8a8;
   }

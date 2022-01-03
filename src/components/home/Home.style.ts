@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const HomeMainWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     height: 100%;
     width: 100%;
   }
@@ -14,12 +14,14 @@ export const HomeMainImg = styled.img`
   width: 100%;
   object-fit: cover;
   height: 100vh;
+  min-height: 00px;
 `;
 export const HomeMainContentsWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     flex-direction: column;
-    padding: 330px 0px;
+    padding: 300px 0px;
     align-items: flex-start;
+    left: 8%;
   }
   max-width: 1280px;
   position: absolute;
@@ -27,11 +29,12 @@ export const HomeMainContentsWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   top: 0;
+  left: 0px;
   padding: 200px 0px;
   width: 100%;
 `;
 export const HomeLogoWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -50,7 +53,7 @@ export const HomeLogoWrapper = styled.div`
 `;
 
 export const HomeTudalLogo = styled.img`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 122px;
   }
   width: 122px;
@@ -60,34 +63,31 @@ export const HomeMainTitle = styled.div`
   font-size: 220%;
   margin-top: 20px;
   color: white;
-  font-weight: 400;
   text-shadow: 1px 1px 8px gray;
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 38px;
     margin-top: 20px;
     color: #3e3939;
-    font-weight: 400;
     text-shadow: none;
   }
 `;
 
 export const HomeFirstTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 38px;
     font-weight: 500;
-    text-align: start;
+    text-align: left;
   }
   font-size: 150%;
   margin-top: 20px;
   color: #3e3939;
-  font-weight: 400;
   text-align: center;
 `;
 
 export const HomeFirstSubTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 58px;
-    text-align: start;
+    text-align: left;
   }
   color: #3e3939;
   font-size: 280%;
@@ -96,7 +96,7 @@ export const HomeFirstSubTitle = styled.div`
 `;
 
 export const HomeMainSubTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     color: #3e3939;
     font-size: 58px;
     text-shadow: none;
@@ -108,10 +108,9 @@ export const HomeMainSubTitle = styled.div`
 `;
 
 export const HomeMainText = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     color: #3e3939;
     font-size: 27px;
-    font-weight: 450;
     text-shadow: none;
   }
   color: white;
@@ -122,7 +121,7 @@ export const HomeMainText = styled.div`
 `;
 
 export const HomeMainBtnWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     margin-top: 60px;
     flex-direction: row;
   }
@@ -133,7 +132,7 @@ export const HomeMainBtnWrapper = styled.div`
 `;
 
 export const HomeMainGoogleBtn = styled.button`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     color: #3e3939;
     margin-right: 15px;
     width: 230px;
@@ -155,7 +154,7 @@ export const HomeMainGoogleBtn = styled.button`
 `;
 
 export const HomeMainAppleBtn = styled.button`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     border: 1px solid #3e3939;
     color: #3e3939;
     font-size: 23px;
@@ -191,7 +190,7 @@ export const HomeMainAppImg = styled.img`
 //* 첫 번째
 
 export const HomeFirstContentsWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     min-width: 1440px;
     height: 900px;
   }
@@ -202,7 +201,7 @@ export const HomeFirstContentsWrapper = styled.div`
   justify-content: center;
 `;
 export const HomeFirstBody = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 1400px;
     display: flex;
     justify-content: space-between;
@@ -216,9 +215,9 @@ export const HomeFirstBody = styled.div`
 `;
 
 export const HomeFirstText = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 23px;
-    text-align: start;
+    text-align: left;
   }
   color: #3e3939;
   font-size: 110%;
@@ -229,14 +228,14 @@ export const HomeFirstText = styled.div`
 `;
 
 export const HomeFirstLeftWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     padding: 270px 40px;
   }
   padding: 100px 0px 0px 0px;
 `;
 
 export const HomeFirstBtnWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     margin-top: 100px;
     width: 300px;
   }
@@ -246,7 +245,7 @@ export const HomeFirstBtnWrapper = styled.div`
 `;
 
 export const HomeFirstBtn = styled.img`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 63px;
   }
   width: 40px;
@@ -254,7 +253,7 @@ export const HomeFirstBtn = styled.img`
 `;
 
 export const HomeFirstBtnText = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     margin-top: 8px;
     font-size: 18px;
     font-weight: 500;
@@ -272,7 +271,7 @@ export const HomeFirstBtnTextWrapper = styled.div`
 `;
 
 export const HomeFirstRightBody = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     display: flex;
     align-items: center;
     padding-top: 80px;
@@ -282,7 +281,7 @@ export const HomeFirstRightBody = styled.div`
 `;
 
 export const HomeFirstRightImg = styled.img`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 770px;
   }
   width: 100%;
@@ -291,7 +290,7 @@ export const HomeFirstRightImg = styled.img`
 //* 두 번째
 
 export const HomeSecondContentsWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 100%;
     min-width: 1440px;
     height: 900px;
@@ -308,7 +307,7 @@ export const HomeSecondContentsWrapper = styled.div`
 
 //* 테마 스쿨
 export const HomeSchoolThemeWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 100%;
     min-width: 1440px;
     height: 925px;
@@ -326,7 +325,7 @@ export const HomeSchoolThemeWrapper = styled.div`
   padding-top: 100px;
 `;
 export const HomeSchoolContentsWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 100%;
     max-width: 1280px;
     display: flex;
@@ -342,18 +341,17 @@ export const HomeSchollTextWrapper = styled.div`
 `;
 
 export const HomeSchoolTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 48px;
     margin-bottom: -13px;
   }
   font-size: 150%;
   margin-top: 20px;
   color: white;
-  font-weight: 400;
 `;
 
 export const HomeSchoolSubTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     color: white;
     font-size: 58px;
   }
@@ -363,7 +361,7 @@ export const HomeSchoolSubTitle = styled.div`
 `;
 
 export const HomeSchoolText = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 23px;
     line-height: 32px;
   }
@@ -375,7 +373,7 @@ export const HomeSchoolText = styled.div`
 `;
 
 export const HomeSchoolImgWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     display: flex;
   }
   margin-top: 18px;
@@ -388,7 +386,7 @@ export const HomeSchoolImg = styled.img`
 
 //* FAQ
 export const HomeFAQWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 100%;
     min-width: 1440px;
     display: flex;
@@ -401,14 +399,14 @@ export const HomeFAQWrapper = styled.div`
 `;
 
 export const HomeFAQContentsWrapper = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     width: 100%;
     max-width: 1280px;
   }
 `;
 
 export const HomeFAQTitle = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     font-size: 50px;
     margin-left: 0px;
   }
@@ -419,7 +417,7 @@ export const HomeFAQTitle = styled.div`
 `;
 
 export const HomeFAQ = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     padding-left: 40px;
   }
   color: black;
@@ -433,7 +431,7 @@ export const HomeFAQ = styled.div`
 `;
 
 export const HomeFAQAnswer = styled.div`
-  @media (min-width: 680px) {
+  @media only all and (min-width: 680px) {
     padding: 40px;
   }
   color: black;

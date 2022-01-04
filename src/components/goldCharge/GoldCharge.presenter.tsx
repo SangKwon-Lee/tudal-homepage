@@ -64,6 +64,7 @@ function priceToString(price: any) {
 }
 const goldData1 = ["100", "500", "1000", "3000", "5000"];
 const goldData2 = ["7000", "8000", "10000", "20000", "30000"];
+const goldData3 = ["1", "2", "3", "4", "5"];
 
 const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   path,
@@ -130,6 +131,21 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             </GoldChargeBtnWrapper>
             <GoldChargeBtnWrapper>
               {goldData2.map((data: any, index) => (
+                <div key={index}>
+                  <GoldChargeBtn
+                    value={data}
+                    onClick={handleGold}
+                    isCheck={String(data) === gold}
+                  >
+                    {priceToString(data)}
+                    <GoldChareBtnMobileBr />
+                    골드
+                  </GoldChargeBtn>
+                </div>
+              ))}
+            </GoldChargeBtnWrapper>
+            <GoldChargeBtnWrapper>
+              {goldData3.map((data: any, index) => (
                 <div key={index}>
                   <GoldChargeBtn
                     value={data}

@@ -37,15 +37,13 @@ export const GoldHistoryBody = styled.div`
 
 export const MyGoldHistoryWrapper = styled.div`
   @media (min-width: 680px) {
-    width: 380px;
+    width: 300px;
     display: block;
   }
   display: none;
 `;
 
-export const GoldHistoryContentsWrapper = styled.div`
-  width: 100%;
-`;
+export const GoldHistoryContentsWrapper = styled.div``;
 
 export const GoldHistoryMenuWrapper = styled.div`
   margin-bottom: 40px;

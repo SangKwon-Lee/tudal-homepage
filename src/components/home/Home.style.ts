@@ -11,10 +11,15 @@ export const HomeMainWrapper = styled.div`
 `;
 
 export const HomeMainImg = styled.img`
+  @media only all and (min-width: 680px) {
+    min-height: 900px;
+    min-width: 1640px;
+  }
   width: 100%;
-  object-fit: cover;
   height: 100vh;
-  min-height: 00px;
+  min-width: 0px;
+  min-height: 700px;
+  object-fit: cover;
 `;
 export const HomeMainContentsWrapper = styled.div`
   @media only all and (min-width: 680px) {

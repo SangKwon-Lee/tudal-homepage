@@ -55,8 +55,6 @@ const LoginContainer = () => {
       }
     }
   }, [sec, auth.timer]);
-  console.log(min, sec);
-  console.log(auth.code);
   //* 로그인 정보 인풋
   const handleLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput({

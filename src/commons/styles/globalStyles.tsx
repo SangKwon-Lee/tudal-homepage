@@ -2,7 +2,7 @@ import { Global, css } from "@emotion/react";
 
 const reset = css`
   @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+  @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
   * {
     box-sizing: border-box;
     margin: 0px;

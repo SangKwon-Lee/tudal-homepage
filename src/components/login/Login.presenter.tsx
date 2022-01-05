@@ -36,7 +36,6 @@ interface ILoginProps {
     error: boolean;
   };
   handleSMSSend: () => Promise<void>;
-  handleAuthCode: () => void;
   handleLogin: () => Promise<void>;
 }
 
@@ -46,7 +45,6 @@ const LoginPresenter: React.FC<ILoginProps> = ({
   loginInput,
   handleSMSSend,
   auth,
-  handleAuthCode,
   handleLogin,
 }) => {
   const navigator = useNavigate();
@@ -80,9 +78,9 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                     />
                     <LoginAuthBtn
                       disabled={!loginInput.name || !loginInput.phone}
-                      onClick={auth.send ? handleAuthCode : handleSMSSend}
+                      onClick={handleSMSSend}
                     >
-                      {auth.send ? "인증번호 확인" : "인증번호 받기"}
+                      인증번호 받기
                     </LoginAuthBtn>
                   </LoginAuthInputWrapper>
                   <LoginAuthInput
@@ -109,9 +107,7 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                   </LoginError>
                 )}
                 {auth.send && (
-                  <LoginBtn disabled={!auth.ok} onClick={handleLogin}>
-                    회원 인증 로그인
-                  </LoginBtn>
+                  <LoginBtn onClick={handleLogin}>회원 인증 로그인</LoginBtn>
                 )}
               </LoginContentsWrapper>
             </>

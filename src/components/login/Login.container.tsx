@@ -113,24 +113,9 @@ const LoginContainer = () => {
     }
   };
 
-  //* 인증번호 체크
-  const handleAuthCode = async () => {
-    if (auth.code === loginInput.authCode) {
-      setAuth({
-        ...auth,
-        ok: true,
-      });
-    } else {
-      setAuth({
-        ...auth,
-        ok: false,
-        error: true,
-      });
-    }
-  };
-
+  //* 인증번호 체크 후 로그인
   const handleLogin = async () => {
-    if (auth.ok) {
+    if (auth.code === loginInput.authCode) {
       try {
         const result = await axios.post(
           "https://api.tudal.co.kr/api/user/checkProps",
@@ -149,6 +134,11 @@ const LoginContainer = () => {
       } catch (e) {
         console.log(e);
       }
+    } else {
+      setAuth({
+        ...auth,
+        error: true,
+      });
     }
   };
 
@@ -159,7 +149,6 @@ const LoginContainer = () => {
       auth={auth}
       loginInput={loginInput}
       handleSMSSend={handleSMSSend}
-      handleAuthCode={handleAuthCode}
       handleLogin={handleLogin}
     />
   );

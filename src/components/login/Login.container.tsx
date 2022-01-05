@@ -55,7 +55,8 @@ const LoginContainer = () => {
       }
     }
   }, [sec, auth.timer]);
-
+  console.log(min, sec);
+  console.log(auth.code);
   //* 로그인 정보 인풋
   const handleLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput({
@@ -69,27 +70,48 @@ const LoginContainer = () => {
     const randomCode = Math.floor(Math.random() * 10000)
       .toString()
       .padStart(4, "0");
+
     try {
-      await axios.post("https://api.tudal.co.kr/api/auth/smsSend", {
-        phone: loginInput.phone,
-        message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
-      });
-      setAuth({
-        ...auth,
-        send: true,
-        code: randomCode,
-        timer: true,
-      });
-      setTimeout(() => {
-        setAuth({
-          ...auth,
-          send: false,
-          code: "",
-          timer: false,
-        });
-      }, 60 * 3 * 1000);
+      const { data } = await axios.post(
+        "https://api.tudal.co.kr/api/user/checkProps",
+        {
+          phoneNumber: loginInput.phone,
+        }
+      );
+      if (data.length === 0) {
+        alert("회원정보가 없습니다.");
+        return;
+      }
+      if (data[0].name === loginInput.name) {
+        try {
+          await axios.post("https://api.tudal.co.kr/api/auth/smsSend", {
+            phone: loginInput.phone,
+            message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
+          });
+          setAuth({
+            ...auth,
+            send: true,
+            code: randomCode,
+            timer: true,
+          });
+          setTimeout(() => {
+            setAuth({
+              ...auth,
+              send: false,
+              code: "",
+              timer: false,
+            });
+          }, 60 * 3 * 1000);
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        alert("회원정보가 일치하지 않습니다.");
+        return;
+      }
     } catch (e) {
-      console.log(e);
+      alert("회원정보가 없습니다.");
+      return;
     }
   };
 
@@ -118,6 +140,10 @@ const LoginContainer = () => {
             phoneNumber: loginInput.phone,
           }
         );
+        setAuth({
+          ...auth,
+          code: "",
+        });
         setUserData(result.data[0]);
         sessionStorage.setItem("name", result.data[0].name);
         sessionStorage.setItem("userId", result.data[0].userId);

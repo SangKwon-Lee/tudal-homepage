@@ -35,7 +35,7 @@ const LoginContainer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
-  const time = useRef(60);
+  const time = useRef(180);
   const timerId = useRef(null);
   useEffect(() => {
     if (auth.timer) {

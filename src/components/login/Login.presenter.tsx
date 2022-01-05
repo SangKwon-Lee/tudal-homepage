@@ -34,9 +34,12 @@ interface ILoginProps {
     code: string;
     timer: boolean;
     error: boolean;
+    timeout: boolean;
   };
   handleSMSSend: () => Promise<void>;
   handleLogin: () => Promise<void>;
+  setIsActive: React.Dispatch<React.SetStateAction<string>>;
+  isActive: string;
 }
 
 const LoginPresenter: React.FC<ILoginProps> = ({
@@ -46,6 +49,8 @@ const LoginPresenter: React.FC<ILoginProps> = ({
   handleSMSSend,
   auth,
   handleLogin,
+  setIsActive,
+  isActive,
 }) => {
   const navigator = useNavigate();
   return (
@@ -63,24 +68,30 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                     name="name"
                     onChange={handleLoginInput}
                     disabled={auth.ok}
+                    onClick={() => setIsActive("name")}
+                    isActive={isActive === "name" ? true : false}
                   />
                 </LoginInputWrapper>
                 <LoginInputWrapper>
                   <LoginInputTitle>휴대폰 번호</LoginInputTitle>
                   <LoginAuthInputWrapper>
                     <LoginInput
-                      placeholder="전화번호를 입력해주세요."
+                      placeholder="'-'없이 숫자만 11자리 입력"
                       style={{ width: "270px" }}
                       type="number"
                       onChange={handleLoginInput}
                       name="phone"
                       disabled={auth.ok}
+                      onClick={() => setIsActive("phone")}
+                      isActive={isActive === "phone" ? true : false}
                     />
                     <LoginAuthBtn
-                      disabled={!loginInput.name || !loginInput.phone}
+                      disabled={
+                        !loginInput.name || !loginInput.phone || auth.timer
+                      }
                       onClick={handleSMSSend}
                     >
-                      인증번호 받기
+                      {auth.timeout ? "인증번호 재전송" : "인증번호 받기"}
                     </LoginAuthBtn>
                   </LoginAuthInputWrapper>
                   <LoginAuthInput
@@ -89,9 +100,11 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                     disabled={auth.ok}
                     name="authCode"
                     onChange={handleLoginInput}
+                    onClick={() => setIsActive("authCode")}
+                    isActive={isActive === "authCode" ? true : false}
                   ></LoginAuthInput>
                 </LoginInputWrapper>
-                {auth.send && (
+                {auth.send && !auth.timeout && (
                   <>
                     <LoginError>
                       인증번호를 발송했습니다. (유효시간 3분)
@@ -105,6 +118,9 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                   <LoginError>
                     입력하신 본인인증번호가 일치하지 않습니다.
                   </LoginError>
+                )}
+                {auth.timeout && (
+                  <LoginError>입력시간이 초과되었습니다.</LoginError>
                 )}
                 {auth.send && (
                   <LoginBtn onClick={handleLogin}>회원 인증 로그인</LoginBtn>

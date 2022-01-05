@@ -21,16 +21,21 @@ const LoginContainer = () => {
     code: "",
     timer: false,
     error: false,
+    timeout: false,
   });
 
   //* 로그인 화면 단계
   const [step, setStep] = useState(0);
 
+  //* css 변경
+
+  const [isActive, setIsActive] = useState("");
+
   //* 타이머 관련 상태 및 함수 useEffect
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [min, setMin] = useState(3);
+  const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
-  const time = useRef(180);
+  const time = useRef(60);
   const timerId = useRef(null);
   useEffect(() => {
     if (auth.timer) {
@@ -91,15 +96,17 @@ const LoginContainer = () => {
             send: true,
             code: randomCode,
             timer: true,
+            timeout: false,
           });
           setTimeout(() => {
             setAuth({
               ...auth,
-              send: false,
               code: "",
+              send: true,
               timer: false,
+              timeout: true,
             });
-          }, 60 * 3 * 1000);
+          }, 60 * 3 * 1000 + 2000);
         } catch (e) {
           console.log(e);
         }
@@ -150,6 +157,8 @@ const LoginContainer = () => {
       loginInput={loginInput}
       handleSMSSend={handleSMSSend}
       handleLogin={handleLogin}
+      setIsActive={setIsActive}
+      isActive={isActive}
     />
   );
 };

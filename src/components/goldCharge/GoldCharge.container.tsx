@@ -125,6 +125,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       }
     }
   };
+
   //* 이노페이 결제
   const handleInnoPay = async () => {
     if (gold === "충전하실 금액을 선택해주세요.") {

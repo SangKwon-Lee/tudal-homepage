@@ -64,7 +64,7 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                     placeholder="실명을 입력해주세요."
                     name="name"
                     onChange={handleLoginInput}
-                    disabled={auth.send}
+                    disabled={auth.ok}
                   />
                 </LoginInputWrapper>
                 <LoginInputWrapper>
@@ -76,7 +76,7 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                       type="number"
                       onChange={handleLoginInput}
                       name="phone"
-                      disabled={auth.send}
+                      disabled={auth.ok}
                     />
                     <LoginAuthBtn
                       disabled={!loginInput.name || !loginInput.phone}

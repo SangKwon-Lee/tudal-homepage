@@ -131,6 +131,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     if (gold === "충전하실 금액을 선택해주세요.") {
       return alert("충전하실 골드를 선택해주세요.");
     }
+    const code = `${moment().format("YYYYMMDDHHmmss")}`;
     //@ts-ignore
     innopay.goPay({
       // 필수 파라미터
@@ -143,7 +144,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       BuyerTel: userData.phoneNumber, // 고객전화번호
       BuyerEmail: "PleaseWriteYourEmail@test.com", // 고객이메일
       ResultYN: "Y", // 결제결과창 출력유뮤
-      Moid: "tudalGold2022010512", // 가맹점에서 생성한 주문번호 셋팅
+      Moid: `tudalGold${code}`, // 가맹점에서 생성한 주문번호 셋팅
       Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
     });
     window.addEventListener("message", InnoPayResult);
@@ -157,7 +158,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   //* 골드 충전 함수
   const postPayment = async (result: any) => {
     try {
-      const code = `${moment().format("YYYYMMDDHHmmss")}}`;
+      const code = `${moment().format("YYYYMMDDHHmmss")}`;
       const { status } = await axios.post(
         `https://api.tudal.co.kr/api/golds/${userId}/add`,
         {

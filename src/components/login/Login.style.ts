@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 
+interface LoginStyleProps {
+  isActive: boolean;
+}
+
 export const LoginWrapper = styled.div`
   @media (min-width: 680px) {
     padding-top: 117px;
     min-width: 1200px;
   }
   padding-top: 55px;
+  padding-bottom: 30px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -61,32 +66,30 @@ export const LoginAuthInputWrapper = styled.div`
 `;
 
 export const LoginInput = styled.input`
-  @media (min-width: 680px) {
-    font-size: 18px;
-  }
   width: 100%;
   height: 60px;
   padding-left: 20px;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 400;
   border-radius: 10px;
-  border: 1px solid #c7c7c7;
+  border: ${(props: LoginStyleProps) =>
+    props.isActive ? "2px solid black" : "1px solid #c7c7c7"};
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  outline-color: #c7c7c7;
+  outline: none;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
   ::-webkit-input-placeholder {
-    font-size: 16px;
+    font-size: 18px;
     color: #a8a8a8;
   }
 `;
 
 export const LoginAuthBtn = styled.button`
   @media (min-width: 680px) {
-    width: 109px;
+    width: 120px;
     font-size: 14px;
   }
   font-size: 13px;
@@ -111,39 +114,32 @@ export const LoginError = styled.div`
 `;
 
 export const LoginAuthInput = styled.input`
-  @media (min-width: 680px) {
-  }
   width: 100%;
   height: 60px;
   padding: 15px 20px;
   font-size: 18px;
   font-weight: 400;
   border-radius: 10px;
-  border: 1px solid #c7c7c7;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  outline-color: #ff3838;
+  border: ${(props: LoginStyleProps) =>
+    props.isActive ? "2px solid black" : "1px solid #c7c7c7"};
+  outline: none;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
   ::-webkit-input-placeholder {
-    font-size: 16px;
+    font-size: 18px;
     color: #a8a8a8;
   }
-  /* ::placeholder {
-    font-size: 16px;
-    color: #a8a8a8;
-  } */
   :-ms-input-placeholder {
-    font-size: 16px;
+    font-size: 18px;
     color: #a8a8a8;
   }
 `;
 
 export const LoginBtn = styled.button`
-  @media (min-width: 680px) {
-  }
   width: 100%;
   height: 60px;
   color: white;

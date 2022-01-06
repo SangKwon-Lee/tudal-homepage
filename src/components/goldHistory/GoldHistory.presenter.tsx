@@ -8,25 +8,33 @@ import {
   GoldMenuTitle,
   MyGoldText,
   MyGoldNumber,
+  MyGoldLine,
+  MyGoldAmountWrapper,
+  MyGoldAmountText,
+  MyGoldAmount,
+  MyGoldTextTopWrapper,
+  MyGoldLineMobile,
 } from "../goldCharge/GoldCharge.style";
 import {
   GoldHistoryBody,
   GoldHistoryContentsWrapper,
   GoldHistoryMenuBtn,
   GoldHistoryMenuWrapper,
-  GoldHistoryTableArrow,
+  // GoldHistoryTableArrow,
   GoldHistoryTableBtn,
   GoldHistoryTableDate,
   GoldHistoryTableDevice,
   GoldHistoryTableGold,
+  GoldHistoryTableGoldWrapper,
   GoldHistoryTableMobileGoldWrapper,
   GoldHistoryTableMobileTitleWrapper,
   GoldHistoryTableTitle,
+  GoldHistoryTableTitleWrapper,
   GoldHistoryTableWrapper,
   GoldHistoryWrapper,
   MyGoldHistoryWrapper,
 } from "./GoldHistory.style";
-import RightArrow from "../../assets/images/rightArrow.png";
+// import RightArrow from "../../assets/images/rightArrow.png";
 
 interface IGoldHistoryProps {
   path: string;
@@ -36,6 +44,10 @@ interface IGoldHistoryProps {
   handleMenu: (e: any) => void;
   menu: string;
 }
+function priceToString(price: any) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
   path,
   userData,
@@ -44,6 +56,7 @@ const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
   handleMenu,
   menu,
 }) => {
+  console.log(goldHistory);
   const navigate = useNavigate();
   return (
     <>
@@ -72,11 +85,42 @@ const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
       <GoldHistoryWrapper>
         <GoldHistoryBody>
           <MyGoldHistoryWrapper>
-            <MyGoldText>{userData.name}님의 골드</MyGoldText>
-            <MyGoldText>
-              <MyGoldNumber>{userGold.gold + userGold.bonusGold}</MyGoldNumber>
-              골드
-            </MyGoldText>
+            <MyGoldTextTopWrapper>
+              <MyGoldText>{userData.name}님의 골드</MyGoldText>
+              <MyGoldText>
+                <MyGoldNumber>
+                  {userGold.gold || userGold.bonusGold
+                    ? priceToString(userGold.gold + userGold.bonusGold)
+                    : 0}
+                </MyGoldNumber>
+                골드
+              </MyGoldText>
+            </MyGoldTextTopWrapper>
+            <MyGoldLine />
+            <MyGoldAmountWrapper>
+              <MyGoldAmountText>충전한 골드</MyGoldAmountText>
+              <MyGoldAmount>
+                {userGold.gold ? priceToString(userGold.gold) : 0}
+                <MyGoldAmountText style={{ marginLeft: "5px" }}>
+                  골드
+                </MyGoldAmountText>
+              </MyGoldAmount>
+            </MyGoldAmountWrapper>
+            <MyGoldLineMobile>
+              <MyGoldLine />
+            </MyGoldLineMobile>
+            <MyGoldAmountWrapper>
+              <MyGoldAmountText>보너스 골드</MyGoldAmountText>
+              <MyGoldAmount>
+                {userGold.bonusGold ? priceToString(userGold.bonusGold) : "0"}
+                <MyGoldAmountText style={{ marginLeft: "5px" }}>
+                  골드
+                </MyGoldAmountText>
+              </MyGoldAmount>
+            </MyGoldAmountWrapper>
+            <MyGoldLineMobile>
+              <MyGoldLine />
+            </MyGoldLineMobile>
           </MyGoldHistoryWrapper>
           <GoldHistoryContentsWrapper>
             <GoldHistoryMenuWrapper>
@@ -116,24 +160,63 @@ const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
                     {data.type === "add" ? "충전" : "사용"}
                   </GoldHistoryTableBtn>
                   <GoldHistoryTableMobileTitleWrapper>
-                    <GoldHistoryTableTitle>
-                      {data.category}
-                    </GoldHistoryTableTitle>
+                    <GoldHistoryTableTitleWrapper>
+                      <GoldHistoryTableTitle>
+                        {data.category}
+                      </GoldHistoryTableTitle>
+                      {data.bonusAmount ? (
+                        <GoldHistoryTableTitle style={{ paddingTop: "10px" }}>
+                          {data.bonusAmount ? "골드충전 보너스 지급" : ""}
+                        </GoldHistoryTableTitle>
+                      ) : (
+                        ""
+                      )}
+                    </GoldHistoryTableTitleWrapper>
                     <GoldHistoryTableDate>
                       {dayjs(data.created_at).format("YYYY.MM.DD.HH:mm")}
                     </GoldHistoryTableDate>
                   </GoldHistoryTableMobileTitleWrapper>
                   <GoldHistoryTableMobileGoldWrapper>
-                    <GoldHistoryTableGold>
-                      {data.type === "add"
-                        ? `+ ${Number(data.amount) + Number(data.bonusAmount)}`
-                        : `- ${Number(data.amount) + Number(data.bonusAmount)}`}
-                    </GoldHistoryTableGold>
+                    <GoldHistoryTableGoldWrapper>
+                      <GoldHistoryTableGold>
+                        {data.type === "add" ? (
+                          <>
+                            <GoldHistoryTableGold>
+                              + {Number(data.amount)} 골드
+                            </GoldHistoryTableGold>
+                            {data.bonusAmount ? (
+                              <GoldHistoryTableGold
+                                style={{ fontWeight: 400, paddingTop: "10px" }}
+                              >
+                                + {Number(data.bonusAmount)} 골드
+                              </GoldHistoryTableGold>
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <GoldHistoryTableGold>
+                              - {Number(data.amount)} 골드
+                            </GoldHistoryTableGold>
+                            {data.bonusAmount ? (
+                              <GoldHistoryTableGold
+                                style={{ fontWeight: 400, paddingTop: "10px" }}
+                              >
+                                - {Number(data.bonusAmount)} 골드
+                              </GoldHistoryTableGold>
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        )}
+                      </GoldHistoryTableGold>
+                    </GoldHistoryTableGoldWrapper>
                     <GoldHistoryTableDevice>
                       {data.category === "웹" ? "웹 결제" : "앱 결제"}
                     </GoldHistoryTableDevice>
                   </GoldHistoryTableMobileGoldWrapper>
-                  <GoldHistoryTableArrow src={RightArrow} />
+                  {/* <GoldHistoryTableArrow src={RightArrow} /> */}
                 </GoldHistoryTableWrapper>
               ))}
           </GoldHistoryContentsWrapper>

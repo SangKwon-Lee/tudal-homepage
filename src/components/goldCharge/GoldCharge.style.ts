@@ -44,10 +44,31 @@ export const MyGoldWrapper = styled.div`
   @media (min-width: 680px) {
     display: block;
     width: 380px;
+    flex-direction: row;
+    background-color: #f7f7f7;
+    padding-top: 0px;
   }
+  padding-top: 30px;
+  background-color: #fcf2f2;
   width: 100%;
+  justify-content: center;
   display: flex;
+  margin-bottom: 12px;
+  flex-direction: column;
+`;
+
+export const MyGoldTextTopWrapper = styled.div`
+  @media (min-width: 680px) {
+    justify-content: start;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  display: flex;
+
   justify-content: space-between;
 `;
 
@@ -59,11 +80,57 @@ export const MyGoldText = styled.div`
 `;
 
 export const MyGoldNumber = styled.span`
-  font-weight: 700;
   @media (min-width: 680px) {
     font-size: 40px;
+    padding-right: 0px;
   }
+  padding-right: 10px;
+  font-weight: 700;
   font-size: 25px;
+`;
+
+export const MyGoldLineMobile = styled.div`
+  @media (min-width: 680px) {
+    display: flex;
+  }
+  display: none;
+`;
+
+export const MyGoldLine = styled.div`
+  @media (min-width: 680px) {
+    width: 233px;
+  }
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #c7c7c7;
+`;
+
+export const MyGoldAmountWrapper = styled.div`
+  @media (min-width: 680px) {
+    width: 233px;
+  }
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 12px;
+`;
+
+export const MyGoldAmount = styled.div`
+  @media (min-width: 680px) {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  font-size: 15px;
+  font-weight: 700;
+  padding-left: 37px;
+  display: flex;
+  align-items: center;
+`;
+export const MyGoldAmountText = styled.span`
+  font-size: 13px;
+  color: #757575;
 `;
 
 export const GoldChargeWrapper = styled.div`
@@ -71,12 +138,13 @@ export const GoldChargeWrapper = styled.div`
     min-width: 1200px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-top: 90px;
   }
   padding-left: 20px;
   padding-right: 20px;
   background-color: #f7f7f7;
   width: 100%;
-  padding-top: 90px;
+  padding-top: 0px;
   padding-bottom: 80px;
   height: 100%;
   display: flex;
@@ -168,7 +236,7 @@ export const GoldChargeSelectWrapper = styled.div`
 
 export const GoldChargeSelect = styled.div`
   @media (min-width: 680px) {
-    width: 408px;
+    width: 380px;
     margin-right: 0px;
   }
   width: 100%;
@@ -309,12 +377,17 @@ export const GoldChargePGBtn = styled.button`
   margin-bottom: 86px;
   width: 100%;
   height: 60px;
-  background-color: white;
+  color: ${(props: IGoldChargeStyleProps) =>
+    props.isCheck ? "white" : "black"};
+  background-color: ${(props: IGoldChargeStyleProps) =>
+    props.isCheck ? "#FF3838" : "white"};
   cursor: pointer;
   outline: none;
-  border: 1px solid #c7c7c7;
+  border: ${(props: IGoldChargeStyleProps) =>
+    props.isCheck ? "none" : "1px solid #c7c7c7"};
   border-radius: 10px;
   font-size: 15px;
+  font-weight: 600;
 `;
 
 export const GoldWarningWrapper = styled.div`
@@ -334,4 +407,31 @@ export const GoldWarningTitle = styled.div`
 
 export const GoldWarningText = styled.div`
   font-size: 13px;
+`;
+
+export const GoldChargeWarningWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+`;
+
+export const GoldChargeWarningRedText = styled.div`
+  font-size: 13px;
+  color: #ff3838;
+`;
+
+export const GoldChargeWarningText = styled.div`
+  font-size: 16px;
+`;
+
+export const GoldChargeWarningBold = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+export const GoldChargeWarningImg = styled.img``;
+
+export const GoldChargeWarningImgWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;

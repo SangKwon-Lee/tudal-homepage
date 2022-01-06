@@ -39,9 +39,22 @@ import {
   GoldWarningText,
   GoldChargeMethodSelect,
   GoldChageMethodOption,
+  GoldChargeWarningWrapper,
+  GoldChargeWarningImgWrapper,
+  GoldChargeWarningImg,
+  GoldChargeWarningRedText,
+  GoldChargeWarningText,
+  GoldChargeWarningBold,
+  MyGoldLine,
+  MyGoldAmountWrapper,
+  MyGoldAmountText,
+  MyGoldAmount,
+  MyGoldTextTopWrapper,
+  MyGoldLineMobile,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
+import WarningSVG from "../../assets/images/SVG/warning.svg";
 import { UserData, UserGold } from "../../commons/types/types";
 interface IGoldChargeProps {
   path: string;
@@ -65,7 +78,6 @@ function priceToString(price: any) {
 const goldData1 = ["100", "500", "1000", "3000", "5000"];
 const goldData2 = ["7000", "8000", "10000", "20000", "30000"];
 const goldData3 = ["1", "2", "3", "4", "5"];
-
 const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   path,
   userGold,
@@ -105,13 +117,43 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
       <GoldChargeWrapper>
         <GoldChargeBody>
           <MyGoldWrapper>
-            <MyGoldText>{userData.name}님의 골드</MyGoldText>
-            <MyGoldText>
-              <MyGoldNumber>{userGold.gold + userGold.bonusGold}</MyGoldNumber>
-              골드
-            </MyGoldText>
+            <MyGoldTextTopWrapper>
+              <MyGoldText>{userData.name}님의 골드</MyGoldText>
+              <MyGoldText>
+                <MyGoldNumber>
+                  {userGold.gold || userGold.bonusGold
+                    ? priceToString(userGold.gold + userGold.bonusGold)
+                    : 0}
+                </MyGoldNumber>
+                골드
+              </MyGoldText>
+            </MyGoldTextTopWrapper>
+            <MyGoldLine />
+            <MyGoldAmountWrapper>
+              <MyGoldAmountText>충전한 골드</MyGoldAmountText>
+              <MyGoldAmount>
+                {userGold.gold ? priceToString(userGold.gold) : 0}
+                <MyGoldAmountText style={{ marginLeft: "5px" }}>
+                  골드
+                </MyGoldAmountText>
+              </MyGoldAmount>
+            </MyGoldAmountWrapper>
+            <MyGoldLineMobile>
+              <MyGoldLine />
+            </MyGoldLineMobile>
+            <MyGoldAmountWrapper>
+              <MyGoldAmountText>보너스 골드</MyGoldAmountText>
+              <MyGoldAmount>
+                {userGold.bonusGold ? priceToString(userGold.bonusGold) : "0"}
+                <MyGoldAmountText style={{ marginLeft: "5px" }}>
+                  골드
+                </MyGoldAmountText>
+              </MyGoldAmount>
+            </MyGoldAmountWrapper>
+            <MyGoldLineMobile>
+              <MyGoldLine />
+            </MyGoldLineMobile>
           </MyGoldWrapper>
-          <GoldChargeMobileLine />
           <GoldChargeContentsWrapper>
             <GoldChargeTitle>충전하실 금액을 선택해주세요.</GoldChargeTitle>
             <GoldChargeBtnWrapper>
@@ -159,7 +201,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 </div>
               ))}
             </GoldChargeBtnWrapper>
-            <GoldChargeMax>최대 충전 가능 금액 : 30,000 골드</GoldChargeMax>
+            <GoldChargeMax>최대 충전 가능 골드 : 30,000 골드</GoldChargeMax>
             <GoldChargeLine />
             <GoldChargeSelectWrapper>
               <GoldChargeSelect
@@ -174,8 +216,8 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 <GoldChargeBonusTitle
                   style={{ fontSize: "20px", textAlign: "end" }}
                 >
-                  {isNaN(Number(bonusGold)) ? 0 : bonusGold}
-                  <GoldChargeBonustext>골드</GoldChargeBonustext>
+                  {isNaN(Number(bonusGold)) ? 0 : priceToString(bonusGold)}
+                  <GoldChargeBonustext> 보너스 골드</GoldChargeBonustext>
                 </GoldChargeBonusTitle>
               </GoldChargeBonusWrapper>
             </GoldChargeSelectWrapper>
@@ -192,6 +234,23 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               </GoldChargeResultVATWrapper>
             </GoldChargeResultWrapper>
             <GoldChargeLine />
+            <GoldChargeWarningWrapper>
+              <GoldChargeWarningImgWrapper>
+                <GoldChargeWarningImg src={WarningSVG} />
+                <GoldChargeWarningRedText>
+                  결제 전 잠깐!
+                </GoldChargeWarningRedText>
+              </GoldChargeWarningImgWrapper>
+              <GoldChargeWarningText>
+                골드 충전 시 결제는
+                <GoldChargeWarningBold>
+                  비씨카드, 삼성카드, 롯데카드
+                </GoldChargeWarningBold>
+                로 <GoldChargeWarningBold>일시불 결제</GoldChargeWarningBold>만
+                가능합니다.
+              </GoldChargeWarningText>
+            </GoldChargeWarningWrapper>
+
             <GoldChargeMethodTitle>
               결제수단을 선택해주세요.
             </GoldChargeMethodTitle>
@@ -229,6 +288,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
 
             <GoldChargePGBtn
               name="btn_pay"
+              isCheck={inputCharge.check}
               onClick={() => {
                 inputCharge.check
                   ? handleInnoPay()

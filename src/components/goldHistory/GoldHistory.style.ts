@@ -16,7 +16,6 @@ export const GoldHistoryWrapper = styled.div`
   padding-right: 20px;
   background-color: #f7f7f7;
   width: 100%;
-  padding-top: 45px;
   padding-bottom: 120px;
   height: 100%;
   display: flex;
@@ -37,10 +36,19 @@ export const GoldHistoryBody = styled.div`
 
 export const MyGoldHistoryWrapper = styled.div`
   @media (min-width: 680px) {
-    width: 300px;
     display: block;
+    width: 380px;
+    flex-direction: row;
+    background-color: #f7f7f7;
+    padding-top: 0px;
   }
-  display: none;
+  padding-top: 30px;
+  background-color: #fcf2f2;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 12px;
+  flex-direction: column;
 `;
 
 export const GoldHistoryContentsWrapper = styled.div``;
@@ -106,6 +114,7 @@ export const GoldHistoryTableMobileTitleWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 470px;
+    align-items: center;
   }
   display: flex;
   width: 220px;
@@ -113,12 +122,13 @@ export const GoldHistoryTableMobileTitleWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const GoldHistoryTableTitle = styled.div`
+export const GoldHistoryTableTitleWrapper = styled.div`
   @media (min-width: 680px) {
     margin-left: 20px;
     font-weight: 700;
     width: 260px;
   }
+
   margin-left: 0px;
   font-weight: 400;
   font-size: 15px;
@@ -126,10 +136,21 @@ export const GoldHistoryTableTitle = styled.div`
   width: 100%;
 `;
 
+export const GoldHistoryTableTitle = styled.div`
+  @media (min-width: 680px) {
+    font-weight: 700;
+  }
+  font-weight: 400;
+  font-size: 15px;
+  color: #4b4b4b;
+`;
+
 export const GoldHistoryTableDate = styled.div`
   @media (min-width: 680px) {
     color: #4b4b4b;
+    margin-top: 0px;
   }
+  margin-top: 5px;
   margin-right: 0px;
   width: 120px;
   font-size: 15px;
@@ -140,34 +161,41 @@ export const GoldHistoryTableMobileGoldWrapper = styled.div`
   @media (min-width: 680px) {
     display: flex;
     flex-direction: row;
-    width: 280px;
+    width: 240px;
   }
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   width: 80px;
   margin-right: 20px;
 `;
 
-export const GoldHistoryTableGold = styled.div`
+export const GoldHistoryTableGoldWrapper = styled.div`
   @media (min-width: 680px) {
     margin-right: 70px;
-    width: 65px;
-    align-self: flex-end;
+    width: 85px;
+  }
+  display: flex;
+  flex-direction: column;
+  margin-right: 0px;
+`;
+
+export const GoldHistoryTableGold = styled.div`
+  @media (min-width: 680px) {
     text-align: end;
   }
-  align-self: flex-end;
-  margin-right: 0px;
+  text-align: end;
   font-size: 15px;
   font-weight: 700;
-  color: #757575;
 `;
 
 export const GoldHistoryTableDevice = styled.div`
   @media (min-width: 680px) {
     /* margin-right: 80px; */
-    width: 53px;
+    margin-top: 0px;
   }
+  text-align: end;
+  margin-top: 5px;
   margin-right: 0px;
   color: #a8a8a8;
   font-size: 15px;

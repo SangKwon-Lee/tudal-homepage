@@ -159,8 +159,9 @@ export const LoginBtn = styled.button`
 
 export const LoginSuccessWrapper = styled.div`
   @media (min-width: 680px) {
-    margin-top: 150px;
+    margin-top: 50px;
   }
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,7 +177,7 @@ export const LoginSuccessTitle = styled.div`
 export const LoginSuccessBtn = styled.button`
   width: 231px;
   height: 65px;
-  background-color: #fc8484;
+  background-color: #ff3838;
   border: none;
   outline: none;
   cursor: pointer;

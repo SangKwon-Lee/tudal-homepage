@@ -13,7 +13,6 @@ export const HomeMainWrapper = styled.div`
 export const HomeMainImg = styled.img`
   @media only all and (min-width: 680px) {
     min-height: 900px;
-    min-width: 1640px;
   }
   width: 100%;
   height: 100vh;

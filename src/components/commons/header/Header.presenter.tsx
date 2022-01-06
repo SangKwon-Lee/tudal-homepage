@@ -14,15 +14,16 @@ interface IHeaderProps {
   path: string;
   handleLogout: () => void;
   userData: UserData;
+  userId: string | null;
 }
 
 const HeaderPresenter: React.FC<IHeaderProps> = ({
   path,
   handleLogout,
   userData,
+  userId,
 }) => {
   const navigate = useNavigate();
-  const userId = sessionStorage.getItem("userId");
   return (
     <HeaderWrapper path={path}>
       <HeaderBody>

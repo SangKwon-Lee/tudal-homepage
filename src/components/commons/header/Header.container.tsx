@@ -2,12 +2,15 @@ import HeaderPresenter from "./Header.presenter";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { GlobalContext } from "../../../App";
+
 interface IHeaderProps {
   path: string;
 }
 const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
   const navigate = useNavigate();
   const { setUserGold, setUserData, userData } = useContext(GlobalContext);
+  const userId = sessionStorage.getItem("userId");
+
   const handleLogout = () => {
     sessionStorage.clear();
     setUserData({
@@ -41,6 +44,7 @@ const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
       path={path}
       userData={userData}
       handleLogout={handleLogout}
+      userId={userId}
     />
   );
 };

@@ -15,6 +15,8 @@ import {
   LoginError,
   LoginSuccessImg,
   LoginSuccessBtn,
+  LoginTimer,
+  LoginAuthInputBox,
 } from "./Login.style";
 import success1Img from "../../assets/images/success1.png";
 import success2Img from "../../assets/images/success2.png";
@@ -40,6 +42,8 @@ interface ILoginProps {
   handleLogin: () => Promise<void>;
   setIsActive: React.Dispatch<React.SetStateAction<string>>;
   isActive: string;
+  min: number;
+  sec: number;
 }
 
 const LoginPresenter: React.FC<ILoginProps> = ({
@@ -51,6 +55,8 @@ const LoginPresenter: React.FC<ILoginProps> = ({
   handleLogin,
   setIsActive,
   isActive,
+  min,
+  sec,
 }) => {
   const navigator = useNavigate();
   return (
@@ -94,23 +100,26 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                       {auth.timeout ? "인증번호 재전송" : "인증번호 받기"}
                     </LoginAuthBtn>
                   </LoginAuthInputWrapper>
-                  <LoginAuthInput
-                    type="number"
-                    placeholder="인증번호를 입력해주세요."
-                    disabled={auth.ok}
-                    name="authCode"
-                    onChange={handleLoginInput}
-                    onClick={() => setIsActive("authCode")}
+                  <LoginAuthInputBox
                     isActive={isActive === "authCode" ? true : false}
-                  ></LoginAuthInput>
+                  >
+                    <LoginAuthInput
+                      type="number"
+                      placeholder="인증번호를 입력해주세요."
+                      disabled={!auth.send}
+                      name="authCode"
+                      onChange={handleLoginInput}
+                      onClick={() => setIsActive("authCode")}
+                    ></LoginAuthInput>
+                    {auth.send && <LoginTimer>{`${min} : ${sec}`}</LoginTimer>}
+                  </LoginAuthInputBox>
                 </LoginInputWrapper>
                 {auth.send && !auth.timeout && (
                   <>
                     <LoginError>
-                      인증번호를 발송했습니다. (유효시간 3분)
-                      <br />
-                      인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여
+                      · 인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여
                       주세요.
+                      <br />· 인증번호 발송은 5회로 제한됩니다.
                     </LoginError>
                   </>
                 )}

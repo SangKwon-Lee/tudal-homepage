@@ -8,7 +8,7 @@ interface IHeaderProps {
 }
 const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
   const navigate = useNavigate();
-  const { setUserGold, setUserData, userData } = useContext(GlobalContext);
+  const { setUserGold, setUserData } = useContext(GlobalContext);
   const userId = sessionStorage.getItem("userId");
 
   const handleLogout = () => {
@@ -40,12 +40,7 @@ const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
   };
 
   return (
-    <HeaderPresenter
-      path={path}
-      userData={userData}
-      handleLogout={handleLogout}
-      userId={userId}
-    />
+    <HeaderPresenter path={path} handleLogout={handleLogout} userId={userId} />
   );
 };
 export default HeaderContainer;

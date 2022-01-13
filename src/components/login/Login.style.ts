@@ -113,16 +113,26 @@ export const LoginError = styled.div`
   padding-top: 13px;
 `;
 
-export const LoginAuthInput = styled.input`
+export const LoginAuthInputBox = styled.div`
   width: 100%;
   height: 60px;
   padding: 15px 20px;
-  font-size: 18px;
-  font-weight: 400;
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border: ${(props: LoginStyleProps) =>
     props.isActive ? "2px solid black" : "1px solid #c7c7c7"};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${(props: LoginStyleProps) =>
+    props.isActive ? "white" : "transparent"}; ;
+`;
+
+export const LoginAuthInput = styled.input`
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 400;
   outline: none;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -188,3 +198,8 @@ export const LoginSuccessBtn = styled.button`
 `;
 
 export const LoginSuccessImg = styled.img``;
+
+export const LoginTimer = styled.div`
+  font-size: 15px;
+  color: #ff383899;
+`;

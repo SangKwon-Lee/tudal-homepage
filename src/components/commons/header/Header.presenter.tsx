@@ -8,19 +8,16 @@ import {
 } from "./Header.style";
 import tudalLogo from "../../../assets/images/SVG/tudalLogo.svg";
 import { useNavigate } from "react-router";
-import { UserData } from "../../../commons/types/types";
 
 interface IHeaderProps {
   path: string;
   handleLogout: () => void;
-  userData: UserData;
   userId: string | null;
 }
 
 const HeaderPresenter: React.FC<IHeaderProps> = ({
   path,
   handleLogout,
-  userData,
   userId,
 }) => {
   const navigate = useNavigate();

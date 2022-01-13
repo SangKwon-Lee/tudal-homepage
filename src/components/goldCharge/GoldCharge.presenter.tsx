@@ -154,6 +154,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               <MyGoldLine />
             </MyGoldLineMobile>
           </MyGoldWrapper>
+          <GoldChargeMobileLine />
           <GoldChargeContentsWrapper>
             <GoldChargeTitle>충전하실 금액을 선택해주세요.</GoldChargeTitle>
             <GoldChargeBtnWrapper>
@@ -244,13 +245,12 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               <GoldChargeWarningText>
                 골드 충전 시 결제는
                 <GoldChargeWarningBold>
-                  비씨카드, 삼성카드, 롯데카드
+                  &nbsp;비씨카드, 삼성카드, 롯데카드
                 </GoldChargeWarningBold>
                 로 <GoldChargeWarningBold>일시불 결제</GoldChargeWarningBold>만
                 가능합니다.
               </GoldChargeWarningText>
             </GoldChargeWarningWrapper>
-
             <GoldChargeMethodTitle>
               결제수단을 선택해주세요.
             </GoldChargeMethodTitle>
@@ -285,7 +285,6 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 공제 후 환불됩니다.
               </GoldWarningText>
             </GoldWarningWrapper>
-
             <GoldChargePGBtn
               name="btn_pay"
               isCheck={inputCharge.check}

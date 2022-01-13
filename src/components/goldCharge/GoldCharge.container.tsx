@@ -17,8 +17,10 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     useContext(GlobalContext);
   const navigate = useNavigate();
   const userId = sessionStorage.getItem("userId");
+
   //* 골드
   const [gold, setgold] = useState("충전하실 금액을 선택해주세요.");
+
   //* 보너스 골드
   const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
 
@@ -28,8 +30,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     money: 0,
     method: "CARD",
   });
-
-  // const [resultData, setResultData] = useState<any>({});
 
   //* 골드 선택 및 충전 금액
   const handleGold = (e: any) => {
@@ -99,14 +99,14 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
-  //*이노페이 결제 결과
+  //*이노페이 결제 결과 (결제 함수 2번 째)
   const InnoPayResult = (data: any) => {
     if (data.data === "close") {
       window.removeEventListener("message", InnoPayResult);
       return;
     } else if (data.data !== "close") {
       var result = JSON.parse(data.data);
-      // Sample
+      //* 아래 데이터는 필요할 경우 사용하세요
       // var mid = data.data.MID; // 가맹점 MID
       // var tid = data.data.TID; // 거래고유번호
       // var amt = data.data.Amt; // 금액
@@ -122,11 +122,12 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         postPayment(result);
       } else {
         alert("결제 오류가 발생했습니다.");
+        window.removeEventListener("message", InnoPayResult);
       }
     }
   };
 
-  //* 이노페이 결제
+  //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
     if (gold === "충전하실 금액을 선택해주세요.") {
       return alert("충전하실 골드를 선택해주세요.");
@@ -142,20 +143,16 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호
-      BuyerEmail: "PleaseWriteYourEmail@test.com", // 고객이메일
+      BuyerEmail: "@naver.com", // 고객이메일
       ResultYN: "Y", // 결제결과창 출력유뮤
       Moid: `tudalGold${code}`, // 가맹점에서 생성한 주문번호 셋팅
       Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
     });
+    //* 결제 결과가 아래로 전달 (InnoPayResult 함수 실행)
     window.addEventListener("message", InnoPayResult);
   };
 
-  /**
-   * 결제결과 수신 Javascript 함수
-   * ReturnURL이 없는 경우 아래 함수로 결과가 리턴됩니다
-   */
-
-  //* 골드 충전 함수
+  //* 이노페이 결제 성공시 골드 충전 함수 (결제 함수 3번 째)
   const postPayment = async (result: any) => {
     try {
       const code = `${moment().format("YYYYMMDDHHmmss")}`;

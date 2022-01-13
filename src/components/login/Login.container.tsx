@@ -28,12 +28,11 @@ const LoginContainer = () => {
   const [step, setStep] = useState(0);
 
   //* css 변경
-
   const [isActive, setIsActive] = useState("");
 
   //* 타이머 관련 상태 및 함수 useEffect
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [min, setMin] = useState(0);
+  const [min, setMin] = useState(3);
   const [sec, setSec] = useState(0);
   const time = useRef(180);
   const timerId = useRef(null);
@@ -51,15 +50,17 @@ const LoginContainer = () => {
       return () => clearInterval(timerId.current);
     }
   }, [auth.timer]);
+
   useEffect(() => {
     if (auth.timer) {
-      if (time.current <= 0) {
+      if (time.current <= -1) {
         //@ts-ignore
         clearInterval(timerId.current);
         // dispatch event
       }
     }
   }, [sec, auth.timer]);
+
   //* 로그인 정보 인풋
   const handleLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput({
@@ -87,26 +88,36 @@ const LoginContainer = () => {
       }
       if (data[0].name === loginInput.name) {
         try {
-          await axios.post("https://api.tudal.co.kr/api/auth/smsSend", {
-            phone: loginInput.phone,
-            message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
-          });
-          setAuth({
-            ...auth,
-            send: true,
-            code: randomCode,
-            timer: true,
-            timeout: false,
-          });
-          setTimeout(() => {
+          const { data } = await axios.post(
+            "https://api.tudal.co.kr/api/auth/smsSend",
+            {
+              phone: loginInput.phone,
+              message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
+            }
+          );
+          console.log(data);
+          if (data.code === "00") {
             setAuth({
               ...auth,
-              code: "",
               send: true,
-              timer: false,
-              timeout: true,
+              code: randomCode,
+              timer: true,
+              timeout: false,
             });
-          }, 60 * 3 * 1000 + 2000);
+            setTimeout(() => {
+              setAuth({
+                ...auth,
+                code: "",
+                send: true,
+                timer: false,
+                timeout: true,
+              });
+            }, 60 * 3 * 1000 + 2000);
+          } else {
+            alert(
+              "SMS 인증요청  5회를 모두 사용하였습니다. \n 24시간 이후 다시 요청해 주시기 바랍니다."
+            );
+          }
         } catch (e) {
           console.log(e);
         }
@@ -130,6 +141,15 @@ const LoginContainer = () => {
             phoneNumber: loginInput.phone,
           }
         );
+        const result2 = await axios.delete(
+          "https://api.tudal.co.kr/api/auth/smsSend",
+          {
+            data: {
+              phone: loginInput.phone,
+            },
+          }
+        );
+        console.log(result2);
         setAuth({
           ...auth,
           code: "",
@@ -159,6 +179,8 @@ const LoginContainer = () => {
       handleLogin={handleLogin}
       setIsActive={setIsActive}
       isActive={isActive}
+      min={min}
+      sec={sec}
     />
   );
 };

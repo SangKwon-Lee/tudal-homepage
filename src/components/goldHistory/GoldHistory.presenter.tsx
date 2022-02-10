@@ -56,7 +56,6 @@ const GoldHistoryPresenter: React.FC<IGoldHistoryProps> = ({
   handleMenu,
   menu,
 }) => {
-  console.log(goldHistory);
   const navigate = useNavigate();
   return (
     <>

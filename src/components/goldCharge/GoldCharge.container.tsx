@@ -29,7 +29,23 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     check: false,
     money: 0,
     method: "CARD",
+    number: "",
+    receipt: false,
   });
+
+  //* 현금 영수증 종류
+  const [reciptsCategory, setReciptesCategory] = useState("phone");
+
+  //* 번호 변경 상태
+  const [isChange, setIsChange] = useState(false);
+
+  //* 스텝
+  const [step, setStep] = useState(0);
+
+  //* 번호 변경 True 함수
+  const handleChangePhone = () => {
+    setIsChange(true);
+  };
 
   //* 골드 선택 및 충전 금액
   const handleGold = (e: any) => {
@@ -77,10 +93,12 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
           }
         );
         setUserData(userData[0]);
+        setInputCharge({
+          ...inputCharge,
+          number: userData[0].phoneNumber,
+        });
         setUserGold(data[0]);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     }
   };
 
@@ -91,10 +109,19 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         ...inputCharge,
         check: !inputCharge.check,
       });
+    } else if (e.target.name === "receipt") {
+      let isCheck = true;
+      if (e.target.value === "false") {
+        isCheck = false;
+      }
+      setInputCharge({
+        ...inputCharge,
+        receipt: isCheck,
+      });
     } else {
       setInputCharge({
         ...inputCharge,
-        method: e.target.value,
+        [e.target.name]: e.target.value,
       });
     }
   };
@@ -178,6 +205,19 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
+  //* 현금영수증 종류
+  const handleRecipts = (e: any) => {
+    setReciptesCategory(e.target.value);
+    setInputCharge({
+      ...inputCharge,
+      number: "",
+    });
+  };
+
+  //* 다음 스텝
+  const handleStep = () => {
+    setStep(1);
+  };
   return (
     <>
       <HelmetProvider>
@@ -203,6 +243,12 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         inputCharge={inputCharge}
         handleInnoPay={handleInnoPay}
         bonusGold={bonusGold}
+        isChange={isChange}
+        handleChangePhone={handleChangePhone}
+        handleRecipts={handleRecipts}
+        reciptsCategory={reciptsCategory}
+        handleStep={handleStep}
+        step={step}
       />
     </>
   );

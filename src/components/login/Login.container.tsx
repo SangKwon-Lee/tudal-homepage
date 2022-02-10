@@ -95,7 +95,6 @@ const LoginContainer = () => {
               message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
             }
           );
-          console.log(data);
           if (data.code === "00") {
             setAuth({
               ...auth,
@@ -141,15 +140,11 @@ const LoginContainer = () => {
             phoneNumber: loginInput.phone,
           }
         );
-        const result2 = await axios.delete(
-          "https://api.tudal.co.kr/api/auth/smsSend",
-          {
-            data: {
-              phone: loginInput.phone,
-            },
-          }
-        );
-        console.log(result2);
+        await axios.delete("https://api.tudal.co.kr/api/auth/smsSend", {
+          data: {
+            phone: loginInput.phone,
+          },
+        });
         setAuth({
           ...auth,
           code: "",

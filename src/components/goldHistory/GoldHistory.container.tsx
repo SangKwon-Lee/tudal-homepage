@@ -48,9 +48,7 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
         );
         setUserData(userData[0]);
         setUserGold(data[0]);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     }
   };
 

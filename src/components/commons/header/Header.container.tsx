@@ -37,6 +37,7 @@ const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
       userId: 0,
     });
     navigate("/");
+    alert("로그아웃 됐습니다.");
   };
 
   return (

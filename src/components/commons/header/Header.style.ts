@@ -6,8 +6,10 @@ interface IHeaderStyleProps {
 
 export const HeaderWrapper = styled.div`
   @media (min-width: 680px) {
-    min-width: 1200px;
+    /* min-width: 1200px; */
+    min-width: 1400px;
   }
+
   position: ${(props: IHeaderStyleProps) =>
     props.path === "login" ? "none" : "absolute"};
   display: flex;

@@ -49,6 +49,8 @@ export const MyGoldWrapper = styled.div`
     padding-top: 0px;
   }
   padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #fcf2f2;
   width: 100%;
   justify-content: center;
@@ -135,13 +137,13 @@ export const MyGoldAmountText = styled.span`
 
 export const GoldChargeWrapper = styled.div`
   @media (min-width: 680px) {
-    min-width: 1200px;
+    min-width: 1400px;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 90px;
   }
-  padding-left: 20px;
-  padding-right: 20px;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
   background-color: #f7f7f7;
   width: 100%;
   padding-top: 0px;
@@ -168,6 +170,8 @@ export const GoldChargeContentsWrapper = styled.div`
     width: 524px;
   }
   width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const GoldChargeTitle = styled.div`
@@ -363,7 +367,6 @@ export const GoldChargeCheckWrapper = styled.div`
   padding-bottom: 25px;
   cursor: pointer;
   margin-top: 40px;
-  margin-left: 20px;
 `;
 
 export const GoldChargeCheckImg = styled.img``;

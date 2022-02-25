@@ -218,6 +218,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const handleStep = () => {
     setStep(1);
   };
+
   return (
     <>
       <HelmetProvider>

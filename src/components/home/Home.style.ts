@@ -3,8 +3,9 @@ import styled from "@emotion/styled";
 export const HomeMainWrapper = styled.div`
   @media only all and (min-width: 680px) {
     height: 100%;
-    width: 100%;
+    min-width: 1440px;
   }
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,9 +13,9 @@ export const HomeMainWrapper = styled.div`
 
 export const HomeMainImg = styled.img`
   @media only all and (min-width: 680px) {
-    min-height: 900px;
+    min-width: 1400px;
+    width: 100%;
   }
-  width: 100%;
   height: 100vh;
   min-width: 0px;
   min-height: 700px;
@@ -199,7 +200,6 @@ export const HomeFirstContentsWrapper = styled.div`
     height: 900px;
   }
   width: 100%;
-
   background-color: white;
   display: flex;
   justify-content: center;

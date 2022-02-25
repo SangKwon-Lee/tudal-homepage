@@ -7,13 +7,11 @@ interface IGoldHistoryStyle {
 
 export const GoldHistoryWrapper = styled.div`
   @media (min-width: 680px) {
-    min-width: 1200px;
+    min-width: 1400px;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 90px;
   }
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: #f7f7f7;
   width: 100%;
   padding-bottom: 120px;
@@ -43,6 +41,8 @@ export const MyGoldHistoryWrapper = styled.div`
     padding-top: 0px;
   }
   padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #fcf2f2;
   width: 100%;
   justify-content: center;
@@ -51,7 +51,9 @@ export const MyGoldHistoryWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const GoldHistoryContentsWrapper = styled.div``;
+export const GoldHistoryContentsWrapper = styled.div`
+  padding: 0px 20px;
+`;
 
 export const GoldHistoryMenuWrapper = styled.div`
   margin-bottom: 40px;

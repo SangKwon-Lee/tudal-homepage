@@ -48,7 +48,7 @@ export const FooterCompany = styled.div`
   @media only all and (min-width: 680px) {
     font-size: 13px;
   }
-  font-size: 10px;
+  font-size: 8px;
   color: white;
   cursor: pointer;
 `;

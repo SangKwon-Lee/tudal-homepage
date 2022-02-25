@@ -366,7 +366,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                     src={inputCharge.check ? checkColor : checkGray}
                   />
                   <GoldChargeCheckText id="check">
-                    구매하시는 골드의 가격정보를 확인하였으며, 구매에
+                    구매하는 골드의 가격정보를 확인하였으며, 구매에
                     동의하시겠습니까?
                     <br />
                     (전사상거래법 제8조 2항)

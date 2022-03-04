@@ -90,15 +90,13 @@ interface IGoldChargeProps {
     money: number;
     method: string;
     number: string;
-    receipt: boolean;
+    isReceipt: boolean;
   };
   handleInnoPay: () => void;
   bonusGold: string | number;
-  handleChangePhone: () => void;
-  isChange: boolean;
   handleRecipts: (e: any) => void;
   reciptsCategory: string;
-  handleStep: () => void;
+  handleSavePaymentInfo: () => void;
   step: number;
 }
 
@@ -119,7 +117,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
   bonusGold,
   handleRecipts,
   reciptsCategory,
-  handleStep,
+  handleSavePaymentInfo,
   step,
 }) => {
   const navigate = useNavigate();
@@ -259,7 +257,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   <GoldChargeWarningImgWrapper>
                     <GoldChargeWarningImg src={WarningSVG} />
                     <GoldChargeWarningRedText>
-                      결제 전 잠깐!
+                      입금 전 잠깐!
                     </GoldChargeWarningRedText>
                   </GoldChargeWarningImgWrapper>
                   <GoldChargeWarningText>
@@ -295,9 +293,21 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                         (예금주 : 이노핀)
                       </GoldChargeAccountBigText>
                     </GoldChargeAccountWrapper>
-                    <GoldChargeAccountText>입금자명</GoldChargeAccountText>
+                    <GoldChargeWarningImgWrapper>
+                      <GoldChargeWarningImg src={WarningSVG} />
+                      <GoldChargeWarningRedText>
+                        결제 전 잠깐!
+                      </GoldChargeWarningRedText>
+                    </GoldChargeWarningImgWrapper>
+                    <GoldChargeAccountText>
+                      입금자는 반드시 이름과 핸드폰 번호 뒷자리로 입금해주셔야
+                      합니다.
+                    </GoldChargeAccountText>
                     <GoldChargeAccountName>
-                      {userData?.name}
+                      {`${userData?.name}${userData?.phoneNumber.slice(
+                        userData?.phoneNumber.length - 4,
+                        userData?.phoneNumber.length
+                      )}`}
                     </GoldChargeAccountName>
                     <GoldChargeAccountDate>
                       입금마감일 :
@@ -312,7 +322,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                         name="receipt"
                         id="receipt"
                         value="true"
-                        checked={inputCharge.receipt === true ? true : false}
+                        checked={inputCharge.isReceipt === true ? true : false}
                         onChange={handleInputCharge}
                       />
                       <GoldChargeReceiptsLabel htmlFor="receipt">
@@ -323,7 +333,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                         name="receipt"
                         id="receipt2"
                         value="false"
-                        checked={inputCharge.receipt === false ? true : false}
+                        checked={inputCharge.isReceipt === false ? true : false}
                         onChange={handleInputCharge}
                       />
                       <GoldChargeReceiptsLabel htmlFor="receipt2">
@@ -333,19 +343,19 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                     <GoldChargeLine />
                   </>
                 )}
-                {inputCharge.receipt && (
+                {inputCharge.isReceipt && (
                   <>
                     <GoldChargeMethodSelect onChange={handleRecipts}>
-                      <GoldChageMethodOption value={"phone"}>
+                      <GoldChageMethodOption value={"핸드폰"}>
                         개인 소득공제용 (휴대폰 번호)
                       </GoldChageMethodOption>
-                      <GoldChageMethodOption value="registration">
+                      <GoldChageMethodOption value="주민등록번호">
                         개인 소득공재용 (주민등록번호)
                       </GoldChageMethodOption>
-                      <GoldChageMethodOption value="card">
+                      <GoldChageMethodOption value="카드">
                         개인 소득공재용 (현금영수증 카드)
                       </GoldChageMethodOption>
-                      <GoldChageMethodOption value="business">
+                      <GoldChageMethodOption value="사업자">
                         사업자 지출 증빙용
                       </GoldChageMethodOption>
                     </GoldChargeMethodSelect>
@@ -404,7 +414,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   onClick={() => {
                     inputCharge.method === "CARD"
                       ? handleInnoPay()
-                      : handleStep();
+                      : handleSavePaymentInfo();
                   }}
                 >
                   충전하기
@@ -418,9 +428,17 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   </GoldChargeReceiptsText>
                   <GoldChargeReceiptsBoldText>
                     아래 계좌번호로 충전하실 금액을 이체해 주세요.
-                    <br /> 반드시 투자의달인에 가입하신 본인 이름으로
-                    입금해주세요.
+                    <br /> 반드시
+                    {` ${userData?.name}${userData?.phoneNumber.slice(
+                      userData?.phoneNumber.length - 4,
+                      userData?.phoneNumber.length
+                    )}`}
+                    으로 입금해주세요.
                   </GoldChargeReceiptsBoldText>
+                  <GoldChargeReceiptsText>
+                    <br />
+                    입금 마감일은 신청일로부터 2일 뒤 입니다.
+                  </GoldChargeReceiptsText>
                   <GoldChargeReceiptBox>
                     <GoldChargeBankImg src={BankPng} />
                     <GoldChargeReceiptsBoldText>

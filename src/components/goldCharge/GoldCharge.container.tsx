@@ -6,6 +6,8 @@ import WithAuth from "../commons/hocs/withAuth";
 import GoldChargePresenter from "./GoldCharge.presenter";
 import moment from "moment";
 import { useNavigate } from "react-router";
+import dayjs from "dayjs";
+
 interface IGoldChargeProps {
   path: string;
 }
@@ -15,6 +17,7 @@ const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
 const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const { userData, setUserGold, userGold, setUserData } =
     useContext(GlobalContext);
+
   const navigate = useNavigate();
   const userId = sessionStorage.getItem("userId");
 
@@ -24,40 +27,23 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   //* 보너스 골드
   const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
 
-  //* 충전 금액
+  //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
     money: 0,
     method: "CARD",
     number: "",
-    receipt: false,
+    isReceipt: false,
   });
 
   //* 현금 영수증 종류
-  const [reciptsCategory, setReciptesCategory] = useState("phone");
-
-  //* 번호 변경 상태
-  const [isChange, setIsChange] = useState(false);
+  const [reciptsCategory, setReciptesCategory] = useState("핸드폰");
 
   //* 스텝
   const [step, setStep] = useState(0);
 
-  //* 번호 변경 True 함수
-  const handleChangePhone = () => {
-    setIsChange(true);
-  };
-
   //* 골드 선택 및 충전 금액
   const handleGold = (e: any) => {
-    if (Number(e.target.value) < 10) {
-      setgold(e.target.value);
-      setInputCharge({
-        ...inputCharge,
-        money: Number(e.target.value),
-      });
-      setBonusGold(0);
-      return;
-    }
     setgold(e.target.value);
     setInputCharge({
       ...inputCharge,
@@ -98,11 +84,13 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
           number: userData[0].phoneNumber,
         });
         setUserGold(data[0]);
-      } catch (e) {}
+      } catch (e) {
+        alert("회원정보가 없습니다.");
+      }
     }
   };
 
-  //* 동의
+  //*input 관리
   const handleInputCharge = (e: any) => {
     if (e.target.id === "check") {
       setInputCharge({
@@ -116,8 +104,9 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       }
       setInputCharge({
         ...inputCharge,
-        receipt: isCheck,
+        isReceipt: isCheck,
       });
+      setReciptesCategory("핸드폰");
     } else {
       setInputCharge({
         ...inputCharge,
@@ -214,9 +203,39 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     });
   };
 
-  //* 다음 스텝
-  const handleStep = () => {
-    setStep(1);
+  //* 다음 스텝 및 결제 정보 저장
+  const handleSavePaymentInfo = async () => {
+    const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
+    const expirationDate = `${dayjs().add(2, "day").format("YYYYMMDDHHmmss")}`;
+    try {
+      const { status } = await axios.post(
+        `https://api.tudal.co.kr/api/golds/web/depositInfo`,
+        {
+          userId,
+          userName:
+            userData?.name +
+            userData?.phoneNumber.slice(
+              userData?.phoneNumber.length - 4,
+              userData?.phoneNumber.length
+            ),
+          category: "골드충전",
+          chargeCode: code,
+          gold,
+          bonusGold,
+          receiptType: reciptsCategory,
+          receiptNumber: inputCharge.number,
+          depositAmount: 10,
+          isExpired: 0,
+          expirationDate,
+          isCharged: 0,
+        }
+      );
+      if (status === 200) {
+        setStep(1);
+      }
+    } catch (e) {
+      alert("에러가 발생했습니다. 처음부터 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -244,11 +263,9 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         inputCharge={inputCharge}
         handleInnoPay={handleInnoPay}
         bonusGold={bonusGold}
-        isChange={isChange}
-        handleChangePhone={handleChangePhone}
         handleRecipts={handleRecipts}
         reciptsCategory={reciptsCategory}
-        handleStep={handleStep}
+        handleSavePaymentInfo={handleSavePaymentInfo}
         step={step}
       />
     </>

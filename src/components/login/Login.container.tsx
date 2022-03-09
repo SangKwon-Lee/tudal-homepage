@@ -117,9 +117,7 @@ const LoginContainer = () => {
               "SMS 인증요청  5회를 모두 사용하였습니다. \n 24시간 이후 다시 요청해 주시기 바랍니다."
             );
           }
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
       } else {
         alert("회원정보가 일치하지 않습니다.");
         return;
@@ -153,9 +151,7 @@ const LoginContainer = () => {
         sessionStorage.setItem("name", result.data[0].name);
         sessionStorage.setItem("userId", result.data[0].userId);
         setStep(() => step + 1);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     } else {
       setAuth({
         ...auth,

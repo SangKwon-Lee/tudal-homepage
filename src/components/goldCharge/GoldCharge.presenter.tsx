@@ -149,11 +149,11 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
         <GoldChargeBody>
           <MyGoldWrapper>
             <MyGoldTextTopWrapper>
-              <MyGoldText>{userData.name}님의 골드</MyGoldText>
+              <MyGoldText>{userData?.name}님의 골드</MyGoldText>
               <MyGoldText>
                 <MyGoldNumber>
-                  {userGold.gold || userGold.bonusGold
-                    ? priceToString(userGold.gold + userGold.bonusGold)
+                  {userGold?.gold || userGold?.bonusGold
+                    ? priceToString(userGold?.gold + userGold.bonusGold)
                     : 0}
                 </MyGoldNumber>
                 골드
@@ -163,7 +163,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             <MyGoldAmountWrapper>
               <MyGoldAmountText>충전한 골드</MyGoldAmountText>
               <MyGoldAmount>
-                {userGold.gold ? priceToString(userGold.gold) : 0}
+                {userGold?.gold ? priceToString(userGold.gold) : 0}
                 <MyGoldAmountText style={{ marginLeft: "5px" }}>
                   골드
                 </MyGoldAmountText>
@@ -175,7 +175,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             <MyGoldAmountWrapper>
               <MyGoldAmountText>보너스 골드</MyGoldAmountText>
               <MyGoldAmount>
-                {userGold.bonusGold ? priceToString(userGold.bonusGold) : "0"}
+                {userGold?.bonusGold ? priceToString(userGold.bonusGold) : "0"}
                 <MyGoldAmountText style={{ marginLeft: "5px" }}>
                   골드
                 </MyGoldAmountText>

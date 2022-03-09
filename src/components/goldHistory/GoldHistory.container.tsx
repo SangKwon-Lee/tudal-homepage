@@ -64,9 +64,7 @@ const GoldHistoryContainer: React.FC<IGoldHistoryProps> = ({ path }) => {
         }
       );
       setGoldHistory(data);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   //* 메뉴 선택

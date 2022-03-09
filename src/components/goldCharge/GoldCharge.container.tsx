@@ -37,7 +37,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   });
 
   //* 현금 영수증 종류
-  const [reciptsCategory, setReciptesCategory] = useState("핸드폰");
+  const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
   //* 스텝
   const [step, setStep] = useState(0);
@@ -79,10 +79,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
           }
         );
         setUserData(userData[0]);
-        setInputCharge({
-          ...inputCharge,
-          number: userData[0].phoneNumber,
-        });
         setUserGold(data[0]);
       } catch (e) {
         alert("회원정보가 없습니다.");
@@ -101,12 +97,14 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       let isCheck = true;
       if (e.target.value === "false") {
         isCheck = false;
+        setReciptesCategory("미발급");
+      } else {
+        setReciptesCategory("핸드폰");
       }
       setInputCharge({
         ...inputCharge,
         isReceipt: isCheck,
       });
-      setReciptesCategory("핸드폰");
     } else {
       setInputCharge({
         ...inputCharge,
@@ -203,6 +201,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     });
   };
 
+  console.log(inputCharge);
   //* 다음 스텝 및 결제 정보 저장
   const handleSavePaymentInfo = async () => {
     const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
@@ -224,7 +223,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
           bonusGold,
           receiptType: reciptsCategory,
           receiptNumber: inputCharge.number,
-          depositAmount: 10,
+          depositAmount: inputCharge.money,
           isExpired: 0,
           expirationDate,
           isCharged: 0,

@@ -310,8 +310,9 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                       )}`}
                     </GoldChargeAccountName>
                     <GoldChargeAccountDate>
-                      입금마감일 :
-                      {dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
+                      {`입금마감일 :
+                      ${dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
+                       오후 23시 59분 59초`}
                     </GoldChargeAccountDate>
                     <GoldChargeReceiptsWrapper>
                       <GoldChargeReceiptsTitle>
@@ -437,7 +438,9 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   </GoldChargeReceiptsBoldText>
                   <GoldChargeReceiptsText>
                     <br />
-                    입금 마감일은 신청일로부터 2일 뒤 입니다.
+                    {`입금마감일 :
+                      ${dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
+                       오후 23시 59분 59초`}
                   </GoldChargeReceiptsText>
                   <GoldChargeReceiptBox>
                     <GoldChargeBankImg src={BankPng} />

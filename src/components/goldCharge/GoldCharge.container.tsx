@@ -201,11 +201,15 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     });
   };
 
-  console.log(inputCharge);
   //* 다음 스텝 및 결제 정보 저장
   const handleSavePaymentInfo = async () => {
     const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
-    const expirationDate = `${dayjs().add(2, "day").format("YYYYMMDDHHmmss")}`;
+    const expirationDate = `${dayjs()
+      .add(3, "day")
+      .set("hour", 0)
+      .set("minute", 0)
+      .set("second", 0)
+      .format("YYYYMMDDHHmmss")}`;
     try {
       const { status } = await axios.post(
         `https://api.tudal.co.kr/api/golds/web/depositInfo`,

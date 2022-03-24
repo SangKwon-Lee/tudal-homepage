@@ -27,7 +27,7 @@ const Landing2 = () => {
           <title>후달리던 투자가 투달해서 올랐다</title>
 
           <script></script>
-          <noscript>
+          {/* <noscript>
             <img
               height="1"
               width="1"
@@ -35,7 +35,7 @@ const Landing2 = () => {
               src="https://www.facebook.com/tr?id=1135810613546802&ev=PageView&noscript=1"
               alt=""
             />
-          </noscript>
+          </noscript> */}
         </Helmet>
       </HelmetProvider>
       <div id="container">

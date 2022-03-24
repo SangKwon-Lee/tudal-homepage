@@ -9,11 +9,13 @@ const options = {
 };
 ReactPixel.track("PageView");
 ReactPixel.init("1135810613546802", advancedMatching, options);
-const Landing2 = () => {
+
+const Landing3 = () => {
   const handleClick = () => {
     ReactPixel.fbq("track", "CompleteRegistration");
     ReactPixel.track("CompleteRegistration");
   };
+
   return (
     <>
       <HelmetProvider>
@@ -31,6 +33,7 @@ const Landing2 = () => {
           <title>후달리던 투자가 투달해서 올랐다</title>
 
           <script></script>
+
           {/* <noscript>
             <img
               height="1"
@@ -43,37 +46,41 @@ const Landing2 = () => {
         </Helmet>
       </HelmetProvider>
       <div id="container">
-        <div className="topWrap">
-          <div className="top">
+        <div class="topWrap">
+          <div class="top">
             <img src="../img/topcont.png" alt="" />
-            <div className="btn_wrap">
+            <div class="btn_wrap">
               <a
                 href="https://play.google.com/store/apps/details?id=com.tudal.tp"
-                id="$button_link"
+                id="button_link"
                 onClick={handleClick}
               >
-                <img src="../img/btn_g.svg" alt="" />
+                <img src="img/btn_g.svg" alt="" />
               </a>
               <a
                 href="https://apps.apple.com/kr/app/id1455175051"
-                id="$button_link"
+                id="button_link"
                 onClick={handleClick}
               >
-                <img src="../img/btn_a.svg" alt="" />
+                <img src="img/btn_a.svg" alt="" />
               </a>
             </div>
           </div>
         </div>
-        <div className="cont_01 content">
+
+        <div class="cont_01 content">
           <img src="../img/content_01.png" alt="" />
         </div>
-        <div className="cont_02 content">
+
+        <div class="cont_02 content">
           <img src="../img/content_02.png" alt="" />
         </div>
-        <div className="cont_03 content">
+
+        <div class="cont_03 content">
           <img src="../img/content_03.png" alt="" />
         </div>
-        <div className="bottom">
+
+        <div class="bottom">
           <img src="../img/bottom_txt.png" alt="" />
         </div>
       </div>
@@ -81,4 +88,4 @@ const Landing2 = () => {
   );
 };
 
-export default Landing2;
+export default Landing3;

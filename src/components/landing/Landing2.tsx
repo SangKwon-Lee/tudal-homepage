@@ -8,11 +8,12 @@ const options = {
   debug: false,
 };
 ReactPixel.track("PageView");
+ReactPixel.track("ViewContent");
 ReactPixel.init("1135810613546802", advancedMatching, options);
+
 const Landing2 = () => {
   const handleClick = () => {
-    ReactPixel.fbq("track", "CompleteRegistration");
-    ReactPixel.track("CompleteRegistration");
+    ReactPixel.track("ViewContent");
   };
   return (
     <>
@@ -52,14 +53,14 @@ const Landing2 = () => {
                 id="button_link"
                 onClick={handleClick}
               >
-                <img src="img/btn_g.svg" alt="" />
+                <img src="../img/btn_g.svg" alt="" />
               </a>
               <a
                 href="https://apps.apple.com/kr/app/id1455175051"
                 id="button_link"
                 onClick={handleClick}
               >
-                <img src="img/btn_a.svg" alt="" />
+                <img src="../img/btn_a.svg" alt="" />
               </a>
             </div>
           </div>

@@ -1,0 +1,56 @@
+.pc_view{
+    display: block;
+}
+
+.mo_view{
+    display: none;
+}
+
+#container{
+    width: 100%;
+    font-size: 0;
+    background-image: url('../../../../public/img/bg.png');
+    background-repeat: repeat;
+}
+
+.topWrap{
+    text-align: center;
+}
+
+.top{
+    background-image: url('../../../../public/img/bg_03.png');
+    width: auto;
+    display: inline-block;
+    padding: 120px 0 100px 0;
+}
+
+.btn_wrap{
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn_wrap a{
+    display: inline-block;
+    width: 20%;
+    margin: 0 10px;
+}
+
+.btn_wrap a img{
+    width: 100%;    
+}
+
+.content{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bottom{
+    background-image: url('../../../../public/img/bottom_bg.png');
+    background-repeat: repeat-x;
+    background-position: top left;
+    text-align: center;
+    margin-top: -450px;
+    padding-top: 400px;
+}
+

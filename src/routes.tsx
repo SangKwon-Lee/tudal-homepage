@@ -46,6 +46,7 @@ const PrivacyData = Loadable(
 );
 
 const Landing2 = Loadable(lazy(() => import("./components/landing/Landing2")));
+const Landing3 = Loadable(lazy(() => import("./components/landing/Landing3")));
 
 const routes = [
   {
@@ -124,6 +125,14 @@ const routes = [
     element: (
       <>
         <Landing2 />
+      </>
+    ),
+  },
+  {
+    path: "ubussttfbkd3g8oxmxyolyg91c24n4.html",
+    element: (
+      <>
+        <Landing3 />
       </>
     ),
   },

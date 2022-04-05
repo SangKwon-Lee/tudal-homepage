@@ -93,6 +93,10 @@ function App() {
             <link rel="apple-touch-icon" href="../src/assets/ogimg.png" />
             <link rel="icon" href={favicon} />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=AW-10869743597"
+            ></script>
           </Helmet>
         </HelmetProvider>
         <GlobalStyles />

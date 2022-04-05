@@ -23,9 +23,11 @@ const Landing2 = () => {
     gtag("js", new Date());
     gtag("config", "AW-10869743597");
   };
+
   initGA();
 
   function gtag_report_conversion(url) {
+    initGA();
     var callback = function () {
       if (typeof url != "undefined") {
         window.location = url;
@@ -64,12 +66,20 @@ const Landing2 = () => {
         </Helmet>
       </HelmetProvider>
       <div id="container">
-        <div class="topWrap">
-          <div class="topbg">
-            <div class="top contImg">
-              <img src="../img/topcont.png" alt="" class="contImg pc_view" />
-              <img src="../img/topcont_mo.png" alt="" class="contImg mo_view" />
-              <div class="btn_wrap">
+        <div className="topWrap">
+          <div className="topbg">
+            <div className="top contImg">
+              <img
+                src="../img/topcont.png"
+                alt=""
+                className="contImg pc_view"
+              />
+              <img
+                src="../img/topcont_mo.png"
+                alt=""
+                className="contImg mo_view"
+              />
+              <div className="btn_wrap">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.tudal.tp"
                   id="button_link"
@@ -99,24 +109,36 @@ const Landing2 = () => {
           </div>
         </div>
 
-        <div class="cont_01 content">
-          <img src="../img/content_01.png" alt="" class="contImg pc_view" />
-          <img src="../img/content_01_mo.png" alt="" class="contImg mo_view" />
+        <div className="cont_01 content">
+          <img src="../img/content_01.png" alt="" className="contImg pc_view" />
+          <img
+            src="../img/content_01_mo.png"
+            alt=""
+            className="contImg mo_view"
+          />
         </div>
 
-        <div class="cont_02 content">
-          <img src="../img/content_02.png" alt="" class="contImg pc_view" />
-          <img src="../img/content_02_mo.png" alt="" class="contImg mo_view" />
+        <div className="cont_02 content">
+          <img src="../img/content_02.png" alt="" className="contImg pc_view" />
+          <img
+            src="../img/content_02_mo.png"
+            alt=""
+            className="contImg mo_view"
+          />
         </div>
 
-        <div class="cont_03 content">
-          <img src="../img/content_03_01.png" alt="" class="contImg pc_view" />
+        <div className="cont_03 content">
+          <img
+            src="../img/content_03_01.png"
+            alt=""
+            className="contImg pc_view"
+          />
           <img
             src="../img/content_03_01_mo.png"
             alt=""
-            class="contImg mo_view"
+            className="contImg mo_view"
           />
-          <div class="btn_wrap contentBtn contImg">
+          <div className="btn_wrap contentBtn contImg">
             <a
               href="https://play.google.com/store/apps/details?id=com.tudal.tp"
               id="button_link"
@@ -142,17 +164,25 @@ const Landing2 = () => {
               <img src="../img/btn_a.svg" alt="" />
             </a>
           </div>
-          <img src="../img/content_03_02.png" alt="" class="contImg pc_view" />
+          <img
+            src="../img/content_03_02.png"
+            alt=""
+            className="contImg pc_view"
+          />
           <img
             src="../img/content_03_02_mo.png"
             alt=""
-            class="contImg mo_view"
+            className="contImg mo_view"
           />
         </div>
 
-        <div class="bottom">
-          <img src="../img/bottom_txt.png" alt="" class="contImg pc_view" />
-          <img src="../img/bottom_txt_mo.png" alt="" class="contImg mo_view" />
+        <div className="bottom">
+          <img src="../img/bottom_txt.png" alt="" className="contImg pc_view" />
+          <img
+            src="../img/bottom_txt_mo.png"
+            alt=""
+            className="contImg mo_view"
+          />
         </div>
       </div>
     </>

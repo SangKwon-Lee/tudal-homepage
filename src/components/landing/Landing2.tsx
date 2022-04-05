@@ -92,7 +92,7 @@ const Landing2 = () => {
                     onClickButton();
                   }}
                 >
-                  <img src="img/btn_a.svg" alt="" />
+                  <img src="../img/btn_a.svg" alt="" />
                 </a>
               </div>
             </div>

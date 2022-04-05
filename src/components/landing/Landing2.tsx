@@ -38,6 +38,10 @@ const Landing2 = () => {
     return false;
   }
 
+  function onClickButton() {
+    ReactPixel.track("ViewContent");
+  }
+
   return (
     <>
       <HelmetProvider>
@@ -69,22 +73,24 @@ const Landing2 = () => {
                 <a
                   href="https://play.google.com/store/apps/details?id=com.tudal.tp"
                   id="button_link"
-                  onClick={() =>
+                  onClick={() => {
                     gtag_report_conversion(
                       "https://play.google.com/store/apps/details?id=com.tudal.tp"
-                    )
-                  }
+                    );
+                    onClickButton();
+                  }}
                 >
-                  <img src="img/btn_g.svg" alt="" />
+                  <img src="../img/btn_g.svg" alt="" />
                 </a>
                 <a
                   href="https://apps.apple.com/kr/app/id1455175051"
                   id="button_link"
-                  onClick={() =>
+                  onClick={() => {
                     gtag_report_conversion(
                       "https://apps.apple.com/kr/app/id1455175051"
-                    )
-                  }
+                    );
+                    onClickButton();
+                  }}
                 >
                   <img src="img/btn_a.svg" alt="" />
                 </a>
@@ -100,7 +106,7 @@ const Landing2 = () => {
 
         <div class="cont_02 content">
           <img src="../img/content_02.png" alt="" class="contImg pc_view" />
-          <img src="..img/content_02_mo.png" alt="" class="contImg mo_view" />
+          <img src="../img/content_02_mo.png" alt="" class="contImg mo_view" />
         </div>
 
         <div class="cont_03 content">
@@ -114,24 +120,26 @@ const Landing2 = () => {
             <a
               href="https://play.google.com/store/apps/details?id=com.tudal.tp"
               id="button_link"
-              onClick={() =>
+              onClick={() => {
                 gtag_report_conversion(
                   "https://play.google.com/store/apps/details?id=com.tudal.tp"
-                )
-              }
+                );
+                onClickButton();
+              }}
             >
-              <img src="img/btn_g.svg" alt="" />
+              <img src="../img/btn_g.svg" alt="" />
             </a>
             <a
               href="https://apps.apple.com/kr/app/id1455175051"
               id="button_link"
-              onClick={() =>
+              onClick={() => {
                 gtag_report_conversion(
                   "https://apps.apple.com/kr/app/id1455175051"
-                )
-              }
+                );
+                onClickButton();
+              }}
             >
-              <img src="img/btn_a.svg" alt="" />
+              <img src="../img/btn_a.svg" alt="" />
             </a>
           </div>
           <img src="../img/content_03_02.png" alt="" class="contImg pc_view" />

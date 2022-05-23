@@ -127,55 +127,6 @@ const Landing2 = () => {
           />
         </div>
 
-        <div className="cont_03 content">
-          <img
-            src="../img/content_03_01.png"
-            alt=""
-            className="contImg pc_view"
-          />
-          <img
-            src="../img/content_03_01_mo.png"
-            alt=""
-            className="contImg mo_view"
-          />
-          <div className="btn_wrap contentBtn contImg">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.tudal.tp"
-              id="button_link"
-              onClick={() => {
-                gtag_report_conversion(
-                  "https://play.google.com/store/apps/details?id=com.tudal.tp"
-                );
-                onClickButton();
-              }}
-            >
-              <img src="../img/btn_g.svg" alt="" />
-            </a>
-            <a
-              href="https://apps.apple.com/kr/app/id1455175051"
-              id="button_link"
-              onClick={() => {
-                gtag_report_conversion(
-                  "https://apps.apple.com/kr/app/id1455175051"
-                );
-                onClickButton();
-              }}
-            >
-              <img src="../img/btn_a.svg" alt="" />
-            </a>
-          </div>
-          <img
-            src="../img/content_03_02.png"
-            alt=""
-            className="contImg pc_view"
-          />
-          <img
-            src="../img/content_03_02_mo.png"
-            alt=""
-            className="contImg mo_view"
-          />
-        </div>
-
         <div className="bottom">
           <img src="../img/bottom_txt.png" alt="" className="contImg pc_view" />
           <img

@@ -31,7 +31,7 @@ const Landing2 = () => {
     }
     gtag("js", new Date());
 
-    gtag("config", "G-2MVKNY8Z3L");
+    gtag("config", "G-LCZJN06YNM");
   };
 
   initGA();
@@ -76,7 +76,7 @@ const Landing2 = () => {
           ></script>
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-2MVKNY8Z3L"
+            src="https://www.googletagmanager.com/gtag/js?id=G-LCZJN06YNM"
           ></script>
         </Helmet>
       </HelmetProvider>

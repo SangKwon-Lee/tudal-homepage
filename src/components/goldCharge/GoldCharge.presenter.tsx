@@ -1,39 +1,14 @@
-import { useNavigate } from "react-router";
 import {
-  GoldChargeBody,
-  GoldChargeBonustext,
-  GoldChargeBonusTitle,
-  GoldChargeBonusWrapper,
-  GoldChargeBtn,
-  GoldChargeBtnWrapper,
   GoldChargeCheckImg,
   GoldChargeCheckText,
   GoldChargeCheckWrapper,
-  GoldChargeContentsWrapper,
-  GoldChargeLine,
-  GoldChargeMax,
-  GoldChargeMethodTitle,
   GoldChargePGBtn,
   GoldChargeResltGold,
   GoldChargeResultLine,
   GOldChargeResultText,
-  GoldChargeResultTitle,
   GoldChargeResultVATWrapper,
-  GoldChargeResultWrapper,
-  GoldChargeSelect,
-  GoldChargeSelectWrapper,
-  GoldChargeTitle,
   GOldChargeVAT,
-  GoldChargeWrapper,
-  GoldMenuBody,
-  GoldMenuTitle,
-  GoldMenuTitleWrapper,
   GoldMenuWrapper,
-  MyGoldNumber,
-  MyGoldText,
-  MyGoldWrapper,
-  GoldChargeMobileLine,
-  GoldChareBtnMobileBr,
   GoldWarningWrapper,
   GoldWarningTitle,
   GoldWarningText,
@@ -44,47 +19,47 @@ import {
   GoldChargeWarningImg,
   GoldChargeWarningRedText,
   GoldChargeWarningText,
-  GoldChargeWarningBold,
-  MyGoldLine,
-  MyGoldAmountWrapper,
-  MyGoldAmountText,
-  MyGoldAmount,
-  MyGoldTextTopWrapper,
-  MyGoldLineMobile,
   GoldChargeAccountWrapper,
   GoldChargeAccountSmallText,
   GoldChargeAccountBigText,
-  GoldChargeAccountText,
-  GoldChargeAccountName,
-  GoldChargeAccountDate,
   GoldChargeAccoutPhoneWrapper,
   GoldChargeReceiptsWrapper,
   GoldChargeReceiptsTitle,
   GoldChargeReceiptsRadio,
-  GoldChargeReceiptsLabel,
-  Br,
   GoldChargeReceiptsinput,
-  GoldChargeReceiptsResultWrapper,
-  GoldChargeReceiptsText,
-  GoldChargeReceiptsBoldText,
-  GoldChargeReceiptBox,
-  GoldChargeBankImg,
-  GoldChargeReceiptBox2,
-  GoldChargeReceiptSmallText,
+  GoldMoneyImg,
+  GoldMyMoneyWrapper,
+  GoldMyGold,
+  GoldText,
+  GoldDetailWrapper,
+  GoldDetail,
+  // GoldChargeSubText,
+  // GoldChargeSubGold,
+  GoldMenuCircle,
+  GoldMenuCircleWrapper,
+  GoldMenuCharge,
+  GoldMenuChargeBonus,
+  GoldMenuChargeBonusSpan,
+  GoldResultWrapper,
+  GoldResultLine,
+  GoldMethodWrapper,
+  GoldMethodBtn,
+  GoldChargeAccountLine,
+  GoldChargeReceiptBtnWrapper,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
-import BankPng from "../../assets/images/bank.png";
-import { UserData, UserGold } from "../../commons/types/types";
-import dayjs from "dayjs";
+import moneyPNG from "../../assets/images/money.png";
+import goldCheckPNG from "../../assets/images/goldCheck.png";
+import { UserGold } from "../../commons/types/types";
+import { Body, Contents, Title } from "../commons/ui/commonStyle";
+
 interface IGoldChargeProps {
-  path: string;
-  userGold: UserGold;
-  userData: UserData;
   gold: string;
-  handleGold: (e: any) => void;
-  handleInputCharge: (e: any) => void;
+  step: number;
+  userGold: UserGold;
+  isCharge: boolean;
   inputCharge: {
     check: boolean;
     money: number;
@@ -93,379 +68,313 @@ interface IGoldChargeProps {
     isReceipt: boolean;
   };
   handleInnoPay: () => void;
-  bonusGold: string | number;
+  handleIsCharge: () => void;
+  handleGold: (e: any) => void;
   handleRecipts: (e: any) => void;
-  reciptsCategory: string;
   handleSavePaymentInfo: () => void;
-  step: number;
+  handleInputCharge: (e: any) => void;
 }
 
-function priceToString(price: any) {
+export function priceToString(price: any) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-const goldData1 = ["100", "500", "1000", "3000", "5000"];
-const goldData2 = ["7000", "8000", "10000", "20000", "30000"];
+
+const goldData = [
+  "100",
+  "500",
+  "1000",
+  "3000",
+  "5000",
+  "7000",
+  "8000",
+  "10000",
+  "20000",
+  "30000",
+];
+
 const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
-  path,
-  userGold,
-  userData,
-  gold,
-  handleGold,
-  handleInputCharge,
-  inputCharge,
-  handleInnoPay,
-  bonusGold,
-  handleRecipts,
-  reciptsCategory,
-  handleSavePaymentInfo,
   step,
+  gold,
+  userGold,
+  isCharge,
+  handleGold,
+  inputCharge,
+  handleRecipts,
+  handleInnoPay,
+  handleIsCharge,
+  handleInputCharge,
+  handleSavePaymentInfo,
 }) => {
-  const navigate = useNavigate();
   return (
     <>
-      <GoldMenuWrapper>
-        <GoldMenuBody>
-          <GoldMenuTitleWrapper>
-            <GoldMenuTitle
-              path={path === "charge" ? "charge" : "history"}
-              onClick={() => {
-                navigate("/goldCharge");
-              }}
-            >
-              골드충전
-            </GoldMenuTitle>
-            <GoldMenuTitle
-              path={path === "charge" ? "history" : "charge"}
-              onClick={() => {
-                navigate("/history");
-              }}
-            >
-              사용내역
-            </GoldMenuTitle>
-          </GoldMenuTitleWrapper>
-        </GoldMenuBody>
-      </GoldMenuWrapper>
-      <GoldChargeWrapper>
-        <GoldChargeBody>
-          <MyGoldWrapper>
-            <MyGoldTextTopWrapper>
-              <MyGoldText>{userData?.name}님의 골드</MyGoldText>
-              <MyGoldText>
-                <MyGoldNumber>
-                  {userGold?.gold || userGold?.bonusGold
-                    ? priceToString(userGold?.gold + userGold.bonusGold)
-                    : 0}
-                </MyGoldNumber>
+      <Body>
+        <Contents>
+          <GoldMyMoneyWrapper>
+            <Title>
+              <GoldMoneyImg src={moneyPNG} alt="" />총 보유 골드
+            </Title>
+            <GoldMyGold>
+              <GoldText>
+                {userGold?.gold || userGold?.bonusGold
+                  ? priceToString(userGold?.gold + userGold.bonusGold)
+                  : 0}
+              </GoldText>
+              골드
+            </GoldMyGold>
+          </GoldMyMoneyWrapper>
+          <GoldMyMoneyWrapper>
+            <GoldDetailWrapper style={{ borderRight: "1px solid #e9e9e9" }}>
+              충전한 골드
+              <GoldDetail>
+                {userGold?.gold ? priceToString(userGold?.gold) : 0}
                 골드
-              </MyGoldText>
-            </MyGoldTextTopWrapper>
-            <MyGoldLine />
-            <MyGoldAmountWrapper>
-              <MyGoldAmountText>충전한 골드</MyGoldAmountText>
-              <MyGoldAmount>
-                {userGold?.gold ? priceToString(userGold.gold) : 0}
-                <MyGoldAmountText style={{ marginLeft: "5px" }}>
-                  골드
-                </MyGoldAmountText>
-              </MyGoldAmount>
-            </MyGoldAmountWrapper>
-            <MyGoldLineMobile>
-              <MyGoldLine />
-            </MyGoldLineMobile>
-            <MyGoldAmountWrapper>
-              <MyGoldAmountText>보너스 골드</MyGoldAmountText>
-              <MyGoldAmount>
-                {userGold?.bonusGold ? priceToString(userGold.bonusGold) : "0"}
-                <MyGoldAmountText style={{ marginLeft: "5px" }}>
-                  골드
-                </MyGoldAmountText>
-              </MyGoldAmount>
-            </MyGoldAmountWrapper>
-            <MyGoldLineMobile>
-              <MyGoldLine />
-            </MyGoldLineMobile>
-          </MyGoldWrapper>
-          <GoldChargeMobileLine />
-          <GoldChargeContentsWrapper>
-            {step === 0 ? (
-              <>
-                <GoldChargeTitle>충전하실 금액을 선택해주세요.</GoldChargeTitle>
-                <GoldChargeBtnWrapper>
-                  {goldData1.map((data, index) => (
-                    <div key={index}>
-                      <GoldChargeBtn
-                        value={data}
-                        onClick={handleGold}
-                        isCheck={data.toString() === gold}
-                      >
-                        {priceToString(data)}
-                        <GoldChareBtnMobileBr />
-                        골드
-                      </GoldChargeBtn>
-                    </div>
-                  ))}
-                </GoldChargeBtnWrapper>
-                <GoldChargeBtnWrapper>
-                  {goldData2.map((data: any, index) => (
-                    <div key={index}>
-                      <GoldChargeBtn
-                        value={data}
-                        onClick={handleGold}
-                        isCheck={String(data) === gold}
-                      >
-                        {priceToString(data)}
-                        <GoldChareBtnMobileBr />
-                        골드
-                      </GoldChargeBtn>
-                    </div>
-                  ))}
-                </GoldChargeBtnWrapper>
-                <GoldChargeMax>최대 충전 가능 골드 : 30,000 골드</GoldChargeMax>
-                <GoldChargeLine />
-                <GoldChargeSelectWrapper>
-                  <GoldChargeSelect
-                    isGold={gold !== "충전하실 금액을 선택해주세요."}
-                  >
-                    {gold === "충전하실 금액을 선택해주세요."
-                      ? gold
-                      : `${priceToString(gold)} G`}
-                  </GoldChargeSelect>
-                  <GoldChargeBonusWrapper>
-                    <GoldChargeBonusTitle>추가 적립</GoldChargeBonusTitle>
-                    <GoldChargeBonusTitle
-                      style={{ fontSize: "20px", textAlign: "end" }}
-                    >
-                      {isNaN(Number(bonusGold)) ? 0 : priceToString(bonusGold)}
-                      <GoldChargeBonustext> 보너스 골드</GoldChargeBonustext>
-                    </GoldChargeBonusTitle>
-                  </GoldChargeBonusWrapper>
-                </GoldChargeSelectWrapper>
-                <GoldChargeLine />
-                <GoldChargeResultWrapper>
-                  <GoldChargeResultTitle>결제금액</GoldChargeResultTitle>
-                  <GoldChargeResultVATWrapper>
-                    <GoldChargeResltGold isGold={inputCharge.money !== 0}>
-                      {priceToString(inputCharge.money)}
-                      <GOldChargeResultText>원</GOldChargeResultText>
-                    </GoldChargeResltGold>
-                    <GoldChargeResultLine />
-                    <GOldChargeVAT>vat포함</GOldChargeVAT>
-                  </GoldChargeResultVATWrapper>
-                </GoldChargeResultWrapper>
-                <GoldChargeLine />
-                <GoldChargeWarningWrapper>
-                  <GoldChargeWarningImgWrapper>
-                    <GoldChargeWarningImg src={WarningSVG} />
-                    <GoldChargeWarningRedText>
-                      입금 전 잠깐!
-                    </GoldChargeWarningRedText>
-                  </GoldChargeWarningImgWrapper>
-                  <GoldChargeWarningText>
-                    무통장 입금과 신용카드
-                    <GoldChargeWarningBold>
-                      &nbsp;비씨카드, 삼성카드, 롯데카드 &nbsp;
-                    </GoldChargeWarningBold>
-                    일시불 결제로 골드를 충전하실 수 있습니다.
-                  </GoldChargeWarningText>
-                </GoldChargeWarningWrapper>
-                <GoldChargeMethodTitle>
-                  결제수단을 선택해주세요.
-                </GoldChargeMethodTitle>
-                <GoldChargeMethodSelect
-                  name="method"
-                  onChange={handleInputCharge}
-                >
-                  <GoldChageMethodOption value={"CARD"}>
-                    신용카드(일반)
-                  </GoldChageMethodOption>
-                  <GoldChageMethodOption value={"VBANK"}>
-                    무통장 입금
-                  </GoldChageMethodOption>
-                </GoldChargeMethodSelect>
-                {inputCharge.method === "VBANK" && (
-                  <>
-                    <GoldChargeAccountWrapper>
-                      <GoldChargeAccountSmallText>
-                        입금계좌번호
-                      </GoldChargeAccountSmallText>
-                      <GoldChargeAccountBigText>
-                        신한은행 140-011-507200 <Br />
-                        (예금주 : 이노핀)
-                      </GoldChargeAccountBigText>
-                    </GoldChargeAccountWrapper>
-                    <GoldChargeWarningImgWrapper>
-                      <GoldChargeWarningImg src={WarningSVG} />
-                      <GoldChargeWarningRedText>
-                        결제 전 잠깐!
-                      </GoldChargeWarningRedText>
-                    </GoldChargeWarningImgWrapper>
-                    <GoldChargeAccountText>
-                      입금자는 반드시 이름과 핸드폰 번호 뒷자리로 입금해주셔야
-                      합니다.
-                    </GoldChargeAccountText>
-                    <GoldChargeAccountName>
-                      {`${userData?.name}${userData?.phoneNumber.slice(
-                        userData?.phoneNumber.length - 4,
-                        userData?.phoneNumber.length
-                      )}`}
-                    </GoldChargeAccountName>
-                    <GoldChargeAccountDate>
-                      {`입금마감일 :
-                      ${dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
-                       오후 23시 59분 59초`}
-                    </GoldChargeAccountDate>
-                    <GoldChargeReceiptsWrapper>
-                      <GoldChargeReceiptsTitle>
-                        현금영수증 신청
-                      </GoldChargeReceiptsTitle>
-                      <GoldChargeReceiptsRadio
-                        type="radio"
-                        name="receipt"
-                        id="receipt"
-                        value="true"
-                        checked={inputCharge.isReceipt === true ? true : false}
-                        onChange={handleInputCharge}
-                      />
-                      <GoldChargeReceiptsLabel htmlFor="receipt">
-                        발급
-                      </GoldChargeReceiptsLabel>
-                      <GoldChargeReceiptsRadio
-                        type="radio"
-                        name="receipt"
-                        id="receipt2"
-                        value="false"
-                        checked={inputCharge.isReceipt === false ? true : false}
-                        onChange={handleInputCharge}
-                      />
-                      <GoldChargeReceiptsLabel htmlFor="receipt2">
-                        미발급
-                      </GoldChargeReceiptsLabel>
-                    </GoldChargeReceiptsWrapper>
-                    <GoldChargeLine />
-                  </>
+              </GoldDetail>
+            </GoldDetailWrapper>
+            <GoldDetailWrapper>
+              보너스 골드
+              <GoldDetail>
+                {userGold?.bonusGold ? priceToString(userGold.bonusGold) : 0}
+                골드
+              </GoldDetail>
+            </GoldDetailWrapper>
+          </GoldMyMoneyWrapper>
+        </Contents>
+        <Contents style={{ height: isCharge ? "860px" : "80px" }}>
+          <GoldMyMoneyWrapper>
+            <Title
+              style={{
+                cursor: "pointer",
+                marginBottom: "50px",
+              }}
+              onClick={handleIsCharge}
+            >
+              충전하실 골드를 선택해 주세요
+            </Title>
+            {/* <GoldChargeSubText>
+              최대 충전 가능 금액 :
+              <GoldChargeSubGold>30,000 골드</GoldChargeSubGold>
+            </GoldChargeSubText> */}
+          </GoldMyMoneyWrapper>
+          {goldData.map((data) => (
+            <GoldMenuWrapper
+              key={data}
+              onClick={() => handleGold(data)}
+              isCheck={gold === data}
+            >
+              <GoldMenuCircleWrapper>
+                {gold === data ? (
+                  <img src={goldCheckPNG} alt=""></img>
+                ) : (
+                  <GoldMenuCircle></GoldMenuCircle>
                 )}
-                {inputCharge.isReceipt && (
-                  <>
-                    <GoldChargeMethodSelect onChange={handleRecipts}>
-                      <GoldChageMethodOption value={"핸드폰"}>
-                        개인 소득공제용 (휴대폰 번호)
-                      </GoldChageMethodOption>
-                      <GoldChageMethodOption value="주민등록번호">
-                        개인 소득공재용 (주민등록번호)
-                      </GoldChageMethodOption>
-                      <GoldChageMethodOption value="카드">
-                        개인 소득공재용 (현금영수증 카드)
-                      </GoldChageMethodOption>
-                      <GoldChageMethodOption value="사업자">
-                        사업자 지출 증빙용
-                      </GoldChageMethodOption>
-                    </GoldChargeMethodSelect>
-                    <GoldChargeAccoutPhoneWrapper>
-                      <GoldChargeReceiptsinput
-                        value={inputCharge.number}
-                        type="number"
-                        onChange={handleInputCharge}
-                        name="number"
-                        placeholder={"숫자만 입력해주세요."}
-                      ></GoldChargeReceiptsinput>
-                    </GoldChargeAccoutPhoneWrapper>
-                  </>
-                )}
-                <GoldChargeCheckWrapper id="check" onClick={handleInputCharge}>
-                  <GoldChargeCheckImg
-                    id="check"
-                    src={inputCharge.check ? checkColor : checkGray}
-                  />
-                  <GoldChargeCheckText id="check">
-                    구매하는 골드의 가격정보를 확인하였으며, 구매에
-                    동의하시겠습니까?
-                    <br />
-                    (전사상거래법 제8조 2항)
-                  </GoldChargeCheckText>
-                </GoldChargeCheckWrapper>
-                <GoldWarningWrapper>
-                  <GoldWarningTitle>결제시 주의사항</GoldWarningTitle>
-                  <GoldWarningText>
-                    - 골드 충전 시 결제금액에 VAT(부가세 10%)가 포함되어
-                    있습니다.
-                  </GoldWarningText>
-                  <GoldWarningText>
-                    - 신용카드 결제시 일시불 결제만 가능합니다.
-                  </GoldWarningText>
-                  <GoldWarningText>
-                    - 결제가 완료되기 전에 결제창을 닫으면 결제가 완료되지 않을
-                    수 있습니다.
-                  </GoldWarningText>
-                  <GoldWarningText>
-                    - 골드 충전 시 지급되는 보너스 골드는 환불금액에 포함되지
-                    않습니다.
-                  </GoldWarningText>
-                  <GoldWarningText>
-                    - 결제관련 문의는 카카오톡으로 연락주시기 바랍니다.
-                  </GoldWarningText>
-                  <GoldWarningText>
-                    - 잔여 포인트 환불 시, 사용이력이 있는 경우 이용수수료 10%
-                    공제 후 환불됩니다.
-                  </GoldWarningText>
-                </GoldWarningWrapper>
-                <GoldChargePGBtn
-                  name="btn_pay"
-                  isCheck={inputCharge.check}
-                  disabled={!inputCharge.check}
+
+                <GoldMenuCharge isCheck={gold === data}>
+                  {priceToString(data)}골드
+                </GoldMenuCharge>
+              </GoldMenuCircleWrapper>
+              <GoldMenuChargeBonus isCheck={gold === data}>
+                보너스골드
+                <GoldMenuChargeBonusSpan isCheck={gold === data}>
+                  + {priceToString(Number(data) / 10)}
+                </GoldMenuChargeBonusSpan>
+                골드
+              </GoldMenuChargeBonus>
+            </GoldMenuWrapper>
+          ))}
+          <GoldResultWrapper>
+            <GoldMyMoneyWrapper>
+              <Title>결제금액</Title>
+              <GoldChargeResultVATWrapper>
+                <GoldChargeResltGold isGold={inputCharge.money !== 0}>
+                  {priceToString(inputCharge.money)}
+                  <GOldChargeResultText>원</GOldChargeResultText>
+                </GoldChargeResltGold>
+                <GoldChargeResultLine />
+                <GOldChargeVAT>vat포함</GOldChargeVAT>
+              </GoldChargeResultVATWrapper>
+            </GoldMyMoneyWrapper>
+            <GoldResultLine />
+            <GoldChargeWarningWrapper>
+              <GoldChargeWarningImgWrapper>
+                <GoldChargeWarningImg src={WarningSVG} />
+                <GoldChargeWarningRedText>
+                  입금 전 잠깐!
+                </GoldChargeWarningRedText>
+              </GoldChargeWarningImgWrapper>
+              <GoldChargeWarningText>
+                무통장 입금과 신용카드 비씨카드, 삼성카드, 롯데카드 일시불
+                결제로 골드를 충전하실 수 있습니다.
+              </GoldChargeWarningText>
+            </GoldChargeWarningWrapper>
+          </GoldResultWrapper>
+        </Contents>
+        <Contents
+          style={{
+            height:
+              isCharge &&
+              inputCharge.isReceipt &&
+              inputCharge.method === "VBANK"
+                ? "880px"
+                : isCharge && inputCharge.method === "VBANK"
+                ? "750px"
+                : isCharge
+                ? "580px"
+                : "80px",
+          }}
+        >
+          <Title
+            style={{
+              marginBottom: "50px",
+            }}
+          >
+            결제수단을 선택해주세요
+          </Title>
+          <GoldMethodWrapper>
+            <GoldMethodBtn
+              style={{ marginRight: "20px" }}
+              name="method"
+              value={"CARD"}
+              onClick={handleInputCharge}
+              isMethod={inputCharge.method === "CARD"}
+            >
+              신용카드(일반)
+            </GoldMethodBtn>
+            <GoldMethodBtn
+              name="method"
+              value={"VBANK"}
+              isMethod={inputCharge.method === "VBANK"}
+              onClick={handleInputCharge}
+            >
+              무통장입금
+            </GoldMethodBtn>
+          </GoldMethodWrapper>
+          {inputCharge.method === "VBANK" && (
+            <>
+              <GoldChargeAccountWrapper>
+                <GoldChargeAccountSmallText>
+                  입금계좌번호
+                </GoldChargeAccountSmallText>
+                <GoldChargeAccountBigText>
+                  신한은행 140-011-507200 (예금주 : 이노핀)
+                </GoldChargeAccountBigText>
+              </GoldChargeAccountWrapper>
+              <GoldChargeAccountLine />
+              <GoldChargeReceiptsWrapper>
+                <GoldChargeReceiptsTitle>현금영수증</GoldChargeReceiptsTitle>
+                <GoldChargeReceiptBtnWrapper
+                  id="receipt"
                   onClick={() => {
-                    inputCharge.method === "CARD"
-                      ? handleInnoPay()
-                      : handleSavePaymentInfo();
+                    handleInputCharge("발급");
                   }}
                 >
-                  충전하기
-                </GoldChargePGBtn>
-              </>
-            ) : (
-              <>
-                <GoldChargeReceiptsResultWrapper>
-                  <GoldChargeReceiptsText>
-                    무통장 입금을 선택하셨습니다.
-                  </GoldChargeReceiptsText>
-                  <GoldChargeReceiptsBoldText>
-                    아래 계좌번호로 충전하실 금액을 이체해 주세요.
-                    <br /> 반드시
-                    {` ${userData?.name}${userData?.phoneNumber.slice(
-                      userData?.phoneNumber.length - 4,
-                      userData?.phoneNumber.length
-                    )}`}
-                    으로 입금해주세요.
-                  </GoldChargeReceiptsBoldText>
-                  <GoldChargeReceiptsText>
-                    <br />
-                    {`입금마감일 :
-                      ${dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
-                       오후 23시 59분 59초`}
-                  </GoldChargeReceiptsText>
-                  <GoldChargeReceiptBox>
-                    <GoldChargeBankImg src={BankPng} />
-                    <GoldChargeReceiptsBoldText>
-                      신한은행
-                      <br /> 140-011-507200 (예금주 : 이노핀)
-                    </GoldChargeReceiptsBoldText>
-                  </GoldChargeReceiptBox>
-                  <GoldChargeReceiptBox2>
-                    <GoldChargeReceiptSmallText>
-                      입금금액
-                    </GoldChargeReceiptSmallText>
-                    <GoldChargeReceiptsBoldText>
-                      &nbsp;&nbsp;&nbsp;{priceToString(inputCharge.money)}
-                    </GoldChargeReceiptsBoldText>
-                    <GoldChargeReceiptSmallText>
-                      원 (VAT 포함)
-                    </GoldChargeReceiptSmallText>
-                  </GoldChargeReceiptBox2>
-                </GoldChargeReceiptsResultWrapper>
-              </>
-            )}
-          </GoldChargeContentsWrapper>
-        </GoldChargeBody>
-      </GoldChargeWrapper>
+                  {inputCharge.isReceipt ? (
+                    <img src={goldCheckPNG} alt=""></img>
+                  ) : (
+                    <GoldMenuCircle></GoldMenuCircle>
+                  )}
+
+                  <GoldChargeReceiptsRadio
+                    isReceipt={inputCharge.isReceipt === true}
+                  >
+                    발급 신청
+                  </GoldChargeReceiptsRadio>
+                </GoldChargeReceiptBtnWrapper>
+                <GoldChargeReceiptBtnWrapper
+                  id="receipt"
+                  onClick={() => {
+                    handleInputCharge("미발급");
+                  }}
+                >
+                  {!inputCharge.isReceipt ? (
+                    <img src={goldCheckPNG} alt=""></img>
+                  ) : (
+                    <GoldMenuCircle></GoldMenuCircle>
+                  )}
+                  <GoldChargeReceiptsRadio
+                    isReceipt={inputCharge.isReceipt === false}
+                  >
+                    신청 안 함
+                  </GoldChargeReceiptsRadio>
+                </GoldChargeReceiptBtnWrapper>
+              </GoldChargeReceiptsWrapper>
+              {inputCharge.isReceipt && (
+                <>
+                  <GoldChargeMethodSelect onChange={handleRecipts}>
+                    <GoldChageMethodOption value={"핸드폰"}>
+                      개인 소득공제용 (휴대폰 번호)
+                    </GoldChageMethodOption>
+                    <GoldChageMethodOption value="주민등록번호">
+                      개인 소득공재용 (주민등록번호)
+                    </GoldChageMethodOption>
+                    <GoldChageMethodOption value="카드">
+                      개인 소득공재용 (현금영수증 카드)
+                    </GoldChageMethodOption>
+                    <GoldChageMethodOption value="사업자">
+                      사업자 지출 증빙용
+                    </GoldChageMethodOption>
+                  </GoldChargeMethodSelect>
+                  <GoldChargeAccoutPhoneWrapper>
+                    <GoldChargeReceiptsinput
+                      value={inputCharge.number}
+                      type="number"
+                      onChange={handleInputCharge}
+                      name="number"
+                      placeholder={"숫자만 입력해주세요."}
+                    ></GoldChargeReceiptsinput>
+                  </GoldChargeAccoutPhoneWrapper>
+                </>
+              )}
+            </>
+          )}
+          <GoldChargeCheckWrapper id="check" onClick={handleInputCharge}>
+            <GoldChargeCheckImg
+              id="check"
+              src={inputCharge.check ? checkColor : checkGray}
+            />
+            <GoldChargeCheckText id="check">
+              구매하는 골드의 가격정보를 확인하였으며, 구매에 동의하시겠습니까?
+              <br />
+              (전사상거래법 제8조 2항)
+            </GoldChargeCheckText>
+          </GoldChargeCheckWrapper>
+          <GoldChargePGBtn
+            name="btn_pay"
+            isCheck={inputCharge.check}
+            disabled={!inputCharge.check}
+            onClick={() => {
+              inputCharge.method === "CARD"
+                ? handleInnoPay()
+                : handleSavePaymentInfo();
+            }}
+          >
+            투달 골드 충전
+          </GoldChargePGBtn>
+          <GoldWarningWrapper>
+            <GoldWarningTitle>결제시 주의사항</GoldWarningTitle>
+            <GoldWarningText>
+              ∙ 골드 충전 시 결제금액에 VAT(부가세 10%)가 포함되어 있습니다.
+            </GoldWarningText>
+            <GoldWarningText>
+              ∙ 신용카드 결제시 일시불 결제만 가능합니다.
+            </GoldWarningText>
+            <GoldWarningText>
+              ∙ 결제가 완료되기 전에 결제창을 닫으면 결제가 완료되지 않을 수
+              있습니다.
+            </GoldWarningText>
+            <GoldWarningText>
+              ∙ 골드 충전 시 지급되는 보너스 골드는 환불금액에 포함되지
+              않습니다.
+            </GoldWarningText>
+            <GoldWarningText>
+              ∙ 결제관련 문의는 카카오톡으로 연락주시기 바랍니다.
+            </GoldWarningText>
+            <GoldWarningText>
+              ∙ 잔여 포인트 환불 시, 사용이력이 있는 경우 이용수수료 10% 공제 후
+              환불됩니다.
+            </GoldWarningText>
+          </GoldWarningWrapper>
+        </Contents>
+      </Body>
     </>
   );
 };

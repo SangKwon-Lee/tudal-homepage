@@ -1,61 +1,45 @@
 import styled from "@emotion/styled";
 
 interface IHeaderStyleProps {
-  path: string;
+  path?: boolean;
 }
 
-export const HeaderWrapper = styled.div`
-  @media (min-width: 680px) {
-    /* min-width: 1200px; */
-    min-width: 1400px;
+export const Header = styled.header`
+  @media (max-width: 640px) {
+    padding: 0px 10px;
   }
-
-  position: ${(props: IHeaderStyleProps) =>
-    props.path === "login" ? "none" : "absolute"};
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
-  z-index: 1;
-  padding-bottom: 18px;
-  border-bottom: ${(props: IHeaderStyleProps) =>
-    props.path === "login" ? "0.5px solid #FF3838" : "none"};
+  height: 70px;
+  box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.25);
+  z-index: 999;
 `;
 
-export const HeaderBody = styled.div`
-  width: 1200px;
+export const HeaderNavWrapper = styled.div`
+  width: 100%;
+  max-width: 592px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
-  margin: 0px 20px;
 `;
 
-export const HeaderLogo = styled.img`
-  width: 100px;
-  cursor: pointer;
-`;
-
-export const HeaderLoginWrapper = styled.div`
+export const HeaderNav = styled.nav`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const HeaderLogin = styled.div`
-  @media (min-width: 680px) {
-    margin-right: 64px;
-    font-size: 18px;
+export const HeaderMenu = styled.a`
+  @media (max-width: 640px) {
+    font-size: 15px;
   }
-  font-size: 15px;
-  margin-right: 30px;
-  font-weight: 600;
+  margin-top: 5px;
   cursor: pointer;
-`;
-
-export const HeaderCharge = styled.div`
-  @media (min-width: 680px) {
-    margin-right: 64px;
-    font-size: 18px;
-  }
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  margin-left: 16px;
+  color: ${(props: IHeaderStyleProps) => (props.path ? "#4b4b4b" : "#7f7f7f")};
+  border-bottom: ${(props: IHeaderStyleProps) =>
+    props.path ? "2px solid #FF3838" : "none"};
 `;

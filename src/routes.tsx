@@ -15,34 +15,23 @@ const Footer = Loadable(
   lazy(() => import("../src/components/commons/footer/Footer.container"))
 );
 
-//* 홈, 로그인
+//* 홈, 로그인, 마이페이지
 const Home = Loadable(
   lazy(() => import("../src/components/home/Home.container"))
 );
 const Login = Loadable(
   lazy(() => import("../src/components/login/Login.container"))
 );
+const Mypage = Loadable(
+  lazy(() => import("../src/components/mypage/Mypage.container"))
+);
 
 //* 골드 충전, 충전 내역, 결제 성공 페이지
 const GoldCharge = Loadable(
   lazy(() => import("./components/goldCharge/GoldCharge.container"))
 );
-const GoldHistory = Loadable(
-  lazy(() => import("./components/goldHistory/GoldHistory.container"))
-);
 const PaySuccess = Loadable(
   lazy(() => import("./components/paySuccess/PaySuccess.container"))
-);
-
-//* 서비스 이용약관, 개인정보처리방침, 개인정보보호
-const Service = Loadable(
-  lazy(() => import("./components/terms/Service.container"))
-);
-const PrivacyPolicy = Loadable(
-  lazy(() => import("./components/terms/PrivacyPolicy.container"))
-);
-const PrivacyData = Loadable(
-  lazy(() => import("./components/terms/PrivacyData"))
 );
 
 const Landing2 = Loadable(lazy(() => import("./components/landing/Landing2")));
@@ -66,24 +55,27 @@ const routes = [
       <>
         <Header path="login" />
         <Login />
+        <Footer />
       </>
     ),
   },
   {
-    path: "/goldCharge",
+    path: "/gold",
     element: (
       <>
-        <Header path="login" />
+        <Header path="gold" />
         <GoldCharge path="charge" />
+        <Footer />
       </>
     ),
   },
   {
-    path: "/history",
+    path: "/mypage",
     element: (
       <>
-        <Header path="login" />
-        <GoldHistory path="history" />
+        <Header path="mypage" />
+        <Mypage path="mypage" />
+        <Footer />
       </>
     ),
   },
@@ -93,30 +85,7 @@ const routes = [
       <>
         <Header path="login" />
         <PaySuccess />
-      </>
-    ),
-  },
-  {
-    path: "/service",
-    element: (
-      <>
-        <Service />
-      </>
-    ),
-  },
-  {
-    path: "/privacypolicy",
-    element: (
-      <>
-        <PrivacyPolicy />
-      </>
-    ),
-  },
-  {
-    path: "/privacydata",
-    element: (
-      <>
-        <PrivacyData />
+        <Footer />
       </>
     ),
   },

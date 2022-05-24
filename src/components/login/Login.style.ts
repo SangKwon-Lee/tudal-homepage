@@ -1,100 +1,50 @@
 import styled from "@emotion/styled";
 
-interface LoginStyleProps {
-  isActive: boolean;
-}
-
-export const LoginWrapper = styled.div`
-  @media (min-width: 680px) {
-    padding-top: 117px;
-    min-width: 1200px;
-  }
-  padding-top: 55px;
-  padding-bottom: 30px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+export const LoginSubText = styled.div`
+  font-size: 12px;
+  padding-top: 8px;
 `;
 
-export const LoginBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-//* 로그인 인증
-export const LoginTitle = styled.div`
-  @media (min-width: 680px) {
-    font-size: 20px;
-  }
-  font-size: 18px;
+export const LoginInputTitle = styled.div`
+  font-size: 15px;
   font-weight: 700;
-  padding-bottom: 45px;
-`;
-
-export const LoginContentsWrapper = styled.div`
-  @media (min-width: 680px) {
-    background: rgba(0, 0, 0, 0.04);
-    width: 474px;
-    border-radius: 22px;
-    flex-direction: column;
-    padding: 40px 40px 40px 40px;
-    align-items: center;
-  }
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 10px;
 `;
 
 export const LoginInputWrapper = styled.div`
   width: 100%;
-`;
-
-export const LoginInputTitle = styled.div`
-  @media (min-width: 680px) {
-    font-size: 18px;
-    font-weight: 700;
-  }
-  font-size: 15px;
-  padding-bottom: 10px;
-`;
-
-export const LoginAuthInputWrapper = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 export const LoginInput = styled.input`
   width: 100%;
-  height: 60px;
+  height: 67px;
+  min-height: 67px;
   padding-left: 20px;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 15px;
   border-radius: 10px;
-  border: ${(props: LoginStyleProps) =>
-    props.isActive ? "2px solid black" : "1px solid #c7c7c7"};
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c7c7c7;
   outline: none;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
   }
   ::-webkit-input-placeholder {
-    font-size: 18px;
-    color: #a8a8a8;
+    font-size: 15px;
+    color: #a9a9a9;
+  }
+  :focus {
+    border: 2px solid black;
   }
 `;
 
 export const LoginAuthBtn = styled.button`
-  @media (min-width: 680px) {
-    width: 120px;
-    font-size: 14px;
-  }
-  font-size: 13px;
-  padding: 0px 10px;
-  height: 60px;
+  width: 100%;
+  max-width: 167px;
+  font-size: 15px;
+  height: 67px;
   background-color: #ff3838;
   color: white;
   outline: none;
@@ -103,55 +53,20 @@ export const LoginAuthBtn = styled.button`
   cursor: pointer;
   margin-left: 20px;
   :disabled {
-    background-color: #a8a8a8;
+    background-color: #f7f7f7;
+    color: #a9a9a9;
   }
 `;
 
 export const LoginError = styled.div`
+  margin-top: 15px;
   color: #ff3838;
-  font-size: 13px;
-  padding-top: 13px;
-`;
-
-export const LoginAuthInputBox = styled.div`
-  width: 100%;
-  height: 60px;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  border: ${(props: LoginStyleProps) =>
-    props.isActive ? "2px solid black" : "1px solid #c7c7c7"};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${(props: LoginStyleProps) =>
-    props.isActive ? "white" : "transparent"}; ;
-`;
-
-export const LoginAuthInput = styled.input`
-  border: none;
-  background-color: transparent;
-  font-size: 18px;
-  font-weight: 400;
-  outline: none;
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  ::-webkit-input-placeholder {
-    font-size: 18px;
-    color: #a8a8a8;
-  }
-  :-ms-input-placeholder {
-    font-size: 18px;
-    color: #a8a8a8;
-  }
+  font-size: 12px;
 `;
 
 export const LoginBtn = styled.button`
   width: 100%;
-  height: 60px;
+  height: 67px;
   color: white;
   font-size: 18px;
   background-color: #ff3838;
@@ -159,47 +74,68 @@ export const LoginBtn = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 50px;
   :disabled {
-    background-color: #a8a8a8;
+    background-color: #f7f7f7;
+    color: #a9a9a9;
   }
+`;
+
+export const LoginAuthInputBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const LoginTimer = styled.div`
+  font-size: 14px;
+  position: absolute;
+  color: #ff383899;
+  margin-right: 20px;
 `;
 
 //* 로그인 성공
 
-export const LoginSuccessWrapper = styled.div`
-  @media (min-width: 680px) {
-    margin-top: 50px;
+export const LoginSuccessImg = styled.img`
+  @media (max-width: 600px) {
+    max-height: 232px;
   }
-  margin-top: 50px;
+  max-height: 464px;
+  height: 100%;
+  transition: all 1s;
+`;
+
+export const LoginSuccessWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const LoginSuccessTitle = styled.div`
-  font-size: 25px;
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
+  font-size: 24px;
   font-weight: 700;
   padding-bottom: 30px;
   padding-top: 30px;
 `;
 
+export const LoginSuccessBtnWapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
 export const LoginSuccessBtn = styled.button`
-  width: 231px;
-  height: 65px;
+  width: 100%;
+  height: 55px;
   background-color: #ff3838;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-`;
-
-export const LoginSuccessImg = styled.img``;
-
-export const LoginTimer = styled.div`
-  font-size: 15px;
-  color: #ff383899;
 `;

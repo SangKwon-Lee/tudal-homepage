@@ -33,10 +33,11 @@ export const HomeMainContentsWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  top: 0;
+  top: 40px;
   left: 0px;
   padding: 200px 0px;
   width: 100%;
+  z-index: 1;
 `;
 export const HomeLogoWrapper = styled.div`
   @media only all and (min-width: 680px) {

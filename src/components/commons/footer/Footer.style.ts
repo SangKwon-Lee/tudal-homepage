@@ -1,65 +1,70 @@
 import styled from "@emotion/styled";
 
-export const FooterWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    background-color: #3e3939;
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding: 40px 0px;
-    min-width: 1440px;
-  }
-  @media only all and (max-width: 680px) {
-    width: 100%;
-    min-width: 0px;
-    background-color: #3e3939;
-    color: white;
-    padding: 40px 0px;
-  }
+export const Footer = styled.footer`
+  width: 100%;
+  background-color: #4b4b4b;
+  color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  padding: 40px 10px;
 `;
 
-export const FooterBody = styled.div`
-  @media only all and (min-width: 680px) {
-    max-width: 1280px;
-    display: flex;
-    text-align: start;
-    justify-content: center;
-  }
-  @media only all and (max-width: 680px) {
-    flex-direction: column;
-    text-align: center;
-  }
+export const FooterWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  max-width: 592px;
 `;
 
 export const FooterCompanyWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    justify-content: flex-start;
-  }
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 20px;
   align-items: center;
-  justify-content: center;
 `;
+
+export const FooterCompanyBottomWrapper = styled.div`
+  display: flex;
+`;
+
 export const FooterCompany = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 13px;
+  @media only all and (max-width: 600px) {
+    font-size: 10px;
   }
-  font-size: 8px;
+  font-size: 12px;
   color: white;
   cursor: pointer;
 `;
 
+export const FooterHead = styled.div`
+  color: #f7f7f7;
+  font-weight: 700;
+  font-size: 15px;
+  margin-right: 40px;
+  min-width: 67px;
+`;
+
 export const FooterCompanyLine = styled.div`
-  margin: 0px 30px;
   border-left: 1px solid white;
   height: 13px;
 `;
 
 export const FooterContents = styled.div`
+  @media only all and (max-width: 600px) {
+    font-size: 10px;
+  }
   color: white;
-  font-size: 13.5px;
+  font-size: 12px;
+  line-height: 18px;
+`;
+
+export const FooterSNS = styled.img`
+  width: 32px;
+  margin-left: 20px;
+  cursor: pointer;
+`;
+
+export const FooterSNSWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
 `;

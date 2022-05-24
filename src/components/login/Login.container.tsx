@@ -27,9 +27,6 @@ const LoginContainer = () => {
   //* 로그인 화면 단계
   const [step, setStep] = useState(0);
 
-  //* css 변경
-  const [isActive, setIsActive] = useState("");
-
   //* 타이머 관련 상태 및 함수 useEffect
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [min, setMin] = useState(3);
@@ -51,6 +48,7 @@ const LoginContainer = () => {
     }
   }, [auth.timer]);
 
+  // *타이머
   useEffect(() => {
     if (auth.timer) {
       if (time.current <= -1) {
@@ -62,7 +60,7 @@ const LoginContainer = () => {
   }, [sec, auth.timer]);
 
   //* 로그인 정보 인풋
-  const handleLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLoginInput = (e: any) => {
     setLoginInput({
       ...loginInput,
       [e.target.name]: e.target.value,
@@ -74,7 +72,6 @@ const LoginContainer = () => {
     const randomCode = Math.floor(Math.random() * 10000)
       .toString()
       .padStart(4, "0");
-
     try {
       const { data } = await axios.post(
         "https://api.tudal.co.kr/api/user/checkProps",
@@ -130,6 +127,10 @@ const LoginContainer = () => {
 
   //* 인증번호 체크 후 로그인
   const handleLogin = async () => {
+    if (auth.timeout) {
+      alert("입력시간이 초과되었습니다.");
+      return;
+    }
     if (auth.code === loginInput.authCode) {
       try {
         const result = await axios.post(
@@ -157,21 +158,20 @@ const LoginContainer = () => {
         ...auth,
         error: true,
       });
+      alert("인증번호가 일치하지 않습니다.");
     }
   };
 
   return (
     <LoginPresenter
-      handleLoginInput={handleLoginInput}
+      min={min}
+      sec={sec}
       step={step}
       auth={auth}
       loginInput={loginInput}
-      handleSMSSend={handleSMSSend}
       handleLogin={handleLogin}
-      setIsActive={setIsActive}
-      isActive={isActive}
-      min={min}
-      sec={sec}
+      handleSMSSend={handleSMSSend}
+      handleLoginInput={handleLoginInput}
     />
   );
 };

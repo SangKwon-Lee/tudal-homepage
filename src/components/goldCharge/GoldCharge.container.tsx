@@ -17,12 +17,11 @@ const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
 const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   const { userData, setUserGold, userGold, setUserData } =
     useContext(GlobalContext);
-
   const navigate = useNavigate();
   const userId = sessionStorage.getItem("userId");
 
   //* 골드
-  const [gold, setgold] = useState("충전하실 금액을 선택해주세요.");
+  const [gold, setgold] = useState("0");
 
   //* 보너스 골드
   const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
@@ -36,21 +35,14 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     isReceipt: false,
   });
 
+  // * 결제 정보 Open
+  const [isCharge, setIsCharge] = useState(false);
+
   //* 현금 영수증 종류
   const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
   //* 스텝
   const [step, setStep] = useState(0);
-
-  //* 골드 선택 및 충전 금액
-  const handleGold = (e: any) => {
-    setgold(e.target.value);
-    setInputCharge({
-      ...inputCharge,
-      money: Number(e.target.value) * 100 + Number(e.target.value) * 10,
-    });
-    setBonusGold(e.target.value / 10);
-  };
 
   //* 유저 골드 정보 불러오기 useEffect
   useEffect(() => {
@@ -86,33 +78,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
-  //*input 관리
-  const handleInputCharge = (e: any) => {
-    if (e.target.id === "check") {
-      setInputCharge({
-        ...inputCharge,
-        check: !inputCharge.check,
-      });
-    } else if (e.target.name === "receipt") {
-      let isCheck = true;
-      if (e.target.value === "false") {
-        isCheck = false;
-        setReciptesCategory("미발급");
-      } else {
-        setReciptesCategory("핸드폰");
-      }
-      setInputCharge({
-        ...inputCharge,
-        isReceipt: isCheck,
-      });
-    } else {
-      setInputCharge({
-        ...inputCharge,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
-
   //*이노페이 결제 결과 (결제 함수 2번 째)
   const InnoPayResult = (data: any) => {
     if (data.data === "close") {
@@ -143,8 +108,9 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
-    if (gold === "충전하실 금액을 선택해주세요.") {
-      return alert("충전하실 골드를 선택해주세요.");
+    if (inputCharge.money === 0) {
+      alert("골드를 선택해주세요");
+      return;
     }
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
     //@ts-ignore
@@ -192,15 +158,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
-  //* 현금영수증 종류
-  const handleRecipts = (e: any) => {
-    setReciptesCategory(e.target.value);
-    setInputCharge({
-      ...inputCharge,
-      number: "",
-    });
-  };
-
   //* 다음 스텝 및 결제 정보 저장
   const handleSavePaymentInfo = async () => {
     const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
@@ -241,6 +198,71 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     }
   };
 
+  // * 결제 선택
+  const handleIsCharge = () => {
+    setIsCharge(() => !isCharge);
+  };
+
+  //* 현금영수증 종류
+  const handleRecipts = (e: any) => {
+    setReciptesCategory(e.target.value);
+    setInputCharge({
+      ...inputCharge,
+      number: "",
+    });
+  };
+
+  //* 골드 선택 및 충전 금액
+  const handleGold = (e: any) => {
+    setgold(e);
+    setInputCharge({
+      ...inputCharge,
+      money: Number(e) * 100 + Number(e) * 10,
+    });
+    setBonusGold(e / 10);
+  };
+
+  //*input 관리
+  const handleInputCharge = (e: any) => {
+    if (e === "발급") {
+      setInputCharge({
+        ...inputCharge,
+        isReceipt: true,
+      });
+      return;
+    }
+    if (e === "미발급") {
+      setInputCharge({
+        ...inputCharge,
+        isReceipt: false,
+      });
+      return;
+    }
+    if (e.target.id === "check") {
+      setInputCharge({
+        ...inputCharge,
+        check: !inputCharge.check,
+      });
+    } else if (e.target.name === "receipt") {
+      let isCheck = true;
+      if (e.target.value === "false") {
+        isCheck = false;
+        setReciptesCategory("미발급");
+      } else {
+        setReciptesCategory("핸드폰");
+      }
+      setInputCharge({
+        ...inputCharge,
+        isReceipt: isCheck,
+      });
+    } else {
+      setInputCharge({
+        ...inputCharge,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+
   return (
     <>
       <HelmetProvider>
@@ -257,19 +279,17 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         </Helmet>
       </HelmetProvider>
       <GoldChargePresenter
-        path={path}
-        userGold={userGold}
-        userData={userData}
         gold={gold}
-        handleGold={handleGold}
-        handleInputCharge={handleInputCharge}
-        inputCharge={inputCharge}
-        handleInnoPay={handleInnoPay}
-        bonusGold={bonusGold}
-        handleRecipts={handleRecipts}
-        reciptsCategory={reciptsCategory}
-        handleSavePaymentInfo={handleSavePaymentInfo}
         step={step}
+        userGold={userGold}
+        isCharge={isCharge}
+        handleGold={handleGold}
+        inputCharge={inputCharge}
+        handleRecipts={handleRecipts}
+        handleInnoPay={handleInnoPay}
+        handleIsCharge={handleIsCharge}
+        handleInputCharge={handleInputCharge}
+        handleSavePaymentInfo={handleSavePaymentInfo}
       />
     </>
   );

@@ -1,4 +1,3 @@
-import "./App.css";
 import { GlobalStyles } from "./commons/styles/globalStyles";
 import { useRoutes } from "react-router";
 import routes from "./routes";
@@ -60,6 +59,7 @@ function App() {
 
   //* 스크롤 초기화
   useScrollReset();
+
   return (
     <>
       <GlobalContext.Provider value={value}>

@@ -6,7 +6,8 @@ import WithAuth from "../commons/hocs/withAuth";
 
 const MypageContainer = () => {
   const userId = sessionStorage.getItem("userId");
-  const { setUserGold, userGold, setUserData } = useContext(GlobalContext);
+  const { setUserGold, userGold, setUserData, userData } =
+    useContext(GlobalContext);
 
   // * sort
   const [sort, setSort] = useState("");
@@ -132,6 +133,7 @@ const MypageContainer = () => {
       length={length}
       isView={isView}
       userGold={userGold}
+      userData={userData}
       handleSort={handleSort}
       goldHistory={goldHistory}
       handleIsView={handleIsView}

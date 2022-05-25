@@ -107,17 +107,17 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                 <LoginSuccessBtn
                   style={{ marginRight: "30px" }}
                   onClick={() => {
-                    navigator("/gold");
+                    navigator("/");
                   }}
                 >
-                  골드충전
+                  홈으로 가기
                 </LoginSuccessBtn>
                 <LoginSuccessBtn
                   onClick={() => {
-                    navigator("/mypage");
+                    navigator("/gold");
                   }}
                 >
-                  마이페이지
+                  골드충전하러 가기
                 </LoginSuccessBtn>
               </LoginSuccessBtnWapper>
             </LoginSuccessWrapper>

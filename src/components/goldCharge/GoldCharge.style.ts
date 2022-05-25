@@ -238,16 +238,16 @@ export const GoldChargeAccountSmallText = styled.div`
 
 export const GoldChargeAccountBigText = styled.div`
   @media (max-width: 600px) {
-    font-size: 12px;
+    font-size: 12.5px;
   }
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   padding-left: 10px;
 `;
 
 export const GoldChargeAccountLine = styled.div`
   border-top: 1px solid #d9d9d9;
-  margin: 50px 0px;
+  margin: 30px 0px;
 `;
 
 export const GoldChargeMethodSelect = styled.select`
@@ -296,6 +296,9 @@ export const GoldChargePGBtn = styled.button`
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const GoldWarningWrapper = styled.div`
@@ -393,6 +396,19 @@ export const GoldChargeReceiptsRadio = styled.button`
   cursor: pointer;
   color: ${(props: IGoldChargeStyleProps) =>
     props.isReceipt ? "#FF3838" : "#4B4B4B"};
+`;
+
+export const GoldChargeNameInput = styled.input`
+  width: 100%;
+  min-height: 50px;
+  background-color: white;
+  border: 1px solid #a9a9a9;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  padding-left: 20px;
+  outline: none;
 `;
 
 export const GoldChargeReceiptsinput = styled.input`

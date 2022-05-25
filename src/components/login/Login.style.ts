@@ -109,6 +109,7 @@ export const LoginSuccessWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 100px;
 `;
 
 export const LoginSuccessTitle = styled.div`
@@ -130,7 +131,7 @@ export const LoginSuccessBtnWapper = styled.div`
 export const LoginSuccessBtn = styled.button`
   width: 100%;
   height: 55px;
-  background-color: #ff3838;
+  background-color: #4b4b4b;
   border: none;
   outline: none;
   cursor: pointer;

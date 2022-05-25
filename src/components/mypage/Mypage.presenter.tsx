@@ -10,8 +10,9 @@ import {
 } from "../goldCharge/GoldCharge.style";
 import moneyPNG from "../../assets/images/money.png";
 import paymentPNG from "../../assets/images/payment.png";
-import historyPNG from "../../assets/images/history.png";
-import { GoldHistory, UserGold } from "../../commons/types/types";
+// import historyPNG from "../../assets/images/history.png";
+import settingPNG from "../../assets/images/setting.png";
+import { GoldHistory, UserData, UserGold } from "../../commons/types/types";
 import {
   HistoryBonus,
   HistoryBtn,
@@ -26,8 +27,11 @@ import {
   HistoryTitleWrapper,
   HistoryType,
   HistoryWrapper,
+  UserNameIcon,
+  UserNameWrapper,
 } from "./Mypage.style";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router";
 interface IMypageProps {
   sort: string;
   isView: {
@@ -37,6 +41,7 @@ interface IMypageProps {
   };
   length: number;
   goldHistory: any;
+  userData: UserData;
   userGold: UserGold;
   handleSort: (e: any) => void;
   handleIsView: (e: any) => void;
@@ -61,14 +66,27 @@ const MypagePresenter: React.FC<IMypageProps> = ({
   sort,
   isView,
   length,
+  userData,
   userGold,
   handleSort,
   goldHistory,
   handleIsView,
 }) => {
+  const navigate = useNavigate();
   return (
     <Body>
       <Contents>
+        <UserNameWrapper>
+          <Title>{userData.name}님</Title>
+          <UserNameIcon
+            id="myInfo"
+            onClick={() => {
+              navigate("/myInfo");
+            }}
+            src={settingPNG}
+            alt=""
+          />
+        </UserNameWrapper>
         <GoldMyMoneyWrapper>
           <Title>
             <GoldMoneyImg src={moneyPNG} alt="" />총 보유 골드
@@ -171,7 +189,7 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           </>
         )}
       </Contents>
-      <Contents>
+      {/* <Contents>
         <Title
           id="subscription"
           style={{ cursor: "pointer" }}
@@ -180,7 +198,7 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           <GoldMoneyImg src={historyPNG} alt="" />
           구독내역
         </Title>
-      </Contents>
+      </Contents> */}
     </Body>
   );
 };

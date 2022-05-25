@@ -33,6 +33,7 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
     method: "CARD",
     number: "",
     isReceipt: false,
+    name: "",
   });
 
   // * 결제 정보 Open
@@ -71,6 +72,11 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
           }
         );
         setUserData(userData[0]);
+        setInputCharge({
+          ...inputCharge,
+          number: userData[0].phoneNumber,
+          name: userData[0].name,
+        });
         setUserGold(data[0]);
       } catch (e) {
         alert("회원정보가 없습니다.");
@@ -262,7 +268,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       });
     }
   };
-
   return (
     <>
       <HelmetProvider>

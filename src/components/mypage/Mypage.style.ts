@@ -5,6 +5,16 @@ interface IMypageStyle {
   isType?: string;
 }
 
+export const UserNameWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+`;
+
+export const UserNameIcon = styled.img`
+  cursor: pointer;
+`;
+
 export const HistoryBtnWrapper = styled.div`
   margin-top: 30px;
   margin-bottom: 50px;

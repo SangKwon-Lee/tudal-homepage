@@ -25,6 +25,9 @@ const Login = Loadable(
 const Mypage = Loadable(
   lazy(() => import("../src/components/mypage/Mypage.container"))
 );
+const MyInfo = Loadable(
+  lazy(() => import("../src/components/myInfo/MyInfo.container"))
+);
 
 //* 골드 충전, 충전 내역, 결제 성공 페이지
 const GoldCharge = Loadable(
@@ -75,6 +78,16 @@ const routes = [
       <>
         <Header path="mypage" />
         <Mypage path="mypage" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/myInfo",
+    element: (
+      <>
+        <Header path="mypage" />
+        <MyInfo path="mypage" />
         <Footer />
       </>
     ),

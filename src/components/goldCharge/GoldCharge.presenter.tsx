@@ -46,11 +46,13 @@ import {
   GoldMethodBtn,
   GoldChargeAccountLine,
   GoldChargeReceiptBtnWrapper,
+  GoldChargeNameInput,
 } from "./GoldCharge.style";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
 import moneyPNG from "../../assets/images/money.png";
+import moneyWhitePNG from "../../assets/images/goldWhite.png";
 import goldCheckPNG from "../../assets/images/goldCheck.png";
 import { UserGold } from "../../commons/types/types";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
@@ -66,6 +68,7 @@ interface IGoldChargeProps {
     method: string;
     number: string;
     isReceipt: boolean;
+    name: string;
   };
   handleInnoPay: () => void;
   handleIsCharge: () => void;
@@ -214,9 +217,9 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               isCharge &&
               inputCharge.isReceipt &&
               inputCharge.method === "VBANK"
-                ? "880px"
+                ? "950px"
                 : isCharge && inputCharge.method === "VBANK"
-                ? "750px"
+                ? "850px"
                 : isCharge
                 ? "580px"
                 : "80px",
@@ -259,6 +262,12 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 </GoldChargeAccountBigText>
               </GoldChargeAccountWrapper>
               <GoldChargeAccountLine />
+              <GoldChargeReceiptsTitle>입금자명</GoldChargeReceiptsTitle>
+              <GoldChargeNameInput
+                onChange={handleInputCharge}
+                name="name"
+                value={inputCharge.name}
+              />
               <GoldChargeReceiptsWrapper>
                 <GoldChargeReceiptsTitle>현금영수증</GoldChargeReceiptsTitle>
                 <GoldChargeReceiptBtnWrapper
@@ -347,6 +356,11 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 : handleSavePaymentInfo();
             }}
           >
+            {inputCharge.check ? (
+              <GoldMoneyImg src={moneyWhitePNG} alt="" />
+            ) : (
+              <GoldMoneyImg src={moneyPNG} alt="" />
+            )}
             투달 골드 충전
           </GoldChargePGBtn>
           <GoldWarningWrapper>

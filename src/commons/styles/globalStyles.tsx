@@ -8,7 +8,16 @@ const reset = css`
       monospace;
   }
 
-  [class] {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  * {
+    font-family: Spoqa Han Sans Neo, Noto Sans Kr, --apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+      "Open Sans", "Helvetica Neue", sans-serif, Roboto, "Segoe UI", Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -20,18 +29,6 @@ const reset = css`
     -webkit-appearence: none; // input -> IE / 크롬
     appearance: none; //button, input, textarea, select, meter, progress
     color: #4b4b4b;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  * {
-    font-family: Spoqa Han Sans Neo, Noto Sans Kr, --apple-system,
-      BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-      "Open Sans", "Helvetica Neue", sans-serif, Roboto, "Segoe UI", Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
   body {

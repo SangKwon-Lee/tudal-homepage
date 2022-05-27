@@ -123,7 +123,6 @@ const Landing2 = () => {
             </div>
           </div>
         </div>
-
         <div className="cont_01 content">
           <img src="../img/content_01.png" alt="" className="contImg pc_view" />
           <img
@@ -132,7 +131,6 @@ const Landing2 = () => {
             className="contImg mo_view"
           />
         </div>
-
         <div className="cont_02 content">
           <img src="../img/content_02.png" alt="" className="contImg pc_view" />
           <img
@@ -141,7 +139,6 @@ const Landing2 = () => {
             className="contImg mo_view"
           />
         </div>
-
         <div className="bottom">
           <img src="../img/bottom_txt.png" alt="" className="contImg pc_view" />
           <img

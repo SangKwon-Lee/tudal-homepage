@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../App";
+import { decrypt, encrypted } from "../../commons/hash";
 import LoginPresenter from "./Login.presenter";
 
 const LoginContainer = () => {
@@ -149,8 +150,7 @@ const LoginContainer = () => {
           code: "",
         });
         setUserData(result.data[0]);
-        sessionStorage.setItem("name", result.data[0].name);
-        sessionStorage.setItem("userId", result.data[0].userId);
+        localStorage.setItem("tudalUser", result.data[0].userId);
         setStep(() => step + 1);
       } catch (e) {}
     } else {
@@ -162,6 +162,13 @@ const LoginContainer = () => {
     }
   };
 
+  //* 엔터 키 누를 시 로그인 실행
+  const onEnterLogin = (e: any) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <LoginPresenter
       min={min}
@@ -170,6 +177,7 @@ const LoginContainer = () => {
       auth={auth}
       loginInput={loginInput}
       handleLogin={handleLogin}
+      onEnterLogin={onEnterLogin}
       handleSMSSend={handleSMSSend}
       handleLoginInput={handleLoginInput}
     />

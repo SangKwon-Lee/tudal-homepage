@@ -7,18 +7,18 @@ import GoldChargePresenter from "./GoldCharge.presenter";
 import moment from "moment";
 import { useNavigate } from "react-router";
 import dayjs from "dayjs";
+import useGetUser from "../commons/hooks/useGetUser";
 
-interface IGoldChargeProps {
-  path: string;
-}
 const REACT_APP_INNOPAY_MID = process.env.REACT_APP_INNOPAY_MID;
 const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
 
-const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
-  const { userData, setUserGold, userGold, setUserData } =
-    useContext(GlobalContext);
+const GoldChargeContainer = () => {
+  const { userData, userGold } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const userId = sessionStorage.getItem("userId");
+  const userId = localStorage.getItem("tudalUser");
+
+  //* 회원 정보 불러오기;
+  useGetUser();
 
   //* 골드
   const [gold, setgold] = useState("0");
@@ -42,47 +42,17 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
   //* 현금 영수증 종류
   const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
-  //* 스텝
-  const [step, setStep] = useState(0);
-
   //* 유저 골드 정보 불러오기 useEffect
   useEffect(() => {
-    handleGetUserGold();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
-
-  //* 유저 골드 정보 불러오기
-  const handleGetUserGold = async () => {
-    if (userId) {
-      try {
-        const { data } = await axios.get(
-          `https://api.tudal.co.kr/api/golds/${userId}`,
-          {
-            headers: {
-              pragma: "no-cache",
-            },
-          }
-        );
-        const { data: userData } = await axios.get(
-          `https://api.tudal.co.kr/api/user/${userId}`,
-          {
-            headers: {
-              pragma: "no-cache",
-            },
-          }
-        );
-        setUserData(userData[0]);
-        setInputCharge({
-          ...inputCharge,
-          number: userData[0].phoneNumber,
-          name: userData[0].name,
-        });
-        setUserGold(data[0]);
-      } catch (e) {
-        alert("회원정보가 없습니다.");
-      }
+    if (userData) {
+      setInputCharge({
+        ...inputCharge,
+        number: userData.phoneNumber,
+        name: userData.name,
+      });
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
 
   //*이노페이 결제 결과 (결제 함수 2번 째)
   const InnoPayResult = (data: any) => {
@@ -174,31 +144,25 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       .set("second", 0)
       .format("YYYYMMDDHHmmss")}`;
     try {
-      const { status } = await axios.post(
-        `https://api.tudal.co.kr/api/golds/web/depositInfo`,
-        {
-          userId,
-          userName:
-            userData?.name +
-            userData?.phoneNumber.slice(
-              userData?.phoneNumber.length - 4,
-              userData?.phoneNumber.length
-            ),
-          category: "골드충전",
-          chargeCode: code,
-          gold,
-          bonusGold,
-          receiptType: reciptsCategory,
-          receiptNumber: inputCharge.number,
-          depositAmount: inputCharge.money,
-          isExpired: 0,
-          expirationDate,
-          isCharged: 0,
-        }
-      );
-      if (status === 200) {
-        setStep(1);
-      }
+      await axios.post(`https://api.tudal.co.kr/api/golds/web/depositInfo`, {
+        userId,
+        userName:
+          userData?.name +
+          userData?.phoneNumber.slice(
+            userData?.phoneNumber.length - 4,
+            userData?.phoneNumber.length
+          ),
+        category: "골드충전",
+        chargeCode: code,
+        gold,
+        bonusGold,
+        receiptType: reciptsCategory,
+        receiptNumber: inputCharge.number,
+        depositAmount: inputCharge.money,
+        isExpired: 0,
+        expirationDate,
+        isCharged: 0,
+      });
     } catch (e) {
       alert("에러가 발생했습니다. 처음부터 다시 시도해주세요.");
     }
@@ -230,17 +194,10 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
 
   //*input 관리
   const handleInputCharge = (e: any) => {
-    if (e === "발급") {
+    if (e === "발급" || e === "미발급") {
       setInputCharge({
         ...inputCharge,
-        isReceipt: true,
-      });
-      return;
-    }
-    if (e === "미발급") {
-      setInputCharge({
-        ...inputCharge,
-        isReceipt: false,
+        isReceipt: e === "발급" ? true : false,
       });
       return;
     }
@@ -249,25 +206,14 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
         ...inputCharge,
         check: !inputCharge.check,
       });
-    } else if (e.target.name === "receipt") {
-      let isCheck = true;
-      if (e.target.value === "false") {
-        isCheck = false;
-        setReciptesCategory("미발급");
-      } else {
-        setReciptesCategory("핸드폰");
-      }
-      setInputCharge({
-        ...inputCharge,
-        isReceipt: isCheck,
-      });
-    } else {
-      setInputCharge({
-        ...inputCharge,
-        [e.target.name]: e.target.value,
-      });
+      return;
     }
+    setInputCharge({
+      ...inputCharge,
+      [e.target.name]: e.target.value,
+    });
   };
+
   return (
     <>
       <HelmetProvider>
@@ -285,7 +231,6 @@ const GoldChargeContainer: React.FC<IGoldChargeProps> = ({ path }) => {
       </HelmetProvider>
       <GoldChargePresenter
         gold={gold}
-        step={step}
         userGold={userGold}
         isCharge={isCharge}
         handleGold={handleGold}

@@ -64,8 +64,8 @@ const sortBtn = [
 
 const MypagePresenter: React.FC<IMypageProps> = ({
   sort,
-  isView,
   length,
+  isView,
   userData,
   userGold,
   handleSort,
@@ -140,46 +140,50 @@ const MypagePresenter: React.FC<IMypageProps> = ({
                 </HistoryBtn>
               ))}
             </HistoryBtnWrapper>
-            {goldHistory
-              .filter((data: GoldHistory) =>
-                sort !== "" ? data.type === sort : data
-              )
-              .map((data: GoldHistory) => (
-                <HistoryWrapper key={data.id}>
-                  <HistoryType isType={data.type}>
-                    {data.type === "add"
-                      ? "충전"
-                      : data.type === "subtract"
-                      ? "사용"
-                      : "취소"}
-                  </HistoryType>
-                  <HistoryTitleWrapper>
-                    <HistoryTitle>
+            {goldHistory.length > 0 ? (
+              goldHistory
+                .filter((data: GoldHistory) =>
+                  sort !== "" ? data.type === sort : data
+                )
+                .map((data: GoldHistory) => (
+                  <HistoryWrapper key={data.id}>
+                    <HistoryType isType={data.type}>
                       {data.type === "add"
-                        ? "골드 충전"
+                        ? "충전"
                         : data.type === "subtract"
-                        ? "골드 사용"
-                        : "골드 충전취소"}
-                    </HistoryTitle>
-                    <HistoryText>{data.category}</HistoryText>
-                  </HistoryTitleWrapper>
-                  <HistoryDate>
-                    {dayjs(data.datetime).format("YYYY.MM.DD.HH:mm")}
-                  </HistoryDate>
-                  <HistoryGoldWrapper>
-                    <HistoryGold>
-                      {data.type === "add" ? "+" : "-"}&nbsp;
-                      {data.amount}골드
-                    </HistoryGold>
-                    <HistoryBonus>
-                      {data.type === "add" ? "+" : "-"}&nbsp;
-                      {data.bonusAmount}골드
-                    </HistoryBonus>
-                  </HistoryGoldWrapper>
-                </HistoryWrapper>
-              ))
-              .slice(0, length)}
-            {length !== -1 && (
+                        ? "사용"
+                        : "취소"}
+                    </HistoryType>
+                    <HistoryTitleWrapper>
+                      <HistoryTitle>
+                        {data.type === "add"
+                          ? "골드 충전"
+                          : data.type === "subtract"
+                          ? "골드 사용"
+                          : "골드 충전취소"}
+                      </HistoryTitle>
+                      <HistoryText>{data.category}</HistoryText>
+                    </HistoryTitleWrapper>
+                    <HistoryDate>
+                      {dayjs(data.datetime).format("YYYY.MM.DD.HH:mm")}
+                    </HistoryDate>
+                    <HistoryGoldWrapper>
+                      <HistoryGold>
+                        {data.type === "add" ? "+" : "-"}&nbsp;
+                        {data.amount}골드
+                      </HistoryGold>
+                      <HistoryBonus>
+                        {data.type === "add" ? "+" : "-"}&nbsp;
+                        {data.bonusAmount}골드
+                      </HistoryBonus>
+                    </HistoryGoldWrapper>
+                  </HistoryWrapper>
+                ))
+                .slice(0, length)
+            ) : (
+              <div>골드 사용 내역이 없습니다.</div>
+            )}
+            {goldHistory.length > 5 && !isView.more && (
               <HistoryMoreWrapper>
                 <HistoryMore id="more" onClick={handleIsView}>
                   더 보기

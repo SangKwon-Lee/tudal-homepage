@@ -26,19 +26,21 @@ interface ILoginProps {
   auth: UserAuth;
   loginInput: UserLoginInput;
   handleLogin: () => Promise<void>;
+  onEnterLogin: (e: any) => void;
   handleSMSSend: () => Promise<void>;
   handleLoginInput: (e: any) => void;
 }
 
 const LoginPresenter: React.FC<ILoginProps> = ({
-  handleLoginInput,
-  step,
-  loginInput,
-  handleSMSSend,
-  auth,
-  handleLogin,
   min,
   sec,
+  step,
+  auth,
+  loginInput,
+  handleLogin,
+  onEnterLogin,
+  handleSMSSend,
+  handleLoginInput,
 }) => {
   const navigator = useNavigate();
   return (
@@ -84,6 +86,7 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                   name="authCode"
                   disabled={!auth.send}
                   onChange={handleLoginInput}
+                  onKeyPress={onEnterLogin}
                 />
                 {auth.send && <LoginTimer>{`${min} : ${sec}`}</LoginTimer>}
               </LoginAuthInputBox>

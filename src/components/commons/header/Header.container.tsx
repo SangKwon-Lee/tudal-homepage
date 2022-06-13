@@ -5,7 +5,7 @@ interface IHeaderProps {
   path: string;
 }
 const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
-  const userId = sessionStorage.getItem("userId");
+  const userId = localStorage.getItem("tudalUser");
 
   const [isArrow, setIsArrow] = useState(false);
 

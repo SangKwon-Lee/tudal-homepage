@@ -59,7 +59,6 @@ import { Body, Contents, Title } from "../commons/ui/commonStyle";
 
 interface IGoldChargeProps {
   gold: string;
-  step: number;
   userGold: UserGold;
   isCharge: boolean;
   inputCharge: {
@@ -96,7 +95,6 @@ const goldData = [
 ];
 
 const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
-  step,
   gold,
   userGold,
   isCharge,
@@ -279,10 +277,10 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   {inputCharge.isReceipt ? (
                     <img src={goldCheckPNG} alt=""></img>
                   ) : (
-                    <GoldMenuCircle></GoldMenuCircle>
+                    <GoldMenuCircle id="receipt"></GoldMenuCircle>
                   )}
-
                   <GoldChargeReceiptsRadio
+                    id="receipt"
                     isReceipt={inputCharge.isReceipt === true}
                   >
                     발급 신청
@@ -297,9 +295,10 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   {!inputCharge.isReceipt ? (
                     <img src={goldCheckPNG} alt=""></img>
                   ) : (
-                    <GoldMenuCircle></GoldMenuCircle>
+                    <GoldMenuCircle id="receipt"></GoldMenuCircle>
                   )}
                   <GoldChargeReceiptsRadio
+                    id="receipt"
                     isReceipt={inputCharge.isReceipt === false}
                   >
                     신청 안 함

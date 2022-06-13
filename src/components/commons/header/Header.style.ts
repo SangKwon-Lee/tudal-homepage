@@ -68,7 +68,7 @@ export const HeaderModalWrapper = styled.div`
 `;
 
 export const HeaderBtn = styled.button`
-  padding: 20px 30px;
+  padding: 20px 15px;
   border-radius: 10px;
   width: 100%;
   color: #7f7f7f;

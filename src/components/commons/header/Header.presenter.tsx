@@ -3,21 +3,36 @@ import {
   HeaderNav,
   HeaderNavWrapper,
   HeaderMenu,
+  HeaderArrow,
+  HeaderModalWrapper,
+  HeaderBtn,
+  HeaderLogo,
 } from "./Header.style";
 import TudalLogoPng from "../../../assets/images/tudal_logo.png";
+import TudalUsLogo from "../../../assets/images/tudalus_logo02.svg";
+import NewsLogo from "../../../assets/images/newsstock.svg";
 import TudalLogoWebp from "../../../assets/images/tudal_logo.webp";
+import DownArrow from "../../../assets/images/downArrow.png";
+import UpArrow from "../../../assets/images/upArrow.png";
 import { useNavigate } from "react-router";
 
 interface IHeaderProps {
   path: string;
   userId: string | null;
+  isArrow: boolean;
+  handleIsArrow: () => void;
 }
 
-const HeaderPresenter: React.FC<IHeaderProps> = ({ path, userId }) => {
+const HeaderPresenter: React.FC<IHeaderProps> = ({
+  path,
+  userId,
+  isArrow,
+  handleIsArrow,
+}) => {
   const navigate = useNavigate();
   return (
     <>
-      <Header>
+      <Header path={path === "/"}>
         <HeaderNavWrapper>
           <HeaderNav>
             <picture>
@@ -47,16 +62,37 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, userId }) => {
                 }}
               ></img>
             </picture>
-            <HeaderMenu href={`https://us.tudal.co.kr`}>투달러스</HeaderMenu>
-            <HeaderMenu href={`https://newsstock.tudal.co.kr`}>
-              뉴스스탁
-            </HeaderMenu>
+
+            <HeaderArrow
+              src={!isArrow ? DownArrow : UpArrow}
+              onClick={handleIsArrow}
+            />
+            {isArrow && (
+              <HeaderModalWrapper>
+                <HeaderBtn
+                  onClick={() => {
+                    window.open("https://us.tudal.co.kr");
+                  }}
+                >
+                  <HeaderLogo src={TudalUsLogo} />
+                  투달러스
+                </HeaderBtn>
+
+                <HeaderBtn
+                  onClick={() => {
+                    window.open("https://newsstock.tudal.co.kr");
+                  }}
+                >
+                  <HeaderLogo src={NewsLogo} />
+                  뉴스스탁
+                </HeaderBtn>
+              </HeaderModalWrapper>
+            )}
           </HeaderNav>
           <HeaderNav>
             <HeaderMenu path={path === "gold"} href={`/gold`}>
               골드충전
             </HeaderMenu>
-            {}
             <HeaderMenu
               path={path === "login" || path === "mypage"}
               onClick={() => {

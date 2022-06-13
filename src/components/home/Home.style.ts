@@ -1,449 +1,308 @@
 import styled from "@emotion/styled";
 
+//* 제일 위
 export const HomeMainWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    height: 100%;
-    min-width: 1440px;
-  }
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  position: relative;
 `;
 
 export const HomeMainImg = styled.img`
-  @media only all and (min-width: 680px) {
-    min-width: 1400px;
-    width: 100%;
+  @media (max-width: 1100px) {
+    height: 500px;
   }
-  height: 100vh;
-  min-width: 0px;
-  min-height: 700px;
+  @media (max-width: 640px) {
+    height: 600px;
+  }
+
+  width: 100%;
   object-fit: cover;
 `;
+
 export const HomeMainContentsWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    flex-direction: column;
-    padding: 300px 0px;
-    align-items: flex-start;
-    left: 8%;
+  @media (max-width: 1100px) {
+    max-width: 640px;
+    padding: 20px;
   }
-  max-width: 1280px;
+  @media (max-width: 640px) {
+    padding: 10px;
+  }
+
   position: absolute;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  top: 40px;
-  left: 0px;
-  padding: 200px 0px;
+  max-width: 1100px;
   width: 100%;
-  z-index: 1;
-`;
-export const HomeLogoWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    padding: 300px 0px;
-    width: 100%;
-    padding-left: 90px;
-  }
-  position: absolute;
-  display: flex;
-  justify-self: flex-start;
-  align-self: flex-start;
-  flex-direction: column;
-  padding: 10px 0px;
-  width: 100%;
-  padding-left: 30px;
 `;
 
-export const HomeTudalLogo = styled.img`
-  @media only all and (min-width: 680px) {
-    width: 122px;
-  }
-  width: 122px;
+export const HomeMainTitleBold = styled.div`
+  font-weight: 700;
 `;
 
 export const HomeMainTitle = styled.div`
-  font-size: 220%;
-  margin-top: 20px;
-  color: white;
-  text-shadow: 1px 1px 8px gray;
-  @media only all and (min-width: 680px) {
-    font-size: 38px;
-    margin-top: 20px;
-    color: #3e3939;
-    text-shadow: none;
+  @media (max-width: 1100px) {
+    font-size: 40px;
   }
+  font-size: 60px;
 `;
 
-export const HomeFirstTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 38px;
-    font-weight: 500;
-    text-align: left;
+export const HomeMainSubText = styled.div`
+  @media (max-width: 1100px) {
+    font-size: 15px;
   }
-  font-size: 150%;
-  margin-top: 20px;
-  color: #3e3939;
-  text-align: center;
-`;
-
-export const HomeFirstSubTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 58px;
-    text-align: left;
-  }
-  color: #3e3939;
-  font-size: 280%;
-  font-weight: bold;
-  text-align: center;
-`;
-
-export const HomeMainSubTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    color: #3e3939;
-    font-size: 58px;
-    text-shadow: none;
-  }
-  color: white;
-  font-size: 280%;
-  font-weight: bold;
-  text-shadow: 1px 1px 8px gray;
-`;
-
-export const HomeMainText = styled.div`
-  @media only all and (min-width: 680px) {
-    color: #3e3939;
-    font-size: 27px;
-    text-shadow: none;
-  }
-  color: white;
-  font-size: 120%;
-  line-height: 32px;
-  margin-top: 20px;
-  text-shadow: 1px 1px 8px gray;
+  font-size: 20px;
+  margin-top: 30px;
 `;
 
 export const HomeMainBtnWrapper = styled.div`
-  @media only all and (min-width: 680px) {
+  @media (max-width: 1100px) {
     margin-top: 60px;
-    flex-direction: row;
   }
   display: flex;
-  flex-direction: column;
-  margin-top: 60px;
-  align-items: center;
+  margin-top: 120px;
 `;
 
-export const HomeMainGoogleBtn = styled.button`
-  @media only all and (min-width: 680px) {
-    color: #3e3939;
-    margin-right: 15px;
-    width: 230px;
-    height: 55px;
-    border: 1px solid black;
+export const HomeMainBtn = styled.button`
+  @media (max-width: 1100px) {
+    padding: 10px 20px;
+    font-size: 12px;
   }
+  box-shadow: 15px 15px 17px 0px #00000040;
+  border-radius: 5px;
+  padding: 15px 40px;
+  background-color: #000000;
+  color: white;
+  font-size: 18px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  font-size: 23px;
-  width: 300px;
-  height: 55px;
-  background: none;
+  margin-right: 30px;
   cursor: pointer;
 `;
 
-export const HomeMainAppleBtn = styled.button`
-  @media only all and (min-width: 680px) {
-    border: 1px solid #3e3939;
-    color: #3e3939;
-    font-size: 23px;
-    width: 200px;
-    height: 55px;
-    margin: 0px;
+export const HomeMainIcon = styled.img`
+  margin-right: 12px;
+`;
+
+//* 공통
+export const HomeContents = styled.div`
+  @media (max-width: 640px) {
+    padding: 10px;
+    flex-direction: column;
   }
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  font-size: 23px;
-  width: 300px;
-  height: 55px;
-  background: none;
-  cursor: pointer;
-  margin-top: 15px;
-`;
-
-export const HomeMainGoogleImg = styled.img`
-  height: 30px;
-  margin-right: 10px;
-`;
-
-export const HomeMainAppImg = styled.img`
-  height: 30px;
-  margin-right: 10px;
 `;
 
 //* 첫 번째
-
 export const HomeFirstContentsWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    min-width: 1440px;
-    height: 900px;
+  @media (max-width: 640px) {
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: auto;
   }
-  width: 100%;
-  background-color: white;
   display: flex;
-  justify-content: center;
-`;
-export const HomeFirstBody = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 1400px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-`;
-
-export const HomeFirstText = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 23px;
-    text-align: left;
-  }
-  color: #3e3939;
-  font-size: 110%;
-  line-height: 26px;
-  font-weight: 500;
-  margin-top: 35px;
-  text-align: center;
-`;
-
-export const HomeFirstLeftWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    padding: 270px 40px;
-  }
-  padding: 100px 0px 0px 0px;
-`;
-
-export const HomeFirstBtnWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    margin-top: 100px;
-    width: 300px;
-  }
-  display: flex;
+  height: 1000px;
+  width: 100%;
+  max-width: 1100px;
   justify-content: space-between;
-  margin-top: 30px;
 `;
 
-export const HomeFirstBtn = styled.img`
-  @media only all and (min-width: 680px) {
-    width: 63px;
+export const HomeSecondContentsWrapper = styled.div`
+  @media (max-width: 640px) {
+    padding-top: 50px;
+    height: auto;
   }
-  width: 40px;
-  margin-bottom: 10px;
-`;
-
-export const HomeFirstBtnText = styled.div`
-  @media only all and (min-width: 680px) {
-    margin-top: 8px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #3e3939;
-  }
-  font-size: 100%;
-`;
-
-export const HomeFirstBtnTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  height: 1100px;
+  padding-top: 100px;
 `;
 
-export const HomeFirstRightBody = styled.div`
-  @media only all and (min-width: 680px) {
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
+export const HomeContentsTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HomeSecendContentsTextWrapper = styled.div`
+  @media (max-width: 640px) {
+    text-align: center;
   }
   display: flex;
+  flex-direction: column;
+`;
+
+export const HomeContentsTitle = styled.div`
+  @media (max-width: 640px) {
+    text-align: center;
+    font-size: 30px;
+  }
+  font-size: 44px;
+  font-weight: 700;
+`;
+
+export const HomeContentsIconWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-top: 60px;
+`;
+
+export const HomeContentsIcon = styled.img`
+  @media (max-width: 640px) {
+    width: 40px;
+  }
+  margin-right: 20px;
+`;
+
+export const HomeContentsTextBold = styled.div`
+  @media (max-width: 640px) {
+    font-size: 16px;
+  }
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+`;
+
+export const HomeContentsText = styled.div`
+  @media (max-width: 640px) {
+    font-size: 14px;
+  }
+  font-size: 18px;
+`;
+
+export const HomeFirstPngWrapper = styled.div`
+  @media (max-width: 640px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 5%;
+    width: 100%;
+  }
+  display: flex;
+  position: relative;
+  /* top: -5%; */
+  width: 50%;
+`;
+
+export const HomeLastPngWrapper = styled.div`
+  @media (max-width: 640px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 0px;
+    width: 100%;
+  }
+  display: flex;
+
+  position: relative;
+  width: 50%;
   align-items: center;
 `;
 
-export const HomeFirstRightImg = styled.img`
-  @media only all and (min-width: 680px) {
-    width: 770px;
+export const HomeLastPng = styled.img`
+  @media (max-width: 640px) {
+    width: 30%;
   }
-  width: 100%;
+  width: 50%;
+  z-index: 2;
+`;
+
+export const HomeLastPng2 = styled.img`
+  @media (max-width: 640px) {
+    width: 35%;
+    left: 0%;
+    display: flex;
+    position: relative;
+    /* top: 0%; */
+  }
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  z-index: 1;
+`;
+
+export const HomeLastPng3 = styled.img`
+  @media (max-width: 640px) {
+    width: 30%;
+    left: 0%;
+    display: flex;
+    position: relative;
+    top: 0%;
+  }
+  position: absolute;
+  width: 50%;
+  left: 50%;
+`;
+
+export const HomeMyPng = styled.img`
+  @media (max-width: 640px) {
+    width: 40%;
+  }
+  width: 55%;
+`;
+
+export const HomeMyDalin = styled.img`
+  @media (max-width: 640px) {
+    width: 40%;
+  }
+  width: 60%;
+`;
+export const HomeMyDalin2 = styled.img`
+  @media (max-width: 640px) {
+    width: 40%;
+    left: 0%;
+    display: flex;
+    position: relative;
+    top: 0%;
+  }
+  width: 60%;
+  left: 45%;
+  top: 10%;
+  position: absolute;
+`;
+
+export const HomeKeyPng = styled.img`
+  @media (max-width: 640px) {
+    width: 40%;
+    left: 0%;
+    display: flex;
+    position: relative;
+    top: 0%;
+  }
+  position: absolute;
+  width: 55%;
+  top: 20%;
+  left: 42%;
 `;
 
 //* 두 번째
-
-export const HomeSecondContentsWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    min-width: 1440px;
-    height: 900px;
-    background-color: #f7f5ef;
-    display: flex;
-    justify-content: center;
-  }
-  width: 100%;
-  /* height: 900px; */
-  background-color: #f7f5ef;
+export const HomeSecondPngWrapper = styled.div`
   display: flex;
+  position: relative;
   justify-content: center;
 `;
 
-//* 테마 스쿨
-export const HomeSchoolThemeWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    min-width: 1440px;
-    height: 925px;
-    display: flex;
-    background-color: #da4446;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1920px;
-  }
-  width: 100%;
-  height: 924px;
-  background-color: #da4446;
-  display: flex;
-  flex-direction: column;
-  padding-top: 100px;
-`;
-export const HomeSchoolContentsWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    max-width: 1280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-export const HomeSchollTextWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+export const HomeTriplePng1 = styled.img`
+  width: 55%;
 `;
 
-export const HomeSchoolTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 48px;
-    margin-bottom: -13px;
-  }
-  font-size: 150%;
-  margin-top: 20px;
-  color: white;
+export const HomeTriplePng2 = styled.img`
+  width: 55%;
+  position: absolute;
+  left: 0%;
 `;
 
-export const HomeSchoolSubTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    color: white;
-    font-size: 58px;
-  }
-  color: white;
-  font-size: 250%;
-  font-weight: bold;
-`;
-
-export const HomeSchoolText = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 23px;
-    line-height: 32px;
-  }
-  color: white;
-  font-size: 110%;
-  line-height: 32px;
-  font-weight: 450;
-  margin-top: 30px;
-`;
-
-export const HomeSchoolImgWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    display: flex;
-  }
-  margin-top: 18px;
-`;
-
-export const HomeSchoolImg = styled.img`
-  width: 320px;
-  margin: auto;
-`;
-
-//* FAQ
-export const HomeFAQWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    min-width: 1440px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    background-color: white;
-    padding: 100px 0px;
-  }
-  padding: 60px 0px;
-`;
-
-export const HomeFAQContentsWrapper = styled.div`
-  @media only all and (min-width: 680px) {
-    width: 100%;
-    max-width: 1280px;
-  }
-`;
-
-export const HomeFAQTitle = styled.div`
-  @media only all and (min-width: 680px) {
-    font-size: 50px;
-    margin-left: 0px;
-  }
-  margin-left: 30px;
-  font-weight: bold;
-  font-size: 250%;
-  margin-bottom: 30px;
-`;
-
-export const HomeFAQ = styled.div`
-  @media only all and (min-width: 680px) {
-    padding-left: 40px;
-  }
-  color: black;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 30px;
-  font-size: 16px;
-  cursor: pointer;
-`;
-
-export const HomeFAQAnswer = styled.div`
-  @media only all and (min-width: 680px) {
-    padding: 40px;
-  }
-  color: black;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e5e5e5;
-  font-size: 16px;
-  padding: 30px;
-  background-color: #f7f5ef;
+export const HomeTriplePng3 = styled.img`
+  width: 55%;
+  right: 0%;
+  position: absolute;
 `;

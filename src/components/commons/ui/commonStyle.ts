@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Body = styled.div`
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     padding: 30px 10px 30px 10px;
   }
   width: 100%;
@@ -30,7 +30,7 @@ export const Contents = styled.section`
 `;
 
 export const Title = styled.h3`
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     font-size: 16px;
   }
   display: flex;

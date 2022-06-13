@@ -27,7 +27,7 @@ export const FooterCompanyBottomWrapper = styled.div`
 `;
 
 export const FooterCompany = styled.div`
-  @media only all and (max-width: 600px) {
+  @media only all and (max-width: 640px) {
     font-size: 10px;
   }
   font-size: 12px;
@@ -49,7 +49,7 @@ export const FooterCompanyLine = styled.div`
 `;
 
 export const FooterContents = styled.div`
-  @media only all and (max-width: 600px) {
+  @media only all and (max-width: 640px) {
     font-size: 10px;
   }
   color: white;

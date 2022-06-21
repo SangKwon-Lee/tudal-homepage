@@ -15,12 +15,18 @@ const Footer = Loadable(
   lazy(() => import("../src/components/commons/footer/Footer.container"))
 );
 
-//* 홈, 로그인, 마이페이지
+//* 홈, 로그인, 마이페이지 회원가입
 const Home = Loadable(
   lazy(() => import("../src/components/home/Home.container"))
 );
 const Login = Loadable(
   lazy(() => import("../src/components/login/Login.container"))
+);
+const Welcome = Loadable(
+  lazy(() => import("../src/components/welcome/Welcome.container"))
+);
+const Signup = Loadable(
+  lazy(() => import("../src/components/signup/Signup.container"))
 );
 const Mypage = Loadable(
   lazy(() => import("../src/components/mypage/Mypage.container"))
@@ -29,10 +35,14 @@ const MyInfo = Loadable(
   lazy(() => import("../src/components/myInfo/MyInfo.container"))
 );
 
-//* 골드 충전, 충전 내역, 결제 성공 페이지
+//* 골드 충전, 구독결제,  충전 내역, 결제 성공 페이지
 const GoldCharge = Loadable(
   lazy(() => import("./components/goldCharge/GoldCharge.container"))
 );
+const Payment = Loadable(
+  lazy(() => import("./components/payment/Payment.container"))
+);
+
 const PaySuccess = Loadable(
   lazy(() => import("./components/paySuccess/PaySuccess.container"))
 );
@@ -51,13 +61,32 @@ const routes = [
       </>
     ),
   },
-
   {
     path: "/login",
     element: (
       <>
         <Header path="login" />
         <Login />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <>
+        <Header path="signup" />
+        <Signup />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/welcome",
+    element: (
+      <>
+        <Header path="signup" />
+        <Welcome />
         <Footer />
       </>
     ),
@@ -98,6 +127,16 @@ const routes = [
       <>
         <Header path="login" />
         <PaySuccess />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/payment/tudalus",
+    element: (
+      <>
+        <Header path="mypage" />
+        <Payment path="tudalUs" />
         <Footer />
       </>
     ),

@@ -64,3 +64,14 @@ export interface GoldHistory {
   updated_at: string;
   userId: number;
 }
+
+export interface TudalUsHistory {
+  created_at: string;
+  endDate: string;
+  id: number;
+  startDate: string;
+  subscription: boolean;
+  type: string;
+  updated_at: string;
+  userId: number;
+}

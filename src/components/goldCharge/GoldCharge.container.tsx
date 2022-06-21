@@ -1,13 +1,14 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { GlobalContext } from "../../App";
-import WithAuth from "../commons/hocs/withAuth";
-import GoldChargePresenter from "./GoldCharge.presenter";
-import moment from "moment";
-import { useNavigate } from "react-router";
 import dayjs from "dayjs";
+import moment from "moment";
+import { GlobalContext } from "../../App";
+import { useNavigate } from "react-router";
+import WithAuth from "../commons/hocs/withAuth";
+import { getUserId } from "../../commons/func/hash";
 import useGetUser from "../commons/hooks/useGetUser";
+import { apiServer } from "../../commons/axios/axios";
+import { useContext, useEffect, useState } from "react";
+import GoldChargePresenter from "./GoldCharge.presenter";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const REACT_APP_INNOPAY_MID = process.env.REACT_APP_INNOPAY_MID;
 const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
@@ -15,7 +16,7 @@ const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
 const GoldChargeContainer = () => {
   const { userData, userGold } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const userId = localStorage.getItem("tudalUser");
+  const userId = getUserId();
 
   //* 회원 정보 불러오기;
   useGetUser();
@@ -112,19 +113,16 @@ const GoldChargeContainer = () => {
   const postPayment = async (result: any) => {
     try {
       const code = `${moment().format("YYYYMMDDHHmmss")}`;
-      const { status } = await axios.post(
-        `https://api.tudal.co.kr/api/golds/${userId}/add`,
-        {
-          amount: gold, // 충전 골드
-          bonusAmount: bonusGold, // 충전 보너스 골드
-          category: "골드충전", // '골드충전'
-          code,
-          type: "add",
-          isExpired: false,
-          datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
-          payment: result.TID,
-        }
-      );
+      const { status } = await apiServer.post(`/golds/${userId}/add`, {
+        amount: gold, // 충전 골드
+        bonusAmount: bonusGold, // 충전 보너스 골드
+        category: "골드충전", // '골드충전'
+        code,
+        type: "add",
+        isExpired: false,
+        datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
+        payment: result.TID,
+      });
       if (status === 200) {
         alert("골드가 충전됐습니다.");
         navigate("/success");
@@ -144,7 +142,7 @@ const GoldChargeContainer = () => {
       .set("second", 0)
       .format("YYYYMMDDHHmmss")}`;
     try {
-      await axios.post(`https://api.tudal.co.kr/api/golds/web/depositInfo`, {
+      await apiServer.post(`/golds/web/depositInfo`, {
         userId,
         userName:
           userData?.name +

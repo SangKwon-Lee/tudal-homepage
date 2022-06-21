@@ -31,84 +31,95 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <>
-      <Header path={path === "/"}>
-        <HeaderNavWrapper>
-          <HeaderNav>
-            <picture>
-              <source
-                srcSet={TudalLogoWebp}
-                onClick={() => {
-                  navigate("/");
-                }}
-                type="image/webp"
-                width="90"
-              ></source>
-              <source
-                srcSet={TudalLogoWebp}
-                type="image/webp"
-                width="115"
-                media="(max-width:640px)"
-                onClick={() => {
-                  navigate("/");
-                }}
-              ></source>
-              <img
-                src={TudalLogoPng}
-                alt="로고"
-                width="115"
-                onClick={() => {
-                  navigate("/");
-                }}
-              ></img>
-            </picture>
-
-            <HeaderArrow
-              src={!isArrow ? DownArrow : UpArrow}
-              onClick={handleIsArrow}
-            />
-            {isArrow && (
-              <HeaderModalWrapper>
-                <HeaderBtn
-                  onClick={() => {
-                    window.open("https://us.tudal.co.kr");
-                  }}
-                >
-                  <HeaderLogo src={TudalUsLogo} />
-                  투달러스
-                </HeaderBtn>
-
-                <HeaderBtn
-                  onClick={() => {
-                    window.open("https://newsstock.tudal.co.kr");
-                  }}
-                >
-                  <HeaderLogo src={NewsLogo} />
-                  뉴스스탁
-                </HeaderBtn>
-              </HeaderModalWrapper>
-            )}
-          </HeaderNav>
-          <HeaderNav>
-            <HeaderMenu path={path === "gold"} href={`/gold`}>
-              골드충전
-            </HeaderMenu>
-            <HeaderMenu
-              path={path === "login" || path === "mypage"}
+    <Header path={path === "/"}>
+      <HeaderNavWrapper path={path === "/"}>
+        <HeaderNav>
+          <picture>
+            <source
+              srcSet={TudalLogoWebp}
               onClick={() => {
-                if (!userId) {
-                  navigate("/login");
-                } else {
-                  navigate("/mypage");
-                }
+                navigate("/");
               }}
-            >
-              {!userId ? "로그인" : "마이페이지"}
-            </HeaderMenu>
-          </HeaderNav>
-        </HeaderNavWrapper>
-      </Header>
-    </>
+              type="image/webp"
+              width="90"
+            ></source>
+            <source
+              srcSet={TudalLogoWebp}
+              type="image/webp"
+              width="115"
+              media="(max-width:640px)"
+              onClick={() => {
+                navigate("/");
+              }}
+            ></source>
+            <img
+              src={TudalLogoPng}
+              alt="로고"
+              width="115"
+              onClick={() => {
+                navigate("/");
+              }}
+            ></img>
+          </picture>
+
+          <HeaderArrow
+            src={!isArrow ? DownArrow : UpArrow}
+            onClick={handleIsArrow}
+          />
+          {isArrow && (
+            <HeaderModalWrapper>
+              <HeaderBtn
+                onClick={() => {
+                  window.open("https://us.tudal.co.kr");
+                }}
+              >
+                <HeaderLogo src={TudalUsLogo} />
+                투달러스
+              </HeaderBtn>
+              <HeaderBtn
+                onClick={() => {
+                  window.open("https://newsstock.tudal.co.kr");
+                }}
+              >
+                <HeaderLogo src={NewsLogo} />
+                뉴스스탁
+              </HeaderBtn>
+            </HeaderModalWrapper>
+          )}
+        </HeaderNav>
+        <HeaderNav>
+          {userId ? (
+            <>
+              <HeaderMenu path={path === "gold"} href={`/gold`}>
+                골드충전
+              </HeaderMenu>
+              <HeaderMenu
+                path={path === "login" || path === "mypage"}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
+                {"마이페이지"}
+              </HeaderMenu>
+            </>
+          ) : (
+            <>
+              <HeaderMenu path={path === "login"} href={`/login`}>
+                로그인
+              </HeaderMenu>
+              <HeaderMenu
+                path={path === "signup" || path === "mypage"}
+                onClick={() => {
+                  navigate("/welcome");
+                }}
+              >
+                회원가입
+              </HeaderMenu>
+            </>
+          )}
+        </HeaderNav>
+      </HeaderNavWrapper>
+    </Header>
   );
 };
 export default HeaderPresenter;

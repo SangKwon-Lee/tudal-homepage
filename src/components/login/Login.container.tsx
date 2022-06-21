@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../App";
-import { decrypt, encrypted } from "../../commons/hash";
 import LoginPresenter from "./Login.presenter";
+import { encrypted } from "../../commons/func/hash";
+import { apiServer } from "../../commons/axios/axios";
+import { useContext, useEffect, useRef, useState } from "react";
 
-const LoginContainer = () => {
+const LoginContainer = (props: any) => {
   //* 토큰 전역 함수
   const { setUserData } = useContext(GlobalContext);
 
@@ -74,25 +74,19 @@ const LoginContainer = () => {
       .toString()
       .padStart(4, "0");
     try {
-      const { data } = await axios.post(
-        "https://api.tudal.co.kr/api/user/checkProps",
-        {
-          phoneNumber: loginInput.phone,
-        }
-      );
+      const { data } = await apiServer.post("/user/checkProps", {
+        phoneNumber: loginInput.phone,
+      });
       if (data.length === 0) {
         alert("회원정보가 없습니다.");
         return;
       }
       if (data[0].name === loginInput.name) {
         try {
-          const { data } = await axios.post(
-            "https://api.tudal.co.kr/api/auth/smsSend",
-            {
-              phone: loginInput.phone,
-              message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
-            }
-          );
+          const { data } = await apiServer.post("/auth/smsSend", {
+            phone: loginInput.phone,
+            message: `[투자의달인] 인증번호는 [${randomCode}]입니다.`,
+          });
           if (data.code === "00") {
             setAuth({
               ...auth,
@@ -134,13 +128,10 @@ const LoginContainer = () => {
     }
     if (auth.code === loginInput.authCode) {
       try {
-        const result = await axios.post(
-          "https://api.tudal.co.kr/api/user/checkProps",
-          {
-            phoneNumber: loginInput.phone,
-          }
-        );
-        await axios.delete("https://api.tudal.co.kr/api/auth/smsSend", {
+        const result = await apiServer.post("/user/checkProps", {
+          phoneNumber: loginInput.phone,
+        });
+        await apiServer.delete("/auth/smsSend", {
           data: {
             phone: loginInput.phone,
           },
@@ -150,7 +141,14 @@ const LoginContainer = () => {
           code: "",
         });
         setUserData(result.data[0]);
-        localStorage.setItem("tudalUser", result.data[0].userId);
+        localStorage.setItem("tudalUser", encrypted(result.data[0].userId));
+        //@ts-ignore
+        var receiver = document.getElementById("receiver").contentWindow;
+        receiver.postMessage(
+          encrypted(result.data[0].userId),
+          "https://us.tudal.co.kr"
+        );
+
         setStep(() => step + 1);
       } catch (e) {}
     } else {

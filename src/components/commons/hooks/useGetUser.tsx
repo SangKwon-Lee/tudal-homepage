@@ -1,31 +1,27 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../../App";
+import { apiServer } from "../../../commons/axios/axios";
+import { getUserId } from "../../../commons/func/hash";
 
 const useGetUser = (): null => {
-  const userId = localStorage.getItem("tudalUser");
+  const userId = getUserId();
+
   const { setUserGold, setUserData } = useContext(GlobalContext);
 
   //* 유저 골드 및 회원 정보 불러오기
   const handleGetUserGold = async () => {
     if (userId) {
       try {
-        const { data } = await axios.get(
-          `https://api.tudal.co.kr/api/golds/${userId}`,
-          {
-            headers: {
-              pragma: "no-cache",
-            },
-          }
-        );
-        const { data: userData } = await axios.get(
-          `https://api.tudal.co.kr/api/user/${userId}`,
-          {
-            headers: {
-              pragma: "no-cache",
-            },
-          }
-        );
+        const { data } = await apiServer.get(`/golds/${userId}`, {
+          headers: {
+            pragma: "no-cache",
+          },
+        });
+        const { data: userData } = await apiServer.get(`/user/${userId}`, {
+          headers: {
+            pragma: "no-cache",
+          },
+        });
         setUserData(userData[0]);
         setUserGold(data[0]);
       } catch (e) {

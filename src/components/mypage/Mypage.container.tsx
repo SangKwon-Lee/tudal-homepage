@@ -1,12 +1,14 @@
-import MypagePresenter from "./Mypage.presenter";
 import { GlobalContext } from "../../App";
-import { useCallback, useContext, useEffect, useState } from "react";
-import axios from "axios";
 import WithAuth from "../commons/hocs/withAuth";
+import MypagePresenter from "./Mypage.presenter";
+import { getUserId } from "../../commons/func/hash";
 import useGetUser from "../commons/hooks/useGetUser";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { apiServer, cmsServer, CMS_TOKEN } from "../../commons/axios/axios";
 
 const MypageContainer = () => {
-  const userId = localStorage.getItem("tudalUser");
+  const userId = getUserId();
+
   const { userGold, userData } = useContext(GlobalContext);
 
   //* 회원 정보 불러오기;
@@ -14,6 +16,7 @@ const MypageContainer = () => {
 
   // * sort
   const [sort, setSort] = useState("");
+
   // * 사용내역, 구독내역 보기
   const [isView, setIsView] = useState({
     more: false,
@@ -27,18 +30,55 @@ const MypageContainer = () => {
   //* 사용내역
   const [goldHistory, setGoldHistory] = useState([]);
 
+  //* 투달러스 구독 내역
+  const [tudlaUsHistory, setTudlaUsHistory] = useState([
+    {
+      created_at: "",
+      endDate: "",
+      id: 0,
+      startDate: "",
+      subscription: false,
+      type: "",
+      updated_at: "",
+      userId: 0,
+    },
+  ]);
+
+  //* 투달러스 구독 골드 내역
+  const [tudlaUsHistoryGold, setTudlaUsHistoryGold] = useState([]);
+
   //* 골드 사용내역 불러오기
   const handleGetGoldHistory = useCallback(async () => {
     try {
-      const { data } = await axios.get(
-        `https://api.tudal.co.kr/api/golds/history/${userId}?limit=99999`,
+      const { data, status } = await apiServer.get(
+        `golds/history/${userId}?limit=99999`,
         {
           headers: {
             pragma: "no-cache",
           },
         }
       );
-      setGoldHistory(data);
+
+      if (status === 200 && data.length > 0) {
+        setTudlaUsHistoryGold(
+          data.filter((data: any) => data.category === "투달러스 구독")
+        );
+        setGoldHistory(data);
+      }
+    } catch (e) {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  //* 투달러스 구독 내역 불러오기
+  const handleGetTudalUsHistory = useCallback(async () => {
+    try {
+      //* 기존에 구독한 적이 있는지
+      const { data, status } = await cmsServer.get(
+        `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
+      );
+      if (status === 200 && data[0]) {
+        setTudlaUsHistory(data);
+      }
     } catch (e) {}
   }, [userId]);
 
@@ -63,7 +103,8 @@ const MypageContainer = () => {
   //* 유저 골드, 사용내역 정보 불러오기 useEffect
   useEffect(() => {
     handleGetGoldHistory();
-  }, [handleGetGoldHistory, userId]);
+    handleGetTudalUsHistory();
+  }, [handleGetGoldHistory, userId, handleGetTudalUsHistory]);
 
   return (
     <MypagePresenter
@@ -75,6 +116,8 @@ const MypageContainer = () => {
       handleSort={handleSort}
       goldHistory={goldHistory}
       handleIsView={handleIsView}
+      tudlaUsHistory={tudlaUsHistory}
+      tudlaUsHistoryGold={tudlaUsHistoryGold}
     />
   );
 };

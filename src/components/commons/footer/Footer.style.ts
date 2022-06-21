@@ -16,13 +16,16 @@ export const FooterWrapper = styled.div`
 
 export const FooterCompanyWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const FooterCompanyBottomWrapper = styled.div`
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
   display: flex;
 `;
 
@@ -51,6 +54,7 @@ export const FooterCompanyLine = styled.div`
 export const FooterContents = styled.div`
   @media only all and (max-width: 640px) {
     font-size: 10px;
+    margin-top: 25px;
   }
   color: white;
   font-size: 12px;
@@ -58,12 +62,19 @@ export const FooterContents = styled.div`
 `;
 
 export const FooterSNS = styled.img`
+  @media (max-width: 640px) {
+    margin-right: 20px;
+    margin-left: 0px;
+  }
   width: 32px;
   margin-left: 20px;
   cursor: pointer;
 `;
 
 export const FooterSNSWrapper = styled.div`
+  @media (max-width: 640px) {
+    justify-content: flex-start;
+  }
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;

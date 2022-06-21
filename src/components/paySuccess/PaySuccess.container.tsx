@@ -5,9 +5,9 @@ import {
   PaySuccessText,
   PaySuccessWrapper,
 } from "./PaySuccess.style";
-import BigCheck from "../../assets/images/bigCheck.png";
 import { useNavigate } from "react-router";
 import { Body } from "../commons/ui/commonStyle";
+import BigCheck from "../../assets/images/bigCheck.png";
 
 const PaySuccessContainer = () => {
   const navigate = useNavigate();

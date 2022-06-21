@@ -48,13 +48,13 @@ import {
   GoldChargeReceiptBtnWrapper,
   GoldChargeNameInput,
 } from "./GoldCharge.style";
+import { UserGold } from "../../commons/types/types";
+import moneyPNG from "../../assets/images/money.png";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
-import moneyPNG from "../../assets/images/money.png";
-import moneyWhitePNG from "../../assets/images/goldWhite.png";
 import goldCheckPNG from "../../assets/images/goldCheck.png";
-import { UserGold } from "../../commons/types/types";
+import moneyWhitePNG from "../../assets/images/goldWhite.png";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 
 interface IGoldChargeProps {

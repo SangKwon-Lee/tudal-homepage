@@ -4,6 +4,11 @@ export const LoginSubText = styled.div`
   font-size: 12px;
   padding-top: 8px;
 `;
+export const LoginSubTextBold = styled.span`
+  font-size: 12px;
+  padding-top: 8px;
+  font-weight: 700;
+`;
 
 export const LoginInputTitle = styled.div`
   font-size: 15px;

@@ -2,18 +2,18 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import ReactPixel from "react-facebook-pixel";
 import "./style/style.css";
-const options = {
-  autoConfig: true,
-  debug: false,
-};
+// const options = {
+//   autoConfig: true,
+//   debug: false,
+// };
 ReactPixel.track("PageView");
 ReactPixel.track("ViewContent");
 ReactPixel.init("3172269179709072");
 
 const Landing2 = () => {
-  const handleClick = () => {
-    ReactPixel.track("ViewContent");
-  };
+  // const handleClick = () => {
+  //   ReactPixel.track("ViewContent");
+  // };
 
   const initGA = () => {
     window.dataLayer = window.dataLayer || [];

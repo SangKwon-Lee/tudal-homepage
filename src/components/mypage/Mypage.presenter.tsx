@@ -10,9 +10,17 @@ import {
 } from "../goldCharge/GoldCharge.style";
 import moneyPNG from "../../assets/images/money.png";
 import paymentPNG from "../../assets/images/payment.png";
-// import historyPNG from "../../assets/images/history.png";
+import noGoldHistory from "../../assets/images/noGoldHistory.png";
+// import noSubHistory from "../../assets/images/noSubHistory.png";
+import historyPNG from "../../assets/images/history.png";
+import miniTudal from "../../assets/images/miniUsLogo.png";
 import settingPNG from "../../assets/images/setting.png";
-import { GoldHistory, UserData, UserGold } from "../../commons/types/types";
+import {
+  GoldHistory,
+  TudalUsHistory,
+  UserData,
+  UserGold,
+} from "../../commons/types/types";
 import {
   HistoryBonus,
   HistoryBtn,
@@ -27,11 +35,24 @@ import {
   HistoryTitleWrapper,
   HistoryType,
   HistoryWrapper,
+  NoHistory,
+  NoHistoryWrapper,
+  SubBtn,
+  SubContentsSubTitle,
+  SubContentsText,
+  SubContentsTextBold,
+  SubContentsTitle,
+  SubContentsWrapper,
+  SubLogo,
+  SubTitle,
+  SubTitleWrapper,
+  SubWrapper,
   UserNameIcon,
   UserNameWrapper,
 } from "./Mypage.style";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router";
+
 interface IMypageProps {
   sort: string;
   isView: {
@@ -41,8 +62,10 @@ interface IMypageProps {
   };
   length: number;
   goldHistory: any;
+  tudlaUsHistory: any;
   userData: UserData;
   userGold: UserGold;
+  tudlaUsHistoryGold: any;
   handleSort: (e: any) => void;
   handleIsView: (e: any) => void;
 }
@@ -71,6 +94,8 @@ const MypagePresenter: React.FC<IMypageProps> = ({
   handleSort,
   goldHistory,
   handleIsView,
+  tudlaUsHistory,
+  tudlaUsHistoryGold,
 }) => {
   const navigate = useNavigate();
   return (
@@ -181,7 +206,9 @@ const MypagePresenter: React.FC<IMypageProps> = ({
                 ))
                 .slice(0, length)
             ) : (
-              <div>골드 사용 내역이 없습니다.</div>
+              <NoHistoryWrapper>
+                <NoHistory src={noGoldHistory}></NoHistory>
+              </NoHistoryWrapper>
             )}
             {goldHistory.length > 5 && !isView.more && (
               <HistoryMoreWrapper>
@@ -193,7 +220,7 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           </>
         )}
       </Contents>
-      {/* <Contents>
+      <Contents>
         <Title
           id="subscription"
           style={{ cursor: "pointer" }}
@@ -202,7 +229,73 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           <GoldMoneyImg src={historyPNG} alt="" />
           구독내역
         </Title>
-      </Contents> */}
+        {isView.subscription && (
+          <>
+            {tudlaUsHistory.map((data: TudalUsHistory) => (
+              <SubWrapper key={data.id}>
+                <SubTitleWrapper>
+                  <SubLogo src={miniTudal} />
+                  <SubTitle>투달러스</SubTitle>
+                </SubTitleWrapper>
+                <SubContentsWrapper>
+                  <SubContentsTitle>구독 상태</SubContentsTitle>
+                  <SubContentsTextBold>
+                    {data.endDate
+                      ? dayjs(data.endDate).isAfter(dayjs().format())
+                        ? "구독 중"
+                        : "구독 종료"
+                      : "구독 중이 아닙니다"}
+                    {}
+                  </SubContentsTextBold>
+                </SubContentsWrapper>
+                <SubContentsWrapper>
+                  <SubContentsTitle>구독 기간</SubContentsTitle>
+                  <SubContentsTextBold>
+                    {data.endDate &&
+                      `${dayjs(data.startDate).format("YYYY.MM.DD")}~
+                    ${dayjs(data.endDate).format("YYYY.MM.DD")}`}
+                  </SubContentsTextBold>
+                </SubContentsWrapper>
+                <SubContentsWrapper>
+                  <SubContentsTitle>결제 골드</SubContentsTitle>
+                  <SubContentsTextBold>
+                    {tudlaUsHistoryGold.length > 0 &&
+                      tudlaUsHistoryGold[0]?.amount +
+                        tudlaUsHistoryGold[0]?.bonusAmount}
+                  </SubContentsTextBold>
+                </SubContentsWrapper>
+                <SubContentsWrapper>
+                  <SubContentsSubTitle>보유 골드</SubContentsSubTitle>
+                  <SubContentsText>
+                    -
+                    {tudlaUsHistoryGold.length > 0 &&
+                      tudlaUsHistoryGold[0]?.amount}
+                  </SubContentsText>
+                </SubContentsWrapper>
+                <SubContentsWrapper>
+                  <SubContentsSubTitle>보너스 골드</SubContentsSubTitle>
+                  <SubContentsText>
+                    -
+                    {tudlaUsHistoryGold.length > 0 &&
+                      tudlaUsHistoryGold[0]?.bonusAmount}
+                  </SubContentsText>
+                </SubContentsWrapper>
+                <SubContentsWrapper>
+                  <SubContentsTitle>결제 수단</SubContentsTitle>
+                  <SubContentsTextBold>
+                    {data.type === "gold" && "골드"}
+                  </SubContentsTextBold>
+                </SubContentsWrapper>
+                {!dayjs(data.endDate).isAfter(dayjs().format()) && (
+                  <SubBtn onClick={() => navigate("/payment/tudalUs")}>
+                    투달러스 구독하기
+                  </SubBtn>
+                )}
+              </SubWrapper>
+            ))}
+          </>
+        )}
+      </Contents>
     </Body>
   );
 };

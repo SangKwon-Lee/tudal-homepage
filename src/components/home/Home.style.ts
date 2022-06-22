@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 
 //* 제일 위
 export const HomeMainWrapper = styled.div`
+  @media (max-width: 640px) {
+    align-items: flex-start;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,13 +12,24 @@ export const HomeMainWrapper = styled.div`
   position: relative;
 `;
 
-export const HomeMainImg = styled.img`
+export const HomeMainImgWeb = styled.img`
   @media (max-width: 1100px) {
     height: 500px;
   }
   @media (max-width: 640px) {
     height: 700px;
+    display: none;
   }
+
+  width: 100%;
+  object-fit: cover;
+`;
+export const HomeMainImgMobile = styled.img`
+  @media (max-width: 640px) {
+    height: 700px;
+    display: flex;
+  }
+  display: none;
   width: 100%;
   object-fit: cover;
 `;
@@ -26,6 +40,7 @@ export const HomeMainContentsWrapper = styled.div`
     padding: 20px;
   }
   @media (max-width: 640px) {
+    margin-top: 130px;
     align-items: center;
   }
   position: absolute;

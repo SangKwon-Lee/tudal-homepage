@@ -13,7 +13,7 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 1s;
+  /* transition: all 1s; */
 `;
 
 export const Contents = styled.section`
@@ -25,8 +25,8 @@ export const Contents = styled.section`
   flex-direction: column;
   margin-bottom: 20px;
   border-radius: 10px;
-  transition: 0.7s;
   overflow: hidden;
+  /* transition: 0.7s; */
 `;
 
 export const Title = styled.h3`

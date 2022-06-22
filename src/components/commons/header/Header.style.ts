@@ -60,7 +60,9 @@ export const HeaderModalWrapper = styled.div`
   }
   background-color: white;
   position: absolute;
-  top: 100%;
+  top: 70px;
+  outline: none;
+  box-shadow: none;
   z-index: 9999;
   box-shadow: 0px 4px 20px 0px #00000040;
   border-radius: 5px;

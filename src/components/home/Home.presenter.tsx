@@ -1,5 +1,5 @@
 import {
-  HomeMainImg,
+  HomeMainImgWeb,
   HomeMainWrapper,
   HomeMainContentsWrapper,
   HomeContents,
@@ -33,6 +33,7 @@ import {
   HomeMyDalin2,
   HomeDalinPngWrapper,
   HomeDalinMediaPngWrapper,
+  HomeMainImgMobile,
 } from "./Home.style";
 
 // import Helmet from "react-helmet-async";
@@ -47,7 +48,8 @@ import searchPng2 from "../../assets/images/search02.png";
 import searchPng3 from "../../assets/images/search03.png";
 import dalin1 from "../../assets/images/dalin01.png";
 import dalin2 from "../../assets/images/dalin02.png";
-import mainBgBak from "../../assets/images/mainBgBak1.png";
+import mainBgBakWeb from "../../assets/images/main__web.png";
+import mainBgBakMobile from "../../assets/images/main_mobile.png";
 import googleIcon from "../../assets/images/google.png";
 import appIcon from "../../assets/images/apple.png";
 import webIcon1 from "../../assets/images/webicon_01.svg";
@@ -73,7 +75,8 @@ const HomePresenter = () => {
         </Helmet>
       </HelmetProvider>
       <HomeMainWrapper>
-        <HomeMainImg src={mainBgBak} />
+        <HomeMainImgWeb src={mainBgBakWeb} />
+        <HomeMainImgMobile src={mainBgBakMobile} />
         <HomeMainContentsWrapper>
           <HomeMainTitle>
             투자는 어렵지만,

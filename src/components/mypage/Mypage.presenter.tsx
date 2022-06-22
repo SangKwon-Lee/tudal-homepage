@@ -8,13 +8,6 @@ import {
   GoldDetailWrapper,
   GoldDetail,
 } from "../goldCharge/GoldCharge.style";
-import moneyPNG from "../../assets/images/money.png";
-import paymentPNG from "../../assets/images/payment.png";
-import noGoldHistory from "../../assets/images/noGoldHistory.png";
-// import noSubHistory from "../../assets/images/noSubHistory.png";
-import historyPNG from "../../assets/images/history.png";
-import miniTudal from "../../assets/images/miniUsLogo.png";
-import settingPNG from "../../assets/images/setting.png";
 import {
   GoldHistory,
   TudalUsHistory,
@@ -52,7 +45,13 @@ import {
 } from "./Mypage.style";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router";
-
+import moneyPNG from "../../assets/images/money.png";
+import paymentPNG from "../../assets/images/payment.png";
+import noGoldHistory from "../../assets/images/noGoldHistory.png";
+import historyPNG from "../../assets/images/history.png";
+import miniTudal from "../../assets/images/miniUsLogo.png";
+import settingPNG from "../../assets/images/setting.png";
+import { getUser } from "../../commons/func/chargeGold";
 interface IMypageProps {
   sort: string;
   isView: {
@@ -109,12 +108,11 @@ const MypagePresenter: React.FC<IMypageProps> = ({
               navigate("/myInfo");
             }}
             src={settingPNG}
-            alt=""
           />
         </UserNameWrapper>
         <GoldMyMoneyWrapper>
           <Title>
-            <GoldMoneyImg src={moneyPNG} alt="" />총 보유 골드
+            <GoldMoneyImg src={moneyPNG} />총 보유 골드
           </Title>
           <GoldMyGold>
             <GoldText>

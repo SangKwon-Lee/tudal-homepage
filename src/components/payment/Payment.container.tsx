@@ -95,6 +95,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       }
     } catch (e) {}
   };
+  console.log(subtractGold);
 
   const handleUserGoldSubtract = async () => {
     //* 골드가 부족할 경우
@@ -102,10 +103,9 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       alert("골드가 부족합니다.");
       return;
     }
-
     try {
       const code = `${moment().format("YYYYMMDDHHmmss")}`;
-      const { status } = await apiServer.post(`golds/${21107}/subtract`, {
+      const { status } = await apiServer.post(`golds/${userId}/subtract`, {
         amount: subtractGold.remainGold,
         bonusAmount: subtractGold.remainBonusGold,
         category: "투달러스 구독", // '골드충전'

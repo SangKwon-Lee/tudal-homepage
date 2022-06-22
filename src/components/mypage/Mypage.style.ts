@@ -44,8 +44,8 @@ export const HistoryWrapper = styled.div`
 
 export const HistoryType = styled.div`
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: ${(props: IMypageStyle) =>
     props.isType === "add"
       ? "1px solid #00B06A"
@@ -59,7 +59,7 @@ export const HistoryType = styled.div`
       ? "#FF3838"
       : "#2499FF"};
 
-  font-size: 12px;
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,38 +68,38 @@ export const HistoryType = styled.div`
 export const HistoryTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 130px;
+  width: 100px;
 `;
 
 export const HistoryTitle = styled.div`
-  font-size: 14px;
+  font-size: 13px;
   padding-bottom: 6px;
 `;
 
 export const HistoryText = styled.div`
-  font-size: 12px;
+  font-size: 11px;
   color: #6b6b6b;
 `;
 
 export const HistoryDate = styled.div`
-  font-size: 14px;
-  flex: 0.5;
+  font-size: 13px;
 `;
 
 export const HistoryGoldWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 65px;
   align-items: flex-end;
 `;
 
 export const HistoryGold = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   padding-bottom: 6px;
 `;
 
 export const HistoryBonus = styled.div`
-  font-size: 12px;
+  font-size: 11px;
   color: #6b6b6b;
 `;
 

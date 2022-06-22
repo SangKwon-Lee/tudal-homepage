@@ -51,7 +51,6 @@ import noGoldHistory from "../../assets/images/noGoldHistory.png";
 import historyPNG from "../../assets/images/history.png";
 import miniTudal from "../../assets/images/miniUsLogo.png";
 import settingPNG from "../../assets/images/setting.png";
-import { getUser } from "../../commons/func/chargeGold";
 interface IMypageProps {
   sort: string;
   isView: {

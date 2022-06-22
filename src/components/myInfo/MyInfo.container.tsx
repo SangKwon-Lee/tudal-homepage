@@ -15,6 +15,9 @@ const MyInfoContainer = () => {
   const handleLogout = () => {
     localStorage.removeItem("tudalUser");
     navigate("/");
+    //@ts-ignore
+    var receiver = document.getElementById("receiver").contentWindow;
+    receiver.postMessage("logout", "https://us.tudal.co.kr");
   };
 
   return <MyInfoPresenter userData={userData} handleLogout={handleLogout} />;

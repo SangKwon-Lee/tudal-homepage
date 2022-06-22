@@ -1,6 +1,4 @@
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 const { REACT_APP_CMS_TOKEN, REACT_APP_CMS_URL, REACT_APP_API_URL } =
   process.env;
 

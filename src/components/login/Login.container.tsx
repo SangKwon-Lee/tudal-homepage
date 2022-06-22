@@ -148,7 +148,6 @@ const LoginContainer = (props: any) => {
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
         );
-
         setStep(() => step + 1);
       } catch (e) {}
     } else {

@@ -1,6 +1,4 @@
 import CryptoJS from "crypto-js";
-import dotenv from "dotenv";
-dotenv.config();
 const { REACT_APP_HASH_KEY } = process.env;
 
 // encrypt

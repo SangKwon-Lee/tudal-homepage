@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../App";
 import { cmsServer, CMS_TOKEN, apiServer } from "../../commons/axios/axios";
 import { getUserId } from "../../commons/func/hash";
+import WithAuth from "../commons/hocs/withAuth";
 import useGetUser from "../commons/hooks/useGetUser";
 import PaymentPresenter from "./Payment.presenter";
 
@@ -176,4 +177,4 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
   );
 };
 
-export default PaymentContainer;
+export default WithAuth(PaymentContainer);

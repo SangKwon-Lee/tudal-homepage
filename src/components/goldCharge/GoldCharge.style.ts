@@ -75,6 +75,7 @@ export const GoldMenuWrapper = styled.div`
   cursor: pointer;
   margin-bottom: 10px;
   justify-content: space-between;
+
   border: ${(props: IGoldChargeStyleProps) =>
     props.isCheck ? "1px solid #FF3838" : "none"};
 `;
@@ -92,6 +93,9 @@ export const GoldMenuCircle = styled.div`
 `;
 
 export const GoldMenuCharge = styled.div`
+  @media (max-width: 600px) {
+    font-size: 15px;
+  }
   margin-left: 22px;
   color: ${(props: IGoldChargeStyleProps) =>
     props.isCheck ? "#FF3838" : "#4b4b4b"};
@@ -132,8 +136,11 @@ export const GoldMethodWrapper = styled.div`
 `;
 
 export const GoldMethodBtn = styled.button`
+  @media (max-width: 600px) {
+    padding: 12.5px;
+  }
+  padding: 15px;
   width: 100%;
-  height: 60px;
   max-width: 256px;
   font-size: 15px;
   font-weight: 700;
@@ -176,7 +183,6 @@ export const GoldChargeResultLine = styled.div`
 export const GoldChargeWarningWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 35px;
 `;
 
 export const GoldChargeWarningRedText = styled.div`
@@ -223,6 +229,10 @@ export const GoldChargeCheckText = styled.div`
 `;
 
 export const GoldChargeAccountWrapper = styled.div`
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   width: 100%;
   margin-top: 24px;
   display: flex;
@@ -239,6 +249,8 @@ export const GoldChargeAccountSmallText = styled.div`
 export const GoldChargeAccountBigText = styled.div`
   @media (max-width: 600px) {
     font-size: 12.5px;
+    margin-top: 5px;
+    padding-left: 0px;
   }
   font-size: 18px;
   font-weight: 700;
@@ -283,8 +295,11 @@ export const GoldChageMethodOption = styled.option`
 `;
 
 export const GoldChargePGBtn = styled.button`
+  @media (max-width: 600px) {
+    padding: 12.5px;
+  }
+  padding: 15px;
   width: 100%;
-  min-height: 60px;
   color: ${(props: IGoldChargeStyleProps) =>
     props.isCheck ? "white" : "#6B6B6B"};
   background-color: ${(props: IGoldChargeStyleProps) =>
@@ -308,7 +323,6 @@ export const GoldWarningWrapper = styled.div`
   /* padding: 16px 0px 28px 22px; */
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
 `;
 
 export const GoldWarningTitle = styled.div`
@@ -378,6 +392,9 @@ export const GoldChargeReceiptsWrapper = styled.div`
 `;
 
 export const GoldChargeReceiptsTitle = styled.div`
+  @media (max-width: 600px) {
+    font-size: 15px;
+  }
   font-size: 18px;
   font-weight: 700;
 `;

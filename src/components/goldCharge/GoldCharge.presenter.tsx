@@ -140,12 +140,12 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             </GoldDetailWrapper>
           </GoldMyMoneyWrapper>
         </Contents>
-        <Contents style={{ height: isCharge ? "860px" : "80px" }}>
+        <Contents>
           <GoldMyMoneyWrapper>
             <Title
               style={{
                 cursor: "pointer",
-                marginBottom: "50px",
+                marginBottom: isCharge ? "30px" : "0px",
               }}
               onClick={handleIsCharge}
             >
@@ -156,58 +156,62 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               <GoldChargeSubGold>30,000 골드</GoldChargeSubGold>
             </GoldChargeSubText> */}
           </GoldMyMoneyWrapper>
-          {goldData.map((data) => (
-            <GoldMenuWrapper
-              key={data}
-              onClick={() => handleGold(data)}
-              isCheck={gold === data}
-            >
-              <GoldMenuCircleWrapper>
-                {gold === data ? (
-                  <img src={goldCheckPNG} alt=""></img>
-                ) : (
-                  <GoldMenuCircle></GoldMenuCircle>
-                )}
+          {isCharge && (
+            <>
+              {goldData.map((data) => (
+                <GoldMenuWrapper
+                  key={data}
+                  onClick={() => handleGold(data)}
+                  isCheck={gold === data}
+                >
+                  <GoldMenuCircleWrapper>
+                    {gold === data ? (
+                      <img src={goldCheckPNG} alt=""></img>
+                    ) : (
+                      <GoldMenuCircle></GoldMenuCircle>
+                    )}
 
-                <GoldMenuCharge isCheck={gold === data}>
-                  {priceToString(data)}골드
-                </GoldMenuCharge>
-              </GoldMenuCircleWrapper>
-              <GoldMenuChargeBonus isCheck={gold === data}>
-                보너스골드
-                <GoldMenuChargeBonusSpan isCheck={gold === data}>
-                  + {priceToString(Number(data) / 10)}
-                </GoldMenuChargeBonusSpan>
-                골드
-              </GoldMenuChargeBonus>
-            </GoldMenuWrapper>
-          ))}
-          <GoldResultWrapper>
-            <GoldMyMoneyWrapper>
-              <Title>결제금액</Title>
-              <GoldChargeResultVATWrapper>
-                <GoldChargeResltGold isGold={inputCharge.money !== 0}>
-                  {priceToString(inputCharge.money)}
-                  <GOldChargeResultText>원</GOldChargeResultText>
-                </GoldChargeResltGold>
-                <GoldChargeResultLine />
-                <GOldChargeVAT>vat포함</GOldChargeVAT>
-              </GoldChargeResultVATWrapper>
-            </GoldMyMoneyWrapper>
-            <GoldResultLine />
-            <GoldChargeWarningWrapper>
-              <GoldChargeWarningImgWrapper>
-                <GoldChargeWarningImg src={WarningSVG} />
-                <GoldChargeWarningRedText>
-                  입금 전 잠깐!
-                </GoldChargeWarningRedText>
-              </GoldChargeWarningImgWrapper>
-              <GoldChargeWarningText>
-                무통장 입금과 신용카드 비씨카드, 삼성카드, 롯데카드 일시불
-                결제로 골드를 충전하실 수 있습니다.
-              </GoldChargeWarningText>
-            </GoldChargeWarningWrapper>
-          </GoldResultWrapper>
+                    <GoldMenuCharge isCheck={gold === data}>
+                      {priceToString(data)}골드
+                    </GoldMenuCharge>
+                  </GoldMenuCircleWrapper>
+                  <GoldMenuChargeBonus isCheck={gold === data}>
+                    보너스
+                    <GoldMenuChargeBonusSpan isCheck={gold === data}>
+                      + {priceToString(Number(data) / 10)}
+                    </GoldMenuChargeBonusSpan>
+                    골드
+                  </GoldMenuChargeBonus>
+                </GoldMenuWrapper>
+              ))}
+              <GoldResultWrapper>
+                <GoldMyMoneyWrapper>
+                  <Title>결제금액</Title>
+                  <GoldChargeResultVATWrapper>
+                    <GoldChargeResltGold isGold={inputCharge.money !== 0}>
+                      {priceToString(inputCharge.money)}
+                      <GOldChargeResultText>원</GOldChargeResultText>
+                    </GoldChargeResltGold>
+                    <GoldChargeResultLine />
+                    <GOldChargeVAT>vat포함</GOldChargeVAT>
+                  </GoldChargeResultVATWrapper>
+                </GoldMyMoneyWrapper>
+                <GoldResultLine />
+                <GoldChargeWarningWrapper>
+                  <GoldChargeWarningImgWrapper>
+                    <GoldChargeWarningImg src={WarningSVG} />
+                    <GoldChargeWarningRedText>
+                      입금 전 잠깐!
+                    </GoldChargeWarningRedText>
+                  </GoldChargeWarningImgWrapper>
+                  <GoldChargeWarningText>
+                    무통장 입금과 신용카드 비씨카드, 삼성카드, 롯데카드 일시불
+                    결제로 골드를 충전하실 수 있습니다.
+                  </GoldChargeWarningText>
+                </GoldChargeWarningWrapper>
+              </GoldResultWrapper>
+            </>
+          )}
         </Contents>
         <Contents
           style={{

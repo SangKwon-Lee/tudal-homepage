@@ -123,7 +123,7 @@ export const HomeFirstContentsWrapper = styled.div`
   }
   align-items: center;
   display: flex;
-  height: 1000px;
+  height: 936px;
   width: 100%;
   max-width: 1100px;
   justify-content: space-between;
@@ -137,11 +137,12 @@ export const HomeSecondContentsWrapper = styled.div`
     height: auto;
     align-items: flex-start;
   }
+  padding-top: 100px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 1100px;
+  height: 936px;
   padding-top: 100px;
 `;
 
@@ -205,7 +206,6 @@ export const HomeDalinPngWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    top: 30px;
   }
   display: flex;
   position: relative;
@@ -283,6 +283,8 @@ export const HomeMyPng = styled.img`
   @media (max-width: 640px) {
     width: 50%;
   }
+  top: -110px;
+  position: relative;
   width: 55%;
 `;
 
@@ -296,7 +298,7 @@ export const HomeKeyPng = styled.img`
   }
   position: absolute;
   width: 55%;
-  top: 20%;
+  top: 17%;
   left: 42%;
 `;
 
@@ -304,7 +306,9 @@ export const HomeMyDalin = styled.img`
   @media (max-width: 640px) {
     width: 50%;
   }
-  width: 60%;
+  top: -110px;
+  position: relative;
+  width: 65%;
 `;
 export const HomeMyDalin2 = styled.img`
   @media (max-width: 640px) {
@@ -314,8 +318,8 @@ export const HomeMyDalin2 = styled.img`
     position: relative;
     top: 100px;
   }
-  width: 60%;
-  left: 45%;
+  width: 65%;
+  left: 50%;
   top: 10%;
   position: absolute;
 `;
@@ -325,13 +329,13 @@ export const HomeSecondPngWrapper = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  margin-top: 30px;
 `;
 
 export const HomeTriplePng1 = styled.img`
   @media (max-width: 640px) {
     width: 100%;
   }
+  width: 366px;
   width: 55%;
 `;
 

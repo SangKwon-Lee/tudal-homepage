@@ -68,7 +68,7 @@ export const HistoryType = styled.div`
 export const HistoryTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 80px;
 `;
 
 export const HistoryTitle = styled.div`
@@ -166,16 +166,19 @@ export const SubContentsWrapper = styled.div`
 
 export const SubContentsTitle = styled.div`
   font-size: 14px;
-  width: 100px;
+  width: 80px;
 `;
 
 export const SubContentsSubTitle = styled.div`
   font-size: 13px;
   font-weight: 400;
-  width: 100px;
+  width: 80px;
 `;
 
 export const SubContentsTextBold = styled.div`
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
   font-weight: 700;
 `;
 

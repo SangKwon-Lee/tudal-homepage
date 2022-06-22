@@ -22,7 +22,7 @@ const GoldChargeContainer = () => {
   useGetUser();
 
   //* 골드
-  const [gold, setgold] = useState("0");
+  const [gold, setgold] = useState("100");
 
   //* 보너스 골드
   const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
@@ -30,7 +30,7 @@ const GoldChargeContainer = () => {
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
-    money: 0,
+    money: 10000,
     method: "CARD",
     number: "",
     isReceipt: false,

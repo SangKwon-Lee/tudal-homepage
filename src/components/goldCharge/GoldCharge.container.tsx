@@ -8,7 +8,7 @@ import useGetUser from "../commons/hooks/useGetUser";
 import { apiServer } from "../../commons/axios/axios";
 import { useContext, useEffect, useState } from "react";
 import GoldChargePresenter from "./GoldCharge.presenter";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 const REACT_APP_INNOPAY_MID = process.env.REACT_APP_INNOPAY_MID;
 const REACT_APP_INNOPAY_MERCHANTKEY = process.env.REACT_APP_INNOPAY_MERCHANTKEY;
@@ -214,19 +214,17 @@ const GoldChargeContainer = () => {
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <script
-            type="text/javascript"
-            src="https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
-            charSet="utf-8"
-          ></script>
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <script
+          type="text/javascript"
+          src="https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
+          charSet="utf-8"
+        ></script>
+      </Helmet>
       <GoldChargePresenter
         gold={gold}
         userGold={userGold}

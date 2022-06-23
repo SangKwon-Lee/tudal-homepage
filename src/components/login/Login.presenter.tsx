@@ -110,10 +110,11 @@ const LoginPresenter: React.FC<ILoginProps> = ({
                 <LoginSuccessBtn
                   style={{ marginRight: "30px" }}
                   onClick={() => {
+                    window.location.href = "https://us.tudal.co.kr";
                     navigator("/");
                   }}
                 >
-                  홈으로 가기
+                  투달러스로 가기
                 </LoginSuccessBtn>
                 <LoginSuccessBtn
                   onClick={() => {

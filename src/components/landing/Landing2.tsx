@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import ReactPixel from "react-facebook-pixel";
 import "./style/style.css";
 // const options = {
@@ -57,29 +57,24 @@ const Landing2 = () => {
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <meta charSet="UTF-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta
-            name="facebook-domain-verification"
-            content="wkuc1g0dofg634y6nz0t2z3kc9vr34"
-          />
-          <title>후달리던 투자가 투달해서 올랐다</title>
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=AW-10869743597"
-          ></script>
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-LCZJN06YNM"
-          ></script>
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <meta charSet="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="facebook-domain-verification"
+          content="wkuc1g0dofg634y6nz0t2z3kc9vr34"
+        />
+        <title>후달리던 투자가 투달해서 올랐다</title>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10869743597"
+        ></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-LCZJN06YNM"
+        ></script>
+      </Helmet>
       <div id="container">
         <div className="topWrap">
           <div className="topbg">

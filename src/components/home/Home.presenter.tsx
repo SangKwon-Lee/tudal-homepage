@@ -36,8 +36,7 @@ import {
   HomeMainImgMobile,
 } from "./Home.style";
 
-// import Helmet from "react-helmet-async";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import keyPng from "../../assets/images/my2.png";
 import myPng from "../../assets/images/key2.png";
 import triplePng1 from "../../assets/images/triple01.png";
@@ -61,19 +60,17 @@ import webIcon5 from "../../assets/images/webicon_05.svg";
 const HomePresenter = () => {
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <script
-            type="text/javascript"
-            src="https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
-            charSet="utf-8"
-          ></script>
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <script
+          type="text/javascript"
+          src="https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
+          charSet="utf-8"
+        ></script>
+      </Helmet>
       <HomeMainWrapper>
         <HomeMainImgWeb src={mainBgBakWeb} />
         <HomeMainImgMobile src={mainBgBakMobile} />

@@ -90,7 +90,6 @@ typings/
 *.DS_Store
 
 
-yarn.lock
 build/
 
 .env.development

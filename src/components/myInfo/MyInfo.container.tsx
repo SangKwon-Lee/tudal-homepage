@@ -4,6 +4,7 @@ import { useContext } from "react";
 import WithAuth from "../commons/hocs/withAuth";
 import { useNavigate } from "react-router";
 import useGetUser from "../commons/hooks/useGetUser";
+import { deleteCookie } from "../../commons/func/cookie";
 
 const MyInfoContainer = () => {
   const { userData } = useContext(GlobalContext);
@@ -13,7 +14,7 @@ const MyInfoContainer = () => {
   useGetUser();
 
   const handleLogout = () => {
-    localStorage.removeItem("tudalUser");
+    deleteCookie("tudalUser");
     navigate("/");
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;

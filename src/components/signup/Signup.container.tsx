@@ -6,7 +6,11 @@ import { apiServer } from "../../commons/axios/axios";
 import { changeBirth } from "../../commons/func/changeBirth";
 import useScrollReset from "../commons/hooks/useScrollReset";
 
-const SignupContainer = () => {
+interface SignupContainerProps {
+  path: string;
+}
+
+const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
   const navigate = useNavigate();
   useScrollReset();
   // * 회원가입 정보 관리
@@ -271,6 +275,7 @@ const SignupContainer = () => {
 
   return (
     <SignupPresenter
+      path={path}
       isAuth={isAuth}
       isView={isView}
       isCheck={isCheck}

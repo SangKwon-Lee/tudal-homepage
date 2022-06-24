@@ -66,11 +66,12 @@ const routes = [
     element: (
       <>
         <Header path="login" />
-        <Login />
+        <Login path="tudal" />
         <Footer />
       </>
     ),
   },
+
   {
     path: "/signup",
     element: (
@@ -132,16 +133,6 @@ const routes = [
     ),
   },
   {
-    path: "/payment/tudalus",
-    element: (
-      <>
-        <Header path="mypage" />
-        <Payment path="tudalUs" />
-        <Footer />
-      </>
-    ),
-  },
-  {
     path: "/landing/2",
     element: (
       <>
@@ -154,6 +145,37 @@ const routes = [
     element: (
       <>
         <Landing3 />
+      </>
+    ),
+  },
+  //* 투달러스 페이지
+  {
+    path: "/tudalus/login",
+    element: (
+      <>
+        <Header path="login" route="tudalus" />
+        <Login path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/signup",
+    element: (
+      <>
+        <Header path="signup" route="tudalus" />
+        <Signup path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/payment",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <Payment path="tudalUs" />
+        <Footer />
       </>
     ),
   },

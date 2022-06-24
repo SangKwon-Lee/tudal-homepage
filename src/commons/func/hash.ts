@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+import { getCookie } from "./cookie";
 const { REACT_APP_HASH_KEY } = process.env;
 
 // encrypt
@@ -16,8 +17,8 @@ export const decrypt = (hash: any) => {
 
 // getUserId
 export const getUserId = () => {
-  if (localStorage.getItem("tudalUser")) {
-    return decrypt(localStorage.getItem("tudalUser"));
+  if (getCookie("tudalUser")) {
+    return decrypt(getCookie("tudalUser"));
   } else {
     return;
   }

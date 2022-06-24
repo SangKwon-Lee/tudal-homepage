@@ -13,7 +13,15 @@ const MypageContainer = () => {
 
   //* 회원 정보 불러오기;
   useGetUser();
+  //@ts-ignore
+  function setCookie(name, value, exp) {
+    var date = new Date();
+    date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+    document.cookie =
+      name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+  }
 
+  setCookie("pop", "event0405", 7); /* pop=event0405, 7일 뒤 만료됨 */
   // * sort
   const [sort, setSort] = useState("");
 

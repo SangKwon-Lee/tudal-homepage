@@ -1,26 +1,15 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { getUserId } from "../../../commons/func/hash";
 import HeaderPresenter from "./Header.presenter";
 
 interface IHeaderProps {
   path: string;
+  route: string;
 }
-const HeaderContainer: React.FC<IHeaderProps> = ({ path }) => {
+const HeaderContainer: React.FC<IHeaderProps> = ({ path, route }) => {
   const userId = getUserId();
 
-  const [isArrow, setIsArrow] = useState(false);
-
-  const handleIsArrow = () => {
-    setIsArrow(() => !isArrow);
-  };
-
-  return (
-    <HeaderPresenter
-      path={path}
-      userId={userId}
-      isArrow={isArrow}
-      handleIsArrow={handleIsArrow}
-    />
-  );
+  return <HeaderPresenter path={path} route={route} userId={userId} />;
 };
 export default HeaderContainer;

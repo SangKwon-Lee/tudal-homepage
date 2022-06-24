@@ -9,7 +9,7 @@ import ogImg from "./assets/images/ogimg.png";
 import "react-app-polyfill/ie9";
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 const userDataInit = {
   birthday: "",
   ci: "",

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-
+import { Dropdown } from "react-bootstrap";
 interface IHeaderStyleProps {
   path?: boolean;
 }
@@ -49,7 +49,6 @@ export const HeaderMenu = styled.a`
 `;
 
 export const HeaderArrow = styled.img`
-  margin-left: 25px;
   cursor: pointer;
 `;
 
@@ -71,7 +70,7 @@ export const HeaderModalWrapper = styled.div`
 `;
 
 export const HeaderBtn = styled.button`
-  padding: 20px 15px;
+  padding: 20px 10px;
   border-radius: 5px;
   width: 100%;
   color: #7f7f7f;
@@ -85,6 +84,59 @@ export const HeaderBtn = styled.button`
 `;
 
 export const HeaderLogo = styled.img`
-  width: 70px;
-  margin-right: 10px;
+  width: 80px;
+  cursor: pointer;
+  margin-right: 20px;
+`;
+
+// * 드롭다운
+export const DropdownMenu = styled(Dropdown.Menu)`
+  width: 170px;
+  border: none;
+  box-shadow: 0px 4px 20px 0px #00000040;
+  border-radius: 5px;
+  outline: none;
+`;
+
+export const DropdownToggle = styled(Dropdown.Toggle)`
+  outline: none;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+`;
+
+export const DropdownWrapper = styled(Dropdown)`
+  background-color: white;
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 0px !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+  .dropdown-toggle::after {
+    display: none !important;
+    background-color: white !important;
+    outline: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: none !important;
+    outline: none !important;
+  }
+  .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: none !important;
+    outline: none !important;
+  }
+  .dropdown-toggle {
+    background-color: white !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 20px !important;
+  }
 `;

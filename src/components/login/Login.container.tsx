@@ -3,8 +3,13 @@ import LoginPresenter from "./Login.presenter";
 import { encrypted } from "../../commons/func/hash";
 import { apiServer } from "../../commons/axios/axios";
 import { useContext, useEffect, useRef, useState } from "react";
+import { setCookie } from "../../commons/func/cookie";
 
-const LoginContainer = (props: any) => {
+interface LoginContainerProps {
+  path: string;
+}
+
+const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
   //* 토큰 전역 함수
   const { setUserData } = useContext(GlobalContext);
 
@@ -24,9 +29,6 @@ const LoginContainer = (props: any) => {
     error: false,
     timeout: false,
   });
-
-  //* 로그인 화면 단계
-  const [step, setStep] = useState(0);
 
   //* 타이머 관련 상태 및 함수 useEffect
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -141,14 +143,16 @@ const LoginContainer = (props: any) => {
           code: "",
         });
         setUserData(result.data[0]);
-        localStorage.setItem("tudalUser", encrypted(result.data[0].userId));
+        setCookie("tudalUser", encrypted(result.data[0].userId), 30);
         //@ts-ignore
         var receiver = document.getElementById("receiver").contentWindow;
         receiver.postMessage(
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
         );
-        setStep(() => step + 1);
+        if (path === "tudalus") {
+          window.location.href = "https://us.tudal.co.kr";
+        }
       } catch (e) {}
     } else {
       setAuth({
@@ -170,7 +174,7 @@ const LoginContainer = (props: any) => {
     <LoginPresenter
       min={min}
       sec={sec}
-      step={step}
+      path={path}
       auth={auth}
       loginInput={loginInput}
       handleLogin={handleLogin}

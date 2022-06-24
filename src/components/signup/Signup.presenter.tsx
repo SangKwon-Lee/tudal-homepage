@@ -47,8 +47,10 @@ import welcomeImg from "../../assets/images/welcome.svg";
 import { phoneArr, phoneArr2, signupArr } from "../commons/option/signup";
 import { isFrugalPhone, isPhone } from "../../commons/func/isPhone";
 import { useNavigate } from "react-router";
+import { changePath } from "../../commons/func/changePath";
 
 interface SignupProps {
+  path: string;
   isAuth: {
     isBtn: boolean;
     isAuthOk: boolean;
@@ -70,6 +72,7 @@ interface SignupProps {
 }
 
 const SignupPresenter: React.FC<SignupProps> = ({
+  path,
   isAuth,
   isView,
   isCheck,
@@ -88,12 +91,12 @@ const SignupPresenter: React.FC<SignupProps> = ({
         {isAuthCode.length === 0 && !isAuthOk ? (
           <>
             <Contents>
-              <Title>투자의달인 회원가입</Title>
+              <Title>{changePath(path)} 회원가입</Title>
               <SignupRedLine></SignupRedLine>
               <LoginSubText>
-                투자의달인 회원가입만해도 <br />
+                {changePath(path)} 회원가입만해도 <br />
                 <LoginSubTextBold>
-                  투달러스와 뉴스스탁 서비스까지 한 번에
+                  투자의 달인, 투달러스, 뉴스스탁 서비스까지 한 번에
                 </LoginSubTextBold>
                 &nbsp; 이용하실 수 있습니다.
               </LoginSubText>

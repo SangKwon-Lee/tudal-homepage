@@ -45,6 +45,11 @@ const reset = css`
   :lang(ko) {
     word-break: keep-all;
   }
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px;
+  }
 `;
 
 export const GlobalStyles = () => {

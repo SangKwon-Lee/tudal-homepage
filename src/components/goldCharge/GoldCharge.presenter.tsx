@@ -47,6 +47,8 @@ import {
   GoldChargeAccountLine,
   GoldChargeReceiptBtnWrapper,
   GoldChargeNameInput,
+  GoldChargeServiceWrapper,
+  GoldChargeServiceText,
 } from "./GoldCharge.style";
 import { UserGold } from "../../commons/types/types";
 import moneyPNG from "../../assets/images/money.png";
@@ -223,7 +225,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                 : isCharge && inputCharge.method === "VBANK"
                 ? "850px"
                 : isCharge
-                ? "580px"
+                ? "630px"
                 : "80px",
           }}
         >
@@ -390,6 +392,18 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
               환불됩니다.
             </GoldWarningText>
           </GoldWarningWrapper>
+          <GoldChargeServiceWrapper>
+            <GoldChargeServiceText
+              onClick={() => {
+                window.open(
+                  "https://app.tudal.co.kr/terms/service.html",
+                  "_blank"
+                );
+              }}
+            >
+              서비스 이용약관
+            </GoldChargeServiceText>
+          </GoldChargeServiceWrapper>
         </Contents>
       </Body>
     </>

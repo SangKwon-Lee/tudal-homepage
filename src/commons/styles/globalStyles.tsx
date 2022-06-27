@@ -49,6 +49,7 @@ const reset = css`
     font-size: 18px;
     font-weight: 700;
     margin: 0px;
+    color: #4b4b4b;
   }
 `;
 

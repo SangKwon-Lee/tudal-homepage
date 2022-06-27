@@ -34,6 +34,17 @@ const Mypage = Loadable(
 const MyInfo = Loadable(
   lazy(() => import("../src/components/myInfo/MyInfo.container"))
 );
+const GoldHistory = Loadable(
+  lazy(() => import("../src/components/goldHistory/GoldHistory.container"))
+);
+const SubscriptionHistory = Loadable(
+  lazy(
+    () =>
+      import(
+        "../src/components/subscriptionHistory/subscriptionHistory.container"
+      )
+  )
+);
 
 //* 골드 충전, 구독결제,  충전 내역, 결제 성공 페이지
 const GoldCharge = Loadable(
@@ -42,7 +53,6 @@ const GoldCharge = Loadable(
 const Payment = Loadable(
   lazy(() => import("./components/payment/Payment.container"))
 );
-
 const PaySuccess = Loadable(
   lazy(() => import("./components/paySuccess/PaySuccess.container"))
 );
@@ -96,8 +106,8 @@ const routes = [
     path: "/gold",
     element: (
       <>
-        <Header path="gold" />
-        <GoldCharge path="charge" />
+        <Header path="mypage" />
+        <GoldCharge path="mypage" />
         <Footer />
       </>
     ),
@@ -118,6 +128,26 @@ const routes = [
       <>
         <Header path="mypage" />
         <MyInfo path="mypage" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/history",
+    element: (
+      <>
+        <Header path="mypage" />
+        <GoldHistory path="mypage" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/subscription",
+    element: (
+      <>
+        <Header path="mypage" />
+        <SubscriptionHistory path="mypage" />
         <Footer />
       </>
     ),
@@ -174,7 +204,57 @@ const routes = [
     element: (
       <>
         <Header path="mypage" route="tudalus" />
-        <Payment path="tudalUs" />
+        <Payment path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/welcome",
+    element: (
+      <>
+        <Header path="signup" route="tudalus" />
+        <Welcome path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/mypage",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <Mypage path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/gold",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <GoldCharge path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/history",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <GoldHistory path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/subscription",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <SubscriptionHistory path="tudalus" />
         <Footer />
       </>
     ),

@@ -27,8 +27,12 @@ export const GoldText = styled.span`
 `;
 
 export const GoldMyGold = styled.div`
-  color: #6b6b6b;
-  font-size: 16px;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+  color: #ff3838;
+  font-weight: 700;
+  font-size: 25px;
   display: flex;
   align-items: center;
 `;
@@ -447,4 +451,18 @@ export const GoldChargeReceiptsinput = styled.input`
     color: #a8a8a8;
   }
   outline: none;
+`;
+
+export const GoldChargeServiceWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
+
+export const GoldChargeServiceText = styled.span`
+  color: #3476fa;
+  font-size: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #3476fa;
 `;

@@ -47,8 +47,10 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
   handleUserGoldSubtract,
 }) => {
   const navigate = useNavigate();
+
   //* 회원 정보 불러오기;
   useGetUser();
+
   //* 회원 정보
   const { userGold } = useContext(GlobalContext);
 
@@ -67,12 +69,12 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
               <PaymetnTitleWrapper>
                 {step === 1 ? (
                   <PaymentTitle>
-                    {path === "tudalUs" ? "투달러스" : "뉴스스탁"}한 달
+                    {path === "tudalus" ? "투달러스" : "뉴스스탁"}한 달
                     구독하기가 결제 완료되었습니다
                   </PaymentTitle>
                 ) : canBuy ? (
                   <PaymentTitle>
-                    {path === "tudalUs" ? "투달러스" : "뉴스스탁"}한 달
+                    {path === "tudalus" ? "투달러스" : "뉴스스탁"}한 달
                     구독하기를 구매합니다.
                   </PaymentTitle>
                 ) : (
@@ -86,7 +88,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
               </PaymetnTitleWrapper>
               <PaymentContents>
                 <PaymentContentsTitle>
-                  상품명 : {path === "tudalUs" ? "투달러스" : "뉴스스탁"}
+                  상품명 : {path === "tudalus" ? "투달러스" : "뉴스스탁"}
                 </PaymentContentsTitle>
                 <PaymentContentsWrapper
                   style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -176,7 +178,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
                   window.location.href = "https://us.tudal.co.kr";
                 }}
               >
-                {path === "tudalUs" ? "투달러스" : "뉴스스탁"} 보러가기
+                {path === "tudalus" ? "투달러스" : "뉴스스탁"} 보러가기
               </PaymentBtn>
             ) : (
               <PaymentBtn

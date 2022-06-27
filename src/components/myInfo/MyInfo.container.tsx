@@ -14,11 +14,11 @@ const MyInfoContainer = () => {
   useGetUser();
 
   const handleLogout = () => {
-    deleteCookie("tudalUser");
-    navigate("/");
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");
+    deleteCookie("tudalUser");
+    navigate("/");
   };
 
   return <MyInfoPresenter userData={userData} handleLogout={handleLogout} />;

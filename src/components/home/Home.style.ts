@@ -282,6 +282,7 @@ export const HomeLastPng3 = styled.img`
 export const HomeMyPng = styled.img`
   @media (max-width: 640px) {
     width: 50%;
+    top: 0px;
   }
   top: -110px;
   position: relative;
@@ -305,6 +306,7 @@ export const HomeKeyPng = styled.img`
 export const HomeMyDalin = styled.img`
   @media (max-width: 640px) {
     width: 50%;
+    top: 0px;
   }
   top: -110px;
   position: relative;

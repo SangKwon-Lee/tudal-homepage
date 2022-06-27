@@ -96,7 +96,6 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       }
     } catch (e) {}
   };
-  console.log(subtractGold);
 
   const handleUserGoldSubtract = async () => {
     //* 골드가 부족할 경우

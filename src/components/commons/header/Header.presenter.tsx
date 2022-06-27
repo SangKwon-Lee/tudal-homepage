@@ -9,22 +9,29 @@ import {
   DropdownToggle,
   DropdownWrapper,
   DropdownMenu,
+  HeaderMenuLine,
 } from "./Header.style";
 import TudalLogoPng from "../../../assets/images/tudal_logo.png";
 import TudalUsLogo from "../../../assets/images/tudalus_logo02.svg";
 import NewsLogo from "../../../assets/images/newsstock.svg";
 import DownArrow from "../../../assets/images/downArrow.png";
 import { useNavigate } from "react-router";
+import { customNavigate } from "../../../commons/func/customNavigate";
 
 interface IHeaderProps {
   path: string;
   route: string;
   userId: string | null;
+  handleLogout: () => void;
 }
 
-const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
+const HeaderPresenter: React.FC<IHeaderProps> = ({
+  path,
+  route,
+  userId,
+  handleLogout,
+}) => {
   const navigate = useNavigate();
-
   return (
     <Header path={path === "/"}>
       <HeaderNavWrapper path={path === "/"}>
@@ -32,6 +39,13 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
           <HeaderLogo
             style={{ width: "100px" }}
             src={route === "tudalus" ? TudalUsLogo : TudalLogoPng}
+            onClick={() => {
+              if (route === "tudalus") {
+                window.location.href = "https://us.tudal.co.kr";
+              } else {
+                navigate("/");
+              }
+            }}
           />
           <DropdownWrapper>
             <DropdownToggle>
@@ -85,25 +99,31 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
             <>
               <HeaderMenu
                 path={path === "login" || path === "mypage"}
-                onClick={() => {
-                  navigate("/mypage");
-                }}
+                onClick={() => navigate(customNavigate(route, "mypage"))}
               >
                 MY
               </HeaderMenu>
+              <HeaderMenuLine />
+              <HeaderMenu onClick={handleLogout}>로그아웃</HeaderMenu>
             </>
           ) : (
             <>
-              <HeaderMenu path={path === "login"} href={`/login`}>
-                로그인
-              </HeaderMenu>
               <HeaderMenu
                 path={path === "signup" || path === "mypage"}
                 onClick={() => {
-                  navigate("/welcome");
+                  navigate(customNavigate(route, "welcome"));
                 }}
               >
                 회원가입
+              </HeaderMenu>
+              <HeaderMenuLine />
+              <HeaderMenu
+                path={path === "login"}
+                onClick={() => {
+                  navigate(customNavigate(route, "login"));
+                }}
+              >
+                로그인
               </HeaderMenu>
             </>
           )}

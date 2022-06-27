@@ -15,14 +15,20 @@ import TudalLogoPng from "../../assets/images/tudal_logo.png";
 import TudalUsLogo from "../../assets/images/tudalus_logo02.svg";
 import NewsLogo from "../../assets/images/newsstock.svg";
 import { useNavigate } from "react-router";
-const WelcomePresenter = () => {
+import { changePath } from "../../commons/func/changePath";
+import { customNavigate } from "../../commons/func/customNavigate";
+
+interface WelcomeProps {
+  path: string;
+}
+const WelcomePresenter: React.FC<WelcomeProps> = ({ path }) => {
   const navigate = useNavigate();
   return (
     <Body>
-      <WelcomeTitle>투자의달인에 오신 것을 환영합니다</WelcomeTitle>
+      <WelcomeTitle>{changePath(path)}에 오신 것을 환영합니다</WelcomeTitle>
       <WelcomeSubTitle>
-        투자의달인 회원가입 후 <br /> 투달러스와 뉴스스탁 서비스를 함께 이용해
-        보세요
+        {changePath(path)} 회원가입 후 <br /> 투달러스, 뉴스스탁, 투자의달인
+        서비스를 함께 이용해 보세요
       </WelcomeSubTitle>
       <WelcomeContentsWrapper>
         <WelcomeContents>
@@ -56,7 +62,11 @@ const WelcomePresenter = () => {
           </WelcomeContentsText>
         </WelcomeContents>
       </WelcomeContentsWrapper>
-      <WelcomeSignupBtn onClick={() => navigate("/signup")}>
+      <WelcomeSignupBtn
+        onClick={() => {
+          navigate(customNavigate(path, "signup"));
+        }}
+      >
         회원가입
       </WelcomeSignupBtn>
     </Body>

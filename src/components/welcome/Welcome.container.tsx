@@ -1,6 +1,9 @@
 import WelcomePresenter from "../welcome/Welcome.presenter";
 
-const WelcomeContainer = () => {
-  return <WelcomePresenter />;
+interface WelcomeContainerProps {
+  path: string;
+}
+const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ path }) => {
+  return <WelcomePresenter path={path} />;
 };
 export default WelcomeContainer;

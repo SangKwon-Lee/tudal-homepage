@@ -4,12 +4,14 @@ import { encrypted } from "../../commons/func/hash";
 import { apiServer } from "../../commons/axios/axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { setCookie } from "../../commons/func/cookie";
+import { useNavigate } from "react-router";
 
 interface LoginContainerProps {
   path: string;
 }
 
 const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
+  const navigate = useNavigate();
   //* 토큰 전역 함수
   const { setUserData } = useContext(GlobalContext);
 
@@ -150,8 +152,11 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
         );
+
         if (path === "tudalus") {
           window.location.href = "https://us.tudal.co.kr";
+        } else {
+          navigate("/mypage");
         }
       } catch (e) {}
     } else {

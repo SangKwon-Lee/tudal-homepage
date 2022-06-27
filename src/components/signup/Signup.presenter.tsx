@@ -193,6 +193,7 @@ const SignupPresenter: React.FC<SignupProps> = ({
                     <SignupCheckText onClick={handleCheck} id={index}>
                       {
                         <CheckImg
+                          id={index}
                           src={isCheck[index] ? checkColor : checkGray}
                         />
                       }

@@ -47,12 +47,40 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
   //* 골드가 부족한지
   const [canBuy, setCanBuy] = useState(true);
 
+  //* 투달러스 구독 내역
+  const [tudlaUsHistory, setTudlaUsHistory] = useState([
+    {
+      created_at: "",
+      endDate: "",
+      id: 0,
+      startDate: "",
+      subscription: false,
+      type: "",
+      updated_at: "",
+      userId: 0,
+    },
+  ]);
+
   useEffect(() => {
     if (userId && userGold.userId !== 0) {
       handleGetProduct();
+      handelGetPremiumUser();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, userGold, userId]);
+
+  //* 유저의 구독 정보 불러오기
+  const handelGetPremiumUser = async () => {
+    try {
+      //* 기존에 구독한 적이 있는지
+      const { data, status } = await cmsServer.get(
+        `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
+      );
+      if (status === 200 && data[0]) {
+        setTudlaUsHistory(data[0]);
+      }
+    } catch (e) {}
+  };
 
   //* 상품 정보 불러오기
   const handleGetProduct = async () => {
@@ -132,13 +160,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       type: "gold",
       subscription: true,
     };
-    const editData = {
-      userId,
-      startDate: dayjs().add(9, "hour"),
-      endDate: dayjs().add(30, "day").add(9, "hour"),
-      type: "gold",
-      subscription: true,
-    };
+
     try {
       //* 기존에 구독한 적이 있는지
       const { data: user, status: userStatus } = await cmsServer.get(
@@ -146,8 +168,14 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       );
       if (userStatus === 200 && user[0]) {
         //* 구독한 적이 있으면 수정
+        const editData = {
+          userId,
+          endDate: dayjs(user[0].endDate).add(30, "day").add(9, "hour"),
+          type: "gold",
+          subscription: true,
+        };
         await cmsServer.put(
-          `/tudalus-premium-users/${user[0].id}}&token=${CMS_TOKEN}`,
+          `/tudalus-premium-users/${user[0].id}}?token=${CMS_TOKEN}`,
           editData
         );
       } else {
@@ -171,6 +199,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       loading={loading}
       product={product}
       subtractGold={subtractGold}
+      tudlaUsHistory={tudlaUsHistory}
       handleUserGoldSubtract={handleUserGoldSubtract}
     />
   );

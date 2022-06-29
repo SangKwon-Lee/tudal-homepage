@@ -34,6 +34,7 @@ interface PaymentProps {
     remainUserGold: number;
     remainUserBonusGold: number;
   };
+  tudlaUsHistory: any;
   handleUserGoldSubtract: () => void;
 }
 
@@ -44,6 +45,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
   canBuy,
   product,
   subtractGold,
+  tudlaUsHistory,
   handleUserGoldSubtract,
 }) => {
   const navigate = useNavigate();
@@ -53,7 +55,6 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
 
   //* 회원 정보
   const { userGold } = useContext(GlobalContext);
-
   return (
     <Body>
       <Contents>
@@ -103,8 +104,14 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
                     결제시 구독기간
                   </PaymentContentsSubTitle>
                   <PaymentContentsSubText>
-                    {dayjs().format("YYYY년 MM월 DD일")}~
-                    {dayjs().add(product[0].period, "day").format("MM월 DD일")}
+                    {dayjs(tudlaUsHistory.endDate).isAfter(dayjs().format())
+                      ? dayjs(tudlaUsHistory.endDate)
+                          .add(product[0].period, "day")
+                          .format("YYYY년 MM월 DD일")
+                      : dayjs()
+                          .add(product[0].period, "day")
+                          .format("YYYY년 MM월 DD일")}
+                    &nbsp;까지
                   </PaymentContentsSubText>
                 </PaymentContentsWrapper>
               </PaymentContents>

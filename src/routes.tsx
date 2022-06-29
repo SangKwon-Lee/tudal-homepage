@@ -259,6 +259,16 @@ const routes = [
       </>
     ),
   },
+  {
+    path: "/tudalus/myInfo",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <MyInfo path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
 ];
 
 export default routes;

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { cmsServer, CMS_TOKEN } from "../../commons/axios/axios";
 import { getUserId } from "../../commons/func/hash";
+import WithAuth from "../commons/hocs/withAuth";
 import useGetUser from "../commons/hooks/useGetUser";
 import SubscriptionHistoryPresenter from "./subscriptionHistory.presenter";
 
@@ -79,4 +80,4 @@ const SubscriptionHistoryContainer = () => {
   );
 };
 
-export default SubscriptionHistoryContainer;
+export default WithAuth(SubscriptionHistoryContainer);

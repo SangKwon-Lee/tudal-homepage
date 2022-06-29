@@ -6,7 +6,6 @@ export default function WithAuth(Component: any, path?: string) {
   return function HandleCheckLogin(props: any) {
     const navigate = useNavigate();
     const path = useLocation();
-    console.log(path.pathname.includes("tudalus"));
     const userId = getUserId();
     //* userId 체크
     useEffect(() => {

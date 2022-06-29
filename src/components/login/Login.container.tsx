@@ -148,9 +148,16 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
         setCookie("tudalUser", encrypted(result.data[0].userId), 30);
         //@ts-ignore
         var receiver = document.getElementById("receiver").contentWindow;
-        receiver.postMessage(
+        //@ts-ignore
+        var receiver2 = document.getElementById("receiver2").contentWindow;
+        await receiver.postMessage(
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
+        );
+
+        receiver2.postMessage(
+          encrypted(result.data[0].userId),
+          "http://localhost:3001"
         );
 
         if (path === "tudalus") {

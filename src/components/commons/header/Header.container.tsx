@@ -19,6 +19,7 @@ const HeaderContainer: React.FC<IHeaderProps> = ({ path, route }) => {
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");
+
     if (route === "tudalus") {
       window.location.href = "https://us.tudal.co.kr";
     } else {

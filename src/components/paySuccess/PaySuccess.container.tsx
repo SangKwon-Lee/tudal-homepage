@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router";
 import { Body } from "../commons/ui/commonStyle";
 import BigCheck from "../../assets/images/bigCheck.png";
+import WithAuth from "../commons/hocs/withAuth";
 
 const PaySuccessContainer = () => {
   const navigate = useNavigate();
@@ -29,4 +30,4 @@ const PaySuccessContainer = () => {
     </Body>
   );
 };
-export default PaySuccessContainer;
+export default WithAuth(PaySuccessContainer);

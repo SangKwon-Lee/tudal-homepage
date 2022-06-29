@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiServer } from "../../commons/axios/axios";
 import { getUserId } from "../../commons/func/hash";
+import WithAuth from "../commons/hocs/withAuth";
 import useGetUser from "../commons/hooks/useGetUser";
 import GoldHistoryPresenter from "./GoldHistory.presenter";
 
@@ -73,4 +74,4 @@ const GoldHistoryContainer = () => {
   );
 };
 
-export default GoldHistoryContainer;
+export default WithAuth(GoldHistoryContainer);

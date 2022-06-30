@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { getUserId } from "../../../commons/func/hash";
 
-export default function WithAuth(Component: any, path?: string) {
+export default function WithAuth(Component: any) {
   return function HandleCheckLogin(props: any) {
     const navigate = useNavigate();
     const path = useLocation();
@@ -18,7 +18,7 @@ export default function WithAuth(Component: any, path?: string) {
         }
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userId]);
+    }, [userId, path.pathname]);
     if (!userId) return <></>;
     return <Component {...props}></Component>;
   };

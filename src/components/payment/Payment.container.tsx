@@ -144,6 +144,8 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
         payment: "",
       });
       if (status === 200) {
+        window.scrollTo(0, 0);
+        alert("결제가 완료되었습니다.");
         handleUserSubscription();
       }
     } catch (e) {

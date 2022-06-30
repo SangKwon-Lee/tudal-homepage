@@ -70,13 +70,13 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
               <PaymetnTitleWrapper>
                 {step === 1 ? (
                   <PaymentTitle>
-                    {path === "tudalus" ? "투달러스" : "뉴스스탁"}한 달
-                    구독하기가 결제 완료되었습니다
+                    {/* {path === "tudalus" ? "투달러스" : "뉴스스탁"} */}
+                    구독 결제가 완료되었습니다
                   </PaymentTitle>
                 ) : canBuy ? (
                   <PaymentTitle>
-                    {path === "tudalus" ? "투달러스" : "뉴스스탁"}한 달
-                    구독하기를 구매합니다.
+                    {path === "tudalus" ? "투달러스" : "뉴스스탁"} 한 달 구독
+                    하기
                   </PaymentTitle>
                 ) : (
                   <PaymentTitle>결제할 골드가 부족합니다</PaymentTitle>
@@ -129,7 +129,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
                 </PaymentContentsWrapper>
                 <PaymentContentsWrapper>
                   <PaymentContentsSubTitle>
-                    보너스 골드 (구매금액의 10% 보너스 골드 차감)
+                    보너스 골드 (구매금액의 10%까지 차감)
                   </PaymentContentsSubTitle>
                   <PaymentContentsSubText>
                     -{product[0].gold / 10}개

@@ -101,15 +101,15 @@ const GoldHistoryPresenter: React.FC<GoldHistoryProps> = ({
                     <HistoryText>{data.category}</HistoryText>
                   </HistoryTitleWrapper>
                   <HistoryDate>
-                    {dayjs(data.datetime).format("YYYY.MM.DD.HH:mm")}
+                    {dayjs(data.datetime).format("YY.MM.DD HH:mm")}
                   </HistoryDate>
                   <HistoryGoldWrapper>
                     <HistoryGold>
-                      {data.type === "add" ? "+" : "-"}&nbsp;
+                      {/* {data.type === "add" ? "+" : "-"}&nbsp; */}
                       {data.amount}골드
                     </HistoryGold>
                     <HistoryBonus>
-                      {data.type === "add" ? "+" : "-"}&nbsp;
+                      {/* {data.type === "add" ? "+" : "-"}&nbsp; */}
                       {data.bonusAmount}골드
                     </HistoryBonus>
                   </HistoryGoldWrapper>

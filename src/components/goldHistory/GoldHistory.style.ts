@@ -11,10 +11,14 @@ export const HistoryBtnWrapper = styled.div`
 `;
 
 export const HistoryBtn = styled.button`
-  max-width: 84px;
+  @media (max-width: 640px) {
+    font-size: 12px;
+    max-width: 70px;
+  }
+  font-size: 14px;
+  max-width: 86px;
   width: 100%;
   height: 36px;
-  font-size: 13px;
   border: ${(props: IMypageStyle) =>
     props.isSort ? "none" : "1px solid #D9D9D9"};
   background-color: ${(props: IMypageStyle) =>
@@ -33,9 +37,14 @@ export const HistoryWrapper = styled.div`
 `;
 
 export const HistoryType = styled.div`
+  @media (max-width: 640px) {
+    width: 30px;
+    height: 30px;
+  }
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  margin-right: 8px;
   border: ${(props: IMypageStyle) =>
     props.isType === "add"
       ? "1px solid #00B06A"
@@ -58,11 +67,14 @@ export const HistoryType = styled.div`
 export const HistoryTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80px;
+  width: 75px;
 `;
 
 export const HistoryTitle = styled.div`
-  font-size: 13px;
+  @media (max-width: 640px) {
+    font-size: 12px;
+  }
+  font-size: 14px;
   padding-bottom: 6px;
 `;
 
@@ -108,6 +120,7 @@ export const HistoryMore = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 10px;
+  font-size: 12px;
 `;
 
 export const NoHistoryWrapper = styled.div`

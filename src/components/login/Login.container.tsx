@@ -156,11 +156,11 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           "https://us.tudal.co.kr"
         );
 
-        // if (path === "tudalus") {
-        //   window.location.href = "https://us.tudal.co.kr";
-        // } else {
-        //   navigate("/mypage");
-        // }
+        if (path === "tudalus") {
+          window.location.href = "https://us.tudal.co.kr";
+        } else {
+          navigate("/mypage");
+        }
       } catch (e) {}
     } else {
       setAuth({

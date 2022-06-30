@@ -145,20 +145,16 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           code: "",
         });
         setUserData(result.data[0]);
-        setCookie("tudalUser", encrypted(result.data[0].userId), 30);
+        setCookie("tudalUser", encrypted(result.data[0].userId), {
+          secure: false,
+        });
+
         //@ts-ignore
         var receiver = document.getElementById("receiver").contentWindow;
         receiver.postMessage(
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
         );
-
-        //@ts-ignore
-        // var receiver2 = document.getElementById("receiver2").contentWindow;
-        // receiver2.postMessage(
-        //   encrypted(result.data[0].userId),
-        //   "http://localhost:3001"
-        // );
 
         if (path === "tudalus") {
           window.location.href = "https://us.tudal.co.kr";
@@ -174,6 +170,11 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
       alert("인증번호가 일치하지 않습니다.");
     }
   };
+
+  //@ts-ignore
+  var receiver = document.getElementById("receiver").contentWindow;
+  console.log(receiver);
+  receiver.postMessage(encrypted("21107"), "https://us.tudal.co.kr");
 
   //* 엔터 키 누를 시 로그인 실행
   const onEnterLogin = (e: any) => {

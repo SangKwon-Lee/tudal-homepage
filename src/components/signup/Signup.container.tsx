@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
 import SignupPresenter from "./Signup.presenter";
 import { apiServer } from "../../commons/axios/axios";
 import { changeBirth } from "../../commons/func/changeBirth";
@@ -11,7 +10,6 @@ interface SignupContainerProps {
 }
 
 const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
-  const navigate = useNavigate();
   useScrollReset();
   // * 회원가입 정보 관리
   const [signupInput, setSignupInput] = useState({
@@ -78,7 +76,7 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
       if (status === 200 && data.result === "00") {
         const { authNumber, authReqNumber, requestTime } = data;
         setIsAuthCode(authNumber);
-
+        window.scrollTo(0, 0);
         handelRequestVerification(authNumber, authReqNumber, requestTime);
       } else {
         alert("인증에 실패했습니다. 다시 시도해주세요.");
@@ -211,36 +209,14 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
                     }
                   }
                 }
-              } catch (e) {
-                alert("오류가 발생했습니다. 다시 시도해주세요.");
-                navigate("/");
-              } finally {
-                // setUser(createResponse.data[0]);
-              }
+              } catch (e) {}
             }
-            // 유저가 만들어지지 않은 경우
-            else {
-              alert("오류가 발생했습니다. 다시 시도해주세요.");
-              navigate("/");
-            }
-          } else {
-            if (Object.keys(createUser).length > 0 && checkUser.userId) {
-              // setUser(createUser);
-            }
-            // 유저가 만들어지지 않은 경우
-            else {
-              alert("오류가 발생했습니다. 다시 시도해주세요.");
-              navigate("/");
-            }
+            alert("회원가입에 성공하였습니다.");
           }
         }
-      } else {
-        alert("오류가 발생했습니다. 다시 시도해주세요.");
-        navigate("/");
       }
     } catch (e) {
       alert("오류가 발생했습니다. 다시 시도해주세요.");
-      navigate("/");
     }
   };
 

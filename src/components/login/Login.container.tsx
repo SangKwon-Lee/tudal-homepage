@@ -156,11 +156,11 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           "https://us.tudal.co.kr"
         );
 
-        if (path === "tudalus") {
-          window.location.href = "https://us.tudal.co.kr";
-        } else {
-          navigate("/mypage");
-        }
+        // if (path === "tudalus") {
+        //   window.location.href = "https://us.tudal.co.kr";
+        // } else {
+        //   navigate("/mypage");
+        // }
       } catch (e) {}
     } else {
       setAuth({
@@ -170,11 +170,6 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
       alert("인증번호가 일치하지 않습니다.");
     }
   };
-
-  //@ts-ignore
-  var receiver = document.getElementById("receiver").contentWindow;
-  console.log(receiver);
-  receiver.postMessage(encrypted("21107"), "https://us.tudal.co.kr");
 
   //* 엔터 키 누를 시 로그인 실행
   const onEnterLogin = (e: any) => {

@@ -78,7 +78,9 @@
                 deleteCookie("tudalUser");
                 setCookie("tudalUser", "", 0);
               }else{
-                setCookie("tudalUser", e.data, 30)
+                if(e.data.includes("U2FsdGVkX")){
+                  setCookie("tudalUser", e.data, 30)
+                }
               }
             }
           }

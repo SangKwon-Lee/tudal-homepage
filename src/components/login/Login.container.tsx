@@ -168,7 +168,6 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
       alert("인증번호가 일치하지 않습니다.");
     }
   };
-
   //* 엔터 키 누를 시 로그인 실행
   const onEnterLogin = (e: any) => {
     if (e.key === "Enter") {

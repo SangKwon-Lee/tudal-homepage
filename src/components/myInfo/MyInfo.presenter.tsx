@@ -1,4 +1,3 @@
-import { deleteCookie, setCookie } from "../../commons/func/cookie";
 import { UserData } from "../../commons/types/types";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 import {

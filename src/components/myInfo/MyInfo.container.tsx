@@ -4,7 +4,7 @@ import { useContext } from "react";
 import WithAuth from "../commons/hocs/withAuth";
 import { useNavigate } from "react-router";
 import useGetUser from "../commons/hooks/useGetUser";
-import { deleteCookie, setCookie } from "../../commons/func/cookie";
+import { deleteCookie } from "../../commons/func/cookie";
 
 interface MyInfoProps {
   path: string;
@@ -12,22 +12,22 @@ interface MyInfoProps {
 
 const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
   const { userData } = useContext(GlobalContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //* 회원정보 불러오기
   useGetUser();
 
   const handleLogout = async () => {
-    setCookie("tudalUser", "", 0);
     deleteCookie("tudalUser");
-    alert("로그아웃 됐습니다");
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");
+    alert("로그아웃 됐습니다");
     if (path === "tudalus") {
-      window.location.href = "https://us.tudal.co.kr";
+      window.location.replace("https://us.tudal.co.kr");
+      // window.location.href = "https://us.tudal.co.kr";
     } else {
-      navigate("/");
+      window.location.replace("https://tudal.co.kr");
     }
   };
 

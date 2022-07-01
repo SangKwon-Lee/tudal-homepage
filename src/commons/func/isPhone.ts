@@ -1,3 +1,4 @@
+// * 회원가입시 유저의 핸드폰 통신사를 number로 변경
 export const isPhone = (phone: string) => {
   if (phone === "") {
     return "알뜰폰";

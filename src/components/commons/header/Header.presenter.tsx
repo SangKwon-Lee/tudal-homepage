@@ -19,19 +19,14 @@ import DownArrow from "../../../assets/images/downArrow.png";
 import { useNavigate } from "react-router";
 import { customNavigate } from "../../../commons/func/customNavigate";
 import MySvg from "../../../assets/images/my.svg";
+
 interface IHeaderProps {
   path: string;
   route: string;
   userId: string | null;
-  handleLogout: () => void;
 }
 
-const HeaderPresenter: React.FC<IHeaderProps> = ({
-  path,
-  route,
-  userId,
-  handleLogout,
-}) => {
+const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
   const navigate = useNavigate();
   return (
     <Header path={path === "/"}>
@@ -98,12 +93,6 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({
         <HeaderNav>
           {userId ? (
             <>
-              {/* <HeaderMenu
-                path={path === "login" || path === "mypage"}
-                onClick={() => navigate(customNavigate(route, "mypage"))}
-              >
-                MY
-              </HeaderMenu> */}
               <HeaderMyIcon
                 src={MySvg}
                 onClick={() => navigate(customNavigate(route, "mypage"))}

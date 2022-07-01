@@ -1,3 +1,6 @@
+// * 쿠키를 저장, 불러오기, 삭제하는 함수
+// * 쿠키에는 userID가 hash값으로 변경되어 저장
+
 //@ts-ignore
 export function setCookie(name, value, exp) {
   var date = new Date();

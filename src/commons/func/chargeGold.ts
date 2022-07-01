@@ -1,6 +1,7 @@
 import moment from "moment";
 import { apiServer } from "../axios/axios";
-
+// *임의로 누군가의 골드를 그냥 충전하고 싶을 때 getUser함수에 핸드폰 번호만 넣어서 실행하면 됨.
+// * 10000골드 충전
 export const chargeGold = async (userId: string) => {
   try {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;

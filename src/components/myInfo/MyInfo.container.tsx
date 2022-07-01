@@ -6,7 +6,11 @@ import { useNavigate } from "react-router";
 import useGetUser from "../commons/hooks/useGetUser";
 import { deleteCookie } from "../../commons/func/cookie";
 
-const MyInfoContainer = () => {
+interface MyInfoProps {
+  path: string;
+}
+
+const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
   const { userData } = useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -14,11 +18,15 @@ const MyInfoContainer = () => {
   useGetUser();
 
   const handleLogout = () => {
+    deleteCookie("tudalUser");
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");
-    deleteCookie("tudalUser");
-    navigate("/");
+    if (path === "tudalus") {
+      window.location.href = "https://us.tudal.co.kr";
+    } else {
+      navigate("/");
+    }
   };
 
   return <MyInfoPresenter userData={userData} handleLogout={handleLogout} />;

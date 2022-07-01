@@ -22,8 +22,8 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
     deleteCookie("tudalUser");
     alert("로그아웃 됐습니다");
     //@ts-ignore
-    var receiver = document.getElementById("receiver").contentWindow;
-    receiver.postMessage("logout", "https://us.tudal.co.kr");
+    // var receiver = document.getElementById("receiver").contentWindow;
+    // receiver.postMessage("logout", "https://us.tudal.co.kr");
     // if (path === "tudalus") {
     //   window.location.href = "https://us.tudal.co.kr";
     // } else {

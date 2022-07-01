@@ -1,3 +1,4 @@
+import { deleteCookie, setCookie } from "../../commons/func/cookie";
 import { UserData } from "../../commons/types/types";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 import {
@@ -35,7 +36,23 @@ const MyInfoPresenter: React.FC<IMyInfoProps> = ({
             <MyInfoText>{userData.phoneNumber}</MyInfoText>
           </MyInfoTitleWrapper>
         </MyInfoWrapper>
-        <MyInfoLogout onClick={handleLogout}>로그아웃</MyInfoLogout>
+        <MyInfoLogout
+          onClick={() => {
+            handleLogout();
+            setCookie("tudalUser", "", 0);
+            deleteCookie("tudalUser");
+            //@ts-ignore
+            var receiver = document.getElementById("receiver").contentWindow;
+            receiver.postMessage("logout", "https://us.tudal.co.kr");
+            // if (path === "tudalus") {
+            //   window.location.href = "https://us.tudal.co.kr";
+            // } else {
+            //   navigate("/");
+            // }
+          }}
+        >
+          로그아웃
+        </MyInfoLogout>
       </Contents>
     </Body>
   );

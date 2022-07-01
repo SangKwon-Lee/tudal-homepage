@@ -46,4 +46,44 @@
     src="https://us.tudal.co.kr"
   ></iframe>
   </body>
+  <script>
+    function setCookie(name, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+      document.cookie =
+      name + "=" + value + "; domain=tudal.co.kr;expires=" + date.toUTCString() + ";path=/";
+    }
+
+    function deleteCookie(name) {
+      document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    }
+
+    function getCookie(name) {
+      var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+      return value ? value[2] : null;
+    }
+        window.onload = function (e) {
+          window.addEventListener("message", receiveMessage);
+          //@ts-ignore       
+          function receiveMessage(e) {
+            //@ts-ignore
+            if(typeof e.data !== 'string' ){
+              return
+            } 
+            if(typeof e.data === 'string'){
+              if(e.data.includes("webpackHotUpdate")){
+                return;
+              }
+              if(e.data ==="logout"){
+                deleteCookie("tudalUser");
+                setCookie("tudalUser", "", 0);
+              }else{
+                setCookie("tudalUser", e.data, 30)
+              }
+            }
+          }
+          window.addEventListener("message", receiveMessage);
+        };
+      
+  </script>
 </html>

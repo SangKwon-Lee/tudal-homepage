@@ -4,7 +4,7 @@ import { useContext } from "react";
 import WithAuth from "../commons/hocs/withAuth";
 import { useNavigate } from "react-router";
 import useGetUser from "../commons/hooks/useGetUser";
-import { deleteCookie } from "../../commons/func/cookie";
+import { setCookie } from "../../commons/func/cookie";
 
 interface MyInfoProps {
   path: string;
@@ -17,8 +17,8 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
   //* 회원정보 불러오기
   useGetUser();
 
-  const handleLogout = () => {
-    deleteCookie("tudalUser");
+  const handleLogout = async () => {
+    setCookie("tudalUser", "", 0);
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");

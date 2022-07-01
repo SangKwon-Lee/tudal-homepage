@@ -11,6 +11,7 @@ interface SignupContainerProps {
 
 const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
   useScrollReset();
+
   // * 회원가입 정보 관리
   const [signupInput, setSignupInput] = useState({
     name: "",
@@ -34,6 +35,9 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
 
   //* ARS 인증 코드
   const [isAuthCode, setIsAuthCode] = useState("");
+
+  // * 이미 가입된 회원 모달 Open
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (
@@ -64,6 +68,19 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
   const handlAuthArs = async () => {
     const { name, gender, phoneNumber, birth, telecomCode } = signupInput;
     try {
+      const { data: checkUser, status: checkUserStatus } = await apiServer.post(
+        `/user/checkProps`,
+        {
+          phoneNumber: signupInput.phoneNumber,
+        }
+      );
+
+      if (checkUserStatus === 200 && checkUser) {
+        if (checkUser.length > 0) {
+          setModalOpen(true);
+          return;
+        }
+      }
       const newData = {
         name,
         telecomCode,
@@ -249,17 +266,24 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
     setIsView(() => !isView);
   };
 
+  // *이미 가입된 회원 모달 오픈 함수
+  const handleModalOpen = () => {
+    setModalOpen(false);
+  };
+
   return (
     <SignupPresenter
       path={path}
       isAuth={isAuth}
       isView={isView}
       isCheck={isCheck}
+      modalOpen={modalOpen}
       isAuthCode={isAuthCode}
       signupInput={signupInput}
       handleCheck={handleCheck}
       handlAuthArs={handlAuthArs}
       handleIsView={handelIsView}
+      handleModalOpen={handleModalOpen}
       handleSignupInput={handleSignupInput}
     />
   );

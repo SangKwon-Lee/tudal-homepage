@@ -4,18 +4,11 @@ import {
   LoginInput,
   LoginAuthBtn,
   LoginBtn,
-  LoginSuccessTitle,
-  LoginSuccessWrapper,
   LoginError,
-  LoginSuccessImg,
-  LoginSuccessBtn,
   LoginTimer,
   LoginAuthInputBox,
   LoginSubText,
-  LoginSuccessBtnWapper,
 } from "./Login.style";
-import successLogin from "../../assets/images/login.png";
-import { useNavigate } from "react-router";
 import { UserAuth, UserLoginInput } from "../../commons/types/types";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 import { changePath } from "../../commons/func/changePath";
@@ -43,7 +36,6 @@ const LoginPresenter: React.FC<ILoginProps> = ({
   handleSMSSend,
   handleLoginInput,
 }) => {
-  const navigator = useNavigate();
   return (
     <>
       <Body>

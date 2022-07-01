@@ -1,12 +1,18 @@
 import styled from "@emotion/styled";
 
 export const WelcomeTitle = styled.div`
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
   font-size: 25px;
   font-weight: 700;
   margin-top: 100px;
 `;
 
 export const WelcomeSubTitle = styled.div`
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
   font-size: 16px;
   text-align: center;
   margin-top: 35px;
@@ -36,6 +42,7 @@ export const WelcomeLogoWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 110px;
 `;
 
 export const WelcomeLogo = styled.img`
@@ -43,6 +50,9 @@ export const WelcomeLogo = styled.img`
 `;
 
 export const WelcomeLogoText = styled.div`
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
   font-size: 15px;
   font-weight: 700;
   margin-top: 5px;
@@ -52,12 +62,14 @@ export const WelcomeContentsLine = styled.div`
   border-right: 2px solid #d9d9d9;
   width: 3px;
   height: 27px;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 export const WelcomeContentsText = styled.div`
-  font-size: 13px;
+  font-size: 12px;
+  flex-wrap: wrap;
+  width: 250px;
 `;
 
 export const WelcomeSignupBtn = styled.button`

@@ -8,9 +8,10 @@ export const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 70px;
-  box-shadow: ${(props: IHeaderStyleProps) =>
-    props.path ? "none" : "0px -2px 15px rgba(0, 0, 0, 0.25)"};
+  height: 50px;
+  padding-top: 10px;
+  /* box-shadow: ${(props: IHeaderStyleProps) =>
+    props.path ? "none" : "0px -2px 15px rgba(0, 0, 0, 0.25)"}; */
   z-index: 100;
   background-color: white;
   position: ${(props: IHeaderStyleProps) =>
@@ -19,13 +20,14 @@ export const Header = styled.header`
 
 export const HeaderNavWrapper = styled.div`
   @media (max-width: 640px) {
-    padding: 10px 10px;
+    padding: 0px 22px;
   }
+  padding: 0px 10px;
   width: 100%;
   max-width: ${(props: IHeaderStyleProps) => (props.path ? "1080px" : "592px")};
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const HeaderNav = styled.nav`
@@ -148,4 +150,11 @@ export const DropdownWrapper = styled(Dropdown)`
     margin: 0px !important;
     width: 20px !important;
   }
+`;
+
+export const HeaderMyIcon = styled.img`
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  margin-top: 6.5px;
 `;

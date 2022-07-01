@@ -101,7 +101,7 @@ export const SignupBtnArrow = styled.img`
   @media (max-width: 600px) {
     width: 11px;
   }
-  margin-left: 12px;
+  margin-left: 5px;
   width: 14px;
 `;
 
@@ -154,6 +154,9 @@ export const CheckImg = styled.img`
 `;
 
 export const SignupCheckBody = styled.div`
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
   border: 1px solid #e9e9e9;
   padding: 30px;
   border-radius: 10px;
@@ -167,13 +170,18 @@ export const SignupCheckLine = styled.div`
 
 export const SignupCheckWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
   align-items: center;
   margin-top: 27px;
 `;
 
 export const SignupCheckText = styled.div`
+  @media (max-width: 600px) {
+    font-size: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
   font-size: 14px;
   color: #7f7f7f;
   display: flex;
@@ -196,7 +204,13 @@ export const SignupCheckBtn = styled.button`
 `;
 
 export const SingupCheckDetail = styled.button`
+  @media (max-width: 600px) {
+    font-size: 11px;
+    padding: 5px 12.5px;
+  }
+  width: 100px;
   font-size: 12px;
+  margin-left: auto;
   padding: 5px 14.5px;
   border-radius: 5px;
   border: 1px solid #e9e9e9;
@@ -312,4 +326,52 @@ export const SignupSuccessBtn = styled.button`
   background-color: #4b4b4b;
   font-weight: 700;
   border-radius: 5px;
+`;
+
+export const SignupModalWrapper = styled.div`
+  width: 90%;
+  height: 177px;
+  padding: 40px 30px;
+  background-color: white;
+  border-radius: 10px;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const SignupModalTitle = styled.div`
+  font-size: 15px;
+  text-align: center;
+  font-weight: 700;
+`;
+
+export const SignupModalBtnWrapper = styled.div`
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+`;
+
+export const SignupModalBtnOk = styled.button`
+  width: 100%;
+  max-width: 140px;
+  font-weight: 700;
+  height: 36px;
+  background-color: #ff3838;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+export const SignupModalBtnCancle = styled.button`
+  width: 100%;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 10px;
+  max-width: 140px;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: #e9e9e9;
 `;

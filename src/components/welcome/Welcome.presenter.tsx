@@ -38,7 +38,7 @@ const WelcomePresenter: React.FC<WelcomeProps> = ({ path }) => {
           </WelcomeLogoWrapper>
           <WelcomeContentsLine />
           <WelcomeContentsText>
-            투달러스 두줄소개입니다 두줄소개입니다. 두줄소개입니다.
+            투자의 즐거움을 느낄 수 있는 테마 기반 미국 주식 투자 정보 서비스
           </WelcomeContentsText>
         </WelcomeContents>
         <WelcomeContents>
@@ -48,7 +48,7 @@ const WelcomePresenter: React.FC<WelcomeProps> = ({ path }) => {
           </WelcomeLogoWrapper>
           <WelcomeContentsLine />
           <WelcomeContentsText>
-            뉴스스탁 두줄소개입니다 두줄소개입니다. 두줄소개입니다.
+            실시간 투자뉴스의 핵심 키워드를 중심으로 투자정보 제공
           </WelcomeContentsText>
         </WelcomeContents>
         <WelcomeContents>
@@ -58,7 +58,8 @@ const WelcomePresenter: React.FC<WelcomeProps> = ({ path }) => {
           </WelcomeLogoWrapper>
           <WelcomeContentsLine />
           <WelcomeContentsText>
-            투자의달인 두줄소개입니다 두줄소개입니다. 두줄소개입니다.
+            투자자에게 꼭 맞는 투자정보를 가장 쉽고, 빠르게 매칭해주는 AI
+            투자정보 앱
           </WelcomeContentsText>
         </WelcomeContents>
       </WelcomeContentsWrapper>

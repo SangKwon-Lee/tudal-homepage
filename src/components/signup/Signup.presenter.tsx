@@ -23,6 +23,11 @@ import {
   SignupCheckText,
   SignupCheckWrapper,
   SignupImg,
+  SignupModalBtnCancle,
+  SignupModalBtnOk,
+  SignupModalBtnWrapper,
+  SignupModalTitle,
+  SignupModalWrapper,
   SignupPhoneAddWrapper,
   SignupPhoneBtn,
   SignupPhoneBtnWrapper,
@@ -48,6 +53,8 @@ import { phoneArr, phoneArr2, signupArr } from "../commons/option/signup";
 import { isFrugalPhone, isPhone } from "../../commons/func/isPhone";
 import { useNavigate } from "react-router";
 import { changePath } from "../../commons/func/changePath";
+import { Modal } from "@mui/material";
+import { customNavigate } from "../../commons/func/customNavigate";
 
 interface SignupProps {
   path: string;
@@ -57,6 +64,7 @@ interface SignupProps {
   };
   isView: boolean;
   isCheck: boolean[];
+  modalOpen: boolean;
   signupInput: {
     name: string;
     birth: string;
@@ -68,6 +76,7 @@ interface SignupProps {
   handleIsView: () => void;
   handlAuthArs: () => void;
   handleCheck: (e: any) => void;
+  handleModalOpen: () => void;
   handleSignupInput: (e: any) => void;
 }
 
@@ -76,11 +85,13 @@ const SignupPresenter: React.FC<SignupProps> = ({
   isAuth,
   isView,
   isCheck,
+  modalOpen,
   isAuthCode,
   signupInput,
   handleCheck,
   handlAuthArs,
   handleIsView,
+  handleModalOpen,
   handleSignupInput,
 }) => {
   const { isAuthOk } = isAuth;
@@ -190,13 +201,11 @@ const SignupPresenter: React.FC<SignupProps> = ({
                 <SignupCheckLine />
                 {signupArr.map((data: any, index: any) => (
                   <SignupCheckWrapper key={index}>
+                    <CheckImg
+                      id={index}
+                      src={isCheck[index] ? checkColor : checkGray}
+                    />
                     <SignupCheckText onClick={handleCheck} id={index}>
-                      {
-                        <CheckImg
-                          id={index}
-                          src={isCheck[index] ? checkColor : checkGray}
-                        />
-                      }
                       {data.text}
                     </SignupCheckText>
                     <SingupCheckDetail
@@ -262,6 +271,35 @@ const SignupPresenter: React.FC<SignupProps> = ({
           </>
         )}
       </Body>
+      <Modal
+        open={modalOpen}
+        onClose={handleModalOpen}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          top: "30%",
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
+        <SignupModalWrapper>
+          <SignupModalTitle>
+            이미 가입된 회원입니다. <br /> 바로 로그인하시겠습니까?
+          </SignupModalTitle>
+          <SignupModalBtnWrapper>
+            <SignupModalBtnCancle onClick={handleModalOpen}>
+              취소
+            </SignupModalBtnCancle>
+            <SignupModalBtnOk
+              onClick={() => {
+                navigate(customNavigate(path, "login"));
+              }}
+            >
+              확인
+            </SignupModalBtnOk>
+          </SignupModalBtnWrapper>
+        </SignupModalWrapper>
+      </Modal>
     </>
   );
 };

@@ -13,6 +13,7 @@ export const UserName = styled.div`
   }
   margin-right: 32px;
   font-weight: 700;
+  cursor: pointer;
   font-size: 25px;
 `;
 

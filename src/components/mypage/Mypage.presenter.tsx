@@ -1,4 +1,9 @@
-import { Body, Contents, Title } from "../commons/ui/commonStyle";
+import {
+  Body,
+  Contents,
+  ContentsHover,
+  Title,
+} from "../commons/ui/commonStyle";
 import { priceToString } from "../goldCharge/GoldCharge.presenter";
 import {
   GoldMyMoneyWrapper,
@@ -36,11 +41,18 @@ const MypagePresenter: React.FC<IMypageProps> = ({
   return (
     <Body>
       <UserNameWrapper>
-        <UserName>{userData.name}님</UserName>
+        <UserName
+          id="myInfo"
+          onClick={() => {
+            navigate(customNavigate(path, "myinfo"));
+          }}
+        >
+          {userData.name}님
+        </UserName>
         <UserNameIcon
           id="myInfo"
           onClick={() => {
-            navigate("/myInfo");
+            navigate(customNavigate(path, "myinfo"));
           }}
           src={rightArrowPNG}
         />
@@ -72,7 +84,7 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           </GoldDetailWrapper>
         </GoldMyMoneyWrapper>
       </Contents>
-      <Contents>
+      <ContentsHover>
         <TitleWrapper>
           <Title
             id="history"
@@ -92,8 +104,8 @@ const MypagePresenter: React.FC<IMypageProps> = ({
             src={rightArrowPNG}
           />
         </TitleWrapper>
-      </Contents>
-      <Contents>
+      </ContentsHover>
+      <ContentsHover>
         <TitleWrapper>
           <Title
             id="history"
@@ -113,8 +125,8 @@ const MypagePresenter: React.FC<IMypageProps> = ({
             src={rightArrowPNG}
           />
         </TitleWrapper>
-      </Contents>
-      <Contents>
+      </ContentsHover>
+      <ContentsHover>
         <TitleWrapper>
           <Title
             id="history"
@@ -134,7 +146,7 @@ const MypagePresenter: React.FC<IMypageProps> = ({
             src={rightArrowPNG}
           />
         </TitleWrapper>
-      </Contents>
+      </ContentsHover>
     </Body>
   );
 };

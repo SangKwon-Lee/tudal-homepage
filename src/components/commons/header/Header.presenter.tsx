@@ -10,6 +10,7 @@ import {
   DropdownWrapper,
   DropdownMenu,
   HeaderMenuLine,
+  HeaderMyIcon,
 } from "./Header.style";
 import TudalLogoPng from "../../../assets/images/tudal_logo.png";
 import TudalUsLogo from "../../../assets/images/tudalus_logo02.svg";
@@ -17,7 +18,7 @@ import NewsLogo from "../../../assets/images/newsstock.svg";
 import DownArrow from "../../../assets/images/downArrow.png";
 import { useNavigate } from "react-router";
 import { customNavigate } from "../../../commons/func/customNavigate";
-
+import MySvg from "../../../assets/images/my.svg";
 interface IHeaderProps {
   path: string;
   route: string;
@@ -97,14 +98,16 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({
         <HeaderNav>
           {userId ? (
             <>
-              <HeaderMenu
+              {/* <HeaderMenu
                 path={path === "login" || path === "mypage"}
                 onClick={() => navigate(customNavigate(route, "mypage"))}
               >
                 MY
-              </HeaderMenu>
-              <HeaderMenuLine />
-              <HeaderMenu onClick={handleLogout}>로그아웃</HeaderMenu>
+              </HeaderMenu> */}
+              <HeaderMyIcon
+                src={MySvg}
+                onClick={() => navigate(customNavigate(route, "mypage"))}
+              ></HeaderMyIcon>
             </>
           ) : (
             <>

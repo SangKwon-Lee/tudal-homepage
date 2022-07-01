@@ -24,11 +24,11 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;
     receiver.postMessage("logout", "https://us.tudal.co.kr");
-    if (path === "tudalus") {
-      window.location.href = "https://us.tudal.co.kr";
-    } else {
-      navigate("/");
-    }
+    // if (path === "tudalus") {
+    //   window.location.href = "https://us.tudal.co.kr";
+    // } else {
+    //   navigate("/");
+    // }
   };
 
   return <MyInfoPresenter userData={userData} handleLogout={handleLogout} />;

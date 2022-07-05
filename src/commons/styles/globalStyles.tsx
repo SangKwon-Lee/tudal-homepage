@@ -30,6 +30,9 @@ const reset = css`
     appearance: none; //button, input, textarea, select, meter, progress
     color: #4b4b4b;
   }
+  :lang(ko) {
+    word-break: keep-all;
+  }
 
   body {
     margin: 0;

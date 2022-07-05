@@ -87,9 +87,7 @@ const HomePresenter = () => {
           <HomeMainBtnWrapper>
             <HomeMainBtn
               onClick={() => {
-                window.open(
-                  "https://play.google.com/store/apps/details?id=com.tudal.tp"
-                );
+                window.open("https://apps.apple.com/kr/app/id1455175051");
               }}
             >
               <HomeMainIcon src={appIcon} />
@@ -97,7 +95,9 @@ const HomePresenter = () => {
             </HomeMainBtn>
             <HomeMainBtn
               onClick={() => {
-                window.open("https://apps.apple.com/kr/app/id1455175051");
+                window.open(
+                  "https://play.google.com/store/apps/details?id=com.tudal.tp"
+                );
               }}
             >
               <HomeMainIcon src={googleIcon} />

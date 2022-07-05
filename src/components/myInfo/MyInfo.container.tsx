@@ -2,7 +2,6 @@ import MyInfoPresenter from "./MyInfo.presenter";
 import { GlobalContext } from "../../App";
 import { useContext } from "react";
 import WithAuth from "../commons/hocs/withAuth";
-import { useNavigate } from "react-router";
 import useGetUser from "../commons/hooks/useGetUser";
 import { deleteCookie } from "../../commons/func/cookie";
 

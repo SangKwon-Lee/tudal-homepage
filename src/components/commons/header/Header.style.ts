@@ -8,14 +8,14 @@ export const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 50px;
-  padding-top: 10px;
+  height: 70px;
   /* box-shadow: ${(props: IHeaderStyleProps) =>
     props.path ? "none" : "0px -2px 15px rgba(0, 0, 0, 0.25)"}; */
   z-index: 100;
   background-color: white;
   position: ${(props: IHeaderStyleProps) =>
     props.path ? "absolute" : "relative"};
+  align-items: center;
 `;
 
 export const HeaderNavWrapper = styled.div`
@@ -38,7 +38,7 @@ export const HeaderNav = styled.nav`
 export const HeaderMenu = styled.a`
   @media (max-width: 640px) {
     font-size: 14px;
-    margin-left: 25px;
+    /* margin-left: 25px; */
   }
   cursor: pointer;
   font-weight: ${(props: IHeaderStyleProps) => (props.path ? "700" : "400")};
@@ -46,6 +46,12 @@ export const HeaderMenu = styled.a`
   color: ${(props: IHeaderStyleProps) => (props.path ? "#4b4b4b" : "#7f7f7f")};
   border-bottom: ${(props: IHeaderStyleProps) =>
     props.path ? "2px solid #FF3838" : "none"};
+  padding: 10px 15px;
+  border-radius: 5px;
+  :hover {
+    color: #4b4b4b;
+    background: rgba(0, 0, 0, 0.04);
+  }
 `;
 
 export const HeaderMenuLine = styled.div`
@@ -60,7 +66,6 @@ export const HeaderMenuLine = styled.div`
 
 export const HeaderArrow = styled.img`
   cursor: pointer;
-  margin-top: 10px;
 `;
 
 export const HeaderModalWrapper = styled.div`
@@ -95,14 +100,14 @@ export const HeaderBtn = styled.button`
 `;
 
 export const HeaderLogo = styled.img`
-  width: 80px;
+  width: 90px;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 10px;
 `;
 
 // * 드롭다운
 export const DropdownMenu = styled(Dropdown.Menu)`
-  width: 170px;
+  width: 180px;
   border: none;
   box-shadow: 0px 4px 20px 0px #00000040;
   border-radius: 5px;

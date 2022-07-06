@@ -63,7 +63,7 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
                       window.open("https://tudal.co.kr");
                     }}
                   >
-                    <HeaderLogo style={{ width: "70px" }} src={TudalLogoPng} />
+                    <HeaderLogo src={TudalLogoPng} />
                     투자의달인
                   </HeaderBtn>
                 </>

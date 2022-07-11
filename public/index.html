@@ -76,7 +76,6 @@
               }
               if(e.data ==="logout"){
                 deleteCookie("tudalUser");
-                setCookie("tudalUser", "", 0);
               }else{
                 if(e.data.includes("U2FsdGVkX")){
                   setCookie("tudalUser", e.data, 30)

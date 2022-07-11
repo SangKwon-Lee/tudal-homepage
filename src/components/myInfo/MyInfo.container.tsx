@@ -16,7 +16,7 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
   //* 회원정보 불러오기
   useGetUser();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     deleteCookie("tudalUser");
     //@ts-ignore
     var receiver = document.getElementById("receiver").contentWindow;

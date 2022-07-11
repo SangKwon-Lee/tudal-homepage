@@ -44,10 +44,11 @@ export const HeaderMenu = styled.a`
   font-weight: ${(props: IHeaderStyleProps) => (props.path ? "700" : "400")};
   font-size: 16px;
   color: ${(props: IHeaderStyleProps) => (props.path ? "#4b4b4b" : "#7f7f7f")};
-  border-bottom: ${(props: IHeaderStyleProps) =>
-    props.path ? "2px solid #FF3838" : "none"};
+  /* border-bottom: ${(props: IHeaderStyleProps) =>
+    props.path ? "2px solid #FF3838" : "none"}; */
+
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: ${(props: IHeaderStyleProps) => (props.path ? "none" : "5px")};
   :hover {
     color: #4b4b4b;
     background: rgba(0, 0, 0, 0.04);

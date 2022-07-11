@@ -45,7 +45,10 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
           />
           <DropdownWrapper>
             <DropdownToggle>
-              <HeaderArrow src={DownArrow} />
+              <HeaderArrow
+                style={{ marginTop: route === "tudalus" ? "10px" : "0px" }}
+                src={DownArrow}
+              />
             </DropdownToggle>
             <DropdownMenu>
               {route === "tudalus" ? (

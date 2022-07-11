@@ -76,7 +76,11 @@ const GoldHistoryPresenter: React.FC<GoldHistoryProps> = ({
               </HistoryBtn>
             ))}
           </HistoryBtnWrapper>
-          {!loading && goldHistory.length > 0 ? (
+          {!loading && goldHistory.length === 0 ? (
+            <NoHistoryWrapper>
+              <NoHistory src={noGoldHistory}></NoHistory>
+            </NoHistoryWrapper>
+          ) : (
             goldHistory
               .filter((data: GoldHistory) =>
                 sort !== "" ? data.type === sort : data
@@ -104,22 +108,12 @@ const GoldHistoryPresenter: React.FC<GoldHistoryProps> = ({
                     {dayjs(data.datetime).format("YY.MM.DD HH:mm")}
                   </HistoryDate>
                   <HistoryGoldWrapper>
-                    <HistoryGold>
-                      {/* {data.type === "add" ? "+" : "-"}&nbsp; */}
-                      {data.amount}골드
-                    </HistoryGold>
-                    <HistoryBonus>
-                      {/* {data.type === "add" ? "+" : "-"}&nbsp; */}
-                      {data.bonusAmount}골드
-                    </HistoryBonus>
+                    <HistoryGold>{data.amount}골드</HistoryGold>
+                    <HistoryBonus>{data.bonusAmount}골드</HistoryBonus>
                   </HistoryGoldWrapper>
                 </HistoryWrapper>
               ))
               .slice(0, length)
-          ) : (
-            <NoHistoryWrapper>
-              <NoHistory src={noGoldHistory}></NoHistory>
-            </NoHistoryWrapper>
           )}
           {goldHistory.length > 5 && !more && (
             <HistoryMoreWrapper>

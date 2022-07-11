@@ -6,8 +6,8 @@ export const chargeGold = async (userId: string) => {
   try {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
     const { status } = await apiServer.post(`/golds/${userId}/add`, {
-      amount: 10000, // 충전 골드
-      bonusAmount: 0, // 충전 보너스 골드
+      amount: 500, // 충전 골드
+      bonusAmount: 50, // 충전 보너스 골드
       category: "골드충전", // '골드충전'
       code,
       type: "add",
@@ -36,4 +36,23 @@ export const getUser = async (phoneNumber: string) => {
       chargeGold(data[0].userId);
     }
   } catch (e) {}
+};
+
+//* 유저 골드 및 회원 정보 불러오기
+export const handleGetUserGold = async () => {
+  try {
+    const { data } = await apiServer.get(`/golds/${""}`, {
+      headers: {
+        pragma: "no-cache",
+      },
+    });
+    const { data: userData } = await apiServer.get(`/user/${""}`, {
+      headers: {
+        pragma: "no-cache",
+      },
+    });
+    console.log(data, userData);
+  } catch (e) {
+    alert("회원정보가 없습니다.");
+  }
 };

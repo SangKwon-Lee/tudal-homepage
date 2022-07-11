@@ -24,7 +24,9 @@ export const HeaderNavWrapper = styled.div`
   }
   padding: 0px 10px;
   width: 100%;
-  max-width: ${(props: IHeaderStyleProps) => (props.path ? "1080px" : "592px")};
+  max-width: 1080px;
+  /* max-width: ${(props: IHeaderStyleProps) =>
+    props.path ? "1080px" : "592px"}; */
   display: flex;
   justify-content: space-between;
   align-items: center;

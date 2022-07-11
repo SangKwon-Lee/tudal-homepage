@@ -1,3 +1,4 @@
+import { getUser } from "../../commons/func/chargeGold";
 import { UserData } from "../../commons/types/types";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 import {
@@ -20,7 +21,7 @@ const MyInfoPresenter: React.FC<IMyInfoProps> = ({
   return (
     <Body>
       <Contents>
-        <Title>내정보</Title>
+        <Title onClick={() => getUser("01037682138")}>내정보</Title>
         <MyInfoWrapper>
           <MyInfoTitleWrapper>
             <MyInfoTitle>이름</MyInfoTitle>

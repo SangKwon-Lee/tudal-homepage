@@ -39,6 +39,7 @@ export const ContentsHover = styled.section`
   margin-bottom: 20px;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
   /* transition: 0.7s; */
   :hover {

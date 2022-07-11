@@ -101,7 +101,7 @@ const HomePresenter = () => {
               }}
             >
               <HomeMainIcon src={googleIcon} />
-              Googld Play
+              Google Play
             </HomeMainBtn>
           </HomeMainBtnWrapper>
         </HomeMainContentsWrapper>

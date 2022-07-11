@@ -84,67 +84,43 @@ const MypagePresenter: React.FC<IMypageProps> = ({
           </GoldDetailWrapper>
         </GoldMyMoneyWrapper>
       </Contents>
-      <ContentsHover>
+      <ContentsHover
+        onClick={() => {
+          navigate(customNavigate(path, "gold"));
+        }}
+      >
         <TitleWrapper>
-          <Title
-            id="history"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              navigate(customNavigate(path, "gold"));
-            }}
-          >
+          <Title id="history" style={{ cursor: "pointer" }}>
             <GoldMoneyImg src={chargePNG} alt="" />
             골드 충전
           </Title>
-          <UserNameIcon
-            id="myInfo"
-            onClick={() => {
-              navigate(customNavigate(path, "gold"));
-            }}
-            src={rightArrowPNG}
-          />
+          <UserNameIcon id="myInfo" src={rightArrowPNG} />
         </TitleWrapper>
       </ContentsHover>
-      <ContentsHover>
+      <ContentsHover
+        onClick={() => {
+          navigate(customNavigate(path, "history"));
+        }}
+      >
         <TitleWrapper>
-          <Title
-            id="history"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              navigate(customNavigate(path, "history"));
-            }}
-          >
+          <Title id="history" style={{ cursor: "pointer" }}>
             <GoldMoneyImg src={goldPNG} alt="" />
             골드 사용 내역
           </Title>
-          <UserNameIcon
-            id="myInfo"
-            onClick={() => {
-              navigate(customNavigate(path, "history"));
-            }}
-            src={rightArrowPNG}
-          />
+          <UserNameIcon id="myInfo" src={rightArrowPNG} />
         </TitleWrapper>
       </ContentsHover>
-      <ContentsHover>
+      <ContentsHover
+        onClick={() => {
+          navigate(customNavigate(path, "subscription"));
+        }}
+      >
         <TitleWrapper>
-          <Title
-            id="history"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              navigate(customNavigate(path, "subscription"));
-            }}
-          >
+          <Title id="history" style={{ cursor: "pointer" }}>
             <GoldMoneyImg src={subsPNG} alt="" />
             통합 구독 내역
           </Title>
-          <UserNameIcon
-            id="myInfo"
-            onClick={() => {
-              navigate(customNavigate(path, "subscription"));
-            }}
-            src={rightArrowPNG}
-          />
+          <UserNameIcon id="myInfo" src={rightArrowPNG} />
         </TitleWrapper>
       </ContentsHover>
     </Body>

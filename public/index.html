@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'AW-10869743597');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!--
+<head>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-10869743597');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <!-- <link rel="manifest" href="../src/assets/ogimg.png" /> -->
-    <!--
+  <!-- <link rel="manifest" href="../src/assets/ogimg.png" /> -->
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -25,11 +26,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -39,56 +41,74 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <iframe
-    title="tudalus"
-    style="display:none"
-    id="receiver"
-    src="https://us.tudal.co.kr"
-  ></iframe>
-  </body>
-  <script>
-    function setCookie(name, value, exp) {
-      var date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-  document.cookie =
-    name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-    }
+  <iframe title="tudalus" style="display:none" id="receiver" src="https://us.tudal.co.kr"></iframe>
+</body>
+<script>
+  function setCookie(name, value, exp) {
+    var date = new Date();
+    date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+    document.cookie =
+      name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+  }
 
-    function deleteCookie(name) {
-      document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    }
+  function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  }
 
-    function getCookie(name) {
-      var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-      return value ? value[2] : null;
+  function getCookie(name) {
+    var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+    return value ? value[2] : null;
+  }
+  window.addEventListener("message", function (e) {
+    if (typeof e.data !== 'string') {
+      return
     }
-        window.onload = function (e) {
-          window.addEventListener("message", receiveMessage);
-          //@ts-ignore       
-          function receiveMessage(e) {
-            //@ts-ignore
-            if(typeof e.data !== 'string' ){
-              return
-            } 
-            if(typeof e.data === 'string'){
-              if(e.data.includes("webpackHotUpdate")){
-                return;
-              }
-              if(e.data ==="logout"){
-                deleteCookie("tudalUser");
-              }else if(e.data.includes("maxxTRID")){
-                setCookie("maxxTRID", e.data, 1)
-              }else if(e.data.includes("maxxSOURCE")){
-                setCookie("maxxSOURCE", e.data, 1)
-              }else{
-                if(e.data.includes("U2FsdGVkX")){
-                  setCookie("tudalUser", e.data, 30)
-                }
-              }
-            }
-          }
-          window.addEventListener("message", receiveMessage);
-        };
-      
-  </script>
+    if (typeof e.data === 'string') {
+      if (e.data.includes("webpackHotUpdate")) {
+        return;
+      }
+      if (e.data === "logout") {
+        deleteCookie("tudalUser");
+      } else if (e.data.includes("maxxTRID")) {
+        setCookie("maxxTRID", e.data, 1)
+      } else if (e.data.includes("maxxSOURCE")) {
+        setCookie("maxxSOURCE", e.data, 1)
+      } else {
+        if (e.data.includes("U2FsdGVkX")) {
+          setCookie("tudalUser", e.data, 30)
+        }
+      }
+    }
+  });
+        // window.onload = function (e) {
+        //   window.addEventListener("message", receiveMessage);
+        //   //@ts-ignore       
+        //   function receiveMessage(e) {
+        //     //@ts-ignore
+        //     if(typeof e.data !== 'string' ){
+        //       return
+        //     } 
+        //     if(typeof e.data === 'string'){ 
+
+        //       if(e.data.includes("webpackHotUpdate")){
+        //         return;
+        //       }
+        //       if(e.data ==="logout"){
+        //         deleteCookie("tudalUser");
+        //       }else if(e.data.includes("maxxTRID")){
+        //         setCookie("maxxTRID", e.data, 1)
+        //       }else if(e.data.includes("maxxSOURCE")){
+        //         setCookie("maxxSOURCE", e.data, 1)
+        //       }else{
+        //         if(e.data.includes("U2FsdGVkX")){
+        //           setCookie("tudalUser", e.data, 30)
+        //         }
+        //       }
+        //     }
+        //   }
+        //   window.addEventListener("message", receiveMessage);
+        // };
+
+</script>
+
 </html>

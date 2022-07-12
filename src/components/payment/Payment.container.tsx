@@ -9,7 +9,6 @@ import { getUserId } from "../../commons/func/hash";
 import WithAuth from "../commons/hocs/withAuth";
 import useGetUser from "../commons/hooks/useGetUser";
 import PaymentPresenter from "./Payment.presenter";
-
 interface PaymentProps {
   path: string;
 }
@@ -147,6 +146,12 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
         window.scrollTo(0, 0);
         alert("결제가 완료되었습니다.");
         handleUserSubscription();
+        //* maxx카드 연동
+        try {
+          await apiServer.post(`/marketing/tudalus/maxx/${userId}/isSubs`);
+        } catch (e) {
+          console.log(e);
+        }
       }
     } catch (e) {
       alert("오류가 발생했습니다.");

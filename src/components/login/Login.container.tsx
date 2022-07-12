@@ -3,9 +3,10 @@ import LoginPresenter from "./Login.presenter";
 import { encrypted } from "../../commons/func/hash";
 import { apiServer } from "../../commons/axios/axios";
 import { useContext, useEffect, useRef, useState } from "react";
-import { setCookie } from "../../commons/func/cookie";
+import { getCookie, setCookie } from "../../commons/func/cookie";
 import { useNavigate } from "react-router";
-
+const tridRegex = /(?<=[tT][rR][iI][dD]=).*/g;
+const sourceRegex = /(?<=[sS][oO][uU][rR][cC][eE]=).*/g;
 interface LoginContainerProps {
   path: string;
 }
@@ -152,6 +153,24 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
         );
+
+        //* maxx카드 연동
+        const TRIDCOOKIE = getCookie("maxxTRID") || "";
+        const SOURCECOOKIE = getCookie("maxxSOURCE") || "";
+        const TRID = TRIDCOOKIE.match(tridRegex)?.join();
+        const SOURCE = SOURCECOOKIE.match(sourceRegex)?.join();
+        if (TRID) {
+          let maxxData = {
+            userId: result.data[0].userId,
+            trid: TRID,
+            source: SOURCE,
+          };
+          try {
+            await apiServer.post(`/marketing/tudalus/maxx/login`, maxxData);
+          } catch (e) {
+            console.log(e);
+          }
+        }
         if (path === "tudalus") {
           window.location.href = "https://us.tudal.co.kr";
         } else {

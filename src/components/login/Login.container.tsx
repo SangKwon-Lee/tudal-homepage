@@ -145,9 +145,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
           code: "",
         });
         setUserData(result.data[0]);
-        setCookie("tudalUser", encrypted(result.data[0].userId), {
-          secure: false,
-        });
+        setCookie("tudalUser", encrypted(result.data[0].userId), 30);
         //@ts-ignore
         var receiver = document.getElementById("receiver").contentWindow;
         receiver.postMessage(

@@ -17,7 +17,10 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
   useGetUser();
 
   const handleLogout = () => {
+    // eslint-disable-next-line no-useless-concat
+    document.cookie = "tudalUser" + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     deleteCookie("tudalUser");
+    console.log("ASD");
     //@ts-ignore
     // var receiver = document.getElementById("receiver").contentWindow;
     // receiver.postMessage("logout", "https://us.tudal.co.kr");

@@ -76,6 +76,10 @@
               }
               if(e.data ==="logout"){
                 deleteCookie("tudalUser");
+              }else if(e.data.includes("maxxTRID")){
+                setCookie("maxxTRID", e.data, 1)
+              }else if(e.data.includes("maxxSOURCE")){
+                setCookie("maxxSOURCE", e.data, 1)
               }else{
                 if(e.data.includes("U2FsdGVkX")){
                   setCookie("tudalUser", e.data, 30)

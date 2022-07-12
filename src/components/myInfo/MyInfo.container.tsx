@@ -20,17 +20,16 @@ const MyInfoContainer: React.FC<MyInfoProps> = ({ path }) => {
     // eslint-disable-next-line no-useless-concat
     document.cookie = "tudalUser" + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     deleteCookie("tudalUser");
-    console.log("ASD");
     //@ts-ignore
-    // var receiver = document.getElementById("receiver").contentWindow;
-    // receiver.postMessage("logout", "https://us.tudal.co.kr");
-    // alert("로그아웃 됐습니다");
-    // if (path === "tudalus") {
-    //   window.location.replace("https://us.tudal.co.kr");
-    //   // window.location.href = "https://us.tudal.co.kr";
-    // } else {
-    //   window.location.replace("https://tudal.co.kr");
-    // }
+    var receiver = document.getElementById("receiver").contentWindow;
+    receiver.postMessage("logout", "https://us.tudal.co.kr");
+    alert("로그아웃 됐습니다");
+    if (path === "tudalus") {
+      window.location.replace("https://us.tudal.co.kr");
+      // window.location.href = "https://us.tudal.co.kr";
+    } else {
+      window.location.replace("https://tudal.co.kr");
+    }
   };
 
   return <MyInfoPresenter userData={userData} handleLogout={handleLogout} />;

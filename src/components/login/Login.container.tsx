@@ -162,9 +162,10 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
         if (TRID) {
           let maxxData = {
             userId: result.data[0].userId,
-            trid: TRID,
+            trId: TRID,
             source: SOURCE,
           };
+          console.log(maxxData);
           try {
             await apiServer.post(`/marketing/tudalus/maxx/login`, maxxData);
           } catch (e) {

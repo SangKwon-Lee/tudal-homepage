@@ -148,7 +148,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
         handleUserSubscription();
         //* maxx카드 연동
         try {
-          await apiServer.post(`/marketing/tudalus/maxx/${userId}/isSubs`);
+          await apiServer.put(`/marketing/tudalus/maxx/${userId}/isSubs`);
         } catch (e) {
           console.log(e);
         }

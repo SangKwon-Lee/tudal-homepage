@@ -159,6 +159,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
         const SOURCECOOKIE = getCookie("maxxSOURCE") || "";
         const TRID = TRIDCOOKIE.match(tridRegex)?.join();
         const SOURCE = SOURCECOOKIE.match(sourceRegex)?.join();
+        console.log(TRID, SOURCE);
         if (TRID) {
           let maxxData = {
             userId: result.data[0].userId,

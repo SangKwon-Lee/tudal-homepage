@@ -30,7 +30,7 @@ const GoldChargeContainer = () => {
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
-    money: 10000,
+    money: 11000,
     method: "CARD",
     number: "",
     isReceipt: false,

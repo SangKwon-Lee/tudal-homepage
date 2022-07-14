@@ -106,7 +106,7 @@ export const GoldMenuCharge = styled.div`
 `;
 
 export const GoldMenuChargeBonus = styled.div`
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   color: ${(props: IGoldChargeStyleProps) =>
@@ -114,7 +114,7 @@ export const GoldMenuChargeBonus = styled.div`
 `;
 
 export const GoldMenuChargeBonusSpan = styled.span`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   margin: 0px 5px;
   color: ${(props: IGoldChargeStyleProps) =>

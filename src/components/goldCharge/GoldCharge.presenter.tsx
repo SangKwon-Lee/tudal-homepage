@@ -181,7 +181,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   <GoldMenuChargeBonus isCheck={gold === data}>
                     보너스
                     <GoldMenuChargeBonusSpan isCheck={gold === data}>
-                      + {priceToString(Number(data) / 10)}
+                      {priceToString(Number(data) / 10)}
                     </GoldMenuChargeBonusSpan>
                     골드
                   </GoldMenuChargeBonus>

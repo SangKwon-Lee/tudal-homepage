@@ -5,8 +5,8 @@ import { apiServer } from "../../commons/axios/axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { getCookie, setCookie } from "../../commons/func/cookie";
 import { useNavigate } from "react-router";
-const tridRegex = /(?<=[tT][rR][iI][dD]=).*/g;
-const sourceRegex = /(?<=[sS][oO][uU][rR][cC][eE]=).*/g;
+const tridRegex = /(?=[tT][rR][iI][dD]=).*/g;
+const sourceRegex = /(?=[sS][oO][uU][rR][cC][eE]=).*/g;
 interface LoginContainerProps {
   path: string;
 }

@@ -115,12 +115,18 @@ export const DropdownMenu = styled(Dropdown.Menu)`
   box-shadow: 0px 4px 20px 0px #00000040;
   border-radius: 5px;
   outline: none;
+  position: absolute;
+  margin-left: -110px !important;
+  margin-top: 10px !important;
 `;
 
 export const DropdownToggle = styled(Dropdown.Toggle)`
   outline: none;
   background-color: white;
   border: none;
+  right: 50px;
+  top: 0;
+  margin-bottom: 100px;
   display: flex;
   align-items: center;
 `;
@@ -133,6 +139,7 @@ export const DropdownWrapper = styled(Dropdown)`
   border: none !important;
   outline: none !important;
   box-shadow: none;
+
   .dropdown-toggle::after {
     display: none !important;
     background-color: white !important;

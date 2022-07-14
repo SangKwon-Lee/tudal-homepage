@@ -403,7 +403,7 @@ export const GoldChargeReceiptsWrapper = styled.div`
 
 export const GoldChargeReceiptsTitle = styled.div`
   @media (max-width: 600px) {
-    font-size: 15px;
+    font-size: 13px;
   }
   font-size: 18px;
   font-weight: 700;
@@ -413,14 +413,15 @@ export const GoldChargeReceiptBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 30px;
+  margin-left: 20px;
   cursor: pointer;
 `;
 
 export const GoldChargeReceiptsRadio = styled.button`
   background: white;
-  margin-left: 12px;
+  margin-left: 8px;
   cursor: pointer;
+  font-size: 14px;
   color: ${(props: IGoldChargeStyleProps) =>
     props.isReceipt ? "#FF3838" : "#4B4B4B"};
 `;
@@ -471,4 +472,59 @@ export const GoldChargeServiceText = styled.span`
   font-size: 12px;
   cursor: pointer;
   border-bottom: 1px solid #3476fa;
+`;
+
+export const GoldChargeReceiptsResultWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`;
+
+export const GoldChargeReceiptsText = styled.div`
+  font-size: 18px;
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+  margin-bottom: 30px;
+`;
+
+export const GoldChargeReceiptsBoldText = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+`;
+
+export const GoldChargeReceiptBox = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 50px;
+  text-align: start;
+  padding-top: 30px;
+  padding-bottom: 30px;
+`;
+
+export const GoldChargeReceiptBox2 = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+`;
+
+export const GoldChargeBankImg = styled.img`
+  margin-right: 20px;
+`;
+
+export const GoldChargeReceiptSmallText = styled.span`
+  font-size: 15px;
 `;

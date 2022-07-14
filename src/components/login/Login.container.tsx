@@ -167,12 +167,9 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
             trId: TRID,
             source: SOURCE,
           };
-          console.log(maxxData);
           try {
             await apiServer.post(`/marketing/tudalus/maxx/login`, maxxData);
-          } catch (e) {
-            console.log(e);
-          }
+          } catch (e) {}
         }
         if (path === "tudalus") {
           window.location.href = "https://us.tudal.co.kr";

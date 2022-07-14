@@ -56,6 +56,9 @@ const Payment = Loadable(
 const PaySuccess = Loadable(
   lazy(() => import("./components/paySuccess/PaySuccess.container"))
 );
+const PaymentCash = Loadable(
+  lazy(() => import("./components/paymentCash/paymentCash.Container"))
+);
 
 const Landing2 = Loadable(lazy(() => import("./components/landing/Landing2")));
 const Landing3 = Loadable(lazy(() => import("./components/landing/Landing3")));
@@ -205,6 +208,16 @@ const routes = [
       <>
         <Header path="mypage" route="tudalus" />
         <Payment path="tudalus" />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/tudalus/payment/cash",
+    element: (
+      <>
+        <Header path="mypage" route="tudalus" />
+        <PaymentCash path="tudalus" />
         <Footer />
       </>
     ),

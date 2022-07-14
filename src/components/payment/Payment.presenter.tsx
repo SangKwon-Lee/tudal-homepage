@@ -2,7 +2,6 @@ import { Body, Contents } from "../commons/ui/commonStyle";
 import {
   PaymentBodyWrapper,
   PaymentBtn,
-  PaymentCheck,
   PaymentContents,
   PaymentContentsSubText,
   PaymentContentsSubTitle,
@@ -15,7 +14,6 @@ import {
 import dayjs from "dayjs";
 import plusIcon from "../../assets/images/plusIcon.png";
 import miusIcon from "../../assets/images/miusIcon.png";
-import paycheck from "../../assets/images/paycheck.png";
 import { useContext } from "react";
 import { GlobalContext } from "../../App";
 import useGetUser from "../commons/hooks/useGetUser";
@@ -24,7 +22,6 @@ import { GoldMoneyImg } from "../goldCharge/GoldCharge.style";
 import moneyWhitePNG from "../../assets/images/goldWhite.png";
 interface PaymentProps {
   path: string;
-  step: number;
   product: any;
   canBuy: boolean;
   loading: boolean;
@@ -40,7 +37,6 @@ interface PaymentProps {
 
 const PaymentPresenter: React.FC<PaymentProps> = ({
   path,
-  step,
   loading,
   canBuy,
   product,
@@ -61,30 +57,16 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
         {!loading && (
           <>
             <PaymentBodyWrapper>
-              {step === 0 ? (
-                <PaymentIcon src={canBuy ? plusIcon : miusIcon}></PaymentIcon>
-              ) : (
-                <PaymentIcon src={paycheck}></PaymentIcon>
-              )}
+              <PaymentIcon src={canBuy ? plusIcon : miusIcon}></PaymentIcon>
 
               <PaymetnTitleWrapper>
-                {step === 1 ? (
-                  <PaymentTitle>
-                    {/* {path === "tudalus" ? "투달러스" : "뉴스스탁"} */}
-                    구독 결제가 완료되었습니다
-                  </PaymentTitle>
-                ) : canBuy ? (
+                {canBuy ? (
                   <PaymentTitle>
                     {path === "tudalus" ? "투달러스" : "뉴스스탁"} 한 달 구독
                     하기
                   </PaymentTitle>
                 ) : (
                   <PaymentTitle>결제할 골드가 부족합니다</PaymentTitle>
-                )}
-                {step === 1 && (
-                  <PaymentCheck>
-                    결제일 : {dayjs().format("YYYY년 MM월 DD일 HH:mm")}
-                  </PaymentCheck>
                 )}
               </PaymetnTitleWrapper>
               <PaymentContents>
@@ -179,30 +161,20 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
                 </PaymentContentsWrapper>
               </PaymentContents>
             </PaymentBodyWrapper>
-            {step === 1 ? (
-              <PaymentBtn
-                onClick={() => {
-                  window.location.href = "https://us.tudal.co.kr";
-                }}
-              >
-                {path === "tudalus" ? "투달러스" : "뉴스스탁"} 보러가기
-              </PaymentBtn>
-            ) : (
-              <PaymentBtn
-                onClick={() => {
-                  canBuy ? handleUserGoldSubtract() : navigate("/gold");
-                }}
-              >
-                {canBuy ? (
-                  "결제하기"
-                ) : (
-                  <>
-                    <GoldMoneyImg src={moneyWhitePNG} alt="" />
-                    투달 골드 충전하기
-                  </>
-                )}
-              </PaymentBtn>
-            )}
+            <PaymentBtn
+              onClick={() => {
+                canBuy ? handleUserGoldSubtract() : navigate("/gold");
+              }}
+            >
+              {canBuy ? (
+                "결제하기"
+              ) : (
+                <>
+                  <GoldMoneyImg src={moneyWhitePNG} alt="" />
+                  투달 골드 충전하기
+                </>
+              )}
+            </PaymentBtn>
           </>
         )}
       </Contents>

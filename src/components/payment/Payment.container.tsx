@@ -17,14 +17,13 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
   const userId = getUserId();
   const [loading, setLoading] = useState(true);
 
+  // const isCash = window.location.href.includes("cash");
+
   //* 회원 정보 불러오기;
   useGetUser();
 
   //* 회원 정보
   const { userGold } = useContext(GlobalContext);
-
-  //* 결제 스탭
-  const [step, setStep] = useState(0);
 
   //* 상품 정보
   const [product, setProduct] = useState([
@@ -143,15 +142,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
         payment: "",
       });
       if (status === 200) {
-        window.scrollTo(0, 0);
-        alert("결제가 완료되었습니다.");
         handleUserSubscription();
-        //* maxx카드 연동
-        try {
-          await apiServer.put(`/marketing/tudalus/maxx/${userId}/isSubs`);
-        } catch (e) {
-          console.log(e);
-        }
       }
     } catch (e) {
       alert("오류가 발생했습니다.");
@@ -181,18 +172,33 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
           type: "gold",
           subscription: true,
         };
-        await cmsServer.put(
+        const { status } = await cmsServer.put(
           `/tudalus-premium-users/${user[0].id}}?token=${CMS_TOKEN}`,
           editData
         );
+        if (status === 200) {
+          alert("결제가 완료되었습니다.");
+          window.location.replace("https://us.tudal.co.kr");
+        }
       } else {
         //* 구독한 적이 없으면 생성
-        await cmsServer.post(
+        const { status } = await cmsServer.post(
           `/tudalus-premium-users?token=${CMS_TOKEN}`,
           createData
         );
+        if (status === 200) {
+          alert("결제가 완료되었습니다.");
+          //* maxx카드 연동
+          try {
+            const { status } = await apiServer.put(
+              `/marketing/tudalus/maxx/${userId}/isSubs`
+            );
+            if (status === 200) {
+              window.location.replace("https://us.tudal.co.kr");
+            }
+          } catch (e) {}
+        }
       }
-      setStep(1);
     } catch (e) {
       alert("오류가 생겼습니다.");
     }
@@ -201,7 +207,6 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
   return (
     <PaymentPresenter
       path={path}
-      step={step}
       canBuy={canBuy}
       loading={loading}
       product={product}

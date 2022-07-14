@@ -1,59 +1,164 @@
 import dayjs from "dayjs";
 import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { GlobalContext } from "../../App";
-import { useNavigate } from "react-router";
-import WithAuth from "../commons/hocs/withAuth";
+import { apiServer, cmsServer, CMS_TOKEN } from "../../commons/axios/axios";
 import { getUserId } from "../../commons/func/hash";
 import useGetUser from "../commons/hooks/useGetUser";
-import { apiServer } from "../../commons/axios/axios";
-import { useContext, useEffect, useState } from "react";
-import GoldChargePresenter from "./GoldCharge.presenter";
-import { Helmet } from "react-helmet";
+import PaymentCashPresenter from "./paymentCash.Presenter";
 
-const GoldChargeContainer = () => {
-  const { userData, userGold } = useContext(GlobalContext);
-  const navigate = useNavigate();
+interface PaymentCahshProps {
+  path: string;
+}
+
+const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   const userId = getUserId();
 
   //* 회원 정보 불러오기;
   useGetUser();
 
-  //* 골드
-  const [gold, setgold] = useState("100");
+  //* 회원 정보
+  const { userGold, userData } = useContext(GlobalContext);
 
-  //* 보너스 골드
-  const [bonusGold, setBonusGold] = useState(Number(gold) / 10);
+  //* 상품 정보
+  const [product, setProduct] = useState([
+    {
+      period: 0,
+      gold: 0,
+      name: "",
+    },
+  ]);
 
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
-    money: 11000,
+    money: 10,
     method: "CARD",
     number: "",
     isReceipt: false,
     name: "",
   });
-
-  // * 결제 정보 Open
-  const [isCharge, setIsCharge] = useState(false);
-
   //* 현금 영수증 종류
   const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
-  //* 스텝
+  //* 투달러스 구독 내역
+  const [tudlaUsHistory, setTudlaUsHistory] = useState([
+    {
+      created_at: "",
+      endDate: "",
+      id: 0,
+      startDate: "",
+      subscription: false,
+      type: "",
+      updated_at: "",
+      userId: 0,
+    },
+  ]);
+
+  //* 무통장입금
   const [step, setStep] = useState(0);
 
-  //* 유저 골드 정보 불러오기 useEffect
-  useEffect(() => {
-    if (userData) {
-      setInputCharge({
-        ...inputCharge,
-        number: userData.phoneNumber,
-        name: userData.name,
+  //* 유저의 구독 정보 불러오기
+  const handelGetPremiumUser = async () => {
+    try {
+      //* 기존에 구독한 적이 있는지
+      const { data, status } = await cmsServer.get(
+        `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
+      );
+      if (status === 200 && data[0]) {
+        setTudlaUsHistory(data[0]);
+      }
+    } catch (e) {}
+  };
+
+  //* 상품 정보 불러오기
+  const handleGetProduct = async () => {
+    try {
+      const { data, status } = await cmsServer.get(
+        `/subscription-products?name=${path}&token=${CMS_TOKEN}`
+      );
+      if (status === 200 && data[0]) {
+        setProduct(data);
+      }
+    } catch (e) {}
+  };
+
+  //* 투달러스 구독 및 골드 차감
+  const handleUserGoldSubtract = async () => {
+    try {
+      const code = `${moment().format("YYYYMMDDHHmmss")}`;
+      const { status } = await apiServer.post(`golds/${userId}/subtract`, {
+        amount: 145,
+        bonusAmount: 15,
+        category: "투달러스 구독", // '골드충전'
+        code,
+        type: "subtract",
+        isExpired: false,
+        datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
+        payment: "",
       });
+      if (status === 200) {
+        handleUserSubscription();
+      }
+    } catch (e) {
+      alert("오류가 발생했습니다.");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData]);
+  };
+
+  //* 유저의 구독 정보 업데이트
+  const handleUserSubscription = async () => {
+    const createData = {
+      userId,
+      startDate: dayjs().add(9, "hour"),
+      endDate: dayjs().add(30, "day").add(9, "hour"),
+      type: "gold",
+      subscription: true,
+    };
+    try {
+      //* 기존에 구독한 적이 있는지
+      const { data: user, status: userStatus } = await cmsServer.get(
+        `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
+      );
+      if (userStatus === 200 && user[0]) {
+        //* 구독한 적이 있으면 수정
+        const editData = {
+          userId,
+          endDate: dayjs(user[0].endDate).add(30, "day").add(9, "hour"),
+          type: "gold",
+          subscription: true,
+        };
+        const { status } = await cmsServer.put(
+          `/tudalus-premium-users/${user[0].id}}?token=${CMS_TOKEN}`,
+          editData
+        );
+        if (status === 200) {
+          alert("결제가 완료되었습니다.");
+          window.location.replace("https://us.tudal.co.kr");
+        }
+      } else {
+        //* 구독한 적이 없으면 생성
+        const { status } = await cmsServer.post(
+          `/tudalus-premium-users?token=${CMS_TOKEN}`,
+          createData
+        );
+        if (status === 200) {
+          alert("결제가 완료되었습니다.");
+          //* maxx카드 연동
+          try {
+            const { status } = await apiServer.put(
+              `/marketing/tudalus/maxx/${userId}/isSubs`
+            );
+            if (status === 200) {
+              window.location.replace("https://us.tudal.co.kr");
+            }
+          } catch (e) {}
+        }
+      }
+    } catch (e) {
+      alert("오류가 생겼습니다.");
+    }
+  };
 
   //*이노페이 결제 결과 (결제 함수 2번 째)
   const InnoPayResult = (data: any) => {
@@ -85,19 +190,15 @@ const GoldChargeContainer = () => {
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
-    if (inputCharge.money === 0) {
-      alert("골드를 선택해주세요");
-      return;
-    }
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
-    //@ts-ignore
+    //@ts-ignore$
     innopay.goPay({
       // 필수 파라미터
       PayMethod: inputCharge.method, // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
       MID: "pgsbcn113m", // 가맹점 MID
       MerchantKey:
         "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
-      GoodsName: "투달 골드", // 상품명
+      GoodsName: "투달러스 구독", // 상품명
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호
@@ -115,8 +216,8 @@ const GoldChargeContainer = () => {
     try {
       const code = `${moment().format("YYYYMMDDHHmmss")}`;
       const { status } = await apiServer.post(`/golds/${userId}/add`, {
-        amount: gold, // 충전 골드
-        bonusAmount: bonusGold, // 충전 보너스 골드
+        amount: 150, // 충전 골드
+        bonusAmount: 15, // 충전 보너스 골드
         category: "골드충전", // '골드충전'
         code,
         type: "add",
@@ -125,8 +226,7 @@ const GoldChargeContainer = () => {
         payment: result.TID,
       });
       if (status === 200) {
-        alert("골드가 충전됐습니다.");
-        navigate("/success");
+        handleUserGoldSubtract();
       }
     } catch (e) {
       alert("골드 충전에 오류가 발생했습니다. 관리자에게 문의해주세요.");
@@ -153,8 +253,8 @@ const GoldChargeContainer = () => {
           ),
         category: "골드충전",
         chargeCode: code,
-        gold,
-        bonusGold,
+        gold: 150,
+        bonusGold: 15,
         receiptType: reciptsCategory,
         receiptNumber: inputCharge.number,
         depositAmount: inputCharge.money,
@@ -164,15 +264,11 @@ const GoldChargeContainer = () => {
       });
       if (status === 200) {
         setStep(1);
+        window.scrollTo(0, 0);
       }
     } catch (e) {
       alert("에러가 발생했습니다. 처음부터 다시 시도해주세요.");
     }
-  };
-
-  // * 결제 선택
-  const handleIsCharge = () => {
-    setIsCharge(() => !isCharge);
   };
 
   //* 현금영수증 종류
@@ -182,16 +278,6 @@ const GoldChargeContainer = () => {
       ...inputCharge,
       number: "",
     });
-  };
-
-  //* 골드 선택 및 충전 금액
-  const handleGold = (e: any) => {
-    setgold(e);
-    setInputCharge({
-      ...inputCharge,
-      money: Number(e) * 100 + Number(e) * 10,
-    });
-    setBonusGold(e / 10);
   };
 
   //*input 관리
@@ -216,6 +302,26 @@ const GoldChargeContainer = () => {
     });
   };
 
+  useEffect(() => {
+    if (userId && userGold.userId !== 0) {
+      handleGetProduct();
+      handelGetPremiumUser();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path, userGold, userId]);
+
+  //* 유저 골드 정보 불러오기 useEffect
+  useEffect(() => {
+    if (userData) {
+      setInputCharge({
+        ...inputCharge,
+        number: userData.phoneNumber,
+        name: userData.name,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
+
   return (
     <>
       <Helmet>
@@ -229,20 +335,19 @@ const GoldChargeContainer = () => {
           charSet="utf-8"
         ></script>
       </Helmet>
-      <GoldChargePresenter
-        gold={gold}
+      <PaymentCashPresenter
+        path={path}
         step={step}
-        userGold={userGold}
-        isCharge={isCharge}
-        handleGold={handleGold}
+        product={product}
         inputCharge={inputCharge}
-        handleRecipts={handleRecipts}
         handleInnoPay={handleInnoPay}
-        handleIsCharge={handleIsCharge}
+        handleRecipts={handleRecipts}
+        tudlaUsHistory={tudlaUsHistory}
         handleInputCharge={handleInputCharge}
         handleSavePaymentInfo={handleSavePaymentInfo}
       />
     </>
   );
 };
-export default WithAuth(GoldChargeContainer);
+
+export default PaymentCashContainer;

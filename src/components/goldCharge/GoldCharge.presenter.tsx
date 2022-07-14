@@ -85,7 +85,7 @@ export function priceToString(price: any) {
 
 const goldData = [
   "100",
-  "160",
+  "150",
   "500",
   "1000",
   "3000",

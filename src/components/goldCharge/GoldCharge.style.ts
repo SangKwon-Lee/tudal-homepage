@@ -8,6 +8,11 @@ interface IGoldChargeStyleProps {
   isReceipt?: boolean;
 }
 
+export const GoldChargeTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const GoldMyMoneyWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -196,6 +201,7 @@ export const GoldChargeWarningRedText = styled.div`
 
 export const GoldChargeWarningText = styled.div`
   font-size: 13px;
+  margin-bottom: 13px;
 `;
 
 export const GoldChargeWarningImg = styled.img``;

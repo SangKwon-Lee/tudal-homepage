@@ -49,6 +49,7 @@ import {
   GoldChargeNameInput,
   GoldChargeServiceWrapper,
   GoldChargeServiceText,
+  GoldChargeTitleWrapper,
 } from "./GoldCharge.style";
 import { UserGold } from "../../commons/types/types";
 import moneyPNG from "../../assets/images/money.png";
@@ -144,23 +145,28 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
           </GoldMyMoneyWrapper>
         </Contents>
         <Contents>
-          <GoldMyMoneyWrapper>
+          <GoldChargeTitleWrapper>
             <Title
               style={{
                 cursor: "pointer",
-                marginBottom: isCharge ? "30px" : "0px",
+                marginBottom: isCharge ? "10px" : "0px",
               }}
               onClick={handleIsCharge}
             >
               충전하실 골드를 선택해 주세요
             </Title>
+
             {/* <GoldChargeSubText>
               최대 충전 가능 금액 :
               <GoldChargeSubGold>30,000 골드</GoldChargeSubGold>
             </GoldChargeSubText> */}
-          </GoldMyMoneyWrapper>
+          </GoldChargeTitleWrapper>
+
           {isCharge && (
             <>
+              <GoldChargeWarningText>
+                1골드는 VAT포함하여 110원입니다
+              </GoldChargeWarningText>
               {goldData.map((data) => (
                 <GoldMenuWrapper
                   key={data}

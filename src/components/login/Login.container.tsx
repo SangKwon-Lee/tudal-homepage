@@ -157,9 +157,10 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
         //* maxx카드 연동
         const TRIDCOOKIE = getCookie("maxxTRID") || "";
         const SOURCECOOKIE = getCookie("maxxSOURCE") || "";
-        const TRID = TRIDCOOKIE.match(tridRegex)?.join();
-        const SOURCE = SOURCECOOKIE.match(sourceRegex)?.join();
-        console.log(TRID, SOURCE);
+        const TRID = TRIDCOOKIE.match(tridRegex)?.join().replace("TRID=", "");
+        const SOURCE = SOURCECOOKIE.match(sourceRegex)
+          ?.join()
+          .replace("SOURCE=", "");
         if (TRID) {
           let maxxData = {
             userId: result.data[0].userId,

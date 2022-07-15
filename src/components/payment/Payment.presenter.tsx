@@ -163,15 +163,17 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
             </PaymentBodyWrapper>
             <PaymentBtn
               onClick={() => {
-                canBuy ? handleUserGoldSubtract() : navigate("/gold");
+                canBuy
+                  ? handleUserGoldSubtract()
+                  : navigate("/tudalus/payment/cash");
               }}
             >
               {canBuy ? (
-                "결제하기"
+                "골드로 결제하기"
               ) : (
                 <>
                   <GoldMoneyImg src={moneyWhitePNG} alt="" />
-                  투달 골드 충전하기
+                  즉시 결제하기
                 </>
               )}
             </PaymentBtn>

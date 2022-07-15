@@ -73,7 +73,11 @@ import { GlobalContext } from "../../App";
 interface PaymentCashProps {
   path: string;
   step: number;
-  product: any;
+  product: {
+    period: number;
+    gold: number;
+    name: string;
+  };
   tudlaUsHistory: any;
   inputCharge: {
     check: boolean;
@@ -124,7 +128,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                 >
                   <PaymentContentsSubTitle>결제방식</PaymentContentsSubTitle>
                   <PaymentContentsSubText style={{ color: "#00B06A" }}>
-                    구독({product[0].period}일)
+                    구독({product.period}일)
                   </PaymentContentsSubText>
                 </PaymentContentsWrapper>
                 <PaymentContentsWrapper>
@@ -134,10 +138,10 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                   <PaymentContentsSubText>
                     {dayjs(tudlaUsHistory.endDate).isAfter(dayjs().format())
                       ? dayjs(tudlaUsHistory.endDate)
-                          .add(product[0].period, "day")
+                          .add(product.period, "day")
                           .format("YYYY년 MM월 DD일")
                       : dayjs()
-                          .add(product[0].period, "day")
+                          .add(product.period, "day")
                           .format("YYYY년 MM월 DD일")}
                     &nbsp;까지
                   </PaymentContentsSubText>
@@ -155,7 +159,9 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                   <PaymentContentsSubTitle>
                     차감되는 골드
                   </PaymentContentsSubTitle>
-                  <PaymentContentsSubText>-160개</PaymentContentsSubText>
+                  <PaymentContentsSubText>
+                    -{product.gold}개
+                  </PaymentContentsSubText>
                 </PaymentContentsWrapper>
               </PaymentContents>
               <GoldResultWrapper>
@@ -204,14 +210,14 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               >
                 신용카드(일반)
               </GoldMethodBtn>
-              <GoldMethodBtn
+              {/* <GoldMethodBtn
                 name="method"
                 value={"VBANK"}
                 isMethod={inputCharge.method === "VBANK"}
                 onClick={handleInputCharge}
               >
                 무통장입금
-              </GoldMethodBtn>
+              </GoldMethodBtn> */}
             </GoldMethodWrapper>
             {inputCharge.method === "VBANK" && (
               <>

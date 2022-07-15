@@ -158,17 +158,27 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       type: "gold",
       subscription: true,
     };
-
     try {
       //* 기존에 구독한 적이 있는지
       const { data: user, status: userStatus } = await cmsServer.get(
         `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
       );
       if (userStatus === 200 && user[0]) {
+        let endDate: any = "";
+        let startDate: any = "";
         //* 구독한 적이 있으면 수정
+        //* 구독 중인지, 전에 구독한 적이 있는지
+        if (dayjs(user[0].endDate).isAfter(dayjs().format())) {
+          endDate = dayjs(user[0].endDate).add(30, "day").add(9, "hour");
+          startDate = user[0].startDate;
+        } else {
+          endDate = dayjs().add(30, "day").add(9, "hour");
+          startDate = dayjs();
+        }
         const editData = {
           userId,
-          endDate: dayjs(user[0].endDate).add(30, "day").add(9, "hour"),
+          endDate,
+          startDate,
           type: "gold",
           subscription: true,
         };

@@ -22,13 +22,11 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   const { userGold, userData } = useContext(GlobalContext);
 
   //* 상품 정보
-  const [product, setProduct] = useState([
-    {
-      period: 0,
-      gold: 0,
-      name: "",
-    },
-  ]);
+  const [product, setProduct] = useState({
+    period: 0,
+    gold: 0,
+    name: "",
+  });
 
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
@@ -79,7 +77,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         `/subscription-products?name=${path}&token=${CMS_TOKEN}`
       );
       if (status === 200 && data[0]) {
-        setProduct(data);
+        setProduct(data[0]);
       }
     } catch (e) {}
   };
@@ -121,10 +119,21 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
       );
       if (userStatus === 200 && user[0]) {
+        let endDate: any = "";
+        let startDate: any = "";
         //* 구독한 적이 있으면 수정
+        //* 구독 중인지, 전에 구독한 적이 있는지
+        if (dayjs(user[0].endDate).isAfter(dayjs().format())) {
+          endDate = dayjs(user[0].endDate).add(30, "day").add(9, "hour");
+          startDate = user[0].startDate;
+        } else {
+          endDate = dayjs().add(30, "day").add(9, "hour");
+          startDate = dayjs();
+        }
         const editData = {
           userId,
-          endDate: dayjs(user[0].endDate).add(30, "day").add(9, "hour"),
+          endDate,
+          startDate,
           type: "gold",
           subscription: true,
         };

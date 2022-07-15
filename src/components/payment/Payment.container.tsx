@@ -112,12 +112,14 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
         });
         if (userGold.gold < data[0].gold * 0.9) {
           setCanBuy(false);
+          window.location.replace("https://tudal.co.kr/tudalus/payment/cash");
         }
         if (
           userGold.gold > data[0].gold * 0.9 &&
           userGold.bonusGold > userGold.gold - remainGold
         ) {
           setCanBuy(false);
+          window.location.replace("https://tudal.co.kr/tudalus/payment/cash");
         }
       }
     } catch (e) {}

@@ -232,7 +232,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         bonusGold: 15,
         receiptType: reciptsCategory,
         receiptNumber: inputCharge.number,
-        depositAmount: inputCharge.money,
+        depositAmount: 10,
         isExpired: 0,
         expirationDate,
         isCharged: 0,

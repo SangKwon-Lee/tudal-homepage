@@ -161,55 +161,21 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       subscription: true,
     };
     try {
-      //* 기존에 구독한 적이 있는지
-      const { data: user, status: userStatus } = await cmsServer.get(
-        `/tudalus-premium-users?userId=${userId}&token=${CMS_TOKEN}`
+      const { status } = await cmsServer.post(
+        `/tudalus-premium-users?token=${CMS_TOKEN}`,
+        createData
       );
-      if (userStatus === 200 && user[0]) {
-        let endDate: any = "";
-        let startDate: any = "";
-        //* 구독한 적이 있으면 수정
-        //* 구독 중인지, 전에 구독한 적이 있는지
-        if (dayjs(user[0].endDate).isAfter(dayjs().format())) {
-          endDate = dayjs(user[0].endDate).add(30, "day").add(9, "hour");
-          startDate = user[0].startDate;
-        } else {
-          endDate = dayjs().add(30, "day").add(9, "hour");
-          startDate = dayjs();
-        }
-        const editData = {
-          userId,
-          endDate,
-          startDate,
-          type: "gold",
-          subscription: true,
-        };
-        const { status } = await cmsServer.put(
-          `/tudalus-premium-users/${user[0].id}}?token=${CMS_TOKEN}`,
-          editData
-        );
-        if (status === 200) {
-          alert("결제가 완료되었습니다.");
-          window.location.replace("https://us.tudal.co.kr");
-        }
-      } else {
-        //* 구독한 적이 없으면 생성
-        const { status } = await cmsServer.post(
-          `/tudalus-premium-users?token=${CMS_TOKEN}`,
-          createData
-        );
-        if (status === 200) {
-          alert("결제가 완료되었습니다.");
-          //* maxx카드 연동
-          try {
-            const { status } = await apiServer.put(
-              `/marketing/tudalus/maxx/${userId}/isSubs`
-            );
-            if (status === 200) {
-              window.location.replace("https://us.tudal.co.kr");
-            }
-          } catch (e) {}
-        }
+      if (status === 200) {
+        alert("결제가 완료되었습니다.");
+        //* maxx카드 연동
+        try {
+          const { status } = await apiServer.put(
+            `/marketing/tudalus/maxx/${userId}/isSubs`
+          );
+          if (status === 200) {
+            window.location.replace("https://us.tudal.co.kr");
+          }
+        } catch (e) {}
       }
     } catch (e) {
       alert("오류가 생겼습니다.");

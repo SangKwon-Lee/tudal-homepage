@@ -59,6 +59,7 @@ import {
   GoldChargeReceiptSmallText,
   GoldChargeReceiptsResultWrapper,
   GoldChargeReceiptsText,
+  GoldChargeReceiptsBoldSpan,
 } from "../goldCharge/GoldCharge.style";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
 import goldCheckPNG from "../../assets/images/goldCheck.png";
@@ -210,14 +211,14 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               >
                 신용카드(일반)
               </GoldMethodBtn>
-              {/* <GoldMethodBtn
+              <GoldMethodBtn
                 name="method"
                 value={"VBANK"}
                 isMethod={inputCharge.method === "VBANK"}
                 onClick={handleInputCharge}
               >
                 무통장입금
-              </GoldMethodBtn> */}
+              </GoldMethodBtn>
             </GoldMethodWrapper>
             {inputCharge.method === "VBANK" && (
               <>
@@ -380,17 +381,19 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
             <GoldChargeReceiptsBoldText>
               아래 계좌번호로 충전하실 금액을 이체해 주세요.
               <br /> 반드시
-              {` ${userData?.name}${userData?.phoneNumber.slice(
-                userData?.phoneNumber.length - 4,
-                userData?.phoneNumber.length
-              )}`}
+              <GoldChargeReceiptsBoldSpan>
+                {` ${userData?.name}${userData?.phoneNumber.slice(
+                  userData?.phoneNumber.length - 4,
+                  userData?.phoneNumber.length
+                )}`}
+              </GoldChargeReceiptsBoldSpan>
               으로 입금해주세요.
             </GoldChargeReceiptsBoldText>
             <GoldChargeReceiptsText>
               <br />
               {`입금마감일 :
                       ${dayjs(new Date()).add(2, "day").format("YYYY.MM.DD")}
-                       오후 23시 59분 59초`}
+                      오후 23시 59분 59초`}
             </GoldChargeReceiptsText>
             <GoldChargeReceiptBox>
               <GoldChargeBankImg src={BankPng} />
@@ -401,9 +404,9 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
             </GoldChargeReceiptBox>
             <GoldChargeReceiptBox2>
               <GoldChargeReceiptSmallText>입금금액</GoldChargeReceiptSmallText>
-              <GoldChargeReceiptsBoldText>
+              <GoldChargeReceiptsBoldSpan>
                 &nbsp;&nbsp;&nbsp;{priceToString(inputCharge.money)}
-              </GoldChargeReceiptsBoldText>
+              </GoldChargeReceiptsBoldSpan>
               <GoldChargeReceiptSmallText>
                 원 (VAT 포함)
               </GoldChargeReceiptSmallText>

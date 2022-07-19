@@ -260,7 +260,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
             userData?.phoneNumber.length - 4,
             userData?.phoneNumber.length
           ),
-        category: "골드충전",
+        category: "골드충전(tudalus)",
         chargeCode: code,
         gold: 150,
         bonusGold: 15,

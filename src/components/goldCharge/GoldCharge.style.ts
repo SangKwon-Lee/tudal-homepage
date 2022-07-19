@@ -483,25 +483,34 @@ export const GoldChargeReceiptsResultWrapper = styled.div`
 `;
 
 export const GoldChargeReceiptsText = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   @media (min-width: 680px) {
-    font-size: 20px;
+    font-size: 16px;
   }
   margin-bottom: 30px;
 `;
 
 export const GoldChargeReceiptsBoldText = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   @media (min-width: 680px) {
     font-size: 20px;
   }
 `;
 
+export const GoldChargeReceiptsBoldSpan = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  @media (min-width: 680px) {
+    font-size: 20px;
+  }
+  color: #ff3838;
+`;
+
 export const GoldChargeReceiptBox = styled.div`
   display: flex;
   align-items: center;
-  padding-left: 40px;
+  padding-left: 20px;
   background-color: white;
   border-radius: 8px;
   margin-top: 50px;

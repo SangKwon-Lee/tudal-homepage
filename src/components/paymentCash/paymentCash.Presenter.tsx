@@ -60,6 +60,7 @@ import {
   GoldChargeReceiptsResultWrapper,
   GoldChargeReceiptsText,
   GoldChargeReceiptsBoldSpan,
+  GoldChargeWarningTextRed,
 } from "../goldCharge/GoldCharge.style";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
 import goldCheckPNG from "../../assets/images/goldCheck.png";
@@ -186,8 +187,11 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                     </GoldChargeWarningRedText>
                   </GoldChargeWarningImgWrapper>
                   <GoldChargeWarningText>
-                    무통장 입금과 신용카드 비씨카드, 삼성카드, 롯데카드 일시불
-                    결제로 골드를 충전하실 수 있습니다.
+                    무통장 입금과 신용카드
+                    <GoldChargeWarningTextRed>
+                      비씨카드, 삼성카드, 롯데카드
+                    </GoldChargeWarningTextRed>
+                    일시불 결제로 골드를 충전하실 수 있습니다.
                   </GoldChargeWarningText>
                 </GoldChargeWarningWrapper>
               </GoldResultWrapper>

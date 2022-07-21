@@ -485,6 +485,7 @@ export const GoldChargeReceiptsResultWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 `;
 
 export const GoldChargeReceiptsText = styled.div`
@@ -514,6 +515,7 @@ export const GoldChargeReceiptsBoldSpan = styled.span`
 
 export const GoldChargeReceiptBox = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   padding-left: 20px;
   background-color: white;
@@ -522,6 +524,8 @@ export const GoldChargeReceiptBox = styled.div`
   text-align: start;
   padding-top: 30px;
   padding-bottom: 30px;
+  max-width: 600px;
+  width: 100%;
 `;
 
 export const GoldChargeReceiptBox2 = styled.div`
@@ -532,7 +536,9 @@ export const GoldChargeReceiptBox2 = styled.div`
   border-radius: 8px;
   margin-top: 10px;
   padding-top: 30px;
+  max-width: 600px;
   padding-bottom: 30px;
+  width: 100%;
 `;
 
 export const GoldChargeBankImg = styled.img`

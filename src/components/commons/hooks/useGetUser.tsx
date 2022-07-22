@@ -12,18 +12,32 @@ const useGetUser = (): null => {
   const handleGetUserGold = async () => {
     if (userId) {
       try {
-        const { data } = await apiServer.get(`/golds/${userId}`, {
-          headers: {
-            pragma: "no-cache",
-          },
-        });
-        const { data: userData } = await apiServer.get(`/user/${userId}`, {
-          headers: {
-            pragma: "no-cache",
-          },
-        });
-        setUserData(userData[0]);
-        setUserGold(data[0]);
+        const { data, status: goldStatus } = await apiServer.get(
+          `/golds/${userId}`,
+          {
+            headers: {
+              pragma: "no-cache",
+            },
+          }
+        );
+        const { data: userData, status } = await apiServer.get(
+          `/user/${userId}`,
+          {
+            headers: {
+              pragma: "no-cache",
+            },
+          }
+        );
+        if (status === 200 && userData[0]) {
+          setUserData(userData[0]);
+        }
+        if (goldStatus === 200 && data) {
+          if (data.msg === "골드 내역이 없는 사용자 입니다.") {
+            setUserGold(data);
+          } else {
+            setUserGold(data[0]);
+          }
+        }
       } catch (e) {
         alert("회원정보가 없습니다.");
       }

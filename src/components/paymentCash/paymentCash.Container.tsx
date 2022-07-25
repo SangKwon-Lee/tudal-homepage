@@ -136,7 +136,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   };
 
   //*이노페이 결제 결과 (결제 함수 2번 째)
-  const InnoPayResult = (data: any) => {
+  const InnoPayResult = async (data: any) => {
     if (data.data === "close") {
       window.removeEventListener("message", InnoPayResult);
       return;
@@ -156,6 +156,38 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       // var EPayCl = data.data.EPayCl;
       if (result.ResultCode === "3001") {
         postPayment(result);
+        try {
+          let newData = {
+            AcquCardCode: result.AcquCardCode,
+            AcquCardName: decodeURI(result.AcquCardName),
+            Amt: result.Amt,
+            AuthCode: result.AuthCode,
+            AuthDate: result.AuthDate,
+            BuyerAuthNum: result.BuyerAuthNum,
+            BuyerEmail: result.BuyerEmail,
+            BuyerName: decodeURI(result.BuyerName),
+            BuyerTel: result.BuyerTel,
+            ErrorCode: result.ErrorCode,
+            ErrorMsg: decodeURI(result.ErrorMsg),
+            GoodsName: decodeURI(result.GoodsName),
+            MID: result.MID,
+            MOID: result.MOID,
+            OID: result.OID,
+            PayMethod: result.PayMethod,
+            ResultCode: result.ResultCode,
+            ResultMsg: decodeURI(result.ResultMsg),
+            TID: result.TID,
+            action: result.action,
+            fn_cd: result.fn_cd,
+            fn_name: decodeURI(result.fn_name),
+            name: decodeURI(result.name),
+            CardQuota: result.CardQuota,
+          };
+          await cmsServer.post(
+            `/tudalus-payment-histories?token=${CMS_TOKEN}`,
+            newData
+          );
+        } catch (e) {}
       } else {
         alert("결제 오류가 발생했습니다.");
         window.removeEventListener("message", InnoPayResult);
@@ -167,19 +199,19 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   const handleInnoPay = async () => {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
     //@ts-ignore$
-    innopay.goPay({
+    await innopay.goPay({
       // 필수 파라미터
       PayMethod: inputCharge.method, // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
       MID: "pgsbcn113m", // 가맹점 MID
       MerchantKey:
         "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
-      GoodsName: "투달러스 구독", // 상품명
+      GoodsName: "투달러스구독", // 상품명
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호
       BuyerEmail: "@naver.com", // 고객이메일
-      ResultYN: "Y", // 결제결과창 출력유뮤
-      Moid: `tudalGold${code}`, // 가맹점에서 생성한 주문번호 셋팅
+      ResultYN: "N", // 결제결과창 출력유뮤
+      Moid: `TudalUs${code}`, // 가맹점에서 생성한 주문번호 셋팅
       Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
     });
     //* 결제 결과가 아래로 전달 (InnoPayResult 함수 실행)

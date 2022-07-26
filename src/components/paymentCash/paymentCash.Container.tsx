@@ -31,7 +31,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
-    money: 10,
+    money: 16500,
     method: "CARD",
     number: "",
     isReceipt: false,
@@ -264,7 +264,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         bonusGold: 15,
         receiptType: reciptsCategory,
         receiptNumber: inputCharge.number,
-        depositAmount: 10,
+        depositAmount: inputCharge.money,
         isExpired: 0,
         expirationDate,
         isCharged: 0,

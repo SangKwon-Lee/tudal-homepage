@@ -78,7 +78,7 @@ const HeaderPresenter: React.FC<IHeaderProps> = ({ path, route, userId }) => {
                     }}
                   >
                     <HeaderLogo src={TudalUsLogo} />
-                    투달러스
+                    투달유에스
                   </HeaderBtn>
                   <HeaderBtn
                     onClick={() => {

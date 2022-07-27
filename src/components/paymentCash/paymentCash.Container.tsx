@@ -89,7 +89,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       const { status } = await apiServer.post(`golds/${userId}/subtract`, {
         amount: 145,
         bonusAmount: 15,
-        category: "투달러스 구독", // '골드충전'
+        category: "투달유에스", // '골드충전'
         code,
         type: "subtract",
         isExpired: false,
@@ -205,7 +205,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       MID: "pgsbcn113m", // 가맹점 MID
       MerchantKey:
         "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
-      GoodsName: "투달러스", // 상품명
+      GoodsName: "투달유에스", // 상품명
       Amt: String(inputCharge.money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호

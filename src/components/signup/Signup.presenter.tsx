@@ -107,7 +107,7 @@ const SignupPresenter: React.FC<SignupProps> = ({
               <LoginSubText>
                 {changePath(path)} 회원가입만해도 <br />
                 <LoginSubTextBold>
-                  투자의 달인, 투달러스, 뉴스스탁 서비스까지 한 번에
+                  투자의 달인, 투달유에스, 뉴스스탁 서비스까지 한 번에
                 </LoginSubTextBold>
                 &nbsp; 이용하실 수 있습니다.
               </LoginSubText>
@@ -257,7 +257,7 @@ const SignupPresenter: React.FC<SignupProps> = ({
                 <SignupSuccessSubText>
                   투자의달인 로그인 한번으로
                   <br />
-                  투달러스와 뉴스스탁 서비스를 함께 이용하실 수 있습니다.
+                  투달유에스와 뉴스스탁 서비스를 함께 이용하실 수 있습니다.
                 </SignupSuccessSubText>
                 <SignupSuccessBtn
                   onClick={() => {

@@ -27,14 +27,14 @@ const WelcomePresenter: React.FC<WelcomeProps> = ({ path }) => {
     <Body>
       <WelcomeTitle>{changePath(path)}에 오신 것을 환영합니다</WelcomeTitle>
       <WelcomeSubTitle>
-        {changePath(path)} 회원가입 후 <br /> 투달러스, 뉴스스탁, 투자의달인
+        {changePath(path)} 회원가입 후 <br /> 투달유에스, 뉴스스탁, 투자의달인
         서비스를 함께 이용해 보세요
       </WelcomeSubTitle>
       <WelcomeContentsWrapper>
         <WelcomeContents>
           <WelcomeLogoWrapper>
             <WelcomeLogo src={TudalUsLogo} />
-            <WelcomeLogoText>투달러스</WelcomeLogoText>
+            <WelcomeLogoText>투달유에스</WelcomeLogoText>
           </WelcomeLogoWrapper>
           <WelcomeContentsLine />
           <WelcomeContentsText>

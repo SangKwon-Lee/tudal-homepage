@@ -1,7 +1,7 @@
 import { GlobalContext } from "../../App";
 import LoginPresenter from "./Login.presenter";
 import { encrypted } from "../../commons/func/hash";
-import { apiServer } from "../../commons/axios/axios";
+import { apiServer, cmsServer, CMS_TOKEN } from "../../commons/axios/axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { getCookie, setCookie } from "../../commons/func/cookie";
 import { useNavigate } from "react-router";
@@ -152,6 +152,15 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
         receiver.postMessage(
           encrypted(result.data[0].userId),
           "https://us.tudal.co.kr"
+        );
+
+        let newData = {
+          userId: result.data[0].userId,
+          // isOpen: true,
+        };
+        await cmsServer.post(
+          `/tudalus-add-home-popups?token=${CMS_TOKEN}`,
+          newData
         );
 
         //* maxx카드 연동

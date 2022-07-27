@@ -62,7 +62,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
               <PaymetnTitleWrapper>
                 {canBuy ? (
                   <PaymentTitle>
-                    {path === "tudalus" ? "투달러스" : "뉴스스탁"} 한 달 구독
+                    {path === "tudalus" ? "투달유에스" : "뉴스스탁"} 한 달 구독
                     하기
                   </PaymentTitle>
                 ) : (
@@ -71,7 +71,7 @@ const PaymentPresenter: React.FC<PaymentProps> = ({
               </PaymetnTitleWrapper>
               <PaymentContents>
                 <PaymentContentsTitle>
-                  상품명 : {path === "tudalus" ? "투달러스" : "뉴스스탁"}
+                  상품명 : {path === "tudalus" ? "투달유에스" : "뉴스스탁"}
                 </PaymentContentsTitle>
                 <PaymentContentsWrapper
                   style={{ marginTop: "10px", marginBottom: "10px" }}

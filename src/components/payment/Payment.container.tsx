@@ -136,7 +136,7 @@ const PaymentContainer: React.FC<PaymentProps> = ({ path }) => {
       const { status } = await apiServer.post(`golds/${userId}/subtract`, {
         amount: subtractGold.remainGold,
         bonusAmount: subtractGold.remainBonusGold,
-        category: "투달러스 구독", // '골드충전'
+        category: "투달유에스", // '골드충전'
         code,
         type: "subtract",
         isExpired: false,

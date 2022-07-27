@@ -118,12 +118,13 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               <PaymentIcon src={plusIcon}></PaymentIcon>
               <PaymetnTitleWrapper>
                 <PaymentTitle>
-                  {path === "tudalus" ? "투달러스" : "뉴스스탁"} 한 달 구독 하기
+                  {path === "tudalus" ? "투달유에스" : "뉴스스탁"} 한 달 구독
+                  하기
                 </PaymentTitle>
               </PaymetnTitleWrapper>
               <PaymentContents>
                 <PaymentContentsTitle>
-                  상품명 : {path === "tudalus" ? "투달러스" : "뉴스스탁"}
+                  상품명 : {path === "tudalus" ? "투달유에스" : "뉴스스탁"}
                 </PaymentContentsTitle>
                 <PaymentContentsWrapper
                   style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -336,7 +337,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               ) : (
                 <GoldMoneyImg src={moneyPNG} alt="" />
               )}
-              투달러스 구독 결제
+              투달유에스 구독 결제
             </GoldChargePGBtn>
             <GoldWarningWrapper>
               <GoldWarningTitle>결제시 주의사항</GoldWarningTitle>

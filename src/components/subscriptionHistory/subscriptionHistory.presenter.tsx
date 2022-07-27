@@ -39,7 +39,7 @@ const SubscriptionHistoryPresenter: React.FC<SubscriptionHistoryPresenterPrps> =
                 <SubWrapper key={data.id}>
                   <SubTitleWrapper>
                     <SubLogo src={miniTudal} />
-                    <SubTitle>투달러스</SubTitle>
+                    <SubTitle>투달유에스</SubTitle>
                   </SubTitleWrapper>
                   <SubContentsWrapper>
                     <SubContentsTitle>구독 상태</SubContentsTitle>
@@ -92,7 +92,7 @@ const SubscriptionHistoryPresenter: React.FC<SubscriptionHistoryPresenterPrps> =
                 </SubContentsWrapper> */}
                   {!dayjs(data?.endDate).isAfter(dayjs().format()) && (
                     <SubBtn onClick={() => navigate("/tudalus/payment")}>
-                      투달러스 구독하기
+                      투달유에스 구독하기
                     </SubBtn>
                   )}
                 </SubWrapper>

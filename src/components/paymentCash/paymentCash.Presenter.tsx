@@ -26,26 +26,12 @@ import {
   GoldChargeWarningImg,
   GoldChargeWarningRedText,
   GoldChargeWarningText,
-  GoldChageMethodOption,
-  GoldChargeAccountBigText,
-  GoldChargeAccountLine,
-  GoldChargeAccountSmallText,
-  GoldChargeAccountWrapper,
-  GoldChargeAccoutPhoneWrapper,
   GoldChargeCheckImg,
   GoldChargeCheckText,
   GoldChargeCheckWrapper,
-  GoldChargeMethodSelect,
-  GoldChargeNameInput,
   GoldChargePGBtn,
-  GoldChargeReceiptBtnWrapper,
-  GoldChargeReceiptsinput,
-  GoldChargeReceiptsRadio,
-  GoldChargeReceiptsTitle,
-  GoldChargeReceiptsWrapper,
   GoldChargeServiceText,
   GoldChargeServiceWrapper,
-  GoldMenuCircle,
   GoldMethodBtn,
   GoldMethodWrapper,
   GoldMoneyImg,
@@ -61,9 +47,23 @@ import {
   GoldChargeReceiptsText,
   GoldChargeReceiptsBoldSpan,
   GoldChargeWarningTextRed,
+  // GoldChageMethodOption,
+  // GoldChargeAccountBigText,
+  // GoldChargeAccountLine,
+  // GoldChargeAccountSmallText,
+  // GoldChargeAccountWrapper,
+  // GoldChargeAccoutPhoneWrapper,
+  // GoldChargeMethodSelect,
+  // GoldChargeNameInput,
+  // GoldChargeReceiptBtnWrapper,
+  // GoldChargeReceiptsinput,
+  // GoldChargeReceiptsRadio,
+  // GoldChargeReceiptsTitle,
+  // GoldChargeReceiptsWrapper,
+  // GoldMenuCircle,
 } from "../goldCharge/GoldCharge.style";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
-import goldCheckPNG from "../../assets/images/goldCheck.png";
+// import goldCheckPNG from "../../assets/images/goldCheck.png";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import moneyPNG from "../../assets/images/money.png";
@@ -210,22 +210,22 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               <GoldMethodBtn
                 style={{ marginRight: "20px" }}
                 name="method"
-                value={"CARD"}
+                value={"CSMS"}
                 onClick={handleInputCharge}
-                isMethod={inputCharge.method === "CARD"}
+                isMethod={inputCharge.method === "CSMS"}
               >
-                신용카드(일반)
+                SMS인증결제
               </GoldMethodBtn>
-              <GoldMethodBtn
+              {/* <GoldMethodBtn
                 name="method"
                 value={"VBANK"}
                 isMethod={inputCharge.method === "VBANK"}
                 onClick={handleInputCharge}
               >
                 무통장입금
-              </GoldMethodBtn>
+              </GoldMethodBtn> */}
             </GoldMethodWrapper>
-            {inputCharge.method === "VBANK" && (
+            {/* {inputCharge.method === "VBANK" && (
               <>
                 <GoldChargeAccountWrapper>
                   <GoldChargeAccountSmallText>
@@ -309,7 +309,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                   </>
                 )}
               </>
-            )}
+            )} */}
             <GoldChargeCheckWrapper id="check" onClick={handleInputCharge}>
               <GoldChargeCheckImg
                 id="check"
@@ -327,9 +327,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               isCheck={inputCharge.check}
               disabled={!inputCharge.check}
               onClick={() => {
-                inputCharge.method === "CARD"
-                  ? handleInnoPay()
-                  : handleSavePaymentInfo();
+                handleInnoPay();
               }}
             >
               {inputCharge.check ? (

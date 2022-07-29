@@ -150,7 +150,7 @@ export const GoldMethodBtn = styled.button`
   }
   padding: 15px;
   width: 100%;
-  max-width: 256px;
+  /* max-width: 256px; */
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;

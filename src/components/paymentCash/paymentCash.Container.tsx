@@ -32,13 +32,11 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   const [inputCharge, setInputCharge] = useState({
     check: false,
     money: 16500,
-    method: "CARD",
+    method: "CSMS",
     number: "",
     isReceipt: false,
     name: "",
   });
-  //* 현금 영수증 종류
-  const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
   //* 투달러스 구독 내역
   const [tudlaUsHistory, setTudlaUsHistory] = useState([
@@ -53,9 +51,13 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       userId: 0,
     },
   ]);
-
+  // ! 지금은 사용하지 않는 코드입니다. 무통장입금 기능을 사용하지 않습니다.
   //* 무통장입금
   const [step, setStep] = useState(0);
+
+  // ! 지금은 사용하지 않는 코드입니다. 무통장입금 기능을 사용하지 않습니다.
+  //* 현금 영수증 종류
+  const [reciptsCategory, setReciptesCategory] = useState("미발급");
 
   //* 유저의 구독 정보 불러오기
   const handelGetPremiumUser = async () => {
@@ -136,11 +138,12 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   };
 
   //*이노페이 결제 결과 (결제 함수 2번 째)
-  const InnoPayResult = async (data: any) => {
-    if (data.data === "close") {
-      window.removeEventListener("message", InnoPayResult);
+  const innopay_result = async (data: any) => {
+    if (data.data.message === "close") {
+      // window.removeEventListener("message", innopay_result);
+      window.location.href = "https://us.tudal.co.kr";
       return;
-    } else if (data.data !== "close") {
+    } else if (data.data.message !== "close") {
       var result = JSON.parse(data.data);
       //* 아래 데이터는 필요할 경우 사용하세요
       // var mid = data.data.MID; // 가맹점 MID
@@ -190,7 +193,8 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         } catch (e) {}
       } else {
         alert("결제 오류가 발생했습니다.");
-        window.removeEventListener("message", InnoPayResult);
+        window.removeEventListener("message", innopay_result);
+        window.location.href = "https://us.tudal.co.kr";
       }
     }
   };
@@ -198,24 +202,30 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
-    //@ts-ignore$
-    await innopay.goPay({
-      // 필수 파라미터
-      PayMethod: inputCharge.method, // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
-      MID: "pgsbcn113m", // 가맹점 MID
-      MerchantKey:
-        "VbLEjdU/0hl31Cgp4pfjtkkYM0IrCjKPs9r/S7QQ/1qR0YcO6CYxMbjjIU3C4cwYn7p8wpzS5UStBOoWdZkfJA==", // 가맹점 라이센스키
-      GoodsName: "TudalUS", // 상품명
-      Amt: String(inputCharge.money), // 결제금액(과세)
-      BuyerName: userData.name, // 고객명
-      BuyerTel: userData.phoneNumber, // 고객전화번호
-      BuyerEmail: "@naver.com", // 고객이메일
-      ResultYN: "N", // 결제결과창 출력유뮤
-      Moid: `TudalUs${code}`, // 가맹점에서 생성한 주문번호 셋팅
-      Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
-    });
+    try {
+      //@ts-ignore
+      await innopay.goPay({
+        // 필수 파라미터
+        PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
+        MID: "pgsbcn111m", // 가맹점 MID
+        MerchantKey:
+          "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
+        GoodsName: "TudalUS", // 상품명
+        Amt: "10", // 결제금액(과세)
+        BuyerName: userData.name, // 고객명
+        BuyerTel: userData.phoneNumber, // 고객전화번호
+        BuyerEmail: "", // 고객이메일
+        ResultYN: "N", // 결제결과창 출력유뮤
+        userId: userId,
+        Moid: `TudalUs${userId}`, // 가맹점에서 생성한 주문번호 셋팅
+        Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
     //* 결제 결과가 아래로 전달 (InnoPayResult 함수 실행)
-    window.addEventListener("message", InnoPayResult);
+    window.addEventListener("message", innopay_result);
   };
 
   //* 이노페이 결제 성공시 골드 충전 함수 (결제 함수 3번 째)
@@ -239,8 +249,8 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       alert("골드 충전에 오류가 발생했습니다. 관리자에게 문의해주세요.");
     }
   };
-
-  //* 다음 스텝 및 결제 정보 저장
+  // ! 지금은 사용하지 않는 코드입니다. 무통장입금 기능을 사용하지 않습니다.
+  // * 다음 스텝 및 결제 정보 저장
   const handleSavePaymentInfo = async () => {
     const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
     const expirationDate = `${dayjs()
@@ -278,6 +288,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
     }
   };
 
+  // ! 지금은 사용하지 않는 코드입니다. 무통장입금 기능을 사용하지 않습니다.
   //* 현금영수증 종류
   const handleRecipts = (e: any) => {
     setReciptesCategory(e.target.value);
@@ -286,7 +297,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       number: "",
     });
   };
-
+  // ! 지금은 사용하지 않는 코드입니다. 무통장입금 기능을 사용하지 않습니다.
   //*input 관리
   const handleInputCharge = (e: any) => {
     if (e === "발급" || e === "미발급") {

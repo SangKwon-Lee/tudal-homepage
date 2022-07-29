@@ -140,6 +140,26 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   //*이노페이 결제 결과 (결제 함수 2번 째)
   const innopay_result = async (data: any) => {
     console.log(data);
+    if (data.data.contents) {
+      //@ts-ignore
+      await innopay.goPay({
+        // 필수 파라미터
+        PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
+        MID: "pgsbcn111m", // 가맹점 MID
+        MerchantKey:
+          "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
+        GoodsName: "USTEST", // 상품명
+        Amt: String(inputCharge.money), // 결제금액(과세)
+        BuyerName: userData.name, // 고객명
+        buyerName: userData.name,
+        BuyerTel: userData.phoneNumber, // 고객전화번호
+        BuyerEmail: "@naver.com", // 고객이메일
+        ResultYN: "N", // 결제결과창 출력유뮤
+        Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
+        Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
+      });
+    }
+
     if (data.data.message === "close") {
       // window.removeEventListener("message", innopay_result);
       window.location.href = "https://us.tudal.co.kr";
@@ -204,25 +224,23 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   const handleInnoPay = async () => {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
     try {
-      if (userData.name) {
-        //@ts-ignore
-        await innopay.goPay({
-          // 필수 파라미터
-          PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
-          MID: "pgsbcn111m", // 가맹점 MID
-          MerchantKey:
-            "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-          GoodsName: "USTEST", // 상품명
-          Amt: String(inputCharge.money), // 결제금액(과세)
-          BuyerName: userData.name, // 고객명
-          buyerName: userData.name,
-          BuyerTel: userData.phoneNumber, // 고객전화번호
-          BuyerEmail: "@naver.com", // 고객이메일
-          ResultYN: "N", // 결제결과창 출력유뮤
-          Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
-          Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
-        });
-      }
+      //@ts-ignore
+      await innopay.goPay({
+        // 필수 파라미터
+        PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
+        MID: "pgsbcn111m", // 가맹점 MID
+        MerchantKey:
+          "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
+        GoodsName: "USTEST", // 상품명
+        Amt: String(inputCharge.money), // 결제금액(과세)
+        BuyerName: userData.name, // 고객명
+        buyerName: userData.name,
+        BuyerTel: userData.phoneNumber, // 고객전화번호
+        BuyerEmail: "@naver.com", // 고객이메일
+        ResultYN: "N", // 결제결과창 출력유뮤
+        Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
+        Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
+      });
     } catch (e) {
       console.log(e);
     }

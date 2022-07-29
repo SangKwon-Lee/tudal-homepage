@@ -157,51 +157,52 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
       // var errorcode = data.data.ErrorCode; // 에러코드(상위기관)
       // var errormsg = data.data.ErrorMsg; // 에러메세지(상위기관)
       // var EPayCl = data.data.EPayCl;
-      if (result.ResultCode === "3001") {
-        postPayment(result);
-        try {
-          let newData = {
-            AcquCardCode: result.AcquCardCode,
-            AcquCardName: decodeURI(result.AcquCardName),
-            Amt: result.Amt,
-            AuthCode: result.AuthCode,
-            AuthDate: result.AuthDate,
-            BuyerAuthNum: result.BuyerAuthNum,
-            BuyerEmail: result.BuyerEmail,
-            BuyerName: decodeURI(result.BuyerName),
-            BuyerTel: result.BuyerTel,
-            ErrorCode: result.ErrorCode,
-            ErrorMsg: decodeURI(result.ErrorMsg),
-            GoodsName: decodeURI(result.GoodsName),
-            MID: result.MID,
-            MOID: result.MOID,
-            OID: result.OID,
-            PayMethod: result.PayMethod,
-            ResultCode: result.ResultCode,
-            ResultMsg: decodeURI(result.ResultMsg),
-            TID: result.TID,
-            action: result.action,
-            fn_cd: result.fn_cd,
-            fn_name: decodeURI(result.fn_name),
-            name: decodeURI(result.name),
-            CardQuota: result.CardQuota,
-          };
-          await cmsServer.post(
-            `/tudalus-payment-histories?token=${CMS_TOKEN}`,
-            newData
-          );
-        } catch (e) {}
-      } else {
-        alert("결제 오류가 발생했습니다.");
-        window.removeEventListener("message", innopay_result);
-        window.location.href = "https://us.tudal.co.kr";
-      }
+      // if (result.ResultCode === "3001") {
+      //   postPayment(result);
+      //   try {
+      //     let newData = {
+      //       AcquCardCode: result.AcquCardCode,
+      //       AcquCardName: decodeURI(result.AcquCardName),
+      //       Amt: result.Amt,
+      //       AuthCode: result.AuthCode,
+      //       AuthDate: result.AuthDate,
+      //       BuyerAuthNum: result.BuyerAuthNum,
+      //       BuyerEmail: result.BuyerEmail,
+      //       BuyerName: decodeURI(result.BuyerName),
+      //       BuyerTel: result.BuyerTel,
+      //       ErrorCode: result.ErrorCode,
+      //       ErrorMsg: decodeURI(result.ErrorMsg),
+      //       GoodsName: decodeURI(result.GoodsName),
+      //       MID: result.MID,
+      //       MOID: result.MOID,
+      //       OID: result.OID,
+      //       PayMethod: result.PayMethod,
+      //       ResultCode: result.ResultCode,
+      //       ResultMsg: decodeURI(result.ResultMsg),
+      //       TID: result.TID,
+      //       action: result.action,
+      //       fn_cd: result.fn_cd,
+      //       fn_name: decodeURI(result.fn_name),
+      //       name: decodeURI(result.name),
+      //       CardQuota: result.CardQuota,
+      //     };
+      //     await cmsServer.post(
+      //       `/tudalus-payment-histories?token=${CMS_TOKEN}`,
+      //       newData
+      //     );
+      //   } catch (e) {}
+      // } else {
+      //   alert("결제 오류가 발생했습니다.");
+      //   window.removeEventListener("message", innopay_result);
+      //   window.location.href = "https://us.tudal.co.kr";
+      // }
     }
   };
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
+    console.log(userData.name);
     try {
       //@ts-ignore
       await innopay.goPay({
@@ -212,11 +213,10 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
         GoodsName: "USTEST", // 상품명
         Amt: String(inputCharge.money), // 결제금액(과세)
-        BuyerName: userData.name, // 고객명
+        BuyerName: "테스트", // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
-        BuyerEmail: "", // 고객이메일
+        BuyerEmail: "@naver.com", // 고객이메일
         ResultYN: "N", // 결제결과창 출력유뮤
-        userId: userId,
         Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
         Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
       });

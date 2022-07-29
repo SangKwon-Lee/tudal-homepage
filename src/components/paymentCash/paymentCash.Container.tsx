@@ -31,7 +31,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   //* 충전 정보
   const [inputCharge, setInputCharge] = useState({
     check: false,
-    money: 16500,
+    money: 10,
     method: "CSMS",
     number: "",
     isReceipt: false,
@@ -210,8 +210,8 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         MID: "pgsbcn111m", // 가맹점 MID
         MerchantKey:
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-        GoodsName: "TudalUSTESTGOODS", // 상품명
-        Amt: "10", // 결제금액(과세)
+        GoodsName: "USTEST", // 상품명
+        Amt: String(inputCharge.money), // 결제금액(과세)
         BuyerName: userData.name, // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "", // 고객이메일

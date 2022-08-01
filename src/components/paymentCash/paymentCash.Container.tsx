@@ -139,33 +139,14 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
 
   //*이노페이 결제 결과 (결제 함수 2번 째)
   const innopay_result = async (data: any) => {
-    console.log(data);
-    if (data.data.contents) {
-      //@ts-ignore
-      await innopay.goPay({
-        // 필수 파라미터
-        PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
-        MID: "pgsbcn111m", // 가맹점 MID
-        MerchantKey:
-          "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-        GoodsName: "USTEST", // 상품명
-        Amt: String(inputCharge.money), // 결제금액(과세)
-        BuyerName: userData.name, // 고객명
-        buyerName: userData.name,
-        BuyerTel: userData.phoneNumber, // 고객전화번호
-        BuyerEmail: "@naver.com", // 고객이메일
-        ResultYN: "N", // 결제결과창 출력유뮤
-        Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
-        Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
-      });
-    }
-
     if (data.data.message === "close") {
       // window.removeEventListener("message", innopay_result);
       window.location.href = "https://us.tudal.co.kr";
       return;
     } else if (data.data.message !== "close") {
-      var result = JSON.parse(data.data);
+      window.location.href = "https://us.tudal.co.kr";
+      return;
+      // var result = JSON.parse(data.data);
       //* 아래 데이터는 필요할 경우 사용하세요
       // var mid = data.data.MID; // 가맹점 MID
       // var tid = data.data.TID; // 거래고유번호
@@ -222,7 +203,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
-    const code = `${moment().format("YYYYMMDDHHmmss")}`;
+    // const code = `${moment().format("YYYYMMDDHHmmss")}`;
     try {
       //@ts-ignore
       await innopay.goPay({
@@ -233,23 +214,21 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
         GoodsName: "USTEST", // 상품명
         Amt: String(inputCharge.money), // 결제금액(과세)
-        BuyerName: userData.name, // 고객명
-        buyerName: userData.name,
+        BuyerName: "테스트", // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "@naver.com", // 고객이메일
         ResultYN: "N", // 결제결과창 출력유뮤
         Moid: `${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
         Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
       });
-    } catch (e) {
-      console.log(e);
-    }
-
+    } catch (e) {}
     //* 결제 결과가 아래로 전달 (InnoPayResult 함수 실행)
     window.addEventListener("message", innopay_result);
   };
 
+  // ! 지금은 사용하지 않는 코드입니다.
   //* 이노페이 결제 성공시 골드 충전 함수 (결제 함수 3번 째)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const postPayment = async (result: any) => {
     try {
       const code = `${moment().format("YYYYMMDDHHmmss")}`;

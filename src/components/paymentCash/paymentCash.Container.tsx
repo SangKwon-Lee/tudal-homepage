@@ -214,7 +214,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
         GoodsName: "USTEST", // 상품명
         Amt: String(inputCharge.money), // 결제금액(과세)
-        BuyerName: "테스트", // 고객명
+        BuyerName: userData.name, // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "@naver.com", // 고객이메일
         ResultYN: "N", // 결제결과창 출력유뮤
@@ -349,7 +349,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         ></script>
         <script
           type="text/javascript"
-          src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js"
+          src="https://pg.innopay.co.kr/ipay/js/innopay-2.0_euc-kr.js"
           charSet="utf-8"
         ></script>
       </Helmet>

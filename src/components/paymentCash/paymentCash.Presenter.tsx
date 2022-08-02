@@ -33,10 +33,17 @@ import {
   GoldWarningText,
   GoldWarningTitle,
   GoldWarningWrapper,
+  GoldChargeWarningImg,
+  GoldChargeWarningImgWrapper,
+  GoldChargeWarningRedText,
+  GoldChargeWarningText,
+  GoldChargeWarningTextRed,
+  GoldChargeWarningWrapper,
 } from "../goldCharge/GoldCharge.style";
 import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import moneyPNG from "../../assets/images/money.png";
+import WarningSVG from "../../assets/images/SVG/warning.svg";
 import moneyWhitePNG from "../../assets/images/goldWhite.png";
 import { priceToString } from "../goldCharge/GoldCharge.presenter";
 interface PaymentCashProps {
@@ -122,7 +129,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               </GoldChargeResultVATWrapper>
             </GoldMyMoneyWrapper>
             <GoldResultLine />
-            {/* <GoldChargeWarningWrapper>
+            <GoldChargeWarningWrapper>
               <GoldChargeWarningImgWrapper>
                 <GoldChargeWarningImg src={WarningSVG} />
                 <GoldChargeWarningRedText>
@@ -130,13 +137,11 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                 </GoldChargeWarningRedText>
               </GoldChargeWarningImgWrapper>
               <GoldChargeWarningText>
-                SMS 인증 결제에서
-                <GoldChargeWarningTextRed>
-                  현대카드, 하나카드
-                </GoldChargeWarningTextRed>
-                는 사용하실 수 없습니다.
+                결제 후 적용까지
+                <GoldChargeWarningTextRed> 최대 3분</GoldChargeWarningTextRed>이
+                소요될 수 있습니다.
               </GoldChargeWarningText>
-            </GoldChargeWarningWrapper> */}
+            </GoldChargeWarningWrapper>
           </GoldResultWrapper>
         </PaymentBodyWrapper>
       </Contents>

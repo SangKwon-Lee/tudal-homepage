@@ -143,13 +143,13 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         MID: "pgsbcn111m", // 가맹점 MID
         MerchantKey:
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-        GoodsName: "TudalUsTest", // 상품명
-        Amt: money, // 결제금액(과세)
+        GoodsName: "TudalUS", // 상품명
+        Amt: "11", // 결제금액(과세)
         BuyerName: userData.name, // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "@naver.com", // 고객이메일
         ResultYN: "N", // 결제결과창 출력유뮤
-        Moid: `TudalUS${String(userId)}`, // 가맹점에서 생성한 주문번호 셋팅
+        Moid: String(userId), // 가맹점에서 생성한 주문번호 셋팅
         Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
       });
     } catch (e) {}

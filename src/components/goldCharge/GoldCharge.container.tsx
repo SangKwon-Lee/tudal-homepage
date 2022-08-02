@@ -67,7 +67,7 @@ const GoldChargeContainer = ({ path }: any) => {
       MID: "pgsbcn111m", // 가맹점 MID
       MerchantKey:
         "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-      GoodsName: "투달골드", // 상품명
+      GoodsName: "TudalGold", // 상품명
       Amt: String(money), // 결제금액(과세)
       BuyerName: userData.name, // 고객명
       BuyerTel: userData.phoneNumber, // 고객전화번호

@@ -130,6 +130,7 @@ export const GoldResultWrapper = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const GoldResultLine = styled.div`
@@ -155,11 +156,8 @@ export const GoldMethodBtn = styled.button`
   font-weight: 700;
   cursor: pointer;
   border-radius: 10px;
-
-  background-color: ${(props: IGoldChargeStyleProps) =>
-    props.isMethod ? "#FFEBEF" : "#f7f7f7"};
-  border: ${(props: IGoldChargeStyleProps) =>
-    props.isMethod ? "1px solid #FF3838" : "none"};
+  background-color: #ffebef;
+  border: 1px solid #ff3838;
 `;
 
 export const GoldChargeResultVATWrapper = styled.div`

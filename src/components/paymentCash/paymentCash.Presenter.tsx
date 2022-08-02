@@ -137,8 +137,17 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
                 </GoldChargeWarningRedText>
               </GoldChargeWarningImgWrapper>
               <GoldChargeWarningText>
+                SMS인증 결제 시
+                <GoldChargeWarningTextRed>
+                  &nbsp;현대, 하나카드는&nbsp;
+                </GoldChargeWarningTextRed>
+                사용이 불가능합니다.
+              </GoldChargeWarningText>
+              <GoldChargeWarningText>
                 결제 후 적용까지
-                <GoldChargeWarningTextRed> 최대 3분</GoldChargeWarningTextRed>이
+                <GoldChargeWarningTextRed>
+                  &nbsp;최대 2분이&nbsp;
+                </GoldChargeWarningTextRed>
                 소요될 수 있습니다.
               </GoldChargeWarningText>
             </GoldChargeWarningWrapper>

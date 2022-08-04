@@ -139,7 +139,7 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
               <GoldChargeWarningText>
                 SMS인증 결제 시
                 <GoldChargeWarningTextRed>
-                  &nbsp;현대, 하나카드는&nbsp;
+                  &nbsp;현대, 하나, 삼성카드는&nbsp;
                 </GoldChargeWarningTextRed>
                 사용이 불가능합니다.
               </GoldChargeWarningText>

@@ -33,6 +33,11 @@ import {
   GoldChargeServiceWrapper,
   GoldChargeServiceText,
   GoldChargeTitleWrapper,
+  GoldChargeWarningImg,
+  GoldChargeWarningImgWrapper,
+  GoldChargeWarningRedText,
+  GoldChargeWarningTextRed,
+  GoldChargeWarningWrapper,
 } from "./GoldCharge.style";
 import { UserGold } from "../../commons/types/types";
 import moneyPNG from "../../assets/images/money.png";
@@ -40,7 +45,7 @@ import checkGray from "../../assets/images/checkGray.png";
 import checkColor from "../../assets/images/checkColor.png";
 import goldCheckPNG from "../../assets/images/goldCheck.png";
 import moneyWhitePNG from "../../assets/images/goldWhite.png";
-
+import WarningSVG from "../../assets/images/SVG/warning.svg";
 import { Body, Contents, Title } from "../commons/ui/commonStyle";
 
 interface IGoldChargeProps {
@@ -174,6 +179,28 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
                   </GoldChargeResultVATWrapper>
                 </GoldMyMoneyWrapper>
                 <GoldResultLine />
+                <GoldChargeWarningWrapper>
+                  <GoldChargeWarningImgWrapper>
+                    <GoldChargeWarningImg src={WarningSVG} />
+                    <GoldChargeWarningRedText>
+                      입금 전 잠깐!
+                    </GoldChargeWarningRedText>
+                  </GoldChargeWarningImgWrapper>
+                  <GoldChargeWarningText>
+                    SMS인증 결제 시
+                    <GoldChargeWarningTextRed>
+                      &nbsp;현대, 하나, 삼성카드는&nbsp;
+                    </GoldChargeWarningTextRed>
+                    사용이 불가능합니다.
+                  </GoldChargeWarningText>
+                  <GoldChargeWarningText>
+                    결제 후 적용까지
+                    <GoldChargeWarningTextRed>
+                      &nbsp;최대 2분이&nbsp;
+                    </GoldChargeWarningTextRed>
+                    소요될 수 있습니다.
+                  </GoldChargeWarningText>
+                </GoldChargeWarningWrapper>
               </GoldResultWrapper>
             </>
           )}

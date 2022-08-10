@@ -21,7 +21,7 @@ const MyInfoPresenter: React.FC<IMyInfoProps> = ({
   return (
     <Body>
       <Contents>
-        <Title onClick={() => getUser("01037682138")}>내정보</Title>
+        <Title>내정보</Title>
         <MyInfoWrapper>
           <MyInfoTitleWrapper>
             <MyInfoTitle>이름</MyInfoTitle>

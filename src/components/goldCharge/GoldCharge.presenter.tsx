@@ -207,7 +207,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
         </Contents>
         <Contents
           style={{
-            height: isCharge ? "950px" : "80px",
+            height: isCharge ? "650px" : "80px",
           }}
         >
           <Title
@@ -240,7 +240,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
           <GoldChargePGBtn
             name="btn_pay"
             isCheck={isCheck}
-            disabled={!isCheck}
+            disabled={true}
             onClick={() => {
               handleInnoPay();
             }}

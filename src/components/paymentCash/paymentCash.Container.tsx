@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { GlobalContext } from "../../App";
@@ -134,7 +135,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
-    // const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
+    const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
     try {
       //@ts-ignore
       await innopay.goPay({
@@ -149,7 +150,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "@naver.com", // 고객이메일
         ResultYN: "N", // 결제결과창 출력유뮤
-        Moid: String(userId), // 가맹점에서 생성한 주문번호 셋팅
+        Moid: code + String(userId), // 가맹점에서 생성한 주문번호 셋팅
         Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
       });
     } catch (e) {}

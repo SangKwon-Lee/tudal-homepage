@@ -29,7 +29,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
 
   //* 충전 정보
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [money, setMoney] = useState("10");
+  const [money, setMoney] = useState("16500");
   const [isCheck, setIsCheck] = useState(false);
 
   //* 투달러스 구독 내역
@@ -145,7 +145,7 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         MerchantKey:
           "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
         GoodsName: "TudalUS", // 상품명
-        Amt: "12", // 결제금액(과세)
+        Amt: money, // 결제금액(과세)
         BuyerName: userData.name, // 고객명
         BuyerTel: userData.phoneNumber, // 고객전화번호
         BuyerEmail: "@naver.com", // 고객이메일

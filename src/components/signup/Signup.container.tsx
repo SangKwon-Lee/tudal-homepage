@@ -29,8 +29,8 @@ const SignupContainer: React.FC<SignupContainerProps> = ({ path }) => {
 
   //* ARS 인증 버튼
   const [isAuth, setIsAuth] = useState({
-    isBtn: false,
-    isAuthOk: false,
+    isBtn: true,
+    isAuthOk: true,
   });
 
   //* ARS 인증 코드

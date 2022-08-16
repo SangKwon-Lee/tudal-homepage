@@ -95,6 +95,7 @@ const SignupPresenter: React.FC<SignupProps> = ({
   handleSignupInput,
 }) => {
   const { isAuthOk } = isAuth;
+
   const navigate = useNavigate();
   return (
     <>
@@ -252,16 +253,21 @@ const SignupPresenter: React.FC<SignupProps> = ({
               <SignupSuccessWrapper>
                 <SignupSuccessImg src={welcomeImg} />
                 <SignupSuccessText>
-                  투자의달인 회원가입에 성공하였습니다.
+                  {changePath(path)} 회원가입에 성공하였습니다.
                 </SignupSuccessText>
                 <SignupSuccessSubText>
-                  투자의달인 로그인 한번으로
+                  {changePath(path)} 로그인 한번으로
                   <br />
-                  투달유에스와 뉴스스탁 서비스를 함께 이용하실 수 있습니다.
+                  투자의달인, 투달유에스, 뉴스스탁 서비스를 함께 이용하실 수
+                  있습니다.
                 </SignupSuccessSubText>
                 <SignupSuccessBtn
                   onClick={() => {
-                    navigate("/");
+                    if (path === "tudalus") {
+                      window.location.href = "https://us.tudal.co.kr";
+                    } else {
+                      navigate("/");
+                    }
                   }}
                 >
                   홈으로 가기

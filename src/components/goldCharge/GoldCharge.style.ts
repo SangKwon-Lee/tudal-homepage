@@ -198,12 +198,12 @@ export const GoldChargeWarningRedText = styled.div`
 `;
 
 export const GoldChargeWarningText = styled.div`
-  font-size: 13px;
+  font-size: 16px;
   margin-bottom: 13px;
 `;
 
 export const GoldChargeWarningTextRed = styled.span`
-  font-size: 13px;
+  font-size: 16px;
   color: #ff3838;
 `;
 

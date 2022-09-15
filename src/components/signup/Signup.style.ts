@@ -329,7 +329,7 @@ export const SignupSuccessBtn = styled.button`
 `;
 
 export const SignupModalWrapper = styled.div`
-  width: 90%;
+  width: 300px;
   height: 177px;
   padding: 40px 30px;
   background-color: white;

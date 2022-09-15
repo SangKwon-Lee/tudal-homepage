@@ -56,6 +56,7 @@ import webIcon2 from "../../assets/images/webicon_02.svg";
 import webIcon3 from "../../assets/images/webicon_03.svg";
 import webIcon4 from "../../assets/images/webicon_04.svg";
 import webIcon5 from "../../assets/images/webicon_05.svg";
+import { chargeGold } from "../../commons/func/chargeGold";
 
 const HomePresenter = () => {
   return (

@@ -46,6 +46,14 @@ import moneyPNG from "../../assets/images/money.png";
 import WarningSVG from "../../assets/images/SVG/warning.svg";
 import moneyWhitePNG from "../../assets/images/goldWhite.png";
 import { priceToString } from "../goldCharge/GoldCharge.presenter";
+import { Modal } from "@mui/material";
+import {
+  SignupModalWrapper,
+  SignupModalTitle,
+  SignupModalBtnWrapper,
+  SignupModalBtnCancle,
+  SignupModalBtnOk,
+} from "../signup/Signup.style";
 interface PaymentCashProps {
   path: string;
   product: {
@@ -55,9 +63,11 @@ interface PaymentCashProps {
   };
   money: string;
   isCheck: boolean;
+  modalOpen: boolean;
   tudlaUsHistory: any;
   handleIsCheck: () => void;
   handleInnoPay: () => void;
+  handleModalOpen: () => void;
 }
 
 const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
@@ -65,9 +75,11 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
   money,
   isCheck,
   product,
+  modalOpen,
   handleIsCheck,
   handleInnoPay,
   tudlaUsHistory,
+  handleModalOpen,
 }) => {
   return (
     <Body>
@@ -188,7 +200,8 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
           isCheck={isCheck}
           disabled={!isCheck}
           onClick={() => {
-            handleInnoPay();
+            handleModalOpen();
+            // handleInnoPay();
           }}
         >
           {isCheck ? (
@@ -234,6 +247,40 @@ const PaymentCashPresenter: React.FC<PaymentCashProps> = ({
           </GoldChargeServiceText>
         </GoldChargeServiceWrapper>
       </Contents>
+      <Modal
+        open={modalOpen}
+        onClose={handleModalOpen}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          top: "30%",
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
+        <SignupModalWrapper style={{ fontSize: "14px" }}>
+          <SignupModalTitle style={{ marginBottom: "8px" }}>
+            결제 전 잠깐!
+          </SignupModalTitle>
+          SMS인증 결제 시
+          <GoldChargeWarningTextRed>
+            현대, 하나, 삼성카드는
+          </GoldChargeWarningTextRed>
+          사용이 불가능합니다.
+          <SignupModalBtnWrapper>
+            <SignupModalBtnCancle onClick={handleModalOpen}>
+              취소
+            </SignupModalBtnCancle>
+            <SignupModalBtnOk
+              onClick={() => {
+                handleInnoPay();
+              }}
+            >
+              결제
+            </SignupModalBtnOk>
+          </SignupModalBtnWrapper>
+        </SignupModalWrapper>
+      </Modal>
     </Body>
   );
 };

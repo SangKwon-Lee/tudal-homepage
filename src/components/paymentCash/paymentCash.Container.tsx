@@ -27,6 +27,9 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
     name: "",
   });
 
+  // * 결제 전 잠깐 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
   //* 충전 정보
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [money, setMoney] = useState("16500");
@@ -197,8 +200,14 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
   //   }
   // };
 
+  // * 결제 동의 체크
   const handleIsCheck = () => {
     setIsCheck(() => !isCheck);
+  };
+
+  // *결제 전 잠깐 모달 오픈 함수
+  const handleModalOpen = () => {
+    setModalOpen(() => !modalOpen);
   };
 
   useEffect(() => {
@@ -227,9 +236,11 @@ const PaymentCashContainer: React.FC<PaymentCahshProps> = ({ path }) => {
         money={money}
         isCheck={isCheck}
         product={product}
+        modalOpen={modalOpen}
         handleIsCheck={handleIsCheck}
         handleInnoPay={handleInnoPay}
         tudlaUsHistory={tudlaUsHistory}
+        handleModalOpen={handleModalOpen}
       />
     </>
   );

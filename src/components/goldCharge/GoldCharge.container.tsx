@@ -1,10 +1,11 @@
+import dayjs from "dayjs";
+import { Helmet } from "react-helmet";
 import { GlobalContext } from "../../App";
+import { useContext, useState } from "react";
 import WithAuth from "../commons/hocs/withAuth";
 import { getUserId } from "../../commons/func/hash";
 import useGetUser from "../commons/hooks/useGetUser";
-import { useContext, useState } from "react";
 import GoldChargePresenter from "./GoldCharge.presenter";
-import { Helmet } from "react-helmet";
 
 const GoldChargeContainer = ({ path }: any) => {
   const { userData, userGold } = useContext(GlobalContext);
@@ -60,22 +61,25 @@ const GoldChargeContainer = ({ path }: any) => {
 
   //* 이노페이 결제 (결제 함수 1번 째)
   const handleInnoPay = async () => {
-    //@ts-ignore
-    innopay.goPay({
-      // 필수 파라미터
-      PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
-      MID: "pgsbcn111m", // 가맹점 MID
-      MerchantKey:
-        "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
-      GoodsName: "TudalGold", // 상품명
-      Amt: String(money), // 결제금액(과세)
-      BuyerName: userData.name, // 고객명
-      BuyerTel: userData.phoneNumber, // 고객전화번호
-      BuyerEmail: "@naver.com", // 고객이메일
-      ResultYN: "N", // 결제결과창 출력유뮤
-      Moid: `TudalGold${userId}`, // 가맹점에서 생성한 주문번호 셋팅
-      Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
-    });
+    const code = `${dayjs().format("YYYYMMDDHHmmss")}`;
+    try {
+      //@ts-ignore
+      innopay.goPay({
+        // 필수 파라미터
+        PayMethod: "CSMS", // 결제수단(CARD,BANK,VBANK,CARS,CSMS,DSMS,EPAY,EBANK)
+        MID: "pgsbcn111m", // 가맹점 MID
+        MerchantKey:
+          "GzV1sy9fFQp1FTc+MHWmi9Wpr/8mcgKEeSEn4Zg6pHhUZEnFY0EEgrupAPuOseGP4Dcg2nYM8Yj7SDzK4HOlTg==", // 가맹점 라이센스키
+        GoodsName: "TudalGold", // 상품명
+        Amt: String(money), // 결제금액(과세)
+        BuyerName: userData.name, // 고객명
+        BuyerTel: userData.phoneNumber, // 고객전화번호
+        BuyerEmail: "@naver.com", // 고객이메일
+        ResultYN: "N", // 결제결과창 출력유뮤
+        Moid: code + "TudalGold" + String(userId), // 가맹점에서 생성한 주문번호 셋팅
+        Currency: "", // 통화코드가 원화가 아닌 경우만 사용(KRW/USD)
+      });
+    } catch (e) {}
     //* 결제 결과가 아래로 전달 (InnoPayResult 함수 실행)
     window.addEventListener("message", InnoPayResult);
   };

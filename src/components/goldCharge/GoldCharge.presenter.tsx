@@ -124,7 +124,8 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
           </GoldMyMoneyWrapper>
         </Contents>
         <Contents>
-          <GoldChargeTitleWrapper>
+          <Title>골드 충전 페이지 점검 중입니다. 앱 충전을 이용해주세요.</Title>
+          {/* <GoldChargeTitleWrapper>
             <Title
               style={{
                 cursor: "pointer",
@@ -240,10 +241,8 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
           <GoldChargePGBtn
             name="btn_pay"
             isCheck={isCheck}
-            disabled={true}
-            onClick={() => {
-              handleInnoPay();
-            }}
+            disabled={!isCheck}
+            onClick={handleInnoPay}
           >
             {isCheck ? (
               <GoldMoneyImg src={moneyWhitePNG} alt="" />
@@ -287,7 +286,7 @@ const GoldChargePresenter: React.FC<IGoldChargeProps> = ({
             >
               서비스 이용약관
             </GoldChargeServiceText>
-          </GoldChargeServiceWrapper>
+          </GoldChargeServiceWrapper> */}
         </Contents>
       </Body>
     </>

@@ -82,6 +82,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ path }) => {
       const { data } = await apiServer.post("/user/checkProps", {
         phoneNumber: loginInput.phone,
       });
+      console.log(loginInput, data);
       if (data.length === 0) {
         alert("회원정보가 없습니다.");
         return;

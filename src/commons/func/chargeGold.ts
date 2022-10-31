@@ -6,7 +6,7 @@ export const chargeGold = async (userId: string) => {
   try {
     const code = `${moment().format("YYYYMMDDHHmmss")}`;
     const { status } = await apiServer.post(`/golds/${userId}/add`, {
-      amount: 3000, // 충전 골드
+      amount: 5000, // 충전 골드
       bonusAmount: 0, // 충전 보너스 골드
       category: "골드충전", // '골드충전'
       code,

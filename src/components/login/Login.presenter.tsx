@@ -58,11 +58,20 @@ const LoginPresenter: React.FC<ILoginProps> = ({
             <LoginInputTitle>휴대폰번호</LoginInputTitle>
             <LoginInputWrapper>
               <LoginInput
+                onWheel={(e) => {
+                  //@ts-ignore
+                  e.target.blur();
+                }}
                 type="number"
                 placeholder="01012345678"
                 name="phone"
                 onChange={handleLoginInput}
                 disabled={auth.ok}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSMSSend();
+                  }
+                }}
               />
               <LoginAuthBtn
                 disabled={!loginInput.name || !loginInput.phone || auth.timer}
